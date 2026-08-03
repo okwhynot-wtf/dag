@@ -1,41 +1,67 @@
 # Residue / refusal (DAG hybrid)
 
 Merged ledger from DM + AG + RE, per `docs/DAG.md` §8.
+Revised to separate **genuine refusals** from **tractable open work**
+(earlier lists bundled claim-hygiene with “out of reach”).
 
-## Residue (open — not Lean-attackable / policy)
+## Philosophical residue (not theorem-shaped)
 
 | Item | Notes |
 |---|---|
 | Facticity of liveness | Subsumes AG "why eternal aliveness"; hybrid states liveness once |
-| ℤ/2 choice | Address / pole / channel labels; branch choice per tick |
+| ℤ/2 choice | Address / pole / channel labels; branch choice per tick (underdetermination is proved; *which* face is free) |
 | Arena adequacy | DM's contestable ambient claim |
 | Blank adjunction ontology | Beyond emanation gloss |
-| RE action by hand | m, V₀, amplitudes are inputs |
-| Lorentzian / matter dictionaries | From AG, still open |
-| **R-1 Spatial extension** | **Highest-value open.** Dim-1 causal order (time only). Branch width conjectured as space (distance = divergence depth). **Obstruction:** LCA distance is ultrametric; physical space is not. Escape needs recombination; paths diverge and stay diverged. **T-14 restatement:** tree is Forman-negative; each registered 2-cell raises Forman by 1; internal edges need ≥2 faces to reach zero-line. **Quantitative target:** recombinations-per-node cost of near-flatness vs aliveness/registration budget (flatness priced in records). **Wildcard:** stratified merge-with-record may admit recombination = interference-shaped; space door ≅ quantum door. |
+| RE action by hand | m, V₀, amplitudes are inputs until a derivation exists |
+
+## Tractable open work (Lean-attackable)
+
+These were over-refused or misfiled as unattackable. Discrete / finite
+caricatures are in scope; continuum identifications are not.
+
+| Item | Attack shape |
+|---|---|
+| **O-3 ledger sheaf** | Glue `LocalLedgerPatch` stalks over the branch tree with overlap compatibility; independent local balance laws (Jacobson needs this) |
+| **R-1 recombination budget** | Count registered faces per node vs aliveness/registration budget; does near-flatness (Forman ≥ 0) fit? Ultrametric obstruction is real; the *counting* question is Lean |
+| **Combinatorial temperature caricature** | Counting entropy `S ~ log‖caps‖`; period-2 / involution toys; optional KMS↔period-2 experiment. Not Unruh, not Boltzmann continuum — but stop banning all `T` |
+| **Finite-mode Page / Bogoliubov toy** | Finite Hilbert caricature for Hawking-pair drift (exhibit conjecture → Lean). Continuum QFT stays refused |
+| **Matter-as-input dictionary** | Treat matter stress as declared alphabet/flux data in local patches; discrete Friedmann-*shaped* balance with inputs. Deriving matter from Bool stays refused |
+| **Finite measures on branches** | Optional: random-walk / counting measures → Ollivier-style trial on finite trees. Continuum measure theory not required |
+| **Area-as-capacity sharpening** | Tighten Bekenstein-shaped reading of `‖caps T‖` (already present); not continuum area theorems |
+| **RE-side growth law** | Seek quintom mode-count ↔ capacity-law analogue (table V dash: not yet sought) |
+| **Lorentzian dictionary (partial)** | What can be said with order dim-1 + capacity growth without full Lorentz group? Separate from O-2 boost gap |
+| Arbitrary `U_S` UP | Beyond fiber tagging (`arbitraryUS_UP_open`) |
+
+## Structural open (hard walls; not “just write the proof”)
+
+| Item | Why hard | Still movable? |
+|---|---|---|
+| **O-2** no boost / Unruh `T` | Only symmetry is one ℤ/2; Clausius has no temperature | Needs new structure (boost-like), not a missing lemma. Deepest Einstein gap |
+| **R-1** ultrametric vs space | LCA distance ≠ Archimedean space; paths diverge and stay diverged | Yes via recombination programme above; success not guaranteed |
+| **O-4** continuum Lorentzian limit | No continuum metric in hand | Limit theorems only after R-1 / dictionary progress |
+| **O-5** dynamical matter from framework | Matter currently input | Dictionary work can *host* matter; derivation from Bool not expected |
 
 ## Documented obstructions (attacked; remnant filed)
 
 | Item | Discharged | Remains |
 |---|---|---|
-| **T-1** Environment UP | Fiber-tagging UP (`environment_universality`) | Arbitrary `U_S` beyond fiber tagging (`arbitraryUS_UP_open`) |
+| **T-1** Environment UP | Fiber-tagging UP (`environment_universality`) | Arbitrary `U_S` beyond fiber tagging |
 | **T-2** Tick simulation | Committed path (`tick_simulation`) | — |
-| **T-2 factorisation** | Namer-shaped label factor (`registers_admits_namer`); **carrier-level factorisation obstructed** by eternal swap on fixed `Bool` vs growing `levelCard` (`registration_vs_naming_obstruction`) | Naming↔microtick = committed expand + label-namer fragment only |
+| **T-2 factorisation** | Namer-shaped label factor (`registers_admits_namer`); **carrier-level factorisation obstructed** by eternal swap on fixed `Bool` vs growing `levelCard` | Naming↔microtick = committed expand + label-namer fragment only |
 
-## Refused
+## Refused (genuine — keep)
 
-- Any cosmological number from Bool
-- Quintom as the world's dynamics; DESI alignment is model-class observation only
+Claim-hygiene and continuum / mind ceilings. Not the same as “no caricature allowed.”
+
+- Cosmological number or observable `H₀` / seconds **identified from** Bool or naming ticks (units gap)
+- Quintom as the world's dynamics; DESI as forecast (model-class observation only)
 - Premise-free global Law of Time
-- Spacetime / area / island theorems
-- QFT mode creation as Lean
-- Gravitational evaporating BH as Lean (Page *toy* via L-certificate admitted)
-- Temperature / Boltzmann / statistical mechanics proper (T-11 combinatorial only)
-- Born rule / probabilities / preferred basis (T-12 shape only)
-- Hard problem / qualia (meta-problem claims *reports* only)
-- **E4** Friedmann + matter; observable `H₀` from naming ticks
-- Experiential claims (DM Interpretation scope)
-- ODE / numeric exhibits as Lean theorems
+- Continuum spacetime manifold; continuum area/island theorems; continuum Einstein `G_{μν}=8πT_{μν}` as Lean gravity
+- Continuum QFT mode creation; gravitational evaporating BH as Lean (finite Page *toy* admitted)
+- Continuum Boltzmann / Gibbs statistical mechanics (combinatorial Landauer / counting entropy are not this)
+- Born rule as a theorem from underdetermination alone (needs measure structure not present)
+- Hard problem / qualia / experiential claims (meta-problem = structural *reports* only)
+- Deriving dynamical matter or Friedmann cosmology **from Bool alone** (matter-as-input dictionary is open work above)
 
 ## Discharged
 
@@ -46,7 +72,7 @@ I-4 L-certificate: **Page**;
 T-12 Branch/measurement no-go: **NoClone** paired with Lossless.
 T-16 discharges the Jacobson *skeleton* (capacity, Landauer, seal-horizon,
 saturation EoS, Forman `G~T` caricature, local ledger stalks). Continuum
-Einstein remains refused; O-2…O-5 / R-1 still open.
+Einstein remains refused; O-2 structural; O-3 / R-1 budget in tractable open.
 
 ## Interpretation (hedged)
 

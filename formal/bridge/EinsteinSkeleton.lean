@@ -39,15 +39,14 @@ ledger, now that Forman curvature (T-14) and saturation EoS (T-15) exist.
 7. Pointwise local ledger patches over branch loci (O-3 stalk); overlap
    compatibility of capacity lengths when loci agree.
 
-**What does not fall out (open / refused).**
-- O-2: boosts / Lorentz / Unruh temperature (Clausius needs `T`; we have
-  only ℤ/2). Deepest gap.
-- O-3: sheaf of independent local balance laws (we have stalks + crude
-  overlap, not gluable Einstein tensors).
-- O-4 / O-5: continuum Lorentzian limit; dynamical matter.
-- R-1: spatial metric (ultrametric obstruction).
-- Continuum field equations `G_{μν} = 8π T_{μν}`: refused. The skeleton
-  occupies their logical slot without claiming them.
+**What does not fall out.**
+- O-2 (structural): boosts / Unruh `T` — only ℤ/2. Deepest Einstein gap.
+- O-3 (tractable open work): sheaf of local ledgers — stalks exist; glue
+  programme filed in `docs/RESIDUE.md`.
+- R-1 (structural obstruction + tractable budget): ultrametric ≠ space;
+  recombination counting is Lean-attackable.
+- O-4 / O-5: continuum Lorentzian limit; matter from the framework.
+- Continuum `G_{μν} = 8π T_{μν}`: refused. Skeleton occupies the EoS slot.
 
 No temperature, no Boltzmann, no continuum metric, no `sorry`.
 -/

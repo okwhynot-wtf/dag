@@ -37,13 +37,15 @@ Jacobson inputs discharge; curvature relief costs records; local ledger stalks
 exist with crude overlap. Continuum `G_{μν} = 8π T_{μν}` does **not** fall out.
 
 **Still blocking continuum Einstein.**
-- **O-2** (deepest): no boosts ⇒ no Unruh temperature ⇒ Clausius has no `T`
-- **O-3**: stalks ≠ sheaf of independent local balance laws
-- **O-4 / O-5**: continuum Lorentzian limit; dynamical matter
-- **R-1**: spatial metric (ultrametric)
+- **O-2** (structural, deepest): no boosts ⇒ no Unruh `T`
+- **O-3** (tractable): stalks ≠ sheaf — glue programme in open work
+- **R-1** (structural obstruction, tractable budget attack): ultrametric;
+  recombination counting is Lean
+- **O-4 / O-5** (limit / input): continuum Lorentzian; matter from framework
 
-Field equations remain refused as Lean gravity. The skeleton is the honest
-ceiling until O-2 moves.
+Continuum field equations remain refused. Discrete next steps live under
+tractable open work in `docs/RESIDUE.md` (sheaf, recombination budget,
+combinatorial `T`, finite Page toy).
 
 
 ## Causal-set postulate (T-13)

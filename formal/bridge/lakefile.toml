@@ -1,0 +1,24 @@
+name = "dag_bridge"
+version = "0.1.0"
+defaultTargets = ["DAGBridge"]
+
+[[require]]
+name = "fundamental_spine"
+path = "../spine"
+
+[[require]]
+name = "archive_ledger"
+path = "../ledger"
+
+[[lean_lib]]
+name = "DAGBridge"
+srcDir = "."
+roots = [
+  "Alphabet",
+  "Capacity",
+  "OneZ2",
+  "RegistrationSpine",
+  "TickSimulation",
+  "Environment",
+  "BridgeArc",
+]

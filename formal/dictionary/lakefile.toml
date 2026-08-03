@@ -1,0 +1,26 @@
+name = "dag_dictionary"
+version = "0.1.0"
+defaultTargets = ["DAGDictionary"]
+
+[[require]]
+name = "fundamental_spine"
+path = "../spine"
+
+[[require]]
+name = "archive_ledger"
+path = "../ledger"
+
+[[require]]
+name = "dag_bridge"
+path = "../bridge"
+
+[[lean_lib]]
+name = "DAGDictionary"
+srcDir = "."
+roots = [
+  "Certificate",
+  "Quintom.Kernel",
+  "Quintom.Certificate",
+  "Quintom.FixedPoint",
+  "Quintom.Damping",
+]

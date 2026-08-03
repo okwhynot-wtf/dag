@@ -1,0 +1,30 @@
+name = "fundamental_spine"
+version = "0.1.0"
+defaultTargets = ["FundamentalSpine"]
+
+[[lean_lib]]
+name = "FundamentalSpine"
+srcDir = "."
+roots = [
+  "Audit",
+  "Orbit",
+  "TwoCycle",
+  "Diagonal",
+  "Tower",
+  "Ladder",
+  "Cause",
+  "Branch",
+  "Limit",
+  "Revision",
+  "SEM",
+  "Interior",
+  "Monism",
+  "Apophasis",
+  "Canon",
+  "Information",
+  "Observer",
+  "Faces",
+  "Density",
+  "NonCommencement",
+  "OmegaDuration",
+]

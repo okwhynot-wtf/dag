@@ -12,6 +12,7 @@
 | T-14 Forman tree curvature | `Bridge.Forman.T14_forman_tree_curvature` | Bridge |
 | T-15 saturation / equation-of-state | `Bridge.Saturation.T15_saturation_equation_of_state` | Bridge |
 | T-16 discrete Einstein / Jacobson skeleton | `Bridge.EinsteinSkeleton.T16_discrete_einstein_skeleton` | Bridge |
+| Effective-matter sprint (A1–A3, B4, C2) | `Bridge.EffectiveMatter.effective_matter_sprint` | Bridge |
 | E1 monotone structure | `Bridge.Expansion.E1_monotone_structure` | Bridge |
 | E2 exponential capacity | `Bridge.Expansion.E2_exponential_capacity` | Bridge |
 | T-4 registration on spine | `Bridge.RegistrationSpine.registration_on_spine` | Bridge |

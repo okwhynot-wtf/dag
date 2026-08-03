@@ -1,5 +1,5 @@
 Diagonal Archive Geometry — symbolic law
-corpus hybrid/ DAG v0.1.10
+corpus hybrid/ DAG v0.1.11
 
 ═══════════════════════════════════════════════════════════════════════════════
 0. Layers  (downward imports only)
@@ -183,7 +183,8 @@ VII. Residue / refusal
   ledger:  Geom.Registration · Profile · Gradient · Obs.Recovery · Obs.Dimension
   bridge:  Alphabet · Capacity · OneZ2 · RegistrationSpine · Environment ·
            TickSimulation · RegistrationFactor · ArchiveMustSpeak · SecondLaw ·
-           Measurement · Expansion · Forman · Saturation · EinsteinSkeleton
+           Measurement · Expansion · Forman · Saturation · EinsteinSkeleton ·
+           EffectiveMatter
   dict:    Certificate (K) · LCertificate · Quintom.* · BitFlip · Kramers · Page ·
            NoClone (measurement) · MetaProblem
 

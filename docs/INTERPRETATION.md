@@ -65,6 +65,22 @@ tick at `K = 2`. **Not** a forecast of `H₀`.
 Research question inverted: not “can DAG have curvature?” but “can it buy
 near-flatness from Forman −∞ within the registration budget?”
 
+## Matter reading (hypothesis under test)
+
+**H.** Matter is an emergent effective description of record flux that a
+bounded lossless ledger is forced to emit at capacity saturation.
+
+**H⊥.** Matter needs a second generator beyond registration / saturation.
+
+Sprint status (`Bridge.EffectiveMatter.effective_matter_sprint`):
+- **A1–A3 passed** — `effectiveMatter` = flux; vacuum = oscillator class;
+  matter-bearing = saturated nonzero fiber; vacuum ≠ matter-channel separable
+- **B4 passed** — below saturation, fiber length `<` alphabet length (slack)
+- **C2 passed** — Kmin Forman unpaid flatness (`= 2`) ≤ `|caps T|` for all `T`
+
+Stop rules: see `docs/MATTER_FLUX_PLAN.md`. Continuum `T_{μν}` / SM inventory
+still refused. Next: Phase D (flux patterns) and O-3 sheaf glue.
+
 ## Coincidence: flatness embarrassment (not promoted)
 
 Cosmology's near-flat universe is an unsolved calibration puzzle. DAG's

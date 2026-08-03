@@ -12,6 +12,7 @@ import Expansion
 import Forman
 import Saturation
 import EinsteinSkeleton
+import EffectiveMatter
 import Geom.Registration
 import Geom.Profile
 import Density
@@ -164,6 +165,17 @@ theorem milestone_T16 :
     Bridge.Alphabet.Kmin = 2 :=
   ⟨rfl, rfl, rfl, Bridge.Alphabet.Kmin_eq⟩
 
+theorem milestone_effective_matter_sprint :
+    Bridge.EffectiveMatter.VacuumDynamics Geom.Registration.oscStep ∧
+    (∀ T, Bridge.EffectiveMatter.recombinationsNeeded
+      (Bridge.Forman.internalDeg Bridge.Alphabet.Kmin)
+      (Bridge.Forman.internalDeg Bridge.Alphabet.Kmin) ≤
+        Bridge.EffectiveMatter.alivenessBudget T) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨Bridge.EffectiveMatter.osc_is_vacuum,
+   Bridge.EffectiveMatter.kmin_flatness_within_caps_budget,
+   Bridge.Alphabet.Kmin_eq⟩
+
 theorem bridge_arc :
     Bridge.Alphabet.Kmin = 2 ∧
     (∀ T, Bridge.Capacity.caps T = 2 ^ (T + 2)) ∧
@@ -214,6 +226,7 @@ theorem bridge_arc :
 #print axioms milestone_T14
 #print axioms milestone_T15
 #print axioms milestone_T16
+#print axioms milestone_effective_matter_sprint
 #print axioms bridge_arc
 
 end Bridge.Arc

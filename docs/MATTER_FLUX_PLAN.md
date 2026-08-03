@@ -111,6 +111,17 @@ Only after A–C are green. Still discrete/finite.
 **Falsifier at E.** Toys can fail without killing H; they only test whether
 H generates familiar *names* (temperature, radiation, expansion).
 
+### Phase E — **discharged** (`Bridge.PhaseEToys`)
+
+- **E1** `deltaS_eq_one` / `clausius_form` — `S = T+2`, `ΔS = 1`, `δQ = T_c ΔS`
+- **E2** `finite_page_radiation` — T-10 Page horizon + matter-channel (swap)
+- **E3** `friedmann_shaped_capacity_update` — caps double; hubbleDisc = 1; C2-paid
+- Package: `phase_E_continuum_toys`; milestone in `BridgeArc`
+- Axioms: `propext` only (no `sorry`)
+
+**Result:** familiar names appear as discrete caricatures. Continuum /
+`H₀` / Unruh still refused. H not load-bearing on E; E green anyway.
+
 ---
 
 ## 5. What we will not test (still refused / structural)
@@ -135,7 +146,7 @@ A (defs) → B (necessity) → C (geometry) → D (patterns) → E (toys)
 | Fail C | H may be thermodynamic but not geometric; split claims |
 | Pass A–C, weak D | Promote “matter = saturated flux (scalar)” to not-residue reading; species-structure open |
 | Pass A–D | Update RESIDUE: O-5 reframed as emergent-flux programme; matter-as-input demoted to optional host API |
-| E results | Interpretation only until Lean toys land |
+| E results | Interpretation only — Lean toys landed (`PhaseEToys`) |
 
 ---
 
@@ -160,6 +171,6 @@ Landed in `formal/bridge/EffectiveMatter.lean`:
 - Package: `effective_matter_sprint`; milestone in `BridgeArc`
 - INTERPRETATION “Matter reading” section updated
 
-**Result:** H is Lean-testable. A did not fail (defs bear weight). Proceed to
-Phase D (flux patterns) and O-3 glue; do not promote H to not-residue until
-stop rules say so.
+**Result:** H is Lean-testable. A did not fail (defs bear weight). Phases
+D–E and O-3 stalk glue have since landed; continuum / SM inventory still
+refused.

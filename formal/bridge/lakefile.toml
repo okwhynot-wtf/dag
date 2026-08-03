@@ -31,5 +31,6 @@ roots = [
   "EffectiveMatter",
   "FluxPattern",
   "LedgerSheaf",
+  "PhaseEToys",
   "BridgeArc",
 ]

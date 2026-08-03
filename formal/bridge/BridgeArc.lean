@@ -15,6 +15,7 @@ import EinsteinSkeleton
 import EffectiveMatter
 import FluxPattern
 import LedgerSheaf
+import PhaseEToys
 import Geom.Registration
 import Geom.Profile
 import Density
@@ -197,6 +198,20 @@ theorem milestone_o3_glue :
     Bridge.Alphabet.Kmin = 2 :=
   ⟨Bridge.LedgerSheaf.glue_capacity_on_locus, Bridge.Alphabet.Kmin_eq⟩
 
+theorem milestone_phase_E :
+    (∀ T, Bridge.PhaseEToys.deltaS T = 1) ∧
+    (∀ T, Bridge.PhaseEToys.heatQuantum T =
+      Bridge.PhaseEToys.combinatorialTemp T * Bridge.PhaseEToys.deltaS T) ∧
+    (∀ {K : Nat}, 2 ≤ K → ∀ tTurn,
+      Geom.Profile.IsExhaustionTick K (Geom.Profile.bounce tTurn) tTurn) ∧
+    (∀ T, Bridge.Capacity.caps (T + 1) = 2 * Bridge.Capacity.caps T) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨Bridge.PhaseEToys.deltaS_eq_one,
+   Bridge.PhaseEToys.clausius_form,
+   fun hK tTurn => Bridge.ArchiveMustSpeak.page_time_is_exhaustion hK tTurn,
+   Bridge.PhaseEToys.caps_double,
+   Bridge.Alphabet.Kmin_eq⟩
+
 theorem bridge_arc :
     Bridge.Alphabet.Kmin = 2 ∧
     (∀ T, Bridge.Capacity.caps T = 2 ^ (T + 2)) ∧
@@ -250,6 +265,7 @@ theorem bridge_arc :
 #print axioms milestone_effective_matter_sprint
 #print axioms milestone_phase_D
 #print axioms milestone_o3_glue
+#print axioms milestone_phase_E
 #print axioms bridge_arc
 
 end Bridge.Arc

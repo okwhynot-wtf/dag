@@ -23,9 +23,9 @@ caricatures are in scope; continuum identifications are not.
 |---|---|
 | **O-3 ledger sheaf** | Glue `LocalLedgerPatch` stalks over the branch tree with overlap compatibility; independent local balance laws (Jacobson needs this) |
 | **R-1 recombination budget** | Count registered faces per node vs aliveness/registration budget; does near-flatness (Forman ≥ 0) fit? Ultrametric obstruction is real; the *counting* question is Lean |
-| **Combinatorial temperature caricature** | Counting entropy `S ~ log‖caps‖`; period-2 / involution toys; optional KMS↔period-2 experiment. Not Unruh, not Boltzmann continuum — but stop banning all `T` |
-| **Finite-mode Page / Bogoliubov toy** | Finite Hilbert caricature for Hawking-pair drift (exhibit conjecture → Lean). Continuum QFT stays refused |
-| **Matter = saturated record flux (A–D green)** | Effective matter = forced flux at saturation; patterned via alphabet/channels/branches (`FluxPattern`). Host-API (declare flux) optional. Programme: `docs/MATTER_FLUX_PLAN.md`. SM/Friedmann-from-Bool stays refused |
+| **Combinatorial temperature caricature** | **E1 landed** (`PhaseEToys`: `S = T+2`, `ΔS = 1`, Clausius `δQ = T_c ΔS`). Period-2 / KMS↔involution still open. Not Unruh |
+| **Finite-mode Page / Bogoliubov toy** | **E2 Page horizon landed** (T-10 thermal→speech + matter channel). Bogoliubov / continuum QFT stays refused |
+| **Matter = saturated record flux (A–E green)** | Effective matter = forced flux at saturation; patterned (`FluxPattern`); Phase E toys name T / radiation / capacity growth. Host-API optional. SM/Friedmann-from-Bool stays refused |
 | **O-3 ledger sheaf** | Stalk glue landed (`LedgerSheaf`); restriction maps / full dynamics sheaf still open |
 | **Finite measures on branches** | Optional: random-walk / counting measures → Ollivier-style trial on finite trees. Continuum measure theory not required |
 | **Area-as-capacity sharpening** | Tighten Bekenstein-shaped reading of `‖caps T‖` (already present); not continuum area theorems |
@@ -40,7 +40,7 @@ caricatures are in scope; continuum identifications are not.
 | **O-2** no boost / Unruh `T` | Only symmetry is one ℤ/2; Clausius has no temperature | Needs new structure (boost-like), not a missing lemma. Deepest Einstein gap |
 | **R-1** ultrametric vs space | LCA distance ≠ Archimedean space; paths diverge and stay diverged | Yes via recombination programme above; success not guaranteed |
 | **O-4** continuum Lorentzian limit | No continuum metric in hand | Limit theorems only after R-1 / dictionary progress |
-| **O-5** matter ontology | Softened: A–D support emergent patterned flux | SM-like inventory still underdetermined; not a second substance requirement |
+| **O-5** matter ontology | Softened: A–E support emergent patterned flux + discrete toys | SM-like inventory still underdetermined; not a second substance requirement |
 
 ## Documented obstructions (attacked; remnant filed)
 

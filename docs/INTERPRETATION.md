@@ -78,10 +78,14 @@ Sprint / phase status:
   supply multiplicity; vacuum vs matter onset = oscillator vs registration
 - **O-3 partial** — `o3_stalk_glue_fragment`: same locus ⇒ capacity (and saturated
   effective matter) agree; full sheaf of dynamics still open
+- **E passed (optional)** — `phase_E_continuum_toys`: combinatorial `T_c` /
+  Clausius; Finite Page radiation = post-exhaustion speech; discrete
+  Friedmann-shaped capacity update (no continuum, no `H₀`)
 
-Stop rules: see `docs/MATTER_FLUX_PLAN.md`. A–D green ⇒ O-5 reframed as
+Stop rules: see `docs/MATTER_FLUX_PLAN.md`. A–E green ⇒ O-5 reframed as
 emergent-flux programme; matter-as-input demoted to optional host API.
-Continuum `T_{μν}` / SM inventory still refused. Next: Phase E toys (optional).
+Continuum `T_{μν}` / SM inventory still refused. Phase E is interpretation
+only — familiar names, not load-bearing for H.
 
 ## Coincidence: flatness embarrassment (not promoted)
 

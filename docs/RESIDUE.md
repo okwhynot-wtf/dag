@@ -2,18 +2,25 @@
 
 Merged ledger from DM + AG + RE, per `docs/DAG.md` §8.
 
-## Residue (open)
+## Residue (open — not Lean-attackable / policy)
 
 | Item | Notes |
 |---|---|
-| Facticity of liveness | Subsumes AG "why eternal aliveness" |
+| Facticity of liveness | Subsumes AG "why eternal aliveness"; hybrid states liveness once |
 | ℤ/2 choice | Address / pole / channel labels; branch choice per tick |
 | Arena adequacy | DM's contestable ambient claim |
 | Blank adjunction ontology | Beyond emanation gloss |
 | RE action by hand | m, V₀, amplitudes are inputs |
 | Lorentzian / matter dictionaries | From AG, still open |
-| T-1 full UP | Fragment in `Environment.lean`; uniqueness-up-to-iso open |
-| T-2 full simulation | Fragment in `TickSimulation.lean`; functorial round-trips open |
+| **R-1 Spatial extension** | **Highest-value open.** Dim-1 causal order (time only). Branch width conjectured as space (distance = divergence depth). **Obstruction:** LCA distance is ultrametric; physical space is not. Escape needs recombination; paths diverge and stay diverged. **T-14 restatement:** tree is Forman-negative; each registered 2-cell raises Forman by 1; internal edges need ≥2 faces to reach zero-line. **Quantitative target:** recombinations-per-node cost of near-flatness vs aliveness/registration budget (flatness priced in records). **Wildcard:** stratified merge-with-record may admit recombination = interference-shaped; space door ≅ quantum door. |
+
+## Documented obstructions (attacked; remnant filed)
+
+| Item | Discharged | Remains |
+|---|---|---|
+| **T-1** Environment UP | Fiber-tagging UP (`environment_universality`) | Arbitrary `U_S` beyond fiber tagging (`arbitraryUS_UP_open`) |
+| **T-2** Tick simulation | Committed path (`tick_simulation`) | — |
+| **T-2 factorisation** | Namer-shaped label factor (`registers_admits_namer`); **carrier-level factorisation obstructed** by eternal swap on fixed `Bool` vs growing `levelCard` (`registration_vs_naming_obstruction`) | Naming↔microtick = committed expand + label-namer fragment only |
 
 ## Refused
 
@@ -22,10 +29,22 @@ Merged ledger from DM + AG + RE, per `docs/DAG.md` §8.
 - Premise-free global Law of Time
 - Spacetime / area / island theorems
 - QFT mode creation as Lean
+- Gravitational evaporating BH as Lean (Page *toy* via L-certificate admitted)
+- Temperature / Boltzmann / statistical mechanics proper (T-11 combinatorial only)
+- Born rule / probabilities / preferred basis (T-12 shape only)
+- Hard problem / qualia (meta-problem claims *reports* only)
+- **E4** Friedmann + matter; observable `H₀` from naming ticks
 - Experiential claims (DM Interpretation scope)
 - ODE / numeric exhibits as Lean theorems
 
-## Discharged in hybrid v0.1
+## Discharged
 
-T-3, T-4, T-5 (kernel), T-7, T-8 (kernel), T-9; I-4 Bool/quintom certificates;
-T-1/T-2 constructive fragments.
+T-3 … T-14; E1, E2 named; T-1 fiber UP; T-2 committed + factorisation attack;
+I-4 K-certificates: Bool, **Quintom**, **BitFlip**, **Kramers**, **NoClone**,
+**MetaProblem**;
+I-4 L-certificate: **Page**.
+
+## Interpretation (hedged)
+
+See `docs/INTERPRETATION.md`: ω / de Sitter / Padmanabhan echo; Jacobson
+inventory; curvature audit; flatness-embarrassment coincidence (not promoted).

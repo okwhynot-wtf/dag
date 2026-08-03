@@ -1,14 +1,14 @@
 # Diagonal Archive Geometry (DAG)
 
 Hybrid corpus: **Diagonal Monism** (spine) + **Archive Geometry** (ledger)
-+ **re-entrant / quintom** dictionary entry.
++ dictionary (quintom / BitFlip / Kramers / Page / NoClone / MetaProblem).
 
 Spec: [`docs/DAG.md`](docs/DAG.md) (copy of `DAG_spec.md`).
 
 ## Layers
 
 ```
-Layer 2  DICTIONARY   formal/dictionary + exhibits/quintom
+Layer 2  DICTIONARY   formal/dictionary + exhibits/*
 Layer 1  LEDGER       formal/ledger     (AG Geom/Obs)
 Layer 0  SPINE        formal/spine      (DM, unchanged)
 ```
@@ -42,22 +42,25 @@ python exhibits/quintom/integrate.py
 
 | ID | Content | Status |
 |---|---|---|
-| T-3 | Alphabet `K = 2` minimal | Discharged (`Alphabet.lean`) |
-| T-7 | One ℤ/2, three faces | Discharged (`OneZ2.lean`) |
-| T-9 | Capacity dictionary | Discharged (`Capacity.lean`) |
-| T-4 | Registration on spine | Discharged (`RegistrationSpine.lean`) |
-| T-5 | Oscillator triangle (kernel) | Discharged (`Quintom/Kernel.lean`); ODE exhibit |
-| T-8 | Fixed-point discipline (kernel) | Discharged (`Quintom/FixedPoint.lean`); ODE exhibit |
-| T-6 | Damping = registration | Kernel skeleton (`Quintom/Damping.lean`); H-id exhibit |
-| T-2 | Tick simulation | Fragment (`TickSimulation.lean`); full UP open |
-| T-1 | Environment universality | Fragment (`Environment.lean`); full UP open |
+| T-3 | Alphabet `K = 2` minimal | Discharged |
+| T-7 | One ℤ/2, three faces | Discharged |
+| T-9 | Capacity dictionary | Discharged |
+| T-10 | Archive must speak (Page curve) | Discharged |
+| T-11 | Combinatorial second law | Discharged (`SecondLaw.lean`) |
+| T-12 | Outcome selection shape | Discharged (`Measurement.lean`) |
+| T-13 | Expansion price of liveness (conditional) | Discharged (`Expansion.lean`); E1/E2 named; E3=R-1; E4 refused |
+| T-14 | Forman–Ricci on branch tree | Discharged (`Forman.lean`); recombination raises toward flat |
+| T-4 | Registration on spine | Discharged |
+| T-5 | Oscillator triangle (kernel) | Discharged; ODE exhibit |
+| T-8 | Fixed-point discipline (kernel) | Discharged; ODE exhibit |
+| T-6 | Damping = registration | Kernel skeleton; H-id exhibit |
+| T-2 | Tick simulation | Committed path + namer factor; carrier obstructed |
+| T-1 | Environment universality | Fiber UP done; arbitrary `U_S` open |
 
-## Sources
-
-- Spine: `manic_output/absolute` (`formal/spine`)
-- Ledger: `xnotx-container/geometry-main` (`lean/Geom`, `lean/Obs`)
-- Dictionary RE: specified in `DAG_spec.md`; kernel formalised here
+Dictionary (substantive order): Quintom → Kramers → Page → **MetaProblem**;
+companions BitFlip, NoClone (measurement).
 
 ## Version
 
-DAG hybrid **v0.1.0** — M1–M3 filed; M4–M5 fragments + residue documented.
+DAG hybrid **v0.1.7** — T-14 Forman tree curvature; curvature audit;
+R-1 quantitative flatness budget; flatness-embarrassment coincidence.

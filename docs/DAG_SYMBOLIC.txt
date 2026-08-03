@@ -1,0 +1,170 @@
+Diagonal Archive Geometry — symbolic law
+corpus hybrid/ DAG v0.1.7
+
+═══════════════════════════════════════════════════════════════════════════════
+0. Layers  (downward imports only)
+═══════════════════════════════════════════════════════════════════════════════
+
+  L2  Dictionary   physical instantiations  (K-cert + L-cert)
+  L1  Ledger       S×E, registration, capacity, profile, address   (AG)
+  L0  Spine        arena, Fund, seal, ladder, branch               (DM)
+
+  naming tick  =  ladder step Lₖ ↦ Lₖ₊₁
+  microtick    =  one U : S×E → S×E
+  (identified only where T-2 licenses)
+
+═══════════════════════════════════════════════════════════════════════════════
+I. Spine  (DM arena)
+═══════════════════════════════════════════════════════════════════════════════
+
+  Obj:  (α, a:α→α, z)  with  a∘a = id          pointed unoriented acts
+  Mor:  h∘a = b∘h,  h(z)=w
+
+  a(z)=z                 REST       stagnation
+  a(z)≠z ∧ a²(z)=z       2-CYCLE    survivor
+  a²(z)≠z                ARROW      smuggled time
+  a(x)=a(y) ∧ x≠y        ERASE      collapse
+
+  Fund(a)  ⇔  a ≅ ¬      (Bool,¬,true) initial; unique ≤ label swap
+  ∄ x. a(x)=x            void excluded
+
+  dodge(f) := λx. ¬(f x x)
+  ∀f.  f misses dodge(f)               seal (never point-surjective)
+
+  L₀ = Bool
+  Lₖ₊₁ = Option(Lₖ),   none ↦ dodge(repₖ)
+  namer ∉ im(some)                     forced +1 every tick
+  Lₖ ↪ Lₖ₊₁,  Lₖ₊₁ ↪̸ Lₖ
+  ∄ rung below L₀                      non-commencement
+  □(ascent) ∧ ¬□(direction)            forced but free
+
+═══════════════════════════════════════════════════════════════════════════════
+II. Ledger  (AG over I-1 / I-2)
+═══════════════════════════════════════════════════════════════════════════════
+
+  U : S×E → S×E = (U_S, U_E)           joint microstep
+  global U bijective                   DM losslessness on the product
+  merges live in U_S above base; compensated in U_E
+
+  Inj(U) ∧ ∃merge(U)  ⟹  ∃record(U)    Registration
+
+  K ≥ 2 = |A|                          merge / blank alphabet
+  Kmin = 2                             derived: |Fund| = 2  (T-3)
+  K > 2                                admissible, non-minimal
+
+  E(T)  :=  L_T                        I-2 environment = ladder carrier
+  |caps T| = 2^(T+2)                   predicateCount(T)
+  committed prof = expand              prof(T)=T
+  alive:  2^T ≤ 2^(T+2)                eternally, by arithmetic
+
+  mute ⇒ K^T ≤ |caps T|
+  eternal ⇒ ¬flat(prof) ∧ undirected
+  bounded caps ∧ Inj ∧ merge  ⇒  ∃t StreamMute fails     T-10 (Page curve)
+  merge⇒record ∧ lift∧¬retract  ⇒  combinatorial 2nd law  T-11
+  E1: structure↑ forever · E2: caps = K^t, liveness ⇒ expand
+  T-13: number=volume (flagged) ⇒ counted V = K^t · 1 bit/tick at K=2
+  E3 blocked (R-1 ultrametric / Forman −∞) · E4 refused (Friedmann+matter)
+  T-14: tree Forman < 0; recombination ↑ Forman; live ⇒ ¬flat(prof)
+  curvature precluded only on the 1-d line (trivial)
+  arrow = (address, archive↑)
+
+  StreamMute  ⇏  ProductFresh
+  ProductFresh  ⇏  StreamMute
+
+═══════════════════════════════════════════════════════════════════════════════
+III. One ℤ/2  (T-7)
+═══════════════════════════════════════════════════════════════════════════════
+
+  pole swap  ≅  address ∈ {fwd,rev}  ≅  channel ∈ {φ,σ}
+
+  project(face) : ℤ/2 → ℤ/2            involution each face
+  stated once; three named projections
+
+═══════════════════════════════════════════════════════════════════════════════
+IV. Dictionary  (I-4: K-certificate | L-certificate)
+═══════════════════════════════════════════════════════════════════════════════
+
+  K-cert (kernel):
+    (a) involution swap   (b) observe(swap)=¬observe
+    (c) Fixed ↔ locus (nonempty|empty)   (d) forced +1 no-go
+    Quintom · BitFlip · Kramers · NoClone · MetaProblem
+
+  L-cert (ledger):
+    (a) Inj(U)  (b) merge  (c) record  (d) caps/alive  (e) t_exh + T-10
+    Page (BH-info toy; gravity refused)
+
+  Branch / measurement (T-12):
+    □ascent ∧ ¬□direction · ≥2 children · histories diverge · no selection
+    NoClone: Bell support ≠ product support; pairs with Lossless
+
+  RE / quintom:
+    swap ≅ ¬ ,  Fixed ≅ w=−1 ,  forced +1 ≅ second channel
+    H = 0:  undamped · silent archive · Fund     oscillator triangle (T-5)
+    H > 0:  contraction ⇒ merge ⇒ record         damping = registration (T-6)
+    a(x)=x excluded; divide only at crossings / limit   (T-8)
+
+  Page:
+    Hawking 1976 = eternal mute merge; Registration+T-10 = unitarist reply
+    t_exh = Page time; before: thermal mute OK; after: archive must speak
+
+  MetaProblem (4th substantive; hard problem refused):
+    self-opacity · outdated portrait · restless  ⇒  reports of ineffability
+    observers_forced = forced +1; qualia out of scope
+
+═══════════════════════════════════════════════════════════════════════════════
+V. Identifications  (three corpora, one object)
+═══════════════════════════════════════════════════════════════════════════════
+
+  Fund (live 2-cycle)     ≅  oscillator (Inj∧¬merge∧¬record)  ≅  H=0 quintom
+  forgets count           ≅  archive silent                   ≅  envelope const
+  involution / undirected ≅  undirected bounce                ≅  swap EOM
+  pole / two_readings     ≅  address                          ≅  φ↔σ
+  dodge / +1              ≅  blank adjunction                 ≅  second channel
+  excluded fixed point    ≅  —                                ≅  w=−1 divide
+  pred growth 2^(k+2)     ≅  c(t+1)=K·c(t), K=2               ≅  —
+  erasure priced out      ≅  merge ⇒ record                   ≅  H → expansion
+
+═══════════════════════════════════════════════════════════════════════════════
+VI. Compression
+═══════════════════════════════════════════════════════════════════════════════
+
+  (Fund ≅ ¬ ∧ seal ∧ ladder +1)
+    +  (Inj + merge ⇒ record)  ·  (mute ⇒ K^T ≤ cap)  ·  (eternal ⇒ nonflat)
+    +  (bounded ⇒ archive speaks)                      T-10
+    +  (Landauer ∧ ¬retract)                           T-11
+    +  (□ascent ∧ ¬□direction)                         T-12
+    +  (liveness ⇒ caps↑ · number=volume ⇒ V=K^t)      T-13
+    +  (tree Forman < 0 · recomb ↑ Forman · ¬flat)     T-14
+    +  (E = L_• ,  |caps T| = 2^(T+2) ,  Kmin = 2)
+    +  (arrow = address = pole = channel    :  one ℤ/2)
+    +  (H=0 ⇒ oscillator triangle;  H>0 ⇒ dissipation registers)
+    +  (interior triad ⇒ ineffability reports; hard problem refused)
+
+═══════════════════════════════════════════════════════════════════════════════
+VII. Residue / refusal
+═══════════════════════════════════════════════════════════════════════════════
+
+  open:   facticity of liveness; ℤ/2 + branch choice; arena adequacy;
+          blank ontology; RE action inputs; Lorentzian/matter;
+          arbitrary U_S UP (beyond fiber tagging);
+          **R-1** space / recombination (ultrametric / Forman −∞;
+            flatness priced in registered faces vs aliveness budget)
+  obstructed: Registration↛ladder-carrier naming (swap: fixed |E|=2 forever;
+              naming grows levelCard) — label-namer factor still holds
+  refuse: numbers from Bool; quintom-as-world; global Law of Time;
+          spacetime/area/islands; QFT as Lean; experiential claims; ODEs as Lean;
+          T/Boltzmann; Born/preferred basis; hard problem / qualia;
+          E4 Friedmann+matter; H₀ from naming ticks; Ollivier (measures)
+  coincidence (unpromoted): cosmology flatness puzzle ↔ DAG flatness budget
+  not residue: ¬flat(prof); Kmin=2; |caps T|=2^(T+2); one ℤ/2;
+               recordLabel∶Bool↪E; committed tick simulation; registers_admits_namer;
+               T-10…T-14; E1; E2; meta reports structural; Forman sign
+
+  spine:   Canon · Orbit · Diagonal · Ladder · Density · NonCommencement · Branch · Interior · OmegaDuration
+  ledger:  Geom.Registration · Profile · Gradient · Obs.Recovery · Obs.Dimension
+  bridge:  Alphabet · Capacity · OneZ2 · RegistrationSpine · Environment ·
+           TickSimulation · RegistrationFactor · ArchiveMustSpeak · SecondLaw ·
+           Measurement · Expansion · Forman
+  dict:    Certificate (K) · LCertificate · Quintom.* · BitFlip · Kramers · Page ·
+           NoClone · MetaProblem
+

@@ -117,18 +117,32 @@ are in scope.
 profile constructors, address, dim = 1, growth law. Dictionary entries
 consume these as the vocabulary in which their physical readings are stated.
 
-**I-4 Dictionary admission certificate.** A physical model enters the
-dictionary if and only if it exhibits, with the kernel side Lean-checked:
-  (a) an involution symmetry of its equations of motion;
-  (b) an observable on which that involution acts as exact negation;
-  (c) identification of the involution's fixed set with a distinguished
-      physical locus;
-  (d) a no-go showing the level below cannot represent crossing that locus,
-      witnessing the forced +1.
-RE satisfies (a)–(d): swap, p+ρ, w = −1, the single-field no-go. The
-certificate makes the dictionary extensible under a uniform discipline, and
-any future entry (condensed-matter, information-theoretic, other cosmologies)
-files the same four items.
+**I-4 Dictionary admission certificates (two routes).** A physical model
+enters the dictionary by filing one of two Lean-checked certificates.
+The hybrid has two lower layers; each admits physical instantiation.
+
+**K-certificate (kernel / spine route).** The model exhibits:
+  (a) an involution symmetry of its equations of motion (`swap ∘ swap =
+      square`, with `square` = id or central negation);
+  (b) an observable on which that symmetry acts as exact negation;
+  (c) identification of the symmetry's fixed set with a distinguished
+      physical locus — nonempty (RE) or provably empty (Kramers / live Fund);
+  (d) a no-go showing the level below cannot represent the symmetry alone
+      (forced +1).
+RE / quintom, BitFlip, and Kramers file K-certificates. Schema written off
+the quintom; captures kernel instantiations.
+
+**L-certificate (ledger route).** The model exhibits, on a finite toy:
+  (a) a bijective / injective joint step `U`;
+  (b) an identified system-side merge;
+  (c) the compensating environment record;
+  (d) a capacity schedule with its aliveness bound;
+  (e) an exhaustion tick with the mute-failure corollary (T-10).
+The Page / black-hole-information toy files an L-certificate. Gravitational
+BH and QFT remain refused; the toy is finite-dimensional and constructive.
+Without the L-route, ledger-flagship instantiations (Registration +
+exhaustion) cannot enter through I-4 as written — a defect in the old
+schema, not in the candidate.
 
 ---
 
@@ -193,6 +207,81 @@ the licensed gloss.
 profile; the ω flatline is the limiting statement of the capacity clock, with
 ancestry (stage tags) as the surviving record. *Difficulty: arithmetic.*
 
+**T-10 The archive must speak.** Bounded confinement + Inj + sustained
+merging jointly force a tick at which StreamMute fails. Contrapositive of
+AG eternal mute aliveness ⇒ unbounded capacity; qualitative Page curve.
+*Difficulty: near-mechanical (named corollary of existing Provision /
+Exhaustion).* Acceptance: bridge theorem packaging
+`no_static_eternal_aliveness`, with Page time = exhaustion on bounce
+schedules; L-certificate entries cite it as clause (e).
+
+**T-11 Combinatorial second law.** Landauer (T-4: merge ⇒ record) plus
+ladder record monotonicity (`lift_injective`, `no_retraction`: archive never
+shrinks). Dissipation writes; records accumulate irreversibly; ledger arrow
+shadows the thermodynamic arrow. *Near-mechanical reading.* Refused:
+temperature, Boltzmann factors, statistical mechanics proper.
+
+**T-12 Outcome selection (measurement shape).** Branch package: ascent
+necessary, direction free, ≥2 children, histories diverge, no selection
+mechanism in the law. Everett-flavoured object; underdetermination is why
+no mechanism appears. Companion dictionary: no-cloning finite support
+no-go pairing with losslessness. *Near-mechanical.* Refused: Born rule,
+probabilities, preferred basis.
+
+**T-13 Expansion as the price of liveness (conditional).** Named promotions
+of E1 (monotone structure) and E2 (exponential capacity forced by
+aliveness). Causal-set pedigree: order + number = geometry. Flag postulate
+`NumberEqualsVolume` (counted volume := capacity schedule). Then volume
+grows as `K^t`; at `K = 2`, one bit per naming tick — counted de Sitter.
+*Units caveat:* ticks are naming steps; no seconds; no `H₀` forecast.
+E4 (Friedmann + matter) stays refused. E3 (spatial metric) blocked by R-1.
+
+**T-14 Forman–Ricci on the branch tree.** Measure-free combinatorial
+curvature: unweighted Forman `Ric_F = (4+#faces) − deg(u) − deg(v)`. On the
+`K=2` tree, internal edges are strictly Forman-negative; attaching a
+registered 2-cell (recombination) strictly raises Forman quantity on touched
+edges. Internal edges need ≥2 faces to leave negativity. Companion: eternal
+aliveness ⇒ ¬flat(prof) (anti-precludes counted flatness). Ollivier refused
+(measures). Riemann unstateable until space+signature (absence ≠ preclusion).
+
+---
+
+## 6½. Expansion taxonomy (E1–E4)
+
+| ID | Meaning | Status |
+|---|---|---|
+| **E1** | Monotone growth of structure (ladder ascends, namer new, no retraction) | Theorem (`E1_monotone_structure`) |
+| **E2** | Exponential capacity at fixed rate; liveness forces it | Theorem (`E2_exponential_capacity`) |
+| **E3** | Growth of a spatial metric | Blocked — see R-1 |
+| **E4** | Friedmann dynamics with matter | Refused |
+
+Inventory note (Interpretation, not Lean gravity): the corpus holds discrete
+skeletons of both Jacobson inputs — capacity bound ≅ Bekenstein-shaped
+(`|caps T|`), T-4 ≅ Clausius-shaped (merge ⇒ register) — plus Padmanabhan's
+asymptotic shape at ω (magnitude flatlines, ancestry continues; RE `w = −1`
+attractor is the same asymptote dynamically). Three limits, one counted
+shape. See `docs/INTERPRETATION.md`.
+
+---
+
+## 6¾. Curvature audit
+
+| Register | Curvature status |
+|---|---|
+| Committed ladder (order dim 1) | **Precluded trivially** — Riemann vacuous on a line (a wire) |
+| Capacity profile / counted geometry | **Forced non-flat** — eternal aliveness ⇒ ¬flat(prof); under T-13 number=volume, committed `V=K^T` is de Sitter–shaped (constant relative growth ⇒ constant positive spacetime curvature in FRW reading) |
+| Branch tree (coarse) | **Maximal negative** — 0-hyperbolic / ultrametric = curvature → −∞; restates R-1 |
+| Branch tree (Forman, T-14) | **Proved sign** — internal edges Forman-negative; recombination raises Forman toward zero |
+
+**Inversion.** DAG does not struggle to have curvature; it struggles to
+manufacture flatness. R-1 sharpens to: can the framework buy its way from
+Forman −∞ / ultrametric to near-flat local geometry, and does the
+registration budget (aliveness bound) afford the required recombinations?
+
+**Coincidence (not promoted).** Observed near-flatness of space is also an
+unsolved calibration puzzle in cosmology; DAG hits the same embarrassment
+from the opposite direction. File as coincidence until a theorem promotes it.
+
 ---
 
 ## 7. Resolved tensions (design decisions, recorded)
@@ -222,7 +311,25 @@ ancestry (stage tags) as the surviving record. *Difficulty: arithmetic.*
 - blank adjunction ontology beyond the emanation gloss;
 - RE action by hand: m, V₀, amplitudes are inputs;
 - Lorentzian and matter dictionaries (from AG, still open);
-- T-1 and T-2 until proved, then either discharged or documented obstructions.
+- T-1 and T-2 until proved, then either discharged or documented obstructions;
+- **R-1 Spatial extension / recombination** (highest-value open problem):
+  causal order is dim 1 (time only). Branch tree has width (≥2 children);
+  conjectured spatial distance = divergence depth (last common ancestor).
+  **Obstruction:** LCA distance is an ultrametric (isosceles triangles);
+  physical space is Archimedean / locally Euclidean. Escaping ultrametricity
+  needs branch recombination; DM branches diverge and stay diverged.
+  **Curvature restatement (T-14):** the tree is Forman-negative / 0-hyperbolic;
+  registered recombination cycles are the only combinatorial cure (each
+  attached 2-cell raises Forman quantity by 1; internal edges need ≥2 faces
+  to reach the Forman zero-line).
+  **Quantitative target:** how many registered recombinations per node does
+  near-flatness cost, and does the registration / aliveness budget permit
+  them? Flatness would have a price in records — a well-posed counting
+  question coupling curvature to the capacity ledger.
+  **Wildcard:** ledger stratified merge (forbidden at base, permitted above
+  with record) suggests recombination-with-record might be admissible —
+  interference-shaped; door to space and door to quantum may be the same.
+  Success ⇒ transversal geometry; failure ⇒ space must come from elsewhere.
 
 **Refused (out of scope by policy):**
 - any cosmological number from Bool;
@@ -231,6 +338,12 @@ ancestry (stage tags) as the surviving record. *Difficulty: arithmetic.*
 - premise-free global Law of Time;
 - spacetime, area, or island theorems;
 - QFT mode creation as Lean;
+- gravitational evaporating BH as Lean (Page *toy* admitted via L-certificate);
+- temperature / Boltzmann / statistical mechanics proper (T-11 combinatorial);
+- Born rule / probabilities / preferred basis (T-12 is shape only);
+- the hard problem / qualia (meta-problem entry claims reports only);
+- **E4** Friedmann dynamics with matter;
+- observable `H₀` / seconds from naming ticks (T-13 units caveat);
 - experiential claims (DM Interpretation scope carries over).
 
 ---
@@ -243,10 +356,13 @@ formal/
   ledger/       AG rebuilt over I-1, I-2           target v2.0.0
   bridge/       T-1 … T-4, T-7, T-9                new
   dictionary/
-    certificate.lean                               I-4 schema
+    certificate.lean                               I-4 K-certificate schema
+    LCertificate.lean                              I-4 L-certificate schema
     quintom/    RE kernel-side lemmas (T-5, T-8)   new
+    Page.lean   Page / BH-info L-certificate       new
 exhibits/
   quintom/      ODE integration, figures           refused as Lean
+  page/         BH dictionary notes + conjecture   refused as Lean gravity
 docs/
   SPINE.md, LEDGER.md, DAG.md (this spec), AXIOMS.md (union, must stay empty)
 ```

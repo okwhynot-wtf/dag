@@ -20,5 +20,11 @@ roots = [
   "RegistrationSpine",
   "TickSimulation",
   "Environment",
+  "RegistrationFactor",
+  "ArchiveMustSpeak",
+  "SecondLaw",
+  "Measurement",
+  "Expansion",
+  "Forman",
   "BridgeArc",
 ]

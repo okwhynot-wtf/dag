@@ -19,8 +19,14 @@ name = "DAGDictionary"
 srcDir = "."
 roots = [
   "Certificate",
+  "LCertificate",
   "Quintom.Kernel",
   "Quintom.Certificate",
   "Quintom.FixedPoint",
   "Quintom.Damping",
+  "BitFlip",
+  "Kramers",
+  "Page",
+  "NoClone",
+  "MetaProblem",
 ]

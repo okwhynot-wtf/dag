@@ -9,7 +9,8 @@ Companion to `formal/bridge/Measurement.lean` (T-12) and
   necessary, direction free, ≥2 children, histories diverge, no selection
   mechanism in the law (underdetermination).
 - No-cloning = finite three-tone support inequality (Bell vs product),
-  pairing with `Orbit.Lossless` as Kramers pairs with fixed-point-freeness.
+  the Branch/measurement no-go paired with `Orbit.Lossless` (not an
+  I-4 K-certificate).
 
 ## Refused
 

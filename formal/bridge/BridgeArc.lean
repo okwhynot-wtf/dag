@@ -10,6 +10,7 @@ import SecondLaw
 import Measurement
 import Expansion
 import Forman
+import Saturation
 import Geom.Registration
 import Geom.Profile
 import Density
@@ -148,6 +149,13 @@ theorem milestone_T14 :
    Bridge.Forman.internal_not_neg_at_two_faces,
    Bridge.Alphabet.Kmin_eq⟩
 
+theorem milestone_T15 :
+    (∀ (K : Nat) (prof : Geom.Profile.DepthProfile) (T : Nat),
+      Geom.Profile.Alive K prof T ↔
+        K ^ T ≤ Geom.Profile.capacityOf K prof T) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨Bridge.Saturation.alive_iff_records_le_caps, Bridge.Alphabet.Kmin_eq⟩
+
 theorem bridge_arc :
     Bridge.Alphabet.Kmin = 2 ∧
     (∀ T, Bridge.Capacity.caps T = 2 ^ (T + 2)) ∧
@@ -196,6 +204,7 @@ theorem bridge_arc :
 #print axioms milestone_T12
 #print axioms milestone_T13
 #print axioms milestone_T14
+#print axioms milestone_T15
 #print axioms bridge_arc
 
 end Bridge.Arc

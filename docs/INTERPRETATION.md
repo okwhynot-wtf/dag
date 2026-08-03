@@ -26,10 +26,13 @@ Jacobson derived Einstein equations from (i) entropy bound on horizons and
 |---|---|
 | Entropy / area bound | Capacity bound; Page entry reads `|caps T|` as Bekenstein-shaped |
 | Clausius (heat → entropy) | T-4 Landauer: what merges must register |
+| Local balance / EoS | T-15 saturation: alive ⇔ records ≤ caps; equality fixes flux |
+| Horizon through every point | seal-per-reading = local horizon (not-residue) |
 
 Remarkable inventory if accidental. Sharpens the missing piece: **space**
-(E3 / R-1). Both inputs sit on a 1-dimensional causal order; transversal
-geometry is the blocked step.
+(E3 / R-1 / O-2–O-3). Both inputs sit on a 1-dimensional causal order;
+transversal geometry is the blocked step. Field equations refused.
+
 
 ## Causal-set postulate (T-13)
 

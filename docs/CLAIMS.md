@@ -10,6 +10,7 @@
 | T-12 outcome selection shape | `Bridge.Measurement.T12_outcome_selection` | Bridge |
 | T-13 expansion price of liveness (conditional) | `Bridge.Expansion.T13_expansion_conditional` | Bridge |
 | T-14 Forman tree curvature | `Bridge.Forman.T14_forman_tree_curvature` | Bridge |
+| T-15 saturation / equation-of-state | `Bridge.Saturation.T15_saturation_equation_of_state` | Bridge |
 | E1 monotone structure | `Bridge.Expansion.E1_monotone_structure` | Bridge |
 | E2 exponential capacity | `Bridge.Expansion.E2_exponential_capacity` | Bridge |
 | T-4 registration on spine | `Bridge.RegistrationSpine.registration_on_spine` | Bridge |
@@ -20,7 +21,7 @@
 | I-4 Bool certificate | `Dictionary.Certificate.bool_admitted` | Dictionary |
 | I-4 L-certificate schema | `Dictionary.LCertificate.LedgerCert` | Dictionary |
 | Page L-certificate (ledger entry) | `Dictionary.Page.page_admitted` | Dictionary |
-| NoClone K-certificate | `Dictionary.NoClone.noClone_admitted` | Dictionary |
+| NoClone measurement no-go (Lossless companion) | `Dictionary.NoClone.noClone_admitted` | Dictionary |
 | Meta-problem (4th substantive) | `Dictionary.MetaProblem.meta_admitted` | Dictionary |
 | T-5 oscillator triangle | `Dictionary.Quintom.Kernel.oscillator_triangle` | Dictionary |
 | T-8 fixed-point discipline | `Dictionary.Quintom.FixedPoint.fixed_point_discipline` | Dictionary |

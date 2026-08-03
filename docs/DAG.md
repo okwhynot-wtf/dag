@@ -244,6 +244,12 @@ edges. Internal edges need ≥2 faces to leave negativity. Companion: eternal
 aliveness ⇒ ¬flat(prof) (anti-precludes counted flatness). Ollivier refused
 (measures). Riemann unstateable until space+signature (absence ≠ preclusion).
 
+**T-15 Saturation / equation-of-state form.** Alive ⇔ records ≤ caps growth;
+saturation := equality; at saturation, record flux is determined by the
+capacity schedule. Ledger-balance reading of the Jacobson audit — no
+curvature claimed; field equations refused. Packages `Geom.Profile.Alive`,
+`Obs.Budget` B1/B2, and capacity step-growth uniqueness.
+
 ---
 
 ## 6½. Expansion taxonomy (E1–E4)

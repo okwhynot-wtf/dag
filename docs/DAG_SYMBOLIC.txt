@@ -1,5 +1,5 @@
 Diagonal Archive Geometry — symbolic law
-corpus hybrid/ DAG v0.1.7
+corpus hybrid/ DAG v0.1.8
 
 ═══════════════════════════════════════════════════════════════════════════════
 0. Layers  (downward imports only)
@@ -57,14 +57,17 @@ II. Ledger  (AG over I-1 / I-2)
   committed prof = expand              prof(T)=T
   alive:  2^T ≤ 2^(T+2)                eternally, by arithmetic
 
-  mute ⇒ K^T ≤ |caps T|
-  eternal ⇒ ¬flat(prof) ∧ undirected
+  Inj · merge · mute · confined  ⇒  K^T ≤ |caps T|
+  eternal ⇒ ¬flat(prof)
+  bounce  ⇒ undirected            [inherited: spine involutivity]
   bounded caps ∧ Inj ∧ merge  ⇒  ∃t StreamMute fails     T-10 (Page curve)
   merge⇒record ∧ lift∧¬retract  ⇒  combinatorial 2nd law  T-11
   E1: structure↑ forever · E2: caps = K^t, liveness ⇒ expand
   T-13: number=volume (flagged) ⇒ counted V = K^t · 1 bit/tick at K=2
   E3 blocked (R-1 ultrametric / Forman −∞) · E4 refused (Friedmann+matter)
   T-14: tree Forman < 0; recombination ↑ Forman; live ⇒ ¬flat(prof)
+  T-15: alive ⇔ records ≤ caps growth; saturation := equality;
+        at saturation, record flux is determined by the capacity schedule
   curvature precluded only on the 1-d line (trivial)
   arrow = (address, archive↑)
 
@@ -77,7 +80,7 @@ III. One ℤ/2  (T-7)
 
   pole swap  ≅  address ∈ {fwd,rev}  ≅  channel ∈ {φ,σ}
 
-  project(face) : ℤ/2 → ℤ/2            involution each face
+  one ℤ/2  ⟶≅  {pole, address, channel}     three isomorphic presentations
   stated once; three named projections
 
 ═══════════════════════════════════════════════════════════════════════════════
@@ -87,7 +90,7 @@ IV. Dictionary  (I-4: K-certificate | L-certificate)
   K-cert (kernel):
     (a) involution swap   (b) observe(swap)=¬observe
     (c) Fixed ↔ locus (nonempty|empty)   (d) forced +1 no-go
-    Quintom · BitFlip · Kramers · NoClone · MetaProblem
+    Quintom · BitFlip · Kramers · MetaProblem
 
   L-cert (ledger):
     (a) Inj(U)  (b) merge  (c) record  (d) caps/alive  (e) t_exh + T-10
@@ -95,7 +98,7 @@ IV. Dictionary  (I-4: K-certificate | L-certificate)
 
   Branch / measurement (T-12):
     □ascent ∧ ¬□direction · ≥2 children · histories diverge · no selection
-    NoClone: Bell support ≠ product support; pairs with Lossless
+    NoClone (no-go): Bell support ≠ product support; pairs with Lossless
 
   RE / quintom:
     swap ≅ ¬ ,  Fixed ≅ w=−1 ,  forced +1 ≅ second channel
@@ -135,6 +138,7 @@ VI. Compression
     +  (□ascent ∧ ¬□direction)                         T-12
     +  (liveness ⇒ caps↑ · number=volume ⇒ V=K^t)      T-13
     +  (tree Forman < 0 · recomb ↑ Forman · ¬flat)     T-14
+    +  (saturation: ledger balance fixes flux)               T-15
     +  (E = L_• ,  |caps T| = 2^(T+2) ,  Kmin = 2)
     +  (arrow = address = pole = channel    :  one ℤ/2)
     +  (H=0 ⇒ oscillator triangle;  H>0 ⇒ dissipation registers)
@@ -145,10 +149,17 @@ VII. Residue / refusal
 ═══════════════════════════════════════════════════════════════════════════════
 
   open:   facticity of liveness; ℤ/2 + branch choice; arena adequacy;
-          blank ontology; RE action inputs; Lorentzian/matter;
+          blank ontology; RE action inputs; Lorentzian/matter (O-4, O-5);
           arbitrary U_S UP (beyond fiber tagging);
-          **R-1** space / recombination (ultrametric / Forman −∞;
-            flatness priced in registered faces vs aliveness budget)
+          RE-side growth law (quintom mode count vs capacity law): not yet sought;
+          **R-1** (= O-1) space / recombination (ultrametric / Forman −∞;
+            flatness priced in registered faces vs aliveness budget);
+          **O-2** no boost / Lorentz structure: only symmetry is one ℤ/2; no Unruh
+            temperature; deepest conceptual gap
+            (KMS periodicity ↔ period-2: remark only, nothing filed);
+          **O-3** plurality of ledgers: one ladder, one archive; Jacobson needs
+            independent local balance laws; requires sheaf of ledgers over
+            the branch tree with overlap compatibility
   obstructed: Registration↛ladder-carrier naming (swap: fixed |E|=2 forever;
               naming grows levelCard) — label-namer factor still holds
   refuse: numbers from Bool; quintom-as-world; global Law of Time;
@@ -158,13 +169,16 @@ VII. Residue / refusal
   coincidence (unpromoted): cosmology flatness puzzle ↔ DAG flatness budget
   not residue: ¬flat(prof); Kmin=2; |caps T|=2^(T+2); one ℤ/2;
                recordLabel∶Bool↪E; committed tick simulation; registers_admits_namer;
-               T-10…T-14; E1; E2; meta reports structural; Forman sign
+               T-10…T-15; E1; E2; meta reports structural; Forman sign;
+               seal-per-reading = local horizon (Jacobson quantifier discharged in
+                 skeleton: every self-reading has a dodge; observers_forced supplies
+                 the observers)
 
   spine:   Canon · Orbit · Diagonal · Ladder · Density · NonCommencement · Branch · Interior · OmegaDuration
   ledger:  Geom.Registration · Profile · Gradient · Obs.Recovery · Obs.Dimension
   bridge:  Alphabet · Capacity · OneZ2 · RegistrationSpine · Environment ·
            TickSimulation · RegistrationFactor · ArchiveMustSpeak · SecondLaw ·
-           Measurement · Expansion · Forman
+           Measurement · Expansion · Forman · Saturation
   dict:    Certificate (K) · LCertificate · Quintom.* · BitFlip · Kramers · Page ·
-           NoClone · MetaProblem
+           NoClone (measurement) · MetaProblem
 

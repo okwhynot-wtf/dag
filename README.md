@@ -1,7 +1,8 @@
 # Diagonal Archive Geometry (DAG)
 
 Hybrid corpus: **Diagonal Monism** (spine) + **Archive Geometry** (ledger)
-+ dictionary (quintom / BitFlip / Kramers / Page / NoClone / MetaProblem).
++ dictionary (quintom / BitFlip / Kramers / Page / MetaProblem)
++ measurement companion NoClone.
 
 Spec: [`docs/DAG.md`](docs/DAG.md) (copy of `DAG_spec.md`).
 
@@ -50,6 +51,7 @@ python exhibits/quintom/integrate.py
 | T-12 | Outcome selection shape | Discharged (`Measurement.lean`) |
 | T-13 | Expansion price of liveness (conditional) | Discharged (`Expansion.lean`); E1/E2 named; E3=R-1; E4 refused |
 | T-14 | Forman–Ricci on branch tree | Discharged (`Forman.lean`); recombination raises toward flat |
+| T-15 | Saturation / equation-of-state | Discharged (`Saturation.lean`); ledger balance fixes flux |
 | T-4 | Registration on spine | Discharged |
 | T-5 | Oscillator triangle (kernel) | Discharged; ODE exhibit |
 | T-8 | Fixed-point discipline (kernel) | Discharged; ODE exhibit |
@@ -62,5 +64,5 @@ companions BitFlip, NoClone (measurement).
 
 ## Version
 
-DAG hybrid **v0.1.7** — T-14 Forman tree curvature; curvature audit;
-R-1 quantitative flatness budget; flatness-embarrassment coincidence.
+DAG hybrid **v0.1.8** — T-15 saturation / equation-of-state; NoClone
+relocated to measurement package; symbolic-law stale fixes (A1–A4).

@@ -65,5 +65,6 @@ companions BitFlip, NoClone (measurement).
 
 ## Version
 
-DAG hybrid **v0.1.12** — Phase D flux patterns + O-3 stalk glue;
-matter-as-saturated-flux A–D green (patterned, not scalar-only).
+DAG hybrid **v0.1.13** — Phase E continuum toys (combinatorial `T_c`,
+Finite Page radiation, discrete Friedmann-shaped capacity); matter-as-
+saturated-flux A–E green (patterned; toys optional for H).

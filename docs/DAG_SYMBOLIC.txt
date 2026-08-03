@@ -1,5 +1,5 @@
 Diagonal Archive Geometry — symbolic law
-corpus hybrid/ DAG v0.1.12
+corpus hybrid/ DAG v0.1.13
 
 ═══════════════════════════════════════════════════════════════════════════════
 0. Layers  (downward imports only)
@@ -154,14 +154,15 @@ VII. Residue / refusal
 
   open (tractable): O-3 full sheaf dynamics (stalk glue done; restrictions open);
           R-1 recombination budget (faces vs aliveness; Lean counting);
-          combinatorial T caricature (counting entropy / period-2 toys);
-          finite-mode Page–Bogoliubov toy; matter-as-input dictionary;
+          period-2 / KMS↔involution toys (combinatorial T_c / Page / Friedmann
+            discrete toys landed — Phase E); matter-as-input host API optional;
           finite branch measures (Ollivier trial); area-as-caps sharpening;
           RE-side growth law (not yet sought); partial Lorentzian dictionary;
-          arbitrary U_S UP (beyond fiber tagging)
+          arbitrary U_S UP (beyond fiber tagging); Bogoliubov continuum still out
   open (structural): **O-2** no boost / Unruh T (only ℤ/2; deepest Einstein gap);
           **R-1** ultrametric≠space (attack via recombination budget above);
-          **O-4** continuum Lorentzian limit; **O-5** matter from framework
+          **O-4** continuum Lorentzian limit;
+          **O-5** SM inventory underdetermined (emergent patterned flux A–E)
   open (philosophical): facticity of liveness; ℤ/2 + branch choice; arena
           adequacy; blank ontology; RE action inputs
   obstructed: Registration↛ladder-carrier naming (swap: fixed |E|=2 forever;
@@ -170,7 +171,7 @@ VII. Residue / refusal
           continuum spacetime/Einstein/QFT/BH; continuum Boltzmann;
           Born from underdetermination alone; hard problem / qualia;
           matter/Friedmann derived from Bool alone
-          (discrete caricatures of T / area / matter-input: see open tractable)
+          (discrete T / Page / capacity-growth toys: Phase E, not continuum)
   coincidence (unpromoted): cosmology flatness puzzle ↔ DAG flatness budget
   not residue: ¬flat(prof); Kmin=2; |caps T|=2^(T+2); one ℤ/2;
                recordLabel∶Bool↪E; committed tick simulation; registers_admits_namer;
@@ -184,7 +185,7 @@ VII. Residue / refusal
   bridge:  Alphabet · Capacity · OneZ2 · RegistrationSpine · Environment ·
            TickSimulation · RegistrationFactor · ArchiveMustSpeak · SecondLaw ·
            Measurement · Expansion · Forman · Saturation · EinsteinSkeleton ·
-           EffectiveMatter · FluxPattern · LedgerSheaf
+           EffectiveMatter · FluxPattern · LedgerSheaf · PhaseEToys
   dict:    Certificate (K) · LCertificate · Quintom.* · BitFlip · Kramers · Page ·
            NoClone (measurement) · MetaProblem
 

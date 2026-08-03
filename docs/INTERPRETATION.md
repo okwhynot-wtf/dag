@@ -72,14 +72,16 @@ bounded lossless ledger is forced to emit at capacity saturation.
 
 **H⊥.** Matter needs a second generator beyond registration / saturation.
 
-Sprint status (`Bridge.EffectiveMatter.effective_matter_sprint`):
-- **A1–A3 passed** — `effectiveMatter` = flux; vacuum = oscillator class;
-  matter-bearing = saturated nonzero fiber; vacuum ≠ matter-channel separable
-- **B4 passed** — below saturation, fiber length `<` alphabet length (slack)
-- **C2 passed** — Kmin Forman unpaid flatness (`= 2`) ≤ `|caps T|` for all `T`
+Sprint / phase status:
+- **A–C2 passed** — `effective_matter_sprint` (flux defs, slack, Forman budget)
+- **D passed** — `phase_D_flux_patterns`: ≥2 Bool components; channels/branches
+  supply multiplicity; vacuum vs matter onset = oscillator vs registration
+- **O-3 partial** — `o3_stalk_glue_fragment`: same locus ⇒ capacity (and saturated
+  effective matter) agree; full sheaf of dynamics still open
 
-Stop rules: see `docs/MATTER_FLUX_PLAN.md`. Continuum `T_{μν}` / SM inventory
-still refused. Next: Phase D (flux patterns) and O-3 sheaf glue.
+Stop rules: see `docs/MATTER_FLUX_PLAN.md`. A–D green ⇒ O-5 reframed as
+emergent-flux programme; matter-as-input demoted to optional host API.
+Continuum `T_{μν}` / SM inventory still refused. Next: Phase E toys (optional).
 
 ## Coincidence: flatness embarrassment (not promoted)
 

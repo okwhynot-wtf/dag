@@ -65,5 +65,5 @@ companions BitFlip, NoClone (measurement).
 
 ## Version
 
-DAG hybrid **v0.1.11** — effective-matter sprint (A1–A3, B4, C2);
-matter-as-saturated-flux hypothesis now Lean-testable.
+DAG hybrid **v0.1.12** — Phase D flux patterns + O-3 stalk glue;
+matter-as-saturated-flux A–D green (patterned, not scalar-only).

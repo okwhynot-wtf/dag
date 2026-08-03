@@ -13,6 +13,8 @@
 | T-15 saturation / equation-of-state | `Bridge.Saturation.T15_saturation_equation_of_state` | Bridge |
 | T-16 discrete Einstein / Jacobson skeleton | `Bridge.EinsteinSkeleton.T16_discrete_einstein_skeleton` | Bridge |
 | Effective-matter sprint (A1–A3, B4, C2) | `Bridge.EffectiveMatter.effective_matter_sprint` | Bridge |
+| Phase D flux patterns | `Bridge.FluxPattern.phase_D_flux_patterns` | Bridge |
+| O-3 stalk glue fragment | `Bridge.LedgerSheaf.o3_stalk_glue_fragment` | Bridge |
 | E1 monotone structure | `Bridge.Expansion.E1_monotone_structure` | Bridge |
 | E2 exponential capacity | `Bridge.Expansion.E2_exponential_capacity` | Bridge |
 | T-4 registration on spine | `Bridge.RegistrationSpine.registration_on_spine` | Bridge |

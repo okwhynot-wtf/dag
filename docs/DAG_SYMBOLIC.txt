@@ -1,5 +1,5 @@
 Diagonal Archive Geometry — symbolic law
-corpus hybrid/ DAG v0.1.11
+corpus hybrid/ DAG v0.1.12
 
 ═══════════════════════════════════════════════════════════════════════════════
 0. Layers  (downward imports only)
@@ -152,7 +152,7 @@ VI. Compression
 VII. Residue / refusal
 ═══════════════════════════════════════════════════════════════════════════════
 
-  open (tractable): O-3 ledger sheaf (glue LocalLedgerPatch stalks);
+  open (tractable): O-3 full sheaf dynamics (stalk glue done; restrictions open);
           R-1 recombination budget (faces vs aliveness; Lean counting);
           combinatorial T caricature (counting entropy / period-2 toys);
           finite-mode Page–Bogoliubov toy; matter-as-input dictionary;
@@ -184,7 +184,7 @@ VII. Residue / refusal
   bridge:  Alphabet · Capacity · OneZ2 · RegistrationSpine · Environment ·
            TickSimulation · RegistrationFactor · ArchiveMustSpeak · SecondLaw ·
            Measurement · Expansion · Forman · Saturation · EinsteinSkeleton ·
-           EffectiveMatter
+           EffectiveMatter · FluxPattern · LedgerSheaf
   dict:    Certificate (K) · LCertificate · Quintom.* · BitFlip · Kramers · Page ·
            NoClone (measurement) · MetaProblem
 

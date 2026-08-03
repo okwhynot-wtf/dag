@@ -13,6 +13,8 @@ import Forman
 import Saturation
 import EinsteinSkeleton
 import EffectiveMatter
+import FluxPattern
+import LedgerSheaf
 import Geom.Registration
 import Geom.Profile
 import Density
@@ -176,6 +178,25 @@ theorem milestone_effective_matter_sprint :
    Bridge.EffectiveMatter.kmin_flatness_within_caps_budget,
    Bridge.Alphabet.Kmin_eq⟩
 
+theorem milestone_phase_D :
+    (∃ c₀ c₁ : Bridge.FluxPattern.FluxComponent Bool,
+      c₀.witness ≠ c₁.witness) ∧
+    Bridge.Alphabet.Kmin = 2 ∧
+    Bridge.EffectiveMatter.VacuumDynamics Geom.Registration.oscStep :=
+  ⟨⟨Bridge.FluxPattern.boolComponentFalse,
+    Bridge.FluxPattern.boolComponentTrue,
+    Bridge.FluxPattern.bool_components_nondegenerate⟩,
+   Bridge.Alphabet.Kmin_eq,
+   Bridge.EffectiveMatter.osc_is_vacuum⟩
+
+theorem milestone_o3_glue :
+    (∀ {X E S E' : Type}
+      {p q : Bridge.EinsteinSkeleton.LocalLedgerPatch X E S E'},
+      Bridge.EinsteinSkeleton.OverlapCompatible p q →
+      p.locus = q.locus → p.alphabet.length = q.alphabet.length) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨Bridge.LedgerSheaf.glue_capacity_on_locus, Bridge.Alphabet.Kmin_eq⟩
+
 theorem bridge_arc :
     Bridge.Alphabet.Kmin = 2 ∧
     (∀ T, Bridge.Capacity.caps T = 2 ^ (T + 2)) ∧
@@ -227,6 +248,8 @@ theorem bridge_arc :
 #print axioms milestone_T15
 #print axioms milestone_T16
 #print axioms milestone_effective_matter_sprint
+#print axioms milestone_phase_D
+#print axioms milestone_o3_glue
 #print axioms bridge_arc
 
 end Bridge.Arc

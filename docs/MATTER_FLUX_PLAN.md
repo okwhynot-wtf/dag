@@ -81,6 +81,21 @@ H does not require a unique particle spectrum. It requires that
 (no pattern structure), “effective matter” is only a scalar pressure —
 still interesting, but weaker than a contents-ontology.
 
+### Phase D — **discharged** (`Bridge.FluxPattern`)
+
+- **D1** `two_nondegenerate_flux_components` — Bool alphabet has ≥2 components
+- **D2** `species_multiplicity_from_underdetermination` — Kmin/channels/branches
+- **D3** `vacuum_vs_matter_onset` — oscillator vs Landauer registration
+- Package: `phase_D_flux_patterns` (axiom-free)
+
+**Result:** falsifier at D does *not* fire — flux is patterned. Contents-ontology
+is still underdetermined (which inventory), but not scalar-only.
+
+### O-3 fragment — **partial** (`Bridge.LedgerSheaf`)
+
+- `glue_capacity_on_locus` / `glue_effectiveMatter_at_saturation_length`
+- `o3_stalk_glue_fragment` — stalk agreement; full sheaf of dynamics still open
+
 ---
 
 ## 4. Optional physics toys (Phase E — not required for H)

@@ -159,8 +159,7 @@ VII. Residue / refusal
             (KMS periodicity ↔ period-2: remark only, nothing filed);
           **O-3** plurality of ledgers: one ladder, one archive; Jacobson needs
             independent local balance laws; requires sheaf of ledgers over
-            the branch tree with overlap compatibility;
-          T-15 statement fixed, proof pending
+            the branch tree with overlap compatibility
   obstructed: Registration↛ladder-carrier naming (swap: fixed |E|=2 forever;
               naming grows levelCard) — label-namer factor still holds
   refuse: numbers from Bool; quintom-as-world; global Law of Time;
@@ -170,7 +169,7 @@ VII. Residue / refusal
   coincidence (unpromoted): cosmology flatness puzzle ↔ DAG flatness budget
   not residue: ¬flat(prof); Kmin=2; |caps T|=2^(T+2); one ℤ/2;
                recordLabel∶Bool↪E; committed tick simulation; registers_admits_namer;
-               T-10…T-14; E1; E2; meta reports structural; Forman sign;
+               T-10…T-15; E1; E2; meta reports structural; Forman sign;
                seal-per-reading = local horizon (Jacobson quantifier discharged in
                  skeleton: every self-reading has a dodge; observers_forced supplies
                  the observers)
@@ -179,7 +178,7 @@ VII. Residue / refusal
   ledger:  Geom.Registration · Profile · Gradient · Obs.Recovery · Obs.Dimension
   bridge:  Alphabet · Capacity · OneZ2 · RegistrationSpine · Environment ·
            TickSimulation · RegistrationFactor · ArchiveMustSpeak · SecondLaw ·
-           Measurement · Expansion · Forman
+           Measurement · Expansion · Forman · Saturation
   dict:    Certificate (K) · LCertificate · Quintom.* · BitFlip · Kramers · Page ·
            NoClone (measurement) · MetaProblem
 

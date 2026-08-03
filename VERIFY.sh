@@ -19,6 +19,6 @@ echo "-- dictionary --"
 (cd formal/dictionary && lake build)
 
 echo "-- quintom exhibit --"
-python exhibits/quintom/integrate.py
+python3 exhibits/quintom/integrate.py
 
 echo "== DAG VERIFY OK =="

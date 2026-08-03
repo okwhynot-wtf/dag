@@ -39,10 +39,11 @@ Merged ledger from DM + AG + RE, per `docs/DAG.md` §8.
 
 ## Discharged
 
-T-3 … T-14; E1, E2 named; T-1 fiber UP; T-2 committed + factorisation attack;
-I-4 K-certificates: Bool, **Quintom**, **BitFlip**, **Kramers**, **NoClone**,
+T-3 … T-15; E1, E2 named; T-1 fiber UP; T-2 committed + factorisation attack;
+I-4 K-certificates: Bool, **Quintom**, **BitFlip**, **Kramers**,
 **MetaProblem**;
-I-4 L-certificate: **Page**.
+I-4 L-certificate: **Page**;
+T-12 Branch/measurement no-go: **NoClone** paired with Lossless.
 
 ## Interpretation (hedged)
 

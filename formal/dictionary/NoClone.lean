@@ -1,15 +1,14 @@
-import Certificate
 import Orbit
 import Canon
 import Alphabet
 
 /-!
-# No-cloning — kernel dictionary entry (measurement companion)
+# No-cloning — measurement dictionary companion
 
-Pairs with `Orbit.Lossless` the way Kramers pairs with fixed-point-freeness:
-a finite three-tone no-go (computational basis + one non-eigenstate) shows
-product cloning of a "superposition" disagrees with the linear image of
-basis clones (Bell support ≠ product support).
+Branch / measurement no-go (T-12 companion), paired with `Orbit.Lossless`.
+Not an I-4 K-certificate: the Bell≠product support inequality is the
+measurement package's no-go component (entanglement witness), not a swap
+acting as ¬ on a kernel locus filing clauses (a)–(c).
 
 Refused with T-12: Born rule, probabilities, preferred basis, Hilbert
 space as Lean. This is the finite support caricature.
@@ -17,15 +16,14 @@ space as Lean. This is the finite support caricature.
 
 namespace Dictionary.NoClone
 
-open Dictionary.Certificate
-
 /-! ## Three-tone alphabet -/
 
 inductive Tone where
   | b0 | b1 | plus
   deriving DecidableEq, Repr
 
-/-- Computational-basis flip; `plus` fixed (superposition locus). -/
+/-- Computational-basis flip; `plus` fixed (superposition locus).
+    Auxiliary structure — not K-cert admission. -/
 def flip : Tone → Tone
   | .b0 => .b1
   | .b1 => .b0
@@ -51,6 +49,14 @@ def obsNeg : Obs → Obs
 theorem observe_flip_as_neg (t : Tone) :
     observe (flip t) = obsNeg (observe t) := by
   cases t <;> rfl
+
+def Fixed (t : Tone) : Prop := flip t = t
+
+theorem plus_fixed : Fixed Tone.plus := rfl
+
+theorem basis_unfixed :
+    ¬ Fixed Tone.b0 ∧ ¬ Fixed Tone.b1 := by
+  constructor <;> intro h <;> cases h
 
 /-! ## Support caricature of no-cloning -/
 
@@ -82,27 +88,6 @@ theorem lossless_floor {α : Type} (act : α → α)
     (h : Canon.IsFundamental act) : Orbit.Lossless act :=
   h.lossless
 
-/-! ## K-certificate: flip involution; fixed locus = plus (nonempty) -/
-
-def noCloneCert : KernelCert Tone Obs where
-  swap := flip
-  square := id
-  swap_sq := fun t => by cases t <;> rfl
-  square_involutive := fun _ => rfl
-  observe := observe
-  obsNeg := obsNeg
-  swap_as_not := observe_flip_as_neg
-  Fixed := fun t => flip t = t
-  fixed_iff := fun _ => Iff.rfl
-  fixedMode := FixedMode.nonempty
-  noSoloCross := fun _ h => h.2
-
-theorem plus_fixed : noCloneCert.Fixed Tone.plus := rfl
-
-theorem basis_unfixed :
-    ¬ noCloneCert.Fixed Tone.b0 ∧ ¬ noCloneCert.Fixed Tone.b1 := by
-  constructor <;> intro h <;> cases h
-
 /-- Forced +1 / ancilla: Tone does not inject into Unit. -/
 theorem no_injection_tone_to_unit :
     ¬ ∃ (f : Tone → Unit), ∀ x y, f x = f y → x = y := by
@@ -115,18 +100,16 @@ theorem forced_ancilla :
     Bridge.Alphabet.Kmin = 2 :=
   ⟨no_injection_tone_to_unit, Bridge.Alphabet.Kmin_eq⟩
 
-/-- **Admission.** -/
+/-- **Admission (measurement package).** No-cloning support inequality
+    paired with Lossless; not a `KernelCert` filing. -/
 theorem noClone_admitted :
     (InProduct (Tone.b0, Tone.b1) ∧ ¬ InBell (Tone.b0, Tone.b1)) ∧
-    (∀ t, noCloneCert.swap (noCloneCert.swap t) = noCloneCert.square t) ∧
-    (∀ t, noCloneCert.observe (noCloneCert.swap t) =
-      noCloneCert.obsNeg (noCloneCert.observe t)) ∧
-    noCloneCert.Fixed Tone.plus ∧
-    noCloneCert.fixedMode = FixedMode.nonempty ∧
+    (∀ {α : Type} (act : α → α),
+      Canon.IsFundamental act → Orbit.Lossless act) ∧
     (¬ ∃ (f : Tone → Unit), ∀ x y, f x = f y → x = y) ∧
     Bridge.Alphabet.Kmin = 2 :=
-  ⟨no_cloning, noCloneCert.swap_sq, noCloneCert.swap_as_not,
-   plus_fixed, rfl, no_injection_tone_to_unit, Bridge.Alphabet.Kmin_eq⟩
+  ⟨no_cloning, lossless_floor, no_injection_tone_to_unit,
+   Bridge.Alphabet.Kmin_eq⟩
 
 #print axioms no_cloning
 #print axioms noClone_admitted

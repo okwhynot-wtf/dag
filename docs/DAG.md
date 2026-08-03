@@ -250,6 +250,15 @@ capacity schedule. Ledger-balance reading of the Jacobson audit — no
 curvature claimed; field equations refused. Packages `Geom.Profile.Alive`,
 `Obs.Budget` B1/B2, and capacity step-growth uniqueness.
 
+**T-16 Discrete Einstein / Jacobson skeleton.** Packages every discharged
+Jacobson ingredient (capacity, Landauer, seal-horizon, saturation EoS,
+Forman) plus the discrete `G ~ T` caricature: unpaid Forman flatness on
+an edge is paid by registered 2-cells; at saturation, stress-energy proxy
+(record flux) equals consumed capacity; local ledger stalks over branch
+loci with overlap compatibility. Continuum field equations **do not fall
+out** — O-2 (no Unruh `T`), O-3 (no ledger sheaf), O-4/O-5, R-1 remain.
+Refused: `G_{μν} = 8π T_{μν}` as Lean; temperature; continuum metric.
+
 ---
 
 ## 6½. Expansion taxonomy (E1–E4)

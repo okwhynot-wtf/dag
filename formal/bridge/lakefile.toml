@@ -27,5 +27,6 @@ roots = [
   "Expansion",
   "Forman",
   "Saturation",
+  "EinsteinSkeleton",
   "BridgeArc",
 ]

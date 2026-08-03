@@ -1,5 +1,5 @@
 Diagonal Archive Geometry — symbolic law
-corpus hybrid/ DAG v0.1.8
+corpus hybrid/ DAG v0.1.9
 
 ═══════════════════════════════════════════════════════════════════════════════
 0. Layers  (downward imports only)
@@ -68,6 +68,9 @@ II. Ledger  (AG over I-1 / I-2)
   T-14: tree Forman < 0; recombination ↑ Forman; live ⇒ ¬flat(prof)
   T-15: alive ⇔ records ≤ caps growth; saturation := equality;
         at saturation, record flux is determined by the capacity schedule
+  T-16: discrete Einstein skeleton — Jacobson inputs + Forman unpaid
+        flatness paid by faces + stress=caps at saturation + local stalks;
+        continuum G_{μν}=8πT_{μν} refused (O-2…O-5, R-1 open)
   curvature precluded only on the 1-d line (trivial)
   arrow = (address, archive↑)
 
@@ -139,6 +142,7 @@ VI. Compression
     +  (liveness ⇒ caps↑ · number=volume ⇒ V=K^t)      T-13
     +  (tree Forman < 0 · recomb ↑ Forman · ¬flat)     T-14
     +  (saturation: ledger balance fixes flux)               T-15
+    +  (Jacobson skeleton · Forman G~T · stalks; continuum refused)  T-16
     +  (E = L_• ,  |caps T| = 2^(T+2) ,  Kmin = 2)
     +  (arrow = address = pole = channel    :  one ℤ/2)
     +  (H=0 ⇒ oscillator triangle;  H>0 ⇒ dissipation registers)
@@ -169,7 +173,7 @@ VII. Residue / refusal
   coincidence (unpromoted): cosmology flatness puzzle ↔ DAG flatness budget
   not residue: ¬flat(prof); Kmin=2; |caps T|=2^(T+2); one ℤ/2;
                recordLabel∶Bool↪E; committed tick simulation; registers_admits_namer;
-               T-10…T-15; E1; E2; meta reports structural; Forman sign;
+               T-10…T-16; E1; E2; meta reports structural; Forman sign;
                seal-per-reading = local horizon (Jacobson quantifier discharged in
                  skeleton: every self-reading has a dodge; observers_forced supplies
                  the observers)
@@ -178,7 +182,7 @@ VII. Residue / refusal
   ledger:  Geom.Registration · Profile · Gradient · Obs.Recovery · Obs.Dimension
   bridge:  Alphabet · Capacity · OneZ2 · RegistrationSpine · Environment ·
            TickSimulation · RegistrationFactor · ArchiveMustSpeak · SecondLaw ·
-           Measurement · Expansion · Forman · Saturation
+           Measurement · Expansion · Forman · Saturation · EinsteinSkeleton
   dict:    Certificate (K) · LCertificate · Quintom.* · BitFlip · Kramers · Page ·
            NoClone (measurement) · MetaProblem
 

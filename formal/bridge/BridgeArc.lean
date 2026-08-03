@@ -11,6 +11,7 @@ import Measurement
 import Expansion
 import Forman
 import Saturation
+import EinsteinSkeleton
 import Geom.Registration
 import Geom.Profile
 import Density
@@ -156,6 +157,13 @@ theorem milestone_T15 :
     Bridge.Alphabet.Kmin = 2 :=
   ⟨Bridge.Saturation.alive_iff_records_le_caps, Bridge.Alphabet.Kmin_eq⟩
 
+theorem milestone_T16 :
+    (Bridge.EinsteinSkeleton.unpaidFlatness 3 3 0 = 2) ∧
+    (Bridge.EinsteinSkeleton.unpaidFlatness 3 3 2 = 0) ∧
+    Bridge.EinsteinSkeleton.openGaps.length = 5 ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨rfl, rfl, rfl, Bridge.Alphabet.Kmin_eq⟩
+
 theorem bridge_arc :
     Bridge.Alphabet.Kmin = 2 ∧
     (∀ T, Bridge.Capacity.caps T = 2 ^ (T + 2)) ∧
@@ -205,6 +213,7 @@ theorem bridge_arc :
 #print axioms milestone_T13
 #print axioms milestone_T14
 #print axioms milestone_T15
+#print axioms milestone_T16
 #print axioms bridge_arc
 
 end Bridge.Arc

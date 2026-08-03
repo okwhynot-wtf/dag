@@ -25,7 +25,8 @@ caricatures are in scope; continuum identifications are not.
 | **R-1 recombination budget** | Count registered faces per node vs aliveness/registration budget; does near-flatness (Forman ≥ 0) fit? Ultrametric obstruction is real; the *counting* question is Lean |
 | **Combinatorial temperature caricature** | Counting entropy `S ~ log‖caps‖`; period-2 / involution toys; optional KMS↔period-2 experiment. Not Unruh, not Boltzmann continuum — but stop banning all `T` |
 | **Finite-mode Page / Bogoliubov toy** | Finite Hilbert caricature for Hawking-pair drift (exhibit conjecture → Lean). Continuum QFT stays refused |
-| **Matter-as-input dictionary** | Treat matter stress as declared alphabet/flux data in local patches; discrete Friedmann-*shaped* balance with inputs. Deriving matter from Bool stays refused |
+| **Matter = saturated record flux (under test)** | Hypothesis: effective matter is forced flux at capacity saturation, not a second substance. Dual host-API (declare flux) remains available. Programme: `docs/MATTER_FLUX_PLAN.md`. SM/Friedmann-from-Bool stays refused |
+| **O-5 reframed** | “Dynamical matter from framework” → test whether flux bookkeeping *is* the matter channel (plan Phases A–D) |
 | **Finite measures on branches** | Optional: random-walk / counting measures → Ollivier-style trial on finite trees. Continuum measure theory not required |
 | **Area-as-capacity sharpening** | Tighten Bekenstein-shaped reading of `‖caps T‖` (already present); not continuum area theorems |
 | **RE-side growth law** | Seek quintom mode-count ↔ capacity-law analogue (table V dash: not yet sought) |

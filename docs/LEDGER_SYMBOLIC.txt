@@ -95,8 +95,9 @@ VIII. Residue / refusal
 
   open:   why eternal aliveness; choice of address; blank adjunction ontology;
           Lorentzian/matter dictionaries
-  refuse: premise-free global Law of Time; spacetime/area/islands as theorems;
-          QFT mode creation as Lean
+  refuse: premise-free global Law of Time; continuum spacetime/area/islands;
+          continuum QFT as Lean
+  open work: discrete area-as-caps; finite toys — see docs/RESIDUE.md
   not residue: ¬flat(prof)  [derived from eternal aliveness]
 
   spine: Geom.Registration · Ledger · Exhaustion · Provision · Gradient

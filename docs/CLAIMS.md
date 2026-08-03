@@ -42,6 +42,6 @@
 | AG merge registers | `Geom.Registration.merge_registers` | Ledger |
 | DM fundamental two elements | `Density.fundamental_two_elements` | Spine |
 
-Open (residue): arbitrary-`U_S` UP beyond fiber tagging; policy residue in
-`docs/RESIDUE.md`. T-2 carrier-level Registration→naming is **obstructed**
-(documented); label-namer factor discharged.
+Open work: see `docs/RESIDUE.md` (tractable vs structural vs philosophical).
+T-2 carrier-level Registration→naming is **obstructed** (documented);
+label-namer factor discharged.

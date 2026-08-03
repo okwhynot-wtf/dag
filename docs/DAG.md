@@ -319,47 +319,35 @@ from the opposite direction. File as coincidence until a theorem promotes it.
 
 ## 8. Residue / refusal ledger (merged)
 
-**Residue (open, honest):**
-- facticity of liveness (subsumes AG "why eternal aliveness");
-- the ℤ/2 choice (address / pole / labels), plus branch choice per tick;
-- arena adequacy (DM's one contestable claim, unchanged);
-- blank adjunction ontology beyond the emanation gloss;
-- RE action by hand: m, V₀, amplitudes are inputs;
-- Lorentzian and matter dictionaries (from AG, still open);
-- T-1 and T-2 until proved, then either discharged or documented obstructions;
-- **R-1 Spatial extension / recombination** (highest-value open problem):
-  causal order is dim 1 (time only). Branch tree has width (≥2 children);
-  conjectured spatial distance = divergence depth (last common ancestor).
-  **Obstruction:** LCA distance is an ultrametric (isosceles triangles);
-  physical space is Archimedean / locally Euclidean. Escaping ultrametricity
-  needs branch recombination; DM branches diverge and stay diverged.
-  **Curvature restatement (T-14):** the tree is Forman-negative / 0-hyperbolic;
-  registered recombination cycles are the only combinatorial cure (each
-  attached 2-cell raises Forman quantity by 1; internal edges need ≥2 faces
-  to reach the Forman zero-line).
-  **Quantitative target:** how many registered recombinations per node does
-  near-flatness cost, and does the registration / aliveness budget permit
-  them? Flatness would have a price in records — a well-posed counting
-  question coupling curvature to the capacity ledger.
-  **Wildcard:** ledger stratified merge (forbidden at base, permitted above
-  with record) suggests recombination-with-record might be admissible —
-  interference-shaped; door to space and door to quantum may be the same.
-  Success ⇒ transversal geometry; failure ⇒ space must come from elsewhere.
+Canonical detail: `docs/RESIDUE.md`. Summary:
 
-**Refused (out of scope by policy):**
-- any cosmological number from Bool;
-- any claim that the quintom is the world's dynamics; DESI alignment is an
-  observation about the model class, never a forecast;
-- premise-free global Law of Time;
-- spacetime, area, or island theorems;
-- QFT mode creation as Lean;
-- gravitational evaporating BH as Lean (Page *toy* admitted via L-certificate);
-- temperature / Boltzmann / statistical mechanics proper (T-11 combinatorial);
-- Born rule / probabilities / preferred basis (T-12 is shape only);
-- the hard problem / qualia (meta-problem entry claims reports only);
-- **E4** Friedmann dynamics with matter;
-- observable `H₀` / seconds from naming ticks (T-13 units caveat);
-- experiential claims (DM Interpretation scope carries over).
+**Tractable open work (Lean-attackable):**
+- **O-3** sheaf of local ledgers (glue `LocalLedgerPatch` stalks);
+- **R-1 recombination budget** — faces-per-node vs aliveness cost of
+  Forman near-flatness (ultrametric obstruction real; counting is Lean);
+- combinatorial temperature caricature (counting entropy / period-2 toys;
+  not Unruh);
+- finite-mode Page–Bogoliubov toy; matter-as-input dictionary;
+- finite branch measures (Ollivier trial); area-as-`|caps|` sharpening;
+- RE-side growth law; partial Lorentzian dictionary; arbitrary-`U_S` UP.
+
+**Structural open (hard walls):**
+- **O-2** no boost / Unruh `T` (only ℤ/2) — deepest Einstein gap;
+- **R-1** ultrametric ≠ space — attack via recombination budget above;
+- **O-4 / O-5** continuum Lorentzian limit; matter from the framework.
+
+**Philosophical residue:** facticity of liveness; ℤ/2 + branch choice;
+arena adequacy; blank ontology; RE action inputs.
+
+**Refused (genuine — continuum / mind / overclaim):**
+- number or observable `H₀` identified from Bool / naming ticks;
+- quintom-as-world; DESI as forecast; premise-free Law of Time;
+- continuum spacetime / Einstein / QFT / evaporating BH as Lean
+  (finite Page toy admitted);
+- continuum Boltzmann; Born rule from underdetermination alone;
+- hard problem / qualia / experiential claims;
+- matter or Friedmann **derived from Bool alone**
+  (matter-as-input and discrete balance caricatures are open work).
 
 ---
 

@@ -66,4 +66,4 @@ companions BitFlip, NoClone (measurement).
 ## Version
 
 DAG hybrid **v0.1.9** — T-16 discrete Einstein / Jacobson skeleton;
-continuum field equations do not fall out (O-2 Unruh gap deepest).
+realistic residue split (tractable open work vs genuine refusals).

@@ -40,7 +40,7 @@ caricatures are in scope; continuum identifications are not.
 | **O-2** no boost / Unruh `T` | Only symmetry is one ℤ/2; Clausius has no temperature | Needs new structure (boost-like), not a missing lemma. Deepest Einstein gap |
 | **R-1** ultrametric vs space | LCA distance ≠ Archimedean space; paths diverge and stay diverged | Yes via recombination programme above; success not guaranteed |
 | **O-4** continuum Lorentzian limit | No continuum metric in hand | Limit theorems only after R-1 / dictionary progress |
-| **O-5** dynamical matter from framework | Matter currently input | Dictionary work can *host* matter; derivation from Bool not expected |
+| **O-5** matter ontology | If H⊥: needs second generator | If H (plan): softens to emergent flux; SM inventory still underdetermined. Sprint A–C2 green (`EffectiveMatter`) |
 
 ## Documented obstructions (attacked; remnant filed)
 

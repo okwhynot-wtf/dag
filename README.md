@@ -65,5 +65,5 @@ companions BitFlip, NoClone (measurement).
 
 ## Version
 
-DAG hybrid **v0.1.9** — T-16 discrete Einstein / Jacobson skeleton;
-realistic residue split (tractable open work vs genuine refusals).
+DAG hybrid **v0.1.11** — effective-matter sprint (A1–A3, B4, C2);
+matter-as-saturated-flux hypothesis now Lean-testable.

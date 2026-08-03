@@ -28,5 +28,6 @@ roots = [
   "Forman",
   "Saturation",
   "EinsteinSkeleton",
+  "EffectiveMatter",
   "BridgeArc",
 ]

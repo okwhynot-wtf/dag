@@ -135,12 +135,16 @@ A (defs) → B (necessity) → C (geometry) → D (patterns) → E (toys)
 
 ---
 
-## 8. First concrete sprint (recommended)
+## 8. First concrete sprint — **discharged**
 
-1. **A1–A3** in `formal/bridge/EffectiveMatter.lean` (or extend EinsteinSkeleton).
-2. **B4** slack lemma below saturation.
-3. **C2** first inequality for Kmin internal edge vs expand aliveness.
-4. One page in INTERPRETATION stating H / H⊥ / stop rules (this file is the plan).
+Landed in `formal/bridge/EffectiveMatter.lean`:
+- **A1–A3** `effectiveMatter`, `VacuumDynamics`, `MatterBearingTick`;
+  `vacuum_vs_matter_channel_separable`
+- **B4** `slack_below_saturation`
+- **C2** `kmin_flatness_within_caps_budget` / `kmin_flatness_within_expand_budget`
+- Package: `effective_matter_sprint`; milestone in `BridgeArc`
+- INTERPRETATION “Matter reading” section updated
 
-Success of the sprint: H is *testable in Lean*, not merely poetic.
-Failure of the sprint: we still learned which definitions won’t bear weight.
+**Result:** H is Lean-testable. A did not fail (defs bear weight). Proceed to
+Phase D (flux patterns) and O-3 glue; do not promote H to not-residue until
+stop rules say so.

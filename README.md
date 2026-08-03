@@ -52,6 +52,7 @@ python exhibits/quintom/integrate.py
 | T-13 | Expansion price of liveness (conditional) | Discharged (`Expansion.lean`); E1/E2 named; E3=R-1; E4 refused |
 | T-14 | Forman–Ricci on branch tree | Discharged (`Forman.lean`); recombination raises toward flat |
 | T-15 | Saturation / equation-of-state | Discharged (`Saturation.lean`); ledger balance fixes flux |
+| T-16 | Discrete Einstein / Jacobson skeleton | Discharged skeleton (`EinsteinSkeleton.lean`); continuum GR refused (O-2 deepest) |
 | T-4 | Registration on spine | Discharged |
 | T-5 | Oscillator triangle (kernel) | Discharged; ODE exhibit |
 | T-8 | Fixed-point discipline (kernel) | Discharged; ODE exhibit |
@@ -64,5 +65,5 @@ companions BitFlip, NoClone (measurement).
 
 ## Version
 
-DAG hybrid **v0.1.8** — T-15 saturation / equation-of-state; NoClone
-relocated to measurement package; symbolic-law stale fixes (A1–A4).
+DAG hybrid **v0.1.9** — T-16 discrete Einstein / Jacobson skeleton;
+continuum field equations do not fall out (O-2 Unruh gap deepest).

@@ -28,10 +28,22 @@ Jacobson derived Einstein equations from (i) entropy bound on horizons and
 | Clausius (heat → entropy) | T-4 Landauer: what merges must register |
 | Local balance / EoS | T-15 saturation: alive ⇔ records ≤ caps; equality fixes flux |
 | Horizon through every point | seal-per-reading = local horizon (not-residue) |
+| Curvature accounting | T-14 Forman; unpaid flatness paid by registered faces (T-16) |
+| Discrete `G ~ T` | T-16: unpaid Forman = faces short of threshold; stress = capacity at saturation |
 
-Remarkable inventory if accidental. Sharpens the missing piece: **space**
-(E3 / R-1 / O-2–O-3). Both inputs sit on a 1-dimensional causal order;
-transversal geometry is the blocked step. Field equations refused.
+**T-16 result.** The logical slot of Einstein-as-equation-of-state is occupied
+by a discrete skeleton (`Bridge.EinsteinSkeleton.T16_discrete_einstein_skeleton`):
+Jacobson inputs discharge; curvature relief costs records; local ledger stalks
+exist with crude overlap. Continuum `G_{μν} = 8π T_{μν}` does **not** fall out.
+
+**Still blocking continuum Einstein.**
+- **O-2** (deepest): no boosts ⇒ no Unruh temperature ⇒ Clausius has no `T`
+- **O-3**: stalks ≠ sheaf of independent local balance laws
+- **O-4 / O-5**: continuum Lorentzian limit; dynamical matter
+- **R-1**: spatial metric (ultrametric)
+
+Field equations remain refused as Lean gravity. The skeleton is the honest
+ceiling until O-2 moves.
 
 
 ## Causal-set postulate (T-13)

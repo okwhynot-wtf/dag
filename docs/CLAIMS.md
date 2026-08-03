@@ -11,6 +11,7 @@
 | T-13 expansion price of liveness (conditional) | `Bridge.Expansion.T13_expansion_conditional` | Bridge |
 | T-14 Forman tree curvature | `Bridge.Forman.T14_forman_tree_curvature` | Bridge |
 | T-15 saturation / equation-of-state | `Bridge.Saturation.T15_saturation_equation_of_state` | Bridge |
+| T-16 discrete Einstein / Jacobson skeleton | `Bridge.EinsteinSkeleton.T16_discrete_einstein_skeleton` | Bridge |
 | E1 monotone structure | `Bridge.Expansion.E1_monotone_structure` | Bridge |
 | E2 exponential capacity | `Bridge.Expansion.E2_exponential_capacity` | Bridge |
 | T-4 registration on spine | `Bridge.RegistrationSpine.registration_on_spine` | Bridge |

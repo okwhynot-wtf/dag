@@ -7,6 +7,7 @@ import Environment
 import Dil
 import RegistrationFactor
 import ArchiveMustSpeak
+import PageShape
 import SecondLaw
 import Measurement
 import Expansion
@@ -125,6 +126,17 @@ theorem milestone_T10 :
   ⟨fun hK tTurn => Bridge.ArchiveMustSpeak.page_time_is_exhaustion hK tTurn,
    Bridge.Alphabet.Kmin_eq⟩
 
+theorem milestone_T10_shape :
+    (∀ C t, t ≤ C → Bridge.PageShape.streamInfo C t = 0) ∧
+    (∀ C t, C ≤ t → Bridge.PageShape.streamInfo C t = t - C) ∧
+    (∀ C, Bridge.PageShape.streamInfo C C = 0 ∧
+      Bridge.PageShape.streamInfo C (C + 1) = 1) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨Bridge.PageShape.T10_page_flux_shape.1,
+   Bridge.PageShape.T10_page_flux_shape.2.1,
+   Bridge.PageShape.T10_page_flux_shape.2.2.1,
+   Bridge.Alphabet.Kmin_eq⟩
+
 theorem milestone_T11 :
     (∀ {S E : Type} {U : S × E → S × E},
       Geom.Registration.Inj U →
@@ -151,8 +163,10 @@ theorem milestone_T13 :
     (∀ T, Bridge.Expansion.countedVolume Bridge.Alphabet.Kmin T = 2 ^ T) ∧
     Bridge.Expansion.NumberEqualsVolume ∧
     Bridge.Alphabet.Kmin = 2 :=
-  ⟨Bridge.Expansion.discrete_Hubble_one_bit_per_tick,
-   Bridge.Expansion.counted_deSitter_volume,
+  ⟨Bridge.Expansion.discrete_Hubble_one_bit_per_tick
+      Bridge.Expansion.numberEqualsVolume,
+   Bridge.Expansion.counted_deSitter_volume
+      Bridge.Expansion.numberEqualsVolume,
    Bridge.Expansion.number_equals_volume_flagged,
    Bridge.Alphabet.Kmin_eq⟩
 
@@ -264,7 +278,8 @@ theorem bridge_arc :
    fun hK tTurn => Bridge.ArchiveMustSpeak.page_time_is_exhaustion hK tTurn,
    Bridge.SecondLaw.archive_irreversible,
    Bridge.Measurement.two_children,
-   Bridge.Expansion.discrete_Hubble_one_bit_per_tick,
+   Bridge.Expansion.discrete_Hubble_one_bit_per_tick
+     Bridge.Expansion.numberEqualsVolume,
    Bridge.Forman.internal_edge_forman_neg⟩
 
 #print axioms milestone_M1
@@ -272,6 +287,7 @@ theorem bridge_arc :
 #print axioms milestone_keystone_dil
 #print axioms milestone_M4b
 #print axioms milestone_T10
+#print axioms milestone_T10_shape
 #print axioms milestone_T11
 #print axioms milestone_T12
 #print axioms milestone_T13

@@ -113,6 +113,58 @@ theorem internal_flat_budget :
   ⟨internal_edge_forman_neg, internal_still_neg_at_one_face,
    internal_not_neg_at_two_faces⟩
 
+/-! ## Worked complex (face-count insurance for T-14 → T-16) -/
+
+/-- Named toy edges for a census: line, tree-internal, recombined. -/
+structure ToyEdge where
+  degU : Nat
+  degV : Nat
+  faces : Nat
+
+def toyLine : ToyEdge := ⟨2, 2, 0⟩
+def toyTreeInternal : ToyEdge := ⟨3, 3, 0⟩
+def toyRecombinedUnfilled : ToyEdge := ⟨3, 3, 0⟩
+def toyRecombinedFilled : ToyEdge := ⟨3, 3, 2⟩
+
+/-- Forman quantity on a toy edge. -/
+def ToyEdge.formanQty (e : ToyEdge) : Nat := 4 + e.faces
+
+/-- Line edge is not Forman-negative (deg 2+2 = 4). -/
+theorem toy_line_not_neg :
+    ¬ StrictlyNegativeFaced toyLine.degU toyLine.degV toyLine.faces := by
+  intro h
+  -- 4 + 0 < 2 + 2
+  exact Nat.lt_irrefl 4 h
+
+/-- Tree-internal (and unfilled recombined) is Forman-negative. -/
+theorem toy_tree_neg :
+    StrictlyNegativeFaced toyTreeInternal.degU toyTreeInternal.degV
+      toyTreeInternal.faces :=
+  internal_edge_forman_neg
+
+/-- Filling with 2 faces exits negativity — the recombination budget. -/
+theorem toy_filled_not_neg :
+    ¬ StrictlyNegativeFaced toyRecombinedFilled.degU
+        toyRecombinedFilled.degV toyRecombinedFilled.faces :=
+  internal_not_neg_at_two_faces
+
+/-- Face count from unfilled to filled is exactly two recombinations. -/
+theorem toy_fill_costs_two :
+    toyRecombinedFilled.faces = toyRecombinedUnfilled.faces + 2 ∧
+    toyRecombinedFilled.formanQty =
+      toyRecombinedUnfilled.formanQty + 2 :=
+  ⟨rfl, rfl⟩
+
+/-- **Worked complex package.** Concrete edge census: line non-neg;
+    tree neg; two faces cure internal negativity. Guards off-by-one in
+    the T-14 → T-16 face count. -/
+theorem worked_recombination_complex :
+    ¬ StrictlyNegativeFaced 2 2 0 ∧
+    StrictlyNegativeFaced 3 3 0 ∧
+    ¬ StrictlyNegativeFaced 3 3 2 ∧
+    quantity 0 + 2 = quantity 2 :=
+  ⟨toy_line_not_neg, toy_tree_neg, toy_filled_not_neg, rfl⟩
+
 /-- **Ledger side (unconditional):** eternal aliveness forces non-flat
     capacity profile — the framework anti-precludes counted flatness. -/
 theorem live_forbids_flat_profile {K : Nat} (hK : 2 ≤ K)
@@ -145,6 +197,7 @@ theorem T14_forman_tree_curvature :
 #print axioms internal_edge_forman_neg
 #print axioms recombination_raises_quantity
 #print axioms internal_flat_budget
+#print axioms worked_recombination_complex
 #print axioms live_forbids_flat_profile
 #print axioms T14_forman_tree_curvature
 

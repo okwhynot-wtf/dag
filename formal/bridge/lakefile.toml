@@ -23,6 +23,7 @@ roots = [
   "Dil",
   "RegistrationFactor",
   "ArchiveMustSpeak",
+  "PageShape",
   "SecondLaw",
   "Measurement",
   "Expansion",

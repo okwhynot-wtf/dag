@@ -130,7 +130,7 @@ theorem caps_double (T : Nat) :
 /-- Counted volume doubles (T-13 discrete Hubble), same shape. -/
 theorem volume_double (T : Nat) :
     countedVolume 2 (T + 1) = 2 * countedVolume 2 T :=
-  discrete_Hubble_one_bit_per_tick T
+  discrete_Hubble_one_bit_per_tick Bridge.Expansion.numberEqualsVolume T
 
 /-- At Kmin the Forman growth cost is bounded by capacity (C2),
     so the Friedmann-shaped update stays ledger-paid. -/

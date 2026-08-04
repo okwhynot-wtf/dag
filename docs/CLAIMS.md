@@ -22,6 +22,9 @@
 | T-2 tick simulation (committed path) | `Bridge.TickSimulation.tick_simulation` | Bridge |
 | T-1 environment UP (fiber tagging) | `Bridge.Environment.environment_universality` | Bridge |
 | T-1 Dil keystone sprint (partial I-2) | `Bridge.Dil.keystone_dil_sprint` | Bridge |
+| T-1 Dil rigidity partition fragment | `Bridge.Dil.rigidity_partition_fragment` | Bridge |
+| T-10 Page flux shape | `Bridge.PageShape.T10_page_flux_shape` | Bridge |
+| T-14 worked recombination complex | `Bridge.Forman.worked_recombination_complex` | Bridge |
 | T-1 record-label injectivity | `Bridge.Environment.recordLabel_injective` | Bridge |
 | Bridge arc weld | `Bridge.Arc.bridge_arc` | Bridge |
 | I-4 Bool certificate | `Dictionary.Certificate.bool_admitted` | Dictionary |

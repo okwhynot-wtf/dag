@@ -247,8 +247,15 @@ theorem openGaps_complete :
 
 /-! ## Jacobson input package (discharged skeletons) -/
 
+/-- **Flagged reading token.** Theorems that assemble Jacobson inputs into
+    an Einstein-skeleton conclusion take an explicit `JacobsonReading` so
+    the interpretive step lives in the type. Continuum `G=8πT` stays refused. -/
+structure JacobsonReading where
+
+def jacobsonReading : JacobsonReading := ⟨⟩
+
 /-- J1–J5: every Jacobson ingredient that DAG currently discharges. -/
-theorem jacobson_inputs_discharged :
+theorem jacobson_inputs_discharged (_jr : JacobsonReading) :
     -- J1 entropy/capacity bound
     (∀ T, Bridge.Capacity.caps T = 2 ^ (T + 2)) ∧
     (∀ T, 2 ^ T ≤ Bridge.Capacity.caps T) ∧
@@ -288,7 +295,7 @@ stalks with overlap compatibility.
 Open: O-2…O-5, R-1 (see `openGaps`). Continuum field equations refused.
 The skeleton occupies the logical slot of Einstein-as-equation-of-state
 without deriving `G_{μν} = 8π T_{μν}`. -/
-theorem T16_discrete_einstein_skeleton :
+theorem T16_discrete_einstein_skeleton (_jr : JacobsonReading) :
     -- discrete G ~ T on Kmin internal edges
     (unpaidFlatness 3 3 0 = 2 ∧
       unpaidFlatness 3 3 2 = 0 ∧

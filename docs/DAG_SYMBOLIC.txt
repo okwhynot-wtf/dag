@@ -1,0 +1,249 @@
+Diagonal Archive Geometry — symbolic law
+corpus hybrid/ DAG v0.2.6
+
+═══════════════════════════════════════════════════════════════════════════════
+0. Layers  (downward imports only)
+═══════════════════════════════════════════════════════════════════════════════
+
+  L2  Dictionary   physical instantiations  (K-cert + L-cert)
+  L1  Ledger       S×E, registration, capacity, profile, address   (AG)
+  L0  Spine        arena, Fund, seal, ladder, branch               (DM)
+
+  naming tick  =  ladder step Lₖ ↦ Lₖ₊₁
+  microtick    =  one U : S×E → S×E
+  (identified by Bridge.TickSimulation.tick_identification)
+
+═══════════════════════════════════════════════════════════════════════════════
+I. Spine  (DM arena)
+═══════════════════════════════════════════════════════════════════════════════
+
+  Obj:  (α, a:α→α, z)  with  a∘a = id          pointed unoriented acts
+  Mor:  h∘a = b∘h,  h(z)=w
+
+  a(z)=z                 REST       stagnation
+  a(z)≠z ∧ a²(z)=z       2-CYCLE    survivor
+  a²(z)≠z                ARROW      smuggled time
+  a(x)=a(y) ∧ x≠y        ERASE      collapse
+
+  Fund(a)  ⇔  a ≅ ¬      (Bool,¬,true) initial; unique ≤ label swap
+  ∄ x. a(x)=x            void excluded
+  a∘a=id  ⇒  ¬ERASE      (involutivity; theorem in-arena — not a second creed)
+               ¬ARROW at Fund   (same equation banishes time+loss at base)
+
+  dodge(f) := λx. ¬(f x x)
+  ∀f.  f misses dodge(f)               seal (never point-surjective)
+
+  L₀ = Bool
+  Lₖ₊₁ = Option(Lₖ),   none ↦ dodge(repₖ)
+  namer ∉ im(some)                     forced +1 every tick
+  Lₖ ↪ Lₖ₊₁,  Lₖ₊₁ ↪̸ Lₖ
+  ∄ rung below L₀                      non-commencement
+  □(ascent) ∧ ¬□(direction)            forced but free
+
+═══════════════════════════════════════════════════════════════════════════════
+II. Ledger  (AG over I-1 / I-2)
+═══════════════════════════════════════════════════════════════════════════════
+
+  U : S×E → S×E = (U_S, U_E)           joint microstep
+  global Inj(U)                        I-1 transfer of spine losslessness
+                                       (TwoBounce discharged w/ packaging gauge:
+                                        U=σ∘φ; Fin n; canonicity_fails;
+                                        channel_swap_is_reversal; labels conventional)
+  merges live in U_S above base; compensated in U_E
+
+  Inj(U) ∧ ∃merge(U)  ⟹  ∃record(U)    Registration
+                                       (derived: joint-inj / Dil capacity;
+                                        mechanised `Bridge.Dil.registration`)
+
+  K ≥ 2 = |A|                          merge / blank alphabet
+  Kmin = 2                             derived: |Fund| = 2  (T-3)
+  K > 2                                admissible, non-minimal
+
+  E(T)  :=  L_T                        I-2 environment = ladder carrier
+                                       (Dil: free initial · capacity law ·
+                                        minimal K=2 schedule = caps;
+                                        UF Hom∃ · iso · graded term.;
+                                        I-2 Fin alphabet-UF + ladder witness +
+                                        address-uniform idx; T-2 tick_identification)
+  |caps T| = 2^(T+2)                   predicateCount(T)
+  committed prof = expand              prof(T)=T
+  alive:  2^T ≤ 2^(T+2)                eternally, by arithmetic
+
+  Inj · merge · mute · confined  ⇒  K^T ≤ |caps T|
+  eternal ⇒ ¬flat(prof)
+  bounce  ⇒ undirected            [inherited: spine involutivity]
+  bounded caps ∧ Inj ∧ merge  ⇒  ∃t StreamMute fails     T-10 (Page curve)
+  merge⇒record ∧ lift∧¬retract  ⇒  combinatorial 2nd law  T-11
+  E1: structure↑ forever · E2: caps = K^t, liveness ⇒ expand
+  T-13: number=volume (flagged) ⇒ counted V = K^t · 1 bit/tick at K=2
+  E3 blocked (R-1 ultrametric / Forman −∞) · E4 refused (Friedmann+matter)
+  T-14: tree Forman < 0; recombination ↑ Forman (flatness paid by faces);
+        live ⇒ ¬flat(prof)
+  T-15: alive ⇔ records ≤ caps growth; saturation := equality;
+        at saturation, record flux is determined by the capacity schedule
+  T-16: discrete Einstein skeleton — Jacobson inputs + Forman unpaid
+        flatness paid by faces + stress=caps at saturation + local stalks;
+        continuum G_{μν}=8πT_{μν} refused (O-2…O-5, R-1 open)
+  curvature precluded only on the 1-d line (trivial)
+  arrow = (address, archive↑)
+
+  StreamMute  ⇏  ProductFresh
+  ProductFresh  ⇏  StreamMute
+
+═══════════════════════════════════════════════════════════════════════════════
+III. One ℤ/2  (T-7)
+═══════════════════════════════════════════════════════════════════════════════
+
+  pole swap  ≅  address ∈ {fwd,rev}  ≅  channel ∈ {φ,σ}
+
+  one ℤ/2  ⟶≅  {pole, address, channel}     three isomorphic presentations
+  stated once; three named projections
+
+═══════════════════════════════════════════════════════════════════════════════
+IV. Dictionary  (I-4: K-certificate | L-certificate)
+═══════════════════════════════════════════════════════════════════════════════
+
+  K-cert (kernel):
+    (a) involution swap   (b) observe(swap)=¬observe
+    (c) Fixed ↔ locus (nonempty|empty)   (d) forced +1 no-go
+    Quintom · BitFlip · Kramers · MetaProblem
+
+  L-cert (ledger):
+    (a) Inj(U)  (b) merge  (c) record  (d) caps/alive  (e) t_exh + T-10
+    Page (BH-info toy; gravity refused)
+
+  Branch / measurement (T-12):
+    □ascent ∧ ¬□direction · ≥2 children · histories diverge · no selection
+    NoClone (no-go): Bell support ≠ product support; pairs with Lossless
+
+  RE / quintom:
+    swap ≅ ¬ ,  Fixed ≅ w=−1 ,  forced +1 ≅ second channel
+    H = 0:  undamped · silent archive · Fund     oscillator triangle (T-5)
+    H > 0:  contraction ⇒ merge ⇒ record         damping = registration (T-6)
+    a(x)=x excluded; divide only at crossings / limit   (T-8)
+    modeCount T = |Channel|^(T+2) = caps T · doubles @ Kmin   (Growth)
+
+  Page:
+    Hawking 1976 = eternal mute merge; Registration+T-10 = unitarist reply
+    t_exh = Page time; before: thermal mute OK; after: archive must speak
+
+  MetaProblem (4th substantive; hard problem refused):
+    self-opacity · outdated portrait · restless  ⇒  reports of ineffability
+    observers_forced = forced +1; qualia out of scope
+    quantitative columns: SelfReference.deficit_count · lag_theorem ·
+      corpus_not_universal  (Lawvere self-application; Gödel route refused)
+
+═══════════════════════════════════════════════════════════════════════════════
+V. Identifications  (three corpora, one object)
+    proved for spine/ledger columns under tick_identification;
+    dictionary column remains K/L-certificate grade (I-4)
+═══════════════════════════════════════════════════════════════════════════════
+
+  naming tick             ≅  microtick (UF archives, up to record gauge;
+                             Fund / period-2 exempt; swap = necessity half)
+  Fund (live 2-cycle)     ≅  oscillator (Inj∧¬merge∧¬record)  ≅  H=0 quintom
+  forgets count           ≅  archive silent                   ≅  envelope const
+  involution / undirected ≅  undirected bounce                ≅  swap EOM
+  pole / two_readings     ≅  address                          ≅  φ↔σ
+  dodge / +1              ≅  blank adjunction                 ≅  second channel
+  excluded fixed point    ≅  —                                ≅  w=−1 divide
+  pred growth 2^(k+2)     ≅  c(t+1)=K·c(t), K=2               ≅  modeCount=|Channel|^(T+2)
+                                                                   (=caps; doubles @ Kmin)
+  erasure priced out      ≅  merge ⇒ record                   ≅  H → expansion
+  (corollary, formal cols) undamped ⇒ no naming ticks; arrow iff registration
+                             (`time_dissipation_one_property`)
+
+═══════════════════════════════════════════════════════════════════════════════
+VI. Compression
+═══════════════════════════════════════════════════════════════════════════════
+
+  (Fund ≅ ¬ ∧ seal ∧ ladder +1)
+    +  (Inj + merge ⇒ record) [derived Dil] · (mute ⇒ K^T ≤ cap) · (eternal ⇒ nonflat)
+    +  (bounded ⇒ archive speaks)                      T-10
+    +  (Landauer ∧ ¬retract)                           T-11
+    +  (□ascent ∧ ¬□direction)                         T-12
+    +  (liveness ⇒ caps↑ · number=volume ⇒ V=K^t)      T-13
+    +  (tree Forman < 0 · recomb ↑ Forman · flatness paid by faces · ¬flat)  T-14
+    +  (saturation: ledger balance fixes flux)               T-15
+    +  (Jacobson skeleton · Forman G~T · stalks; continuum refused)  T-16
+    +  (E = L_• ,  |caps T| = 2^(T+2) ,  Kmin = 2)
+    +  (modeCount = |Channel|^(T+2) = caps · doubles @ Kmin)  [RE growth]
+    +  (arrow = address = pole = channel    :  one ℤ/2)
+    +  (H=0 ⇒ oscillator triangle;  H>0 ⇒ dissipation registers)
+    +  (undamped ⇒ no naming ticks; arrow iff registration)  [formal cols]
+    +  (interior triad ⇒ ineffability reports; hard problem refused)
+
+═══════════════════════════════════════════════════════════════════════════════
+VII. Residue / refusal
+═══════════════════════════════════════════════════════════════════════════════
+
+  open (tractable): deeper `|S|>K` alphabet-UF lift (optional; Fin I-2 closed);
+          O-3 Mathlib sheaf/site (stalk glue + restriction + dynamics
+            sections landed; continuum locality refused);
+          R-1 counting landed (tree faces ≤ caps; ultrametric≠space remains);
+          T-12 measure fragment landed (uniform weight; no unique selector);
+          T-10 Page flux shape landed (`PageShape`); Bogoliubov still out;
+          period-2 / KMS toy landed; area-as-caps sharpening landed;
+          finite Ollivier trial landed; matter-as-input host API optional;
+          RE-side growth law landed (`re_side_growth_law`); partial Lorentzian dictionary landed;
+          discrete Tolman / scale-KMS (low priority: T vs tick-window size;
+            shape of any O-2 reopen; not scheduled)
+  open (structural): **O-2** no boost / Unruh T — cut-shift dead-ended
+          (`o2_cut_shift_dead_end`); blindness forced (period global; one ℤ/2
+          ⇒ one flow); O-2 ≈ no continuous 1-param subgroup;
+          **O-4** continuum Lorentzian — geometric face of the *same* missing
+          object (attack on either bears on both);
+          **R-1** ultrametric≠space (counting attack landed above);
+          **O-5** SM inventory underdetermined (emergent patterned flux A–E)
+  open (philosophical): facticity of liveness; ℤ/2 + branch choice; arena
+          adequacy; blank ontology; RE action inputs
+  obstructed: Registration↛ladder-carrier naming as *total functor*
+              (swap: fixed |E|=2 forever; naming grows levelCard) — classified
+              T-2 uses this as necessity half; label-namer factor holds
+  refuse: H₀/number-from-Bool; quintom-as-world; premise-free Law of Time;
+          host-logic incompleteness / Gödel arithmetisation of corpus;
+          continuum spacetime/Einstein/QFT/BH; continuum Boltzmann;
+          Born from multiplicity alone (`born_from_multiplicity_nogo` theorem);
+
+          hard problem / qualia;
+          matter/Friedmann derived from Bool alone
+          (discrete T / Page / capacity-growth toys: Phase E, not continuum)
+  coincidence (unpromoted): cosmology flatness puzzle ↔ DAG flatness budget
+  gauge demarcation: content = exported statement mentions the choice;
+               packaging = quotiented before downstream consumption
+  gauge inventory:
+               label/pole swap @ Fund     — content  (T-7 / two_readings)
+               address fwd/rev            — content  (T-7)
+               channel swap               — content  (channel_swap_is_reversal;
+                                                     labels conventional)
+               record gauge per tick      — packaging (Dil/T-2; “up to gauge”)
+               factorisation gauge / step — packaging (I-1; ledger consumes U)
+  not residue: ¬flat(prof); Kmin=2; |caps T|=2^(T+2); one ℤ/2;
+               recordLabel∶Bool↪E; tick_identification (classified T-2);
+               straighten; registers_admits_namer; born_from_multiplicity_nogo;
+               **canonicity_fails** (proved negative; packaging gauge);
+               **channel_swap_is_reversal** (T-7 channel column proved);
+               T-10…T-16; E1; E2;
+               meta reports structural; Forman sign;
+               **corpus_not_universal** — seal_self · deficit · lag ·
+               ω≠rung; □(sayable) ∧ ¬□(sayable now); incompleteness now
+               unconditional, completeness-in-limit = FairSchedule policy;
+               **Jacobson quantifier discharged internally** — every
+               self-reading has a dodge; `observers_forced` supplies the
+               observers (horizon observer-dependence derived, not postulated)
+
+  spine:   Canon · Orbit · Diagonal · Ladder · Density · NonCommencement · Branch · Interior · OmegaDuration · SelfReference
+  ledger:  Geom.Registration · Profile · Gradient · Obs.Recovery · Obs.Dimension
+  bridge:  Alphabet · Capacity · OneZ2 · RegistrationSpine · Environment ·
+           TickSimulation · RegistrationFactor · ArchiveMustSpeak · SecondLaw ·
+           Measurement · Expansion · Forman · Saturation · EinsteinSkeleton ·
+           EffectiveMatter · FluxPattern · LedgerSheaf · RecombinationBudget ·
+           PhaseEToys · Dil · PageShape · BranchMeasure · ModularCut · TwoBounce
+  dict:    Certificate (K) · LCertificate · Quintom.* (incl. Growth) · BitFlip ·
+           Kramers · Page · QEC · NoClone (measurement) · MetaProblem
+
+═══════════════════════════════════════════════════════════════════════════════
+  Fund ≅ ¬  ·  a∘a=id ⇒ ¬erase  ·  merge ⇒ record  ·  |caps T| = 2^(T+2)
+  ·  naming ≅ μtick / gauge  ·  (I-1 discharged+packaging · swap=reversal · T-7)
+═══════════════════════════════════════════════════════════════════════════════
+

@@ -1,5 +1,5 @@
 Diagonal Archive Geometry — symbolic law
-corpus hybrid/ DAG v0.1.14
+corpus hybrid/ DAG v0.1.15
 
 ═══════════════════════════════════════════════════════════════════════════════
 0. Layers  (downward imports only)

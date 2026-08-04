@@ -46,7 +46,7 @@ python exhibits/quintom/integrate.py
 | T-3 | Alphabet `K = 2` minimal | Discharged |
 | T-7 | One ℤ/2, three faces | Discharged |
 | T-9 | Capacity dictionary | Discharged |
-| T-10 | Archive must speak (Page curve) | Discharged |
+| T-10 | Archive must speak (Page curve) | Discharged; flux *shape* in `PageShape` |
 | T-11 | Combinatorial second law | Discharged (`SecondLaw.lean`) |
 | T-12 | Outcome selection shape | Discharged (`Measurement.lean`) |
 | T-13 | Expansion price of liveness (conditional) | Discharged (`Expansion.lean`); E1/E2 named; E3=R-1; E4 refused |

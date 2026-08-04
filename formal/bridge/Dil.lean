@@ -17,9 +17,9 @@ This module lands the afternoon propositions of the keystone sketch:
 3. Registration as corollary (merge forces record separation)
 4. Minimal = saturated schedule; ladder predicate count realises `|E_T| = 2^{T+2}`
 
-Still open (typed markers): uniform-fiber rigidity isomorphism; graded
-terminality; full predicate-space record map. Tick identification remains
-T-2-licensed. See `docs/` keystone notes / RESIDUE.
+Rigidity partition fragment landed (cover at equality). Full iso between
+minimal archives, graded terminality, and predicate-space record map remain
+open. Tick identification remains T-2-licensed.
 -/
 
 namespace Bridge.Dil
@@ -305,12 +305,124 @@ theorem caps_realise_minimal_schedule :
    by decide,
    Bridge.Capacity.caps_eq⟩
 
-/-! ## Open markers (typed teeth) -/
+/-! ## Rigidity heart — partition / exhaustion at equality -/
 
-/-- Uniform-fiber rigidity: any two minimal archives for uniformly K-to-1
-    `u` are uniquely isomorphic once `E 0` is matched. Open — partition
-    lemma not yet mechanised. -/
-def rigidity_uniform_open : True := True.intro
+/-- If a distinct list sits inside another list at equal length, it covers. -/
+theorem distinct_subset_eq_length_covers {α : Type} [DecidableEq α]
+    {l al : List α} (hdl : Distinct l)
+    (hsub : ∀ x, x ∈ l → x ∈ al) (hlen : l.length = al.length) :
+    ∀ x, x ∈ al → x ∈ l := by
+  intro x hx
+  by_cases hxl : x ∈ l
+  · exact hxl
+  · -- then l ⊆ remove x al, so |l| ≤ |al| - 1, contradicting |l| = |al|
+    have hxal : x ∈ al := hx
+    have hsub' : ∀ y, y ∈ l → y ∈ remove x al := by
+      intro y hy
+      exact mem_remove (hsub y hy) (fun hyx => hxl (hyx ▸ hy))
+    have hle := length_le_of_distinct_mem hdl hsub'
+    have hrlen : (remove x al).length + 1 = al.length :=
+      length_remove_of_mem hxal
+    -- hle : l.length ≤ (remove x al).length
+    -- so l.length + 1 ≤ al.length, but l.length = al.length
+    have : l.length + 1 ≤ al.length := by
+      rw [← hrlen]
+      exact Nat.succ_le_succ hle
+    rw [hlen] at this
+    exact absurd this (Nat.not_succ_le_self al.length)
+
+/-- At capacity equality, the K record-images partition / cover `enum'`. -/
+theorem minimal_step_covers {S E E' : Type} [DecidableEq E']
+    (u : S → S) (r : S → E → E')
+    (hjoint : ∀ s₁ e₁ s₂ e₂,
+      u s₁ = u s₂ → r s₁ e₁ = r s₂ e₂ → s₁ = s₂ ∧ e₁ = e₂)
+    (xs : List S) (hxd : Distinct xs)
+    (hy : ∀ s ∈ xs, ∀ s' ∈ xs, u s = u s')
+    (enum : List E) (hEd : Distinct enum)
+    (enum' : List E') (hE'd : Distinct enum')
+    (hE'c : ∀ e', e' ∈ enum')
+    (heq : xs.length * enum.length = enum'.length) :
+    (∀ e', e' ∈ enum' →
+      e' ∈ joinMap (fun s => recordImage r s enum) xs) ∧
+    (joinMap (fun s => recordImage r s enum) xs).length = enum'.length := by
+  let f : S → List E' := fun s => recordImage r s enum
+  have hlen_join :
+      (joinMap f xs).length = xs.length * enum.length := by
+    -- use Provision's exact-length join, or prove via ge + map lengths
+    have hge := length_joinMap_ge (f := f) (N := enum.length)
+      (l := xs) (fun s _ => Nat.le_of_eq (recordImage_length r s enum).symm)
+    -- upper bound: joinMap ⊆ enum' and distinct ⇒ length ≤ |enum'|
+    have hdist : Distinct (joinMap f xs) := by
+      refine distinct_joinMap hxd ?_ ?_
+      · intro s _; exact recordImage_distinct u r hjoint s enum hEd
+      · intro s s' hs hs' hne b hb hb'
+        match exists_of_mem_map hb with
+        | ⟨e₁, _, hre₁⟩ =>
+          match exists_of_mem_map hb' with
+          | ⟨e₂, _, hre₂⟩ =>
+            exact record_images_disjoint u r hjoint s s'
+              (hy s hs s' hs') hne e₁ e₂ (hre₁.trans hre₂.symm)
+    have hsub : ∀ b, b ∈ joinMap f xs → b ∈ enum' := fun b _ => hE'c b
+    have hle := length_le_of_distinct_mem hdist hsub
+    -- hge : K*|E| ≤ |join|, hle : |join| ≤ |enum'| = K*|E|
+    have hEq' : (joinMap f xs).length = enum'.length :=
+      Nat.le_antisymm hle (heq ▸ hge)
+    exact hEq'.trans heq.symm
+  have hdist : Distinct (joinMap f xs) := by
+    refine distinct_joinMap hxd ?_ ?_
+    · intro s _; exact recordImage_distinct u r hjoint s enum hEd
+    · intro s s' hs hs' hne b hb hb'
+      match exists_of_mem_map hb with
+      | ⟨e₁, _, hre₁⟩ =>
+        match exists_of_mem_map hb' with
+        | ⟨e₂, _, hre₂⟩ =>
+          exact record_images_disjoint u r hjoint s s'
+            (hy s hs s' hs') hne e₁ e₂ (hre₁.trans hre₂.symm)
+  have hsub : ∀ b, b ∈ joinMap f xs → b ∈ enum' := fun b _ => hE'c b
+  have hlen' : (joinMap f xs).length = enum'.length :=
+    hlen_join.trans heq
+  refine ⟨?cover, hlen'⟩
+  intro e' he'
+  exact distinct_subset_eq_length_covers hdist hsub hlen' e' he'
+
+/-- Each fiber record-image has exact length `|enum|` (block size). -/
+theorem minimal_block_size {S E E' : Type}
+    (r : S → E → E') (s : S) (enum : List E) :
+    (recordImage r s enum).length = enum.length :=
+  recordImage_length r s enum
+
+/-- **Rigidity fragment.** At saturation equality, fiber record-images
+    are pairwise disjoint, each of size `|E|`, and jointly cover `|E'| = K·|E|`.
+    Full iso between two minimal archives still needs a base-level match
+    (see `rigidity_iso_open`). -/
+theorem rigidity_partition_fragment {S E E' : Type} [DecidableEq E']
+    (u : S → S) (r : S → E → E')
+    (hjoint : ∀ s₁ e₁ s₂ e₂,
+      u s₁ = u s₂ → r s₁ e₁ = r s₂ e₂ → s₁ = s₂ ∧ e₁ = e₂)
+    (xs : List S) (hxd : Distinct xs)
+    (hy : ∀ s ∈ xs, ∀ s' ∈ xs, u s = u s')
+    (enum : List E) (hEd : Distinct enum)
+    (enum' : List E') (hE'd : Distinct enum')
+    (hE'c : ∀ e', e' ∈ enum')
+    (heq : xs.length * enum.length = enum'.length) :
+    (∀ s ∈ xs, (recordImage r s enum).length = enum.length) ∧
+    (∀ s ∈ xs, ∀ s' ∈ xs, s ≠ s' →
+      ∀ b, b ∈ recordImage r s enum → b ∈ recordImage r s' enum → False) ∧
+    (∀ e', e' ∈ enum' →
+      e' ∈ joinMap (fun s => recordImage r s enum) xs) := by
+  refine ⟨fun s _ => minimal_block_size r s enum, ?_, ?_⟩
+  · intro s hs s' hs' hne b hb hb'
+    match exists_of_mem_map hb with
+    | ⟨e₁, _, h1⟩ =>
+      match exists_of_mem_map hb' with
+      | ⟨e₂, _, h2⟩ =>
+        exact record_images_disjoint u r hjoint s s'
+          (hy s hs s' hs') hne e₁ e₂ (h1.trans h2.symm)
+  · exact (minimal_step_covers u r hjoint xs hxd hy enum hEd enum' hE'd hE'c heq).1
+
+/-- Full unique isomorphism of minimal archives once `E 0` is matched.
+    Partition fragment landed; inductive iso construction remains. -/
+def rigidity_iso_open : True := True.intro
 
 /-- Graded terminality of the ladder minimal archive among reduced
     u-graded archives. Open — addressing obstruction flagged in sketch. -/
@@ -322,8 +434,8 @@ def tick_identification_T2_licensed : True := True.intro
 /-! ## Keystone sprint package -/
 
 /-- **Keystone Dil sprint.** Free archive initial; capacity step law;
-    registration corollary; ladder/caps realise minimal K=2 schedule.
-    Rigidity / graded terminality / full I-2 record-map realisation remain open. -/
+    registration corollary; ladder/caps realise minimal K=2 schedule;
+    rigidity partition fragment at equality. Iso / graded terminality open. -/
 theorem keystone_dil_sprint :
     (∀ {S : Type} {u : S → S} (A : Archive S u),
       (∃ _h : Hom (free S u) A, True) ∧
@@ -355,6 +467,7 @@ theorem keystone_dil_sprint :
 #print axioms free_initial
 #print axioms capacity_step
 #print axioms registration
+#print axioms rigidity_partition_fragment
 #print axioms predicate_minimal_schedule
 #print axioms caps_realise_minimal_schedule
 #print axioms keystone_dil_sprint

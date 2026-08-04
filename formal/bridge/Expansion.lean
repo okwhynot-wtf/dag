@@ -140,46 +140,53 @@ theorem omega_flatline_ancestry_continues :
 
 /-! ## T-13 — conditional: number = volume postulate -/
 
-/-- Flagged reading (causal-set: number = volume). Counted volume *is*
-    identified with the capacity schedule. Not a derived physical metric;
-    the postulate is this identification. -/
+/-- Counted volume schedule (expand capacity). Geometric reading requires
+    an explicit `VolumeReading` hypothesis in dependent theorems. -/
 def countedVolume (K T : Nat) : Nat :=
   Geom.Profile.capacityOf K Geom.Profile.expand T
 
-/-- The postulate, as a named marker: volume readings use `countedVolume`. -/
-def NumberEqualsVolume : Prop := True
+/-- **Flagged postulate (lives in the type).** Assuming a `VolumeReading`
+    means: treat `countedVolume` as geometric volume (number = volume).
+    Not a derived physical metric; not seconds; no `H₀`. -/
+structure VolumeReading where
 
-/-- Postulate is flagged available (content = the identification above). -/
-theorem number_equals_volume_flagged : NumberEqualsVolume := trivial
+/-- Canonical token that the flagged reading is in force. -/
+def numberEqualsVolume : VolumeReading := ⟨⟩
 
-/-- Discrete Hubble: volume doubles per naming tick at `K = 2`.
+/-- Backward-compatible name. -/
+abbrev NumberEqualsVolume : Prop := Nonempty VolumeReading
+
+theorem number_equals_volume_flagged : NumberEqualsVolume :=
+  ⟨numberEqualsVolume⟩
+
+/-- Discrete Hubble under the volume reading: doubles per naming tick at `K = 2`.
     Units: naming ticks, not seconds — no `H₀` forecast. -/
-theorem discrete_Hubble_one_bit_per_tick (T : Nat) :
+theorem discrete_Hubble_one_bit_per_tick (_vr : VolumeReading) (T : Nat) :
     countedVolume 2 (T + 1) = 2 * countedVolume 2 T :=
   E2_rate_law T
 
-/-- Counted de Sitter volume law on expand at `Kmin`. -/
-theorem counted_deSitter_volume (T : Nat) :
+/-- Counted de Sitter volume law on expand at `Kmin` (under volume reading). -/
+theorem counted_deSitter_volume (_vr : VolumeReading) (T : Nat) :
     countedVolume Bridge.Alphabet.Kmin T = 2 ^ T := by
   rw [Bridge.Alphabet.Kmin_eq]
   exact Bridge.Capacity.expand_capacity_two T
 
 /-- **T-13.** Expansion as the price of liveness (conditional form).
-    E1 + E2 + order dim 1 + counted volume = `K^T` under the flagged
-    number=volume reading + ω-flatline. Units caveat: ticks ≠ seconds. -/
-theorem T13_expansion_conditional :
+    Requires an explicit `VolumeReading` so the number=volume flag cannot
+    be dropped by a reader of the compression table. Units: ticks ≠ seconds. -/
+theorem T13_expansion_conditional (_vr : VolumeReading) :
     (∀ k, ¬ ∃ (f : Ladder.Level (k + 1) → Ladder.Level k),
       ∀ x y, f x = f y → x = y) ∧
     (∀ T, Geom.Profile.Alive 2 Geom.Profile.expand T) ∧
     (∀ T, countedVolume 2 (T + 1) = 2 * countedVolume 2 T) ∧
     (∀ T, countedVolume Bridge.Alphabet.Kmin T = 2 ^ T) ∧
-    NumberEqualsVolume ∧
     (∀ j k, Density.levelCard j = Density.levelCard k → j = k) ∧
     (∃ b : Limit.LevelOmegaPlusOne,
       ∀ a : Limit.LevelOmega, (some a : Limit.LevelOmegaPlusOne) ≠ b) ∧
     Bridge.Alphabet.Kmin = 2 :=
-  ⟨E1_no_retraction, E2_expand_eternally_alive, discrete_Hubble_one_bit_per_tick,
-   counted_deSitter_volume, number_equals_volume_flagged,
+  ⟨E1_no_retraction, E2_expand_eternally_alive,
+   discrete_Hubble_one_bit_per_tick _vr,
+   counted_deSitter_volume _vr,
    OmegaDuration.omega_duration_package.1,
    OmegaDuration.namer_new_at_omega,
    Bridge.Alphabet.Kmin_eq⟩

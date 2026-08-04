@@ -453,6 +453,16 @@ theorem milestone_o2_cut_shift :
    Bridge.ModularCut.o2_cut_shift_dead_end.2.2.1,
    Bridge.Alphabet.Kmin_eq⟩
 
+/-- O-2 forced blindness: period global; one ℤ/2 ⇒ one flow; T_c cut-blind. -/
+theorem milestone_o2_forced_blindness :
+    (∀ T (_c : Bridge.ModularCut.SaturatedCut T),
+      Bridge.PhaseEToys.combinatorialTemp T = 1) ∧
+    Bridge.ModularCut.betaPeriod = 2 ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨Bridge.ModularCut.o2_forced_blindness.1,
+   Bridge.ModularCut.o2_forced_blindness.2.2.1,
+   Bridge.Alphabet.Kmin_eq⟩
+
 /-- Partial Lorentzian dictionary (order dim-1 + caps growth; no Lorentz group). -/
 theorem milestone_partial_lorentzian :
     (∀ tTurn, Obs.Dimension.OrderDimEq tTurn
@@ -556,6 +566,7 @@ theorem bridge_arc :
 #print axioms milestone_period2_kms
 #print axioms milestone_time_dissipation
 #print axioms milestone_o2_cut_shift
+#print axioms milestone_o2_forced_blindness
 #print axioms milestone_partial_lorentzian
 #print axioms bridge_arc
 

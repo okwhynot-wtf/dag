@@ -65,5 +65,6 @@ companions BitFlip, NoClone (measurement).
 
 ## Version
 
-DAG hybrid **v0.2.3** — RE-side growth law (quintom mode-count ↔ caps);
+DAG hybrid **v0.2.4** — O-2/O-4 linkage (forced blindness; one missing
+1-param object); discrete Tolman reopen shape noted; RE growth prior.
 O-2 cut-shift finding; time–dissipation corollary; Born no-go + T-2 arc.

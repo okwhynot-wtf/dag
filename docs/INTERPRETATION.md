@@ -38,11 +38,13 @@ exist with crude overlap. Continuum `G_{μν} = 8π T_{μν}` does **not** fall 
 
 **Still blocking continuum Einstein.**
 - **O-2** (structural, deepest): no boosts ⇒ no Unruh `T`
-  (cut-shift attempt dead-ended: `T_c` blind to cut; feature as finding)
+  (cut-shift dead-ended; blindness forced — period global, one ℤ/2 ⇒ one
+  flow; O-2 ≈ no continuous 1-param subgroup; same missing object as O-4)
 - **O-3** (tractable): stalks + dynamics sections landed; Mathlib sheaf/site still open
 - **R-1** (structural obstruction, tractable budget attack): ultrametric;
   recombination counting is Lean
-- **O-4 / O-5** (limit / input): continuum Lorentzian; matter from framework
+- **O-4 / O-5** (limit / input): continuum Lorentzian (geometric face of the
+  same 1-param gap as O-2); matter from framework
 
 Continuum field equations remain refused. Discrete next steps live under
 tractable open work in `docs/RESIDUE.md` (sheaf, recombination budget,

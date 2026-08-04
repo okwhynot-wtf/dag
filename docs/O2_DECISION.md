@@ -1,7 +1,7 @@
 # O-2 decision — boost / Unruh temperature
 
 **Status:** attempt completed; **feature verdict as finding**
-(`Bridge.ModularCut.o2_cut_shift_dead_end`).
+(`Bridge.ModularCut.o2_cut_shift_dead_end`, `o2_forced_blindness`).
 
 ## Attempt (KMS / cut-shift route)
 
@@ -16,18 +16,38 @@ boost analogue. Tested:
    only on the tick. Cut-shift preserves capacity partition but does not
    produce observer-dependent `T(cut)`.
 
-## Finding
+## Finding (forced blindness)
 
-Absence of boosts / Unruh `T` is a property of the discrete skeleton
-(one ℤ/2; constant combinatorial `T_c`), not a missing lemma. The
-"feature, not bug" preference is now an **attempted result**: the natural
-modular-flow candidate fails the Unruh coupling test inside the corpus.
+In the period-2 toy the temperature is set by the period, and the period
+is a **global** datum of the dynamics; the cut only chooses where you
+stand. Cut-dependent temperature would require different observers to see
+different modular flows, which requires the flows to form a family, which
+requires a one-parameter group. The corpus owns exactly one ℤ/2, so there
+is exactly one flow — blindness was forced before the Unruh test began.
+
+Read that way, `o2_cut_shift_dead_end` is close to a proof that **O-2 is
+the statement “no continuous one-parameter subgroup exists.”** That is
+also the prerequisite for **O-4**’s continuum Lorentzian limit. The two
+structural problems are one missing object seen from two sides:
+
+| Face | Missing object as… |
+|---|---|
+| O-2 | boost seen thermally (Unruh / modular `T`) |
+| O-4 | boost seen geometrically (continuum Lorentzian limit) |
+
+Any future attack on either automatically bears on both. Both reopen
+conditions amount to the same demand: a continuous (or scale-indexed)
+one-parameter family beyond the single ℤ/2.
 
 Fence: not continuum KMS; not a Lorentz boost; not physical Unruh
-temperature. Continuum Lorentzian (O-4) remains a separate open.
+temperature.
 
-## Residual posture
+## Modest reopen route (low priority, tractable shape)
 
-O-2 stays **structural**. Reopening would need new structure (a
-cut-dependent temperature or continuous modular parameter) beyond what
-the present skeleton supplies — not another rephrasing of period-2.
+Within refusal discipline, one cut-adjacent dependence remains available
+to a system with one ℤ/2 and no continuum limits: a **scale-indexed
+family of coarse-grainings** over tick windows, asking whether effective
+KMS temperature varies with window size — a discrete Tolman analogue
+(temperature depending on scale of description, not cut position). That
+is the shape any reopening would have to take; stating it makes the
+fence around O-2 precise. Not scheduled; see `docs/RESIDUE.md`.

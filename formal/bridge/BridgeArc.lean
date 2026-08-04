@@ -148,6 +148,18 @@ theorem milestone_i2_caps_record_map :
    (Bridge.Dil.i2_caps_record_map_fragment not).2.2.2.2.1,
    Bridge.Alphabet.Kmin_eq⟩
 
+/-- I-2 Fin closed: alphabet-UF + base-relative rigidity on caps archive. -/
+theorem milestone_i2_fin_closed :
+    (∃ _fa : Bridge.Dil.UniqueFactorization
+      (Bridge.Dil.boolCapsArchive not), True) ∧
+    (∃ _i : Bridge.Dil.ArchiveIso
+      (Bridge.Dil.boolCapsArchive not)
+      (Bridge.Dil.boolCapsArchive not), True) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨(Bridge.Dil.i2_fin_closed not).1,
+   (Bridge.Dil.i2_fin_closed not).2.2.2.2.2.1,
+   Bridge.Alphabet.Kmin_eq⟩
+
 /-- T-2 factorisation: namer-shaped positive + carrier obstruction. -/
 theorem milestone_M4b :
     (∀ {S E : Type} {U : S × E → S × E},
@@ -363,6 +375,7 @@ theorem bridge_arc :
 #print axioms milestone_dil_rigidity_iso
 #print axioms milestone_dil_graded_terminality
 #print axioms milestone_i2_caps_record_map
+#print axioms milestone_i2_fin_closed
 #print axioms milestone_M4b
 #print axioms milestone_T10
 #print axioms milestone_T10_shape

@@ -58,12 +58,12 @@ python exhibits/quintom/integrate.py
 | T-8 | Fixed-point discipline (kernel) | Discharged; ODE exhibit |
 | T-6 | Damping = registration | Kernel skeleton; H-id exhibit |
 | T-2 | Tick simulation | Committed path + namer factor; carrier obstructed |
-| T-1 | Environment universality | Dil: free/capacity/UP/Hom∃/UF↔UF iso/graded term.; I-2 caps Fin fragment; Fin-UF / ladder-predicate open |
+| T-1 | Environment universality | Dil keystone + I-2 Fin alphabet-UF closed; ladder-predicate witness / T-2 open |
 
 Dictionary (substantive order): Quintom → Kramers → Page → QEC → **MetaProblem**;
 companions BitFlip, NoClone (measurement).
 
 ## Version
 
-DAG hybrid **v0.1.21** — Registration re-tagged derived (Dil); T-14
-face clause (flatness paid by faces); prior Dil keystone through v0.1.20.
+DAG hybrid **v0.1.22** — I-2 Fin alphabet-UF closed (boolCapsUF +
+base-relative rigidity); Registration derived; T-14 face clause.

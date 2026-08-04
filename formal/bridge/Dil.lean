@@ -19,9 +19,12 @@ This module lands the afternoon propositions of the keystone sketch:
 
 Rigidity partition fragment landed (cover at equality). Packaged UF↔UF
 iso landed (`rigidity_iso`). Graded terminality among UF + pointed archives
-landed (`graded_terminality_of_UF`). I-2 caps Fin record-map fragment landed
-(`boolCapsArchive` / `i2_caps_record_map_fragment`); Fin-UF and full
-ladder-predicate addressing remain hedged. Tick ID remains T-2-licensed.
+landed (`graded_terminality_of_UF`). I-2 Fin alphabet-UF closed
+(`boolCapsUF` / `i2_fin_closed` / `rigidity_iso_of_base`): at `K = 2` with
+`S = Bool` the letter type *is* the alphabet, so minimal bijection = UF;
+rigidity is relative to a base bijection (`|E₀| = 4`). Ladder-predicate
+`Level → Bool` addressing remains the interpretive witness. Tick ID remains
+T-2-licensed.
 -/
 
 namespace Bridge.Dil
@@ -909,10 +912,80 @@ theorem capRecord_inj {T : Nat} (s₁ s₂ : Bool)
       have : e₁.val = e₂.val := Nat.add_right_cancel this
       exact ⟨rfl, Fin.ext this⟩
 
+/-- Bound for the high-half tail index. -/
+theorem cap_high_tail_lt {T : Nat} {v : Nat}
+    (hge : capCard T ≤ v) (hlt : v < capCard (T + 1)) :
+    v - capCard T < capCard T :=
+  Nat.sub_lt_left_of_lt_add hge (by
+    have : v < 2 * capCard T := by
+      simpa [capCard_succ T] using hlt
+    simpa [Nat.two_mul] using this)
+
+/-- Factor a cap letter into recording bit + prior index (alphabet = Bool). -/
+def capFactor {T : Nat} (e' : Fin (capCard (T + 1))) :
+    Bool × Fin (capCard T) :=
+  if h : capCard T ≤ e'.val then
+    (true, ⟨e'.val - capCard T, cap_high_tail_lt h e'.isLt⟩)
+  else
+    (false, ⟨e'.val, Nat.lt_of_not_ge h⟩)
+
+theorem capFactor_of_lt {T : Nat} (e' : Fin (capCard (T + 1)))
+    (hlt : e'.val < capCard T) :
+    capFactor e' = (false, ⟨e'.val, hlt⟩) := by
+  have h : ¬ capCard T ≤ e'.val := Nat.not_le.mpr hlt
+  simp only [capFactor, dif_neg h]
+
+theorem capFactor_of_ge {T : Nat} (e' : Fin (capCard (T + 1)))
+    (hge : capCard T ≤ e'.val) :
+    capFactor e' =
+      (true, ⟨e'.val - capCard T, cap_high_tail_lt hge e'.isLt⟩) := by
+  simp only [capFactor, dif_pos hge]
+
+theorem capFactor_reconstruct {T : Nat} (e' : Fin (capCard (T + 1))) :
+    e' = capRecord (capFactor e').1 (capFactor e').2 := by
+  by_cases h : capCard T ≤ e'.val
+  · have hfac := capFactor_of_ge e' h
+    -- rewrite both projections via hfac
+    have h1 : (capFactor e').1 = true := congrArg Prod.fst hfac
+    have h2 : (capFactor e').2 =
+        ⟨e'.val - capCard T, cap_high_tail_lt h e'.isLt⟩ :=
+      congrArg Prod.snd hfac
+    apply Fin.ext
+    rw [h1, h2, capRecord_val_true]
+    exact (Nat.sub_add_cancel h).symm
+  · have hlt : e'.val < capCard T := Nat.lt_of_not_ge h
+    have hfac := capFactor_of_lt e' hlt
+    have h1 : (capFactor e').1 = false := congrArg Prod.fst hfac
+    have h2 : (capFactor e').2 = ⟨e'.val, hlt⟩ := congrArg Prod.snd hfac
+    apply Fin.ext
+    rw [h1, h2, capRecord_val_false]
+
+theorem capFactor_unique {T : Nat} (e' : Fin (capCard (T + 1)))
+    (s : Bool) (e : Fin (capCard T))
+    (hre : e' = capRecord s e) :
+    capFactor e' = (s, e) := by
+  subst hre
+  cases s with
+  | false =>
+    have hlt : (capRecord false e).val < capCard T := by
+      rw [capRecord_val_false]; exact e.isLt
+    rw [capFactor_of_lt _ hlt]
+    refine Prod.ext rfl (Fin.ext ?_)
+    exact capRecord_val_false e
+  | true =>
+    have hge : capCard T ≤ (capRecord true e).val := by
+      rw [capRecord_val_true]; exact Nat.le_add_left _ _
+    rw [capFactor_of_ge _ hge]
+    refine Prod.ext rfl (Fin.ext ?_)
+    -- (capRecord true e).val - capCard T = e.val
+    calc (capRecord true e).val - capCard T
+        = (e.val + capCard T) - capCard T := by rw [capRecord_val_true]
+      _ = e.val := Nat.add_sub_cancel _ _
+
 /-- **I-2 Bool caps archive.** Carrier `Fin (2^(T+2))` with half-split
     record map. Realises the minimal K=2 schedule with `|E₀| = 4`.
-    Base is *not* a pointed singleton — caps addressing sits outside the
-    free/UF pointed subcategory. -/
+    Here `S = Bool =` alphabet (`Kmin`), so UF = bijection of the minimal
+    step — the alphabet-UF / address-uniform case at K = 2. -/
 def boolCapsArchive (u : Bool → Bool) : Archive Bool u where
   E := fun T => Fin (capCard T)
   z0 := ⟨0, by decide⟩
@@ -920,6 +993,13 @@ def boolCapsArchive (u : Bool → Bool) : Archive Bool u where
   joint_inj := by
     intro _T s₁ s₂ e₁ e₂ _hu hr
     exact capRecord_inj s₁ s₂ e₁ e₂ hr
+
+/-- Caps archive admits unique factorization (minimal alphabet-UF). -/
+def boolCapsUF (u : Bool → Bool) :
+    UniqueFactorization (boolCapsArchive u) where
+  factor := fun _T e' => capFactor e'
+  reconstruct := fun _T e' => capFactor_reconstruct e'
+  unique := fun _T e' s e h => capFactor_unique e' s e h
 
 /-- Caps base is not a pointed singleton (`|E₀| = 4`). -/
 theorem boolCaps_not_pointedSingleton (_u : Bool → Bool) :
@@ -945,10 +1025,133 @@ theorem boolCaps_registers (u : Bool → Bool) (T : Nat)
     (boolCapsArchive u).r T s₁ e ≠ (boolCapsArchive u).r T s₂ e :=
   archive_registers (boolCapsArchive u) T s₁ s₂ e hsu hne
 
-/-- **I-2 caps record-map fragment.** Concrete Dil archive on Bool with
-    capacity Fin-schedule, jointly injective record map, and non-singleton
-    base (`|E₀| = 4`). Not identified with free/UF pointed rigidity.
-    Unique factorization on this Fin carrier is deferred. -/
+/-! ## Base-relative rigidity (minimal / non-singleton UF) -/
+
+/-- Under UF alone, a Hom is unique given agreement on the whole base `E 0`
+    (no PointedSingleton required). -/
+theorem hom_unique_of_UF {S : Type} {u : S → S}
+    {A B : Archive S u} (h₁ h₂ : Hom A B)
+    (hbase : ∀ e0 : A.E 0, h₁.map 0 e0 = h₂.map 0 e0)
+    (fa : UniqueFactorization A) :
+    ∀ T (e : A.E T), h₁.map T e = h₂.map T e := by
+  intro T
+  induction T with
+  | zero =>
+    exact hbase
+  | succ T ih =>
+    intro e'
+    have hrec := fa.reconstruct T e'
+    -- rewrite e' via reconstruct, then naturality
+    calc
+      h₁.map (T + 1) e'
+          = h₁.map (T + 1) (A.r T (fa.factor T e').1 (fa.factor T e').2) := by
+            rw [← hrec]
+      _ = B.r T (fa.factor T e').1 (h₁.map T (fa.factor T e').2) :=
+            h₁.nat_r T (fa.factor T e').1 (fa.factor T e').2
+      _ = B.r T (fa.factor T e').1 (h₂.map T (fa.factor T e').2) := by
+            rw [ih (fa.factor T e').2]
+      _ = h₂.map (T + 1) (A.r T (fa.factor T e').1 (fa.factor T e').2) :=
+            (h₂.nat_r T (fa.factor T e').1 (fa.factor T e').2).symm
+      _ = h₂.map (T + 1) e' := by rw [← hrec]
+
+/-- `mapFromUF` is left-inverse to itself across a base retraction. -/
+theorem mapFromUF_left_inv {S : Type} {u : S → S} {A B : Archive S u}
+    (fa : UniqueFactorization A) (fb : UniqueFactorization B)
+    (h0 : A.E 0 → B.E 0) (k0 : B.E 0 → A.E 0)
+    (hleft : ∀ e, k0 (h0 e) = e) :
+    ∀ T (e : A.E T),
+      mapFromUF fb k0 T (mapFromUF fa h0 T e) = e := by
+  intro T
+  induction T with
+  | zero =>
+    intro e; exact hleft e
+  | succ T ih =>
+    intro e'
+    let s := (fa.factor T e').1
+    let e := (fa.factor T e').2
+    have hrec : e' = A.r T s e := fa.reconstruct T e'
+    -- unfold mapFromUF fa at successor
+    have hmap :
+        mapFromUF fa h0 (T + 1) e' =
+          B.r T s (mapFromUF fa h0 T e) := by
+      change B.r T (fa.factor T e').1
+          (mapFromUF fa h0 T (fa.factor T e').2) =
+        B.r T s (mapFromUF fa h0 T e)
+      rfl
+    rw [hmap]
+    -- unfold mapFromUF fb at B.r
+    have hfacB :
+        fb.factor T (B.r T s (mapFromUF fa h0 T e)) =
+          (s, mapFromUF fa h0 T e) :=
+      fb.unique T _ s _ rfl
+    change A.r T
+        (fb.factor T (B.r T s (mapFromUF fa h0 T e))).1
+        (mapFromUF fb k0 T
+          (fb.factor T (B.r T s (mapFromUF fa h0 T e))).2) = e'
+    rw [hfacB]
+    -- A.r s (mapFromUF fb (mapFromUF fa e)) = A.r s e = e'
+    rw [ih e]
+    exact hrec.symm
+
+/-- **Base-relative rigidity iso.** Two UF archives are isomorphic once a
+    base bijection `h₀` (with inverse) is fixed — including non-singleton
+    bases such as `|E₀| = 4`. PointedSingleton is the special case where
+    `h₀` is unique. -/
+def rigidity_iso_of_base {S : Type} {u : S → S} {A B : Archive S u}
+    (fa : UniqueFactorization A) (fb : UniqueFactorization B)
+    (h0 : A.E 0 → B.E 0) (k0 : B.E 0 → A.E 0)
+    (hleft : ∀ e, k0 (h0 e) = e)
+    (hright : ∀ e, h0 (k0 e) = e)
+    (hz : h0 A.z0 = B.z0) :
+    ArchiveIso A B where
+  toHom := homFromUF fa h0 hz
+  invHom :=
+    homFromUF fb k0 (by
+      -- k0 B.z0 = k0 (h0 A.z0) = A.z0
+      calc k0 B.z0 = k0 (h0 A.z0) := by rw [hz]
+        _ = A.z0 := hleft A.z0)
+  left_inv := fun T e => mapFromUF_left_inv fa fb h0 k0 hleft T e
+  right_inv := fun T e => mapFromUF_left_inv fb fa k0 h0 hright T e
+
+/-- Hom existence + uniqueness for UF archives relative to a fixed base map. -/
+theorem graded_terminality_of_base {S : Type} {u : S → S}
+    {A B : Archive S u}
+    (fa : UniqueFactorization A) (_fb : UniqueFactorization B)
+    (h0 : A.E 0 → B.E 0) (hz : h0 A.z0 = B.z0) :
+    (∃ _h : Hom A B, True) ∧
+    (∀ h₁ h₂ : Hom A B,
+      (∀ e0, h₁.map 0 e0 = h0 e0) →
+      (∀ e0, h₂.map 0 e0 = h0 e0) →
+      h₁ = h₂) := by
+  refine ⟨⟨homFromUF fa h0 hz, True.intro⟩, ?_⟩
+  intro h₁ h₂ hb1 hb2
+  apply Hom.ext h₁ h₂
+  intro T e
+  have h12 : ∀ e0, h₁.map 0 e0 = h₂.map 0 e0 := fun e0 =>
+    (hb1 e0).trans (hb2 e0).symm
+  exact hom_unique_of_UF h₁ h₂ h12 fa T e
+
+/-- **I-2 Fin closed (alphabet-UF).** Bool caps archive is UF (minimal
+    bijection at `K = 2`), schedule-correct, non-pointed, and rigid
+    relative to the identity base bijection. -/
+theorem i2_fin_closed (u : Bool → Bool) :
+    (∃ _fa : UniqueFactorization (boolCapsArchive u), True) ∧
+    (¬ PointedSingleton (boolCapsArchive u)) ∧
+    MinimalSchedule 2 capCard ∧
+    (∀ T, capCard T = Bridge.Capacity.caps T) ∧
+    (∀ T, capCard T = 2 ^ (T + 2)) ∧
+    (∃ _i : ArchiveIso (boolCapsArchive u) (boolCapsArchive u), True) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨⟨boolCapsUF u, True.intro⟩,
+   boolCaps_not_pointedSingleton u,
+   fun T => capCard_succ T,
+   fun T => by simp [capCard, Bridge.Capacity.caps_eq],
+   fun _ => rfl,
+   ⟨rigidity_iso_of_base (boolCapsUF u) (boolCapsUF u)
+      id id (fun _ => rfl) (fun _ => rfl) rfl, True.intro⟩,
+   Bridge.Alphabet.Kmin_eq⟩
+
+/-- Backward-compatible fragment name. -/
 theorem i2_caps_record_map_fragment (u : Bool → Bool) :
     (∃ _A : Archive Bool u, True) ∧
     (¬ PointedSingleton (boolCapsArchive u)) ∧
@@ -957,10 +1160,10 @@ theorem i2_caps_record_map_fragment (u : Bool → Bool) :
     (∀ T, capCard T = 2 ^ (T + 2)) ∧
     Bridge.Alphabet.Kmin = 2 :=
   ⟨⟨boolCapsArchive u, True.intro⟩,
-   boolCaps_not_pointedSingleton u,
-   fun T => capCard_succ T,
-   fun T => by simp [capCard, Bridge.Capacity.caps_eq],
-   fun _ => rfl,
+   (i2_fin_closed u).2.1,
+   (i2_fin_closed u).2.2.1,
+   (i2_fin_closed u).2.2.2.1,
+   (i2_fin_closed u).2.2.2.2.1,
    Bridge.Alphabet.Kmin_eq⟩
 
 /-! ## Keystone sprint package -/
@@ -968,7 +1171,7 @@ theorem i2_caps_record_map_fragment (u : Bool → Bool) :
 /-- **Keystone Dil sprint.** Free archive initial; capacity step law;
     registration corollary; ladder/caps realise minimal K=2 schedule;
     rigidity partition; UF rigidity iso; graded terminality among UF +
-    pointed archives. I-2 caps record-map is a separate non-pointed face. -/
+    pointed archives. I-2 Fin alphabet-UF closed (`i2_fin_closed`). -/
 theorem keystone_dil_sprint :
     (∀ {S : Type} {u : S → S} (A : Archive S u),
       (∃ _h : Hom (free S u) A, True) ∧
@@ -1014,6 +1217,9 @@ theorem keystone_dil_sprint :
 #print axioms rigidity_iso_of_UF
 #print axioms free_rigidity_self
 #print axioms graded_terminality_of_UF
+#print axioms hom_unique_of_UF
+#print axioms rigidity_iso_of_base
+#print axioms i2_fin_closed
 #print axioms i2_caps_record_map_fragment
 #print axioms predicate_minimal_schedule
 #print axioms caps_realise_minimal_schedule

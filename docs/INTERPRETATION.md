@@ -87,6 +87,16 @@ emergent-flux programme; matter-as-input demoted to optional host API.
 Continuum `T_{μν}` / SM inventory still refused. Phase E is interpretation
 only — familiar names, not load-bearing for H.
 
+## I-2 Fin alphabet-UF (calibration)
+
+At `K = 2` with system carrier `S = Bool`, the letter type *is* the blank
+alphabet, so `UniqueFactorization` on `boolCapsArchive` is exactly the
+minimal bijection `|E_{T+1}| = K|E_T|`. Rigidity is **base-relative**
+(`rigidity_iso_of_base`): `|E₀| = 4`, iso unique once `h₀` is fixed.
+Pointed UF characterises the free end; alphabet-UF characterises the
+minimal end. Ladder-predicate `Level → Bool` remains the addressing witness,
+not a second carrier theorem.
+
 ## Dictionary adapters (fence)
 
 - **QEC L-cert** (`formal/dictionary/QEC.lean`, `exhibits/qec/`): syndrome

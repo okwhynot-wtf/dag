@@ -117,6 +117,13 @@ theorem milestone_dil_hom_exists :
    Bridge.Dil.free_always_factors Bool not,
    Bridge.Alphabet.Kmin_eq⟩
 
+/-- Packaged UF↔UF rigidity iso (via free as intermediary). -/
+theorem milestone_dil_rigidity_iso :
+    (∃ _i : Bridge.Dil.ArchiveIso
+      (Bridge.Dil.free Bool not) (Bridge.Dil.free Bool not), True) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨Bridge.Dil.free_rigidity_self Bool not, Bridge.Alphabet.Kmin_eq⟩
+
 /-- T-2 factorisation: namer-shaped positive + carrier obstruction. -/
 theorem milestone_M4b :
     (∀ {S E : Type} {U : S × E → S × E},
@@ -329,6 +336,7 @@ theorem bridge_arc :
 #print axioms milestone_M5
 #print axioms milestone_keystone_dil
 #print axioms milestone_dil_hom_exists
+#print axioms milestone_dil_rigidity_iso
 #print axioms milestone_M4b
 #print axioms milestone_T10
 #print axioms milestone_T10_shape

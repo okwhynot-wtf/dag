@@ -17,9 +17,9 @@ This module lands the afternoon propositions of the keystone sketch:
 3. Registration as corollary (merge forces record separation)
 4. Minimal = saturated schedule; ladder predicate count realises `|E_T| = 2^{T+2}`
 
-Rigidity partition fragment landed (cover at equality). Full iso between
-minimal archives, graded terminality, and predicate-space record map remain
-open. Tick identification remains T-2-licensed.
+Rigidity partition fragment landed (cover at equality). Packaged UF↔UF
+iso landed (`rigidity_iso`). Graded terminality and predicate-space record
+map remain open. Tick identification remains T-2-licensed.
 -/
 
 namespace Bridge.Dil
@@ -393,8 +393,7 @@ theorem minimal_block_size {S E E' : Type}
 
 /-- **Rigidity fragment.** At saturation equality, fiber record-images
     are pairwise disjoint, each of size `|E|`, and jointly cover `|E'| = K·|E|`.
-    Full iso between two minimal archives still needs a base-level match
-    (see `rigidity_iso_open`). -/
+    Full iso between two UF + pointed archives is `rigidity_iso`. -/
 theorem rigidity_partition_fragment {S E E' : Type} [DecidableEq E']
     (u : S → S) (r : S → E → E')
     (hjoint : ∀ s₁ e₁ s₂ e₂,
@@ -452,8 +451,8 @@ theorem hom_unique_on_reachable {S : Type} {u : S → S}
 
 /-- **Inductive uniqueness fragment.** On reduced archives (everything
     reachable from `z0`), a Hom is uniquely determined by its value at `z0`.
-    Specialises to free archives; for minimal archives, reachability of the
-    whole carrier is the remaining iso gap (`rigidity_iso_open`). -/
+    Specialises to free archives; UF + pointed singleton gives the packaged
+    iso (`rigidity_iso`) once both sides factor uniquely. -/
 theorem hom_unique_reduced {S : Type} {u : S → S}
     {A B : Archive S u} (h₁ h₂ : Hom A B)
     (hz : h₁.map 0 A.z0 = h₂.map 0 A.z0)
@@ -667,21 +666,122 @@ theorem free_hom_exists_via_UF {S : Type} {u : S → S} (A : Archive S u) :
     ∃ _h : Hom (free S u) A, True :=
   hom_exists_of_UF (freeUniqueFactorization S u) (free_is_pointed_singleton S u)
 
+/-- History retracts interpret: every word is the history of its reading. -/
+theorem history_retract {S : Type} {u : S → S} {A : Archive S u}
+    (fa : UniqueFactorization A) (h0 : PointedSingleton A) :
+    ∀ T (w : Word S T), historyWord fa h0 T (interpret A T w) = w := by
+  intro T w
+  induction w with
+  | nil =>
+    rfl
+  | cons s tail ih =>
+    have hfac :
+        fa.factor _ (A.r _ s (interpret A _ tail)) = (s, interpret A _ tail) :=
+      fa.unique _ (A.r _ s (interpret A _ tail)) s (interpret A _ tail) rfl
+    change Word.cons (fa.factor _ (A.r _ s (interpret A _ tail))).1
+        (historyWord fa h0 _ (fa.factor _ (A.r _ s (interpret A _ tail))).2) =
+      Word.cons s tail
+    rw [hfac]
+    exact congrArg (Word.cons s) ih
+
+/-- Packaged iso data between two archives. -/
+structure ArchiveIso {S : Type} {u : S → S} (A B : Archive S u) where
+  toHom : Hom A B
+  invHom : Hom B A
+  left_inv : ∀ T (e : A.E T), invHom.map T (toHom.map T e) = e
+  right_inv : ∀ T (e : B.E T), toHom.map T (invHom.map T e) = e
+
+/-- Every UF + pointed-singleton archive is isomorphic to the free archive. -/
+def isoToFree {S : Type} {u : S → S} {A : Archive S u}
+    (fa : UniqueFactorization A) (h0 : PointedSingleton A) :
+    ArchiveIso A (free S u) where
+  toHom := {
+    map := historyWord fa h0
+    map_z0 := rfl
+    nat_r := fun T s e => historyWord_step fa h0 T s e
+  }
+  invHom := freeHom A
+  left_inv := fun T e => history_section fa h0 T e
+  right_inv := fun T w => history_retract fa h0 T w
+
+/-- Compose archive isos A ≅ B and B ≅ C. -/
+def ArchiveIso.trans {S : Type} {u : S → S} {A B C : Archive S u}
+    (i : ArchiveIso A B) (j : ArchiveIso B C) : ArchiveIso A C where
+  toHom := {
+    map := fun T e => j.toHom.map T (i.toHom.map T e)
+    map_z0 := by
+      change j.toHom.map 0 (i.toHom.map 0 A.z0) = C.z0
+      rw [i.toHom.map_z0, j.toHom.map_z0]
+    nat_r := by
+      intro T s e
+      change j.toHom.map (T + 1) (i.toHom.map (T + 1) (A.r T s e)) =
+        C.r T s (j.toHom.map T (i.toHom.map T e))
+      rw [i.toHom.nat_r, j.toHom.nat_r]
+  }
+  invHom := {
+    map := fun T e => i.invHom.map T (j.invHom.map T e)
+    map_z0 := by
+      change i.invHom.map 0 (j.invHom.map 0 C.z0) = A.z0
+      rw [j.invHom.map_z0, i.invHom.map_z0]
+    nat_r := by
+      intro T s e
+      change i.invHom.map (T + 1) (j.invHom.map (T + 1) (C.r T s e)) =
+        A.r T s (i.invHom.map T (j.invHom.map T e))
+      rw [j.invHom.nat_r, i.invHom.nat_r]
+  }
+  left_inv := by
+    intro T e
+    change i.invHom.map T (j.invHom.map T (j.toHom.map T (i.toHom.map T e))) = e
+    rw [j.left_inv, i.left_inv]
+  right_inv := by
+    intro T e
+    change j.toHom.map T (i.toHom.map T (i.invHom.map T (j.invHom.map T e))) = e
+    rw [i.right_inv, j.right_inv]
+
+/-- Inverse of an archive iso. -/
+def ArchiveIso.symm {S : Type} {u : S → S} {A B : Archive S u}
+    (i : ArchiveIso A B) : ArchiveIso B A where
+  toHom := i.invHom
+  invHom := i.toHom
+  left_inv := i.right_inv
+  right_inv := i.left_inv
+
+/-- **Rigidity iso.** Two UF + pointed-singleton archives are isomorphic
+    (packaged bijective match via free as intermediary). Base `E 0` is a
+    singleton on both sides, so the pointed base bijection is unique. -/
+def rigidity_iso {S : Type} {u : S → S} {A B : Archive S u}
+    (fa : UniqueFactorization A) (fb : UniqueFactorization B)
+    (ha : PointedSingleton A) (hb : PointedSingleton B) :
+    ArchiveIso A B :=
+  ArchiveIso.trans (isoToFree fa ha) (ArchiveIso.symm (isoToFree fb hb))
+
+/-- Existence form of the rigidity iso. -/
+theorem rigidity_iso_of_UF {S : Type} {u : S → S} {A B : Archive S u}
+    (fa : UniqueFactorization A) (fb : UniqueFactorization B)
+    (ha : PointedSingleton A) (hb : PointedSingleton B) :
+    ∃ _i : ArchiveIso A B, True :=
+  ⟨rigidity_iso fa fb ha hb, True.intro⟩
+
+/-- Free archive is isomorphic to itself via UF (sanity). -/
+theorem free_rigidity_self (S : Type) (u : S → S) :
+    ∃ _i : ArchiveIso (free S u) (free S u), True :=
+  rigidity_iso_of_UF
+    (freeUniqueFactorization S u) (freeUniqueFactorization S u)
+    (free_is_pointed_singleton S u) (free_is_pointed_singleton S u)
+
 /-- Graded terminality among reduced u-graded archives — still open as a
-    separate addressing claim; UF is the constructive surrogate used above. -/
+    separate addressing claim; UF rigidity iso is the constructive surrogate. -/
 def graded_terminality_open : True := True.intro
 
 /-- Tick identification (naming ↔ microtick) remains T-2-licensed. -/
 def tick_identification_T2_licensed : True := True.intro
 
-/-- Packaged bijective base match ⇒ iso of UF archives — marker. -/
-def rigidity_iso_open : True := True.intro
-
 /-! ## Keystone sprint package -/
 
 /-- **Keystone Dil sprint.** Free archive initial; capacity step law;
     registration corollary; ladder/caps realise minimal K=2 schedule;
-    rigidity partition fragment at equality. Iso / graded terminality open. -/
+    rigidity partition fragment at equality. UF rigidity iso landed;
+    graded terminality remains open. -/
 theorem keystone_dil_sprint :
     (∀ {S : Type} {u : S → S} (A : Archive S u),
       (∃ _h : Hom (free S u) A, True) ∧
@@ -723,6 +823,9 @@ theorem keystone_dil_sprint :
 #print axioms hom_exists_of_UF
 #print axioms free_hom_exists_via_UF
 #print axioms history_section
+#print axioms history_retract
+#print axioms rigidity_iso_of_UF
+#print axioms free_rigidity_self
 #print axioms predicate_minimal_schedule
 #print axioms caps_realise_minimal_schedule
 #print axioms keystone_dil_sprint

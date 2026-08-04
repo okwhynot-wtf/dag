@@ -122,8 +122,10 @@ Dictionary damping=registration rhyme remains K-certificate (I-4).
 the base; the corollary is their joint return upstairs — inevitability with
 a visible cause, not a surprise. Obligations: adopter accepts an undirected
 base act (arena adequacy); in-arena no-erasure is derived; I-1 `Inj(U)` is
-the losslessness transfer (`TwoBounce`: Fin n existence + canonicity failure
-landed; factorization gauge ≠ second dictionary ℤ/2).
+the losslessness transfer (`TwoBounce` discharged with packaging gauge:
+`canonicity_fails`; `channel_swap_is_reversal` — labels conventional,
+exchange real; same relational refusal of absolutes as ¬□(direction) /
+ModularCut cut-blindness).
 
 ## Jacobson quantifier (surfaced)
 

@@ -9,7 +9,7 @@ Revised to separate **genuine refusals** from **tractable open work**
 | Item | Notes |
 |---|---|
 | Facticity of liveness | Subsumes AG "why eternal aliveness"; hybrid states liveness once |
-| ℤ/2 choice | Address / pole / channel labels; branch choice per tick (underdetermination is proved; *which* face is free). I-1 factorization gauge is **not** a second dictionary ℤ/2 — involutive bounce-reorder is T-7-shaped; longer-cycle axis choice is discharge gauge only (`i1_canonicity_package`) |
+| ℤ/2 choice | Address / pole / channel labels; branch choice per tick (underdetermination is proved; *which* face is free). See gauge inventory: factorization gauge is packaging, not a second dictionary ℤ/2; channel *swap* is content (`channel_swap_is_reversal`) |
 | Arena adequacy | DM's contestable ambient claim |
 | Blank adjunction ontology | Beyond emanation gloss |
 | RE action by hand | m, V₀, amplitudes are inputs until a derivation exists |
@@ -35,7 +35,7 @@ caricatures are in scope; continuum identifications are not.
 | **T-12 measure** | **Fragment + Born no-go landed:** uniform weights; no unique selector; `born_from_multiplicity_nogo` (symmetry + path products + Gleason domain absent) |
 | **T-10 Page flux shape** | **Landed:** `PageShape` — mute before `C`, stream `t−C`, `t_exh=C+1`, Page tent peak. Bogoliubov / continuum QFT still refused |
 | Arbitrary `U_S` UP | Beyond fiber tagging (`arbitraryUS_UP_open`); Dil is the attack shape |
-| **I-1 two-bounce** | **Landed:** converse + toys + `factor_fin` + **canonicity fails** (`canonicity_fails`, `i1_canonicity_package`). Involutive reorder is T-7-shaped; Fin-3 axis choice is a larger factorization gauge, not a second dictionary ℤ/2. Channel rhyme stays suggestive |
+| **I-1 two-bounce** | **Discharged with packaging gauge:** converse + `factor_fin` + `canonicity_fails` + `channel_swap_is_reversal`. Labels conventional; exchange proved. Moved off tractable-open |
 
 ## Structural open (hard walls; not “just write the proof”)
 
@@ -53,7 +53,7 @@ caricatures are in scope; continuum identifications are not.
 | **T-1** Environment UP | Fiber UP; Dil keystone; I-2 Fin closed; ladder witness; address-uniform idx | Optional deeper `|S|>K` UF-lift (not required for Fin I-2) |
 | **T-2** Tick simulation | **Classified** (`tick_identification`, v0.2): Fund exempt + swap necessity + Dil straighten/append + namer + rate weld + ladder `NamingExtension`. Arc: `docs/ARC_V02.md` | Not a carrier functor; historical `_licensed` remnant retained |
 | **T-2 factorisation** | Namer-shaped label factor (`registers_admits_namer`); **carrier-level factorisation obstructed** by eternal swap (necessity half); per-tick Dil glue (`tick_identification_step`) | — |
-| **I-1 canonicity** | **Fails** (`canonicity_fails`): essential non-uniqueness of `(φ,σ)`. Fin-3 axis choice exceeds bounce-swap | Channel identification stays suggestive; T-7 one ℤ/2 intact |
+| **I-1 canonicity** | **Fails** (`canonicity_fails`): essential non-uniqueness of `(φ,σ)`. Packaging gauge (ledger consumes `U`) | Channel *labels* conventional; *swap* proved (`channel_swap_is_reversal`) |
 
 ## Refused (genuine — keep)
 
@@ -85,8 +85,9 @@ Einstein remains refused; O-2 structural (cut-shift finding filed); O-3 Mathlib
 sheaf / R-1 ultrametric in open. T-2 classified at v0.2 — see `docs/ARC_V02.md`.
 **SelfReference / corpus_not_universal** (v0.2.5): Lawvere self-application
 at corpus↔corpus; deficit + lag + ω≠rung; MetaProblem quantitative columns.
-**I-1 two-bounce** (v0.2.6+): converse + Fin n existence + canonicity failure;
-factorization gauge filed without adding a second dictionary ℤ/2.
+**I-1 two-bounce** (v0.2.6+): discharged with packaging gauge — converse +
+Fin n + `canonicity_fails` + `channel_swap_is_reversal`. Gauge inventory
+(content vs packaging) in `DAG.md` §8 / `DAG_SYMBOLIC` VII.
 
 ## Interpretation (hedged)
 

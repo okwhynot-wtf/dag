@@ -46,9 +46,9 @@ II. Ledger  (AG over I-1 / I-2)
 
   U : S×E → S×E = (U_S, U_E)           joint microstep
   global Inj(U)                        I-1 transfer of spine losslessness
-                                       (stipulation → TwoBounce discharge:
-                                        U=σ∘φ; converse+toys+Fin n landed;
-                                        canonicity fails; channel rhyme suggestive)
+                                       (TwoBounce discharged w/ packaging gauge:
+                                        U=σ∘φ; Fin n; canonicity_fails;
+                                        channel_swap_is_reversal; labels conventional)
   merges live in U_S above base; compensated in U_E
 
   Inj(U) ∧ ∃merge(U)  ⟹  ∃record(U)    Registration
@@ -209,9 +209,20 @@ VII. Residue / refusal
           matter/Friedmann derived from Bool alone
           (discrete T / Page / capacity-growth toys: Phase E, not continuum)
   coincidence (unpromoted): cosmology flatness puzzle ↔ DAG flatness budget
+  gauge demarcation: content = exported statement mentions the choice;
+               packaging = quotiented before downstream consumption
+  gauge inventory:
+               label/pole swap @ Fund     — content  (T-7 / two_readings)
+               address fwd/rev            — content  (T-7)
+               channel swap               — content  (channel_swap_is_reversal;
+                                                     labels conventional)
+               record gauge per tick      — packaging (Dil/T-2; “up to gauge”)
+               factorisation gauge / step — packaging (I-1; ledger consumes U)
   not residue: ¬flat(prof); Kmin=2; |caps T|=2^(T+2); one ℤ/2;
                recordLabel∶Bool↪E; tick_identification (classified T-2);
                straighten; registers_admits_namer; born_from_multiplicity_nogo;
+               **canonicity_fails** (proved negative; packaging gauge);
+               **channel_swap_is_reversal** (T-7 channel column proved);
                T-10…T-16; E1; E2;
                meta reports structural; Forman sign;
                **corpus_not_universal** — seal_self · deficit · lag ·
@@ -233,6 +244,6 @@ VII. Residue / refusal
 
 ═══════════════════════════════════════════════════════════════════════════════
   Fund ≅ ¬  ·  a∘a=id ⇒ ¬erase  ·  merge ⇒ record  ·  |caps T| = 2^(T+2)
-  ·  naming ≅ μtick / gauge  ·  (I-1: U = σ∘φ · Fin n · ¬canonicity · T-7 intact)
+  ·  naming ≅ μtick / gauge  ·  (I-1 discharged+packaging · swap=reversal · T-7)
 ═══════════════════════════════════════════════════════════════════════════════
 

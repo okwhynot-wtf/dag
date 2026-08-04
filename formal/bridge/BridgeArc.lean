@@ -10,6 +10,7 @@ import ArchiveMustSpeak
 import PageShape
 import SecondLaw
 import Measurement
+import BranchMeasure
 import Expansion
 import Forman
 import Saturation
@@ -17,6 +18,7 @@ import EinsteinSkeleton
 import EffectiveMatter
 import FluxPattern
 import LedgerSheaf
+import RecombinationBudget
 import PhaseEToys
 import Geom.Registration
 import Geom.Profile
@@ -157,6 +159,16 @@ theorem milestone_T12 :
     Bridge.Alphabet.Kmin = 2 :=
   ⟨Bridge.Measurement.two_children, Bridge.Alphabet.Kmin_eq⟩
 
+theorem milestone_T12_measure :
+    (∀ k f, ∃ e₁ e₂ : Branch.Predicate k,
+      Branch.IsEscape k f e₁ ∧ Branch.IsEscape k f e₂ ∧
+        (∃ x, e₁ x ≠ e₂ x) ∧
+        Bridge.BranchMeasure.escapeWeight e₁ +
+          Bridge.BranchMeasure.escapeWeight e₂ =
+            Bridge.Alphabet.Kmin) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨Bridge.BranchMeasure.T12_measure_fragment.1, Bridge.Alphabet.Kmin_eq⟩
+
 theorem milestone_T13 :
     (∀ T, Bridge.Expansion.countedVolume 2 (T + 1) =
       2 * Bridge.Expansion.countedVolume 2 T) ∧
@@ -226,6 +238,26 @@ theorem milestone_o3_glue :
     Bridge.Alphabet.Kmin = 2 :=
   ⟨Bridge.LedgerSheaf.glue_capacity_on_locus, Bridge.Alphabet.Kmin_eq⟩
 
+theorem milestone_o3_restrict :
+    (∀ {X E S E' : Type}
+      (p : Bridge.EinsteinSkeleton.LocalLedgerPatch X E S E') ℓ,
+      (Bridge.LedgerSheaf.restrictTo p ℓ).alphabet.length =
+        p.alphabet.length) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨fun p ℓ => Bridge.LedgerSheaf.restrict_preserves_capacity p ℓ,
+   Bridge.Alphabet.Kmin_eq⟩
+
+theorem milestone_r1_budget :
+    (∀ d, 1 ≤ d →
+      Bridge.RecombinationBudget.facesToFlatten d ≤
+        Bridge.Capacity.caps d) ∧
+    (¬ Bridge.RecombinationBudget.facesToFlatten 1 ≤
+      Geom.Profile.capacityOf 2 Geom.Profile.expand 1) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨Bridge.RecombinationBudget.r1_faces_within_caps,
+   Bridge.RecombinationBudget.r1_faces_exceed_expand_at_one,
+   Bridge.Alphabet.Kmin_eq⟩
+
 theorem milestone_phase_E :
     (∀ T, Bridge.PhaseEToys.deltaS T = 1) ∧
     (∀ T, Bridge.PhaseEToys.heatQuantum T =
@@ -290,6 +322,7 @@ theorem bridge_arc :
 #print axioms milestone_T10_shape
 #print axioms milestone_T11
 #print axioms milestone_T12
+#print axioms milestone_T12_measure
 #print axioms milestone_T13
 #print axioms milestone_T14
 #print axioms milestone_T15
@@ -297,6 +330,8 @@ theorem bridge_arc :
 #print axioms milestone_effective_matter_sprint
 #print axioms milestone_phase_D
 #print axioms milestone_o3_glue
+#print axioms milestone_o3_restrict
+#print axioms milestone_r1_budget
 #print axioms milestone_phase_E
 #print axioms bridge_arc
 

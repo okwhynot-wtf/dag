@@ -1,5 +1,5 @@
 Diagonal Archive Geometry — symbolic law
-corpus hybrid/ DAG v0.1.15
+corpus hybrid/ DAG v0.1.17
 
 ═══════════════════════════════════════════════════════════════════════════════
 0. Layers  (downward imports only)
@@ -155,17 +155,18 @@ VI. Compression
 VII. Residue / refusal
 ═══════════════════════════════════════════════════════════════════════════════
 
-  open (tractable): **T-1 Dil keystone** (free+capacity+schedule landed;
-            rigidity / graded terminality / predicate record-map open);
-          O-3 full sheaf dynamics (stalk glue done; restrictions open);
-          R-1 recombination budget (faces vs aliveness; Lean counting);
-          T-10 Page flux *shape* (existence landed; min(t,C−t) curve open);
+  open (tractable): **T-1 Dil keystone** (reachability + Hom-uniqueness;
+            Hom-existence between minimal archives / graded terminality open);
+          O-3 full sheaf dynamics (stalk glue + restriction landed;
+            dynamics sections open);
+          R-1 counting landed (tree faces ≤ caps; ultrametric≠space remains);
+          T-12 measure fragment landed (uniform weight; no unique selector);
+          T-10 Page flux shape landed (`PageShape`); Bogoliubov still out;
           period-2 / KMS↔involution toys; matter-as-input host API optional;
           finite branch measures (Ollivier trial); area-as-caps sharpening;
-          RE-side growth law (not yet sought); partial Lorentzian dictionary;
-          Bogoliubov continuum still out
+          RE-side growth law (not yet sought); partial Lorentzian dictionary
   open (structural): **O-2** no boost / Unruh T (only ℤ/2; deepest Einstein gap);
-          **R-1** ultrametric≠space (attack via recombination budget above);
+          **R-1** ultrametric≠space (counting attack landed above);
           **O-4** continuum Lorentzian limit;
           **O-5** SM inventory underdetermined (emergent patterned flux A–E)
   open (philosophical): facticity of liveness; ℤ/2 + branch choice; arena
@@ -174,7 +175,8 @@ VII. Residue / refusal
               naming grows levelCard) — label-namer factor still holds
   refuse: H₀/number-from-Bool; quintom-as-world; premise-free Law of Time;
           continuum spacetime/Einstein/QFT/BH; continuum Boltzmann;
-          Born from underdetermination alone; hard problem / qualia;
+          Born from underdetermination alone (uniform T-12 weight ≠ Born);
+          hard problem / qualia;
           matter/Friedmann derived from Bool alone
           (discrete T / Page / capacity-growth toys: Phase E, not continuum)
   coincidence (unpromoted): cosmology flatness puzzle ↔ DAG flatness budget
@@ -190,7 +192,8 @@ VII. Residue / refusal
   bridge:  Alphabet · Capacity · OneZ2 · RegistrationSpine · Environment ·
            TickSimulation · RegistrationFactor · ArchiveMustSpeak · SecondLaw ·
            Measurement · Expansion · Forman · Saturation · EinsteinSkeleton ·
-           EffectiveMatter · FluxPattern · LedgerSheaf · PhaseEToys · Dil
+           EffectiveMatter · FluxPattern · LedgerSheaf · RecombinationBudget ·
+           PhaseEToys · Dil · PageShape
   dict:    Certificate (K) · LCertificate · Quintom.* · BitFlip · Kramers · Page ·
            NoClone (measurement) · MetaProblem
 

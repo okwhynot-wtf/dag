@@ -100,11 +100,13 @@ theorem swap_env_card_fixed :
     ∃ a b : Bool, a ≠ b ∧ ∀ x : Bool, x = a ∨ x = b :=
   ⟨true, false, by decide, fun x => by cases x <;> decide⟩
 
-/-- **Obstruction.** There is an eternally registering microstep
-    (`swap`) whose env carrier does not grow, while naming of length
-    `T ≥ 1` forces `levelCard T = T+2 > 2 = levelCard 0`.
+/-- **Obstruction (= necessity half).** There is an eternally registering
+    microstep (`swap`) whose env carrier does not grow, while naming of
+    length `T ≥ 1` forces `levelCard T = T+2 > 2 = levelCard 0`.
     Hence Registration sequences do not factor as ladder naming
-    extensions of carriers in general. -/
+    extensions of carriers in general — the eternal/unbounded-demand
+    hypothesis of a classified T-2 cannot be dropped. Swap is Fund
+    wearing ledger clothes (bounded cumulative record demand). -/
 theorem registration_vs_naming_obstruction :
     (Inj swapStep ∧ Merges swapStep ∧ Registers swapStep) ∧
     (∀ T : Nat, Density.levelCard T = T + 2) ∧

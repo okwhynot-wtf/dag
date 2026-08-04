@@ -100,12 +100,17 @@ minimal end. Ladder-predicate addressing is witnessed
 Address-uniform `idx` fragment lands for `|S| > K` (`AddressUniform`);
 Bool is the trivial `idx = id` case.
 
-## T-2 tick identification (licensed remnant)
+## T-2 tick identification (licensed remnant → classification plan)
 
 Committed expand path + namer-shaped label factor are discharged
 (`tick_identification_licensed`). Carrier-level Registration→naming is
-obstructed (swap vs `levelCard`). Naming-tick ↔ microtick is licensed on
-that remnant only — not a total functor on carriers.
+obstructed (swap vs `levelCard`) — the obstruction is the **necessity**
+half of a future classification: bounded-demand / Fund 2-cycles don't
+climb; they were never supposed to. **Straightening** landed
+(`straighten_fragment`): every UF archive ≅ append-only on its frozen
+base; record gauge = base relabelling (the torsor rigidity couldn't kill).
+Skeleton package: `tick_identification_ingredients`. Induction glue across
+ticks still open — keep `_licensed`; not a total functor on carriers.
 
 ## Period-2 / KMS and area-as-caps (fence)
 

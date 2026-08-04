@@ -65,5 +65,5 @@ companions BitFlip, NoClone (measurement).
 
 ## Version
 
-DAG hybrid **v0.1.27** — O-3 dynamics-section fragment (`DynamicsSection`
-restrict/glue); Lorentzian/Ollivier/KMS/area packages from v0.1.24–0.1.26.
+DAG hybrid **v0.1.28** — T-2 straightening fragment (UF ≅ append-on-base);
+O-3 dynamics sections from v0.1.27; Lorentzian/Ollivier/KMS/area prior.

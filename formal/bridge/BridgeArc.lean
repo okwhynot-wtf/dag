@@ -193,6 +193,18 @@ theorem milestone_T2_tick_id_licensed :
      (Bridge.RegistrationFactor.registration_vs_naming_obstruction).2.2.2 T hT,
    Bridge.Alphabet.Kmin_eq⟩
 
+/-- T-2 straightening + skeleton ingredients (not unconditional tick ID). -/
+theorem milestone_T2_straighten :
+    (∀ {S : Type} {u : S → S} {A : Bridge.Dil.Archive S u}
+      (_fa : Bridge.Dil.UniqueFactorization A),
+      ∃ _i : Bridge.Dil.ArchiveIso A
+        (Bridge.Dil.freeOnBase S u (A.E 0) A.z0), True) ∧
+    (¬ Geom.Registration.Merges Geom.Registration.oscStep) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨fun fa => Bridge.Dil.uf_straightens_mod_base fa,
+   Bridge.TickSimulation.oscillator_silent.1,
+   Bridge.Alphabet.Kmin_eq⟩
+
 /-- T-2 factorisation: namer-shaped positive + carrier obstruction. -/
 theorem milestone_M4b :
     (∀ {S E : Type} {U : S × E → S × E},
@@ -469,6 +481,7 @@ theorem bridge_arc :
 #print axioms milestone_i2_fin_closed
 #print axioms milestone_ladder_predicate_addressing
 #print axioms milestone_T2_tick_id_licensed
+#print axioms milestone_T2_straighten
 #print axioms milestone_M4b
 #print axioms milestone_T10
 #print axioms milestone_T10_shape

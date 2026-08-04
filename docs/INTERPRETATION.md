@@ -146,6 +146,10 @@ from the structural boost gap (O-2).
   Bool swap toy. Not a threshold theorem; not a holographic code claim.
 - **DESI / quintom null** (`exhibits/quintom/DESI_NULL.md`): certificate ≠
   DESI prediction. Do not treat residual DESI tension as a DAG forecast.
+- **RE-side growth law** (`Dictionary.Quintom.Growth.re_side_growth_law`):
+  `modeCount T = |Channel|^(T+2) = caps T`, doubles at `Kmin`. Combinatorial
+  dictionary weld only — not continuum Fourier modes, not `H₀`, not DESI.
+  The ODE exhibit (`integrate.py`) is **not** evidence for this law.
 
 ## Coincidence: flatness embarrassment (not promoted)
 

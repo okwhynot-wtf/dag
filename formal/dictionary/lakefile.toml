@@ -24,6 +24,7 @@ roots = [
   "Quintom.Certificate",
   "Quintom.FixedPoint",
   "Quintom.Damping",
+  "Quintom.Growth",
   "BitFlip",
   "Kramers",
   "Page",

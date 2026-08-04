@@ -21,6 +21,7 @@ import LedgerSheaf
 import RecombinationBudget
 import PhaseEToys
 import Period2KMS
+import ModularCut
 import LorentzianDict
 import Geom.Registration
 import Geom.Profile
@@ -433,6 +434,25 @@ theorem milestone_period2_kms :
    fun _ => rfl,
    Bridge.Alphabet.Kmin_eq⟩
 
+/-- Time–dissipation: Fund exempt ⇒ no naming ticks; arrow iff registration. -/
+theorem milestone_time_dissipation :
+    Bridge.TickSimulation.FundExempt ∧
+    Bridge.EffectiveMatter.VacuumDynamics Geom.Registration.oscStep ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨Bridge.TickSimulation.time_dissipation_one_property.1,
+   Bridge.TickSimulation.time_dissipation_one_property.2.1,
+   Bridge.Alphabet.Kmin_eq⟩
+
+/-- O-2 cut-shift attempt: documented dead end (T_c blind to cut). -/
+theorem milestone_o2_cut_shift :
+    (∀ T, ∃ _c : Bridge.ModularCut.SaturatedCut T, True) ∧
+    (∀ T (_c : Bridge.ModularCut.SaturatedCut T),
+      Bridge.PhaseEToys.combinatorialTemp T = 1) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨Bridge.ModularCut.o2_cut_shift_dead_end.1,
+   Bridge.ModularCut.o2_cut_shift_dead_end.2.2.1,
+   Bridge.Alphabet.Kmin_eq⟩
+
 /-- Partial Lorentzian dictionary (order dim-1 + caps growth; no Lorentz group). -/
 theorem milestone_partial_lorentzian :
     (∀ tTurn, Obs.Dimension.OrderDimEq tTurn
@@ -534,6 +554,8 @@ theorem bridge_arc :
 #print axioms milestone_phase_E
 #print axioms milestone_area_as_caps
 #print axioms milestone_period2_kms
+#print axioms milestone_time_dissipation
+#print axioms milestone_o2_cut_shift
 #print axioms milestone_partial_lorentzian
 #print axioms bridge_arc
 

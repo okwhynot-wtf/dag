@@ -37,6 +37,7 @@ roots = [
   "RecombinationBudget",
   "PhaseEToys",
   "Period2KMS",
+  "ModularCut",
   "LorentzianDict",
   "BridgeArc",
 ]

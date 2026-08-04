@@ -8,6 +8,7 @@ import Capacity
 import Environment
 import RegistrationFactor
 import Dil
+import EffectiveMatter
 
 /-!
 # T-2 Tick simulation
@@ -372,6 +373,29 @@ theorem tick_identification :
 /-- Backward-compatible alias (pre-v0.2 name). -/
 def tick_identification_classified := tick_identification
 
+/-- **Time–dissipation corollary.** Fund is exempt from tick identification
+    (`FundExempt`), and Fund / oscillator is vacuum dynamics
+    (`¬Merges ∧ ¬Registers`). Registration (= merge) is exactly where the
+    naming demand appears (`merge ⇒ record`). So undamped dynamics have no
+    naming ticks, and the arrow appears exactly when registration does.
+
+    Formal columns (spine/ledger): theorem-grade. Dictionary H=0 / damping
+    rhyme remains K-certificate (T-5/T-6) by I-4 discipline. -/
+theorem time_dissipation_one_property :
+    FundExempt ∧
+    Bridge.EffectiveMatter.VacuumDynamics Geom.Registration.oscStep ∧
+    (Merges Geom.Registration.swapStep ∧
+      Registers Geom.Registration.swapStep) ∧
+    (∀ {S E : Type} {U : S × E → S × E},
+      Inj U → Merges U → Registers U) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨tick_identification.1,
+   Bridge.EffectiveMatter.osc_is_vacuum,
+   ⟨Geom.Registration.swap_registers.2.1,
+     Geom.Registration.swap_registers.2.2⟩,
+   fun hU hm => Geom.Registration.merge_registers hU hm,
+   Bridge.Alphabet.Kmin_eq⟩
+
 #print axioms tick_simulation
 #print axioms committed_yields_mute
 #print axioms rate_weld
@@ -383,5 +407,6 @@ def tick_identification_classified := tick_identification
 #print axioms tick_identification_dichotomy
 #print axioms tick_identification
 #print axioms tick_identification_classified
+#print axioms time_dissipation_one_property
 
 end Bridge.TickSimulation

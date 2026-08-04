@@ -47,6 +47,8 @@
 | T-2 ID proof-skeleton ingredients | `Bridge.TickSimulation.tick_identification_ingredients` | Bridge |
 | T-2 per-tick Dil induction step | `Bridge.TickSimulation.tick_identification_step` | Bridge |
 | T-2 dichotomy (Fund exempt + swap necessity) | `Bridge.TickSimulation.tick_identification_dichotomy` | Bridge |
+| Time–dissipation corollary (arrow iff registration) | `Bridge.TickSimulation.time_dissipation_one_property` | Bridge |
+| O-2 cut-shift dead end (T_c blind to cut) | `Bridge.ModularCut.o2_cut_shift_dead_end` | Bridge |
 | Jacobson quantifier / observers forced | `Observer.observers_forced`, `Bridge.EinsteinSkeleton.local_horizon_seal` | Spine/Bridge |
 | Arc write-up (Dil→T-2, v0.2) | `docs/ARC_V02.md` | Docs |
 | Period-2 / KMS↔involution toy | `Bridge.Period2KMS.period2_kms_caricature` | Bridge |
@@ -81,5 +83,5 @@
 | DM fundamental two elements | `Density.fundamental_two_elements` | Spine |
 
 Open work: see `docs/RESIDUE.md` (tractable vs structural vs philosophical).
-T-2 classified at v0.2 (`tick_identification`); Born refusal upgraded to
-`born_from_multiplicity_nogo`. Next: O-2 decision (KMS/modular vs feature).
+T-2 classified at v0.2 (`tick_identification`); Born no-go landed; O-2
+cut-shift attempted (`o2_cut_shift_dead_end` — feature as finding).

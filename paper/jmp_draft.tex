@@ -1,37 +1,131 @@
 % Anonymized draft for Journal of Mathematical Philosophy (initial submission).
 % Open formatting OK at submission; switch to JMP template after acceptance.
 % Polish pass: classification-first; three-layer separation; no new mathematics.
+% Format pass: typography, diagrams, status boxes, pagination (still anonymized).
 \documentclass[11pt,a4paper]{article}
 
-\usepackage[margin=1.1in]{geometry}
-\usepackage{microtype}
+% ── Page & type ──────────────────────────────────────────────
+\usepackage[margin=1.15in,headheight=22pt]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{mathpazo}
+\usepackage[expansion=false]{microtype}
+\usepackage{setspace}
+\setstretch{1.12}
+\raggedbottom
+
+% ── Colour (restrained ink; anonymous journal look) ──────────
+\usepackage{xcolor}
+\definecolor{ink}{HTML}{1A1A1A}
+\definecolor{muted}{HTML}{5A5A5A}
+\definecolor{rule}{HTML}{C8C4BC}
+\definecolor{accent}{HTML}{2C3E50}
+\definecolor{soft}{HTML}{F4F1EC}
+\definecolor{nodefill}{HTML}{F7F5F1}
+\definecolor{openbg}{HTML}{F7F5F1}
+\definecolor{refusedbg}{HTML}{F3EEEA}
+\definecolor{philbg}{HTML}{EEF2F5}
+\color{ink}
+
+% ── Math, theorems, lists ────────────────────────────────────
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{mathtools}
-\usepackage{tikz}
-\usetikzlibrary{arrows.meta,positioning,calc,fit}
-\usepackage[hidelinks]{hyperref}
 \usepackage{enumitem}
-\usepackage{booktabs}
+\setlist[enumerate]{leftmargin=*,itemsep=0.2em,topsep=0.35em}
+\setlist[itemize]{leftmargin=*,itemsep=0.15em,topsep=0.3em}
 
+\theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{interpretation}[theorem]{Interpretation}
-\newtheorem*{statusopen}{Open}
-\newtheorem*{statusrefused}{Refused}
-\newtheorem*{statusphil}{Philosophical}
+
+% ── Graphics & layout ────────────────────────────────────────
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit}
+\usepackage[skins,breakable]{tcolorbox}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{caption}
+\usepackage{needspace}
+\usepackage[hidelinks]{hyperref}
+\captionsetup{font=small, labelfont={sf,bf}, textfont=it, skip=0.45em}
+
+\titleformat{\section}
+  {\large\bfseries\color{accent}\sffamily}
+  {\thesection}{0.6em}{}
+  [\vspace{-0.35em}{\color{rule}\titlerule[0.5pt]}]
+\titleformat{\subsection}
+  {\normalsize\bfseries\color{accent}\sffamily}
+  {\thesubsection}{0.5em}{}
+\titlespacing*{\section}{0pt}{1.35em}{0.55em}
+\titlespacing*{\subsection}{0pt}{0.95em}{0.35em}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{rule}\leaders\hrule height \headrulewidth\hfill}}
+\fancyhead[L]{\color{muted}\scriptsize Classification of self-actions}
+\fancyhead[R]{\color{muted}\scriptsize Unique involutive survivor}
+\fancyfoot[C]{\color{muted}\small\thepage}
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \fancyfoot[C]{\color{muted}\small\thepage}%
+}
+
+% Status callouts (open / refused / philosophical)
+\newtcolorbox{statusopen}{
+  breakable, colback=openbg, colframe=rule, boxrule=0.5pt,
+  borderline west={2.2pt}{0pt}{accent},
+  arc=1pt, left=10pt, right=10pt, top=7pt, bottom=7pt,
+  before skip=0.7em, after skip=0.7em,
+  title={\sffamily\bfseries Open},
+  fonttitle=\small\sffamily, coltitle=accent, colbacktitle=soft,
+  attach boxed title to top left={yshift=-2mm,xshift=8pt},
+  boxed title style={colframe=rule, boxrule=0.4pt, arc=1pt,
+    left=5pt,right=5pt,top=1pt,bottom=1pt}
+}
+\newtcolorbox{statusrefused}{
+  breakable, colback=refusedbg, colframe=rule, boxrule=0.5pt,
+  borderline west={2.2pt}{0pt}{accent},
+  arc=1pt, left=10pt, right=10pt, top=7pt, bottom=7pt,
+  before skip=0.7em, after skip=0.7em,
+  title={\sffamily\bfseries Refused},
+  fonttitle=\small\sffamily, coltitle=accent, colbacktitle=soft,
+  attach boxed title to top left={yshift=-2mm,xshift=8pt},
+  boxed title style={colframe=rule, boxrule=0.4pt, arc=1pt,
+    left=5pt,right=5pt,top=1pt,bottom=1pt}
+}
+\newtcolorbox{statusphil}{
+  breakable, colback=philbg, colframe=rule, boxrule=0.5pt,
+  borderline west={2.2pt}{0pt}{accent},
+  arc=1pt, left=10pt, right=10pt, top=7pt, bottom=7pt,
+  before skip=0.7em, after skip=0.7em,
+  title={\sffamily\bfseries Philosophical},
+  fonttitle=\small\sffamily, coltitle=accent, colbacktitle=soft,
+  attach boxed title to top left={yshift=-2mm,xshift=8pt},
+  boxed title style={colframe=rule, boxrule=0.4pt, arc=1pt,
+    left=5pt,right=5pt,top=1pt,bottom=1pt}
+}
 
 \newcommand{\Fund}{\mathsf{Fund}}
 \newcommand{\Bool}{\mathsf{Bool}}
 \newcommand{\comp}{\circ}
 \newcommand{\Ztwo}{\mathbb{Z}/2\mathbb{Z}}
 \newcommand{\act}{a}
+\newcommand{\dep}[1]{%
+  \par\noindent{\small\color{muted}\sffamily Dependence:}~\textit{#1}\par\medskip}
 
-\title{Classification of Self-Actions and the Unique Involutive Survivor}
+\title{Classification of Self-Actions\\[0.25em]
+  and the Unique Involutive Survivor}
 \author{} % anonymized for double-anonymous review
 \date{}
 
@@ -56,7 +150,7 @@ is machine-checked in Lean~4 (no Mathlib, no $\mathtt{sorry}$). Physical
 readings appear only in a dictionary layer of certificates.
 \end{abstract}
 
-\noindent\textbf{Keywords:}
+\noindent{\sffamily\bfseries\color{accent} Keywords.}
 classification; involution; universal property; Lawvere diagonal;
 underdetermination; gauge; machine-checked mathematics.
 
@@ -72,23 +166,39 @@ Negation on $\Bool$ is not assumed at the outset; it is the unique object
 (up to label swap) satisfying the universal property of that survivor.
 
 The formal development then follows a fixed dependency:
+
 \begin{center}
-classification $\rightarrow$
-fundamentality $\rightarrow$
-seal $\rightarrow$
-ladder $\rightarrow$
-registration $\rightarrow$
-archive $\rightarrow$
-capacity $\rightarrow$
-arrow $\rightarrow$
-interpretations.
+\begin{tikzpicture}[
+  font=\scriptsize\sffamily,
+  N/.style={draw=accent!70, fill=nodefill, thick, rounded corners=1.5pt,
+    inner sep=2.6pt, align=center},
+  arr/.style={-{Stealth[length=1.8mm]}, accent, thick}
+]
+  \node[N] (c) {classification};
+  \node[N, right=2.5mm of c] (f) {fundamentality};
+  \node[N, right=2.5mm of f] (s) {seal};
+  \node[N, right=2.5mm of s] (l) {ladder};
+  \node[N, below=7mm of l] (r) {registration};
+  \node[N, right=2.5mm of r] (a) {archive};
+  \node[N, right=2.5mm of a] (k) {capacity};
+  \node[N, right=2.5mm of k] (w) {arrow};
+  \node[N, right=2.5mm of w] (i) {interpretations};
+  \draw[arr] (c) -- (f);
+  \draw[arr] (f) -- (s);
+  \draw[arr] (s) -- (l);
+  \draw[arr] (l) -- (r);
+  \draw[arr] (r) -- (a);
+  \draw[arr] (a) -- (k);
+  \draw[arr] (k) -- (w);
+  \draw[arr] (w) -- (i);
+\end{tikzpicture}
 \end{center}
 Each arrow is a theorem or a defined interface; philosophical commentary
 is postponed until the supporting machinery is in place.
 
 \paragraph{Method and layers.}
 The text maintains three layers.
-\begin{enumerate}[label=(\arabic*),leftmargin=*]
+\begin{enumerate}[label=(\arabic*)]
 \item \textbf{Formal mathematics} --- definitions, theorems, proofs.
 \item \textbf{Philosophical interpretation} --- what the mathematics
 suggests, marked as such.
@@ -122,22 +232,24 @@ imports (Figure~\ref{fig:layers}).
 \begin{figure}[ht]
 \centering
 \begin{tikzpicture}[
-  font=\small,
-  layer/.style={draw, thick, rounded corners=2pt, minimum width=92mm,
-    minimum height=14mm, align=center, inner sep=4pt},
-  arr/.style={-{Latex}, thick}
+  font=\small\sffamily,
+  layer/.style={draw=accent!75, thick, rounded corners=2pt, minimum width=96mm,
+    minimum height=13mm, align=center, inner sep=4pt, fill=nodefill},
+  arr/.style={-{Stealth[length=2.2mm]}, accent, thick}
 ]
-\node[layer, fill=gray!6] (dict) {%
+\node[layer, fill=soft] (dict) {%
   \textbf{Interpretation (Dictionary)}\\[-1pt]
-  {\footnotesize physical / contemplative certificates; no upward import}};
-\node[layer, fill=gray!12, below=6mm of dict] (led) {%
+  {\footnotesize\color{muted} physical / contemplative certificates; no upward import}};
+\node[layer, below=5.5mm of dict] (led) {%
   \textbf{Dynamics (Archive Geometry / Ledger)}\\[-1pt]
-  {\footnotesize $U:S\times E\to S\times E$; registration; capacity; address}};
-\node[layer, fill=gray!18, below=6mm of led] (sp) {%
+  {\footnotesize\color{muted} $U:S\times E\to S\times E$; registration; capacity; address}};
+\node[layer, fill=white, below=5.5mm of led] (sp) {%
   \textbf{Foundation (Diagonal Monism / Spine)}\\[-1pt]
-  {\footnotesize classification; fundamentality; seal; ladder; branch}};
+  {\footnotesize\color{muted} classification; fundamentality; seal; ladder; branch}};
 \draw[arr] (sp) -- (led);
 \draw[arr] (led) -- (dict);
+\node[muted, font=\scriptsize\sffamily, rotate=90] at ($(sp.west)!0.5!(dict.west)+(-7mm,0)$)
+  {imports downward};
 \end{tikzpicture}
 \caption{Three-layer architecture. Arrows indicate permitted dependence
 (foundation supports dynamics; dynamics support interpretation). The
@@ -179,6 +291,23 @@ equal to $z$ or $a(z)$; (iii)~asymmetric step at $z$ ($a(a(z))\neq z$).
 The three cases are pairwise incompatible. Erasure is diagnosed
 separately as a pairwise defect of losslessness.
 \end{theorem}
+
+\begin{center}
+\begin{tikzpicture}[
+  font=\scriptsize\sffamily,
+  box/.style={draw=accent!70, fill=nodefill, thick, rounded corners=2pt,
+    minimum width=28mm, minimum height=11mm, align=center},
+  kill/.style={box, fill=soft},
+  live/.style={box, fill=white, draw=accent, line width=1pt}
+]
+  \node[kill] (r) at (0,0) {rest\\[-1pt]{\color{muted}fixed point}};
+  \node[kill] (e) at (3.2,0) {erasure\\[-1pt]{\color{muted}shared successor}};
+  \node[kill] (a) at (0,-1.55) {asymmetric\\[-1pt]{\color{muted}smuggled arrow}};
+  \node[live] (t) at (3.2,-1.55) {\textbf{two-cycle}\\[-1pt]{\color{accent}survivor}};
+  \node[muted, font=\scriptsize\sffamily, align=left] at (6.35,-0.75)
+    {ambient excludes\\[-1pt]all but the live\\[-1pt]two-cycle};
+\end{tikzpicture}
+\end{center}
 
 \begin{remark}[Status]
 Theorem~\ref{thm:class} is proved. It is the eliminative engine of the
@@ -250,7 +379,7 @@ Section~\ref{sec:z2}.
 \section{Seal}
 \label{sec:seal}
 
-Dependence: Theorem~\ref{thm:canon} (liveness of fundamentals).
+\dep{Theorem~\ref{thm:canon} (liveness of fundamentals).}
 
 \begin{theorem}[Seal on a fundamental]
 \label{thm:seal}
@@ -277,7 +406,7 @@ corpus text are \emph{refused} (Section~\ref{sec:status}).
 \section{Ladder}
 \label{sec:ladder}
 
-Dependence: Theorem~\ref{thm:seal} (named escapes).
+\dep{Theorem~\ref{thm:seal} (named escapes).}
 
 \begin{definition}[Naming extension and ladder]
 \label{def:ladder}
@@ -383,25 +512,27 @@ The swapped pair $(\sigma,\phi)$ presents the reverse step. Uniqueness
 of $(\phi,\sigma)$ is not used.
 \end{proof}
 
+\Needspace{12em}
 \begin{figure}[ht]
 \centering
 \begin{tikzpicture}[
-  font=\small,
-  m/.style={draw, thick, minimum width=12mm, minimum height=8mm, align=center},
-  arr/.style={-{Latex}, thick}
+  font=\small\sffamily,
+  m/.style={draw=accent!75, fill=nodefill, thick, rounded corners=1.5pt,
+    minimum width=14mm, minimum height=8mm, align=center},
+  arr/.style={-{Stealth[length=2.2mm]}, accent, thick}
 ]
 \node[m] (x) {$x$};
-\node[m, right=12mm of x] (phix) {$\phi x$};
-\node[m, right=12mm of phix] (ux) {$Ux$};
-\draw[arr] (x) -- node[above]{$\phi$} (phix);
-\draw[arr] (phix) -- node[above]{$\sigma$} (ux);
-\node[m, below=14mm of ux] (rev) {$\phi(\sigma\,y)$};
-\node[m, left=12mm of rev] (y) {$y$};
-\draw[arr] (y) -- node[above]{$\sigma$} (rev);
-\draw[arr, dashed] (ux) -- node[right]{\footnotesize inverse} (rev);
-\node[below=3mm of phix, align=center, font=\footnotesize]
+\node[m, right=11mm of x] (phix) {$\phi x$};
+\node[m, right=11mm of phix] (ux) {$Ux$};
+\draw[arr] (x) -- node[above, font=\footnotesize]{$\phi$} (phix);
+\draw[arr] (phix) -- node[above, font=\footnotesize]{$\sigma$} (ux);
+\node[m, below=13mm of ux] (rev) {$\phi(\sigma\,y)$};
+\node[m, left=11mm of rev] (y) {$y$};
+\draw[arr] (y) -- node[above, font=\footnotesize]{$\sigma$} (rev);
+\draw[arr, densely dashed] (ux) -- node[right, font=\scriptsize]{inverse} (rev);
+\node[below=2.5mm of phix, align=center, font=\footnotesize\sffamily]
   {$U=\sigma\comp\phi$};
-\node[below=20mm of phix, align=center, font=\footnotesize]
+\node[below=18mm of phix, align=center, font=\footnotesize\sffamily, text=muted]
   {swap presents $U^{-1}=\phi\comp\sigma$};
 \end{tikzpicture}
 \caption{Two-bounce presentation and swap. Pair labels are conventional;
@@ -420,8 +551,8 @@ finite carriers; Theorem~\ref{thm:swap} promotes the exchange.
 \section{Archive and capacity}
 \label{sec:archive}
 
-Dependence: ladder carrier (Section~\ref{sec:ladder}) as environment;
-registration (Theorem~\ref{thm:reg}).
+\dep{ladder carrier (Section~\ref{sec:ladder}) as environment;
+registration (Theorem~\ref{thm:reg}).}
 
 \begin{theorem}[Archive and capacity]
 \label{thm:caps}
@@ -441,7 +572,7 @@ identifications are refused.
 \section{Arrow as address}
 \label{sec:arrow}
 
-Dependence: registration and archive growth.
+\dep{registration and archive growth.}
 
 \begin{theorem}[Arrow reading]
 \label{thm:arrow}
@@ -458,12 +589,13 @@ packaging: exported only inside ``up to record gauge'' clauses.
 \end{remark}
 
 
+\Needspace{18em}
 \section{One underdetermination and gauges}
 \label{sec:z2}
 
-Dependence: pole swap from Theorem~\ref{thm:canon}; address from
+\dep{pole swap from Theorem~\ref{thm:canon}; address from
 Theorem~\ref{thm:arrow}; channel from Definition~\ref{def:twobounce} and
-Theorem~\ref{thm:swap}.
+Theorem~\ref{thm:swap}.}
 
 \begin{theorem}[One $\Ztwo$, three faces]
 \label{thm:z2}
@@ -480,17 +612,19 @@ Each projection is an involution on a common $\Ztwo$ carrier.
 \begin{figure}[ht]
 \centering
 \begin{tikzpicture}[
-  font=\small,
-  face/.style={draw, circle, minimum size=17mm, align=center, inner sep=1pt},
-  hub/.style={draw, thick, circle, minimum size=13mm, align=center}
+  font=\small\sffamily,
+  face/.style={draw=accent!75, fill=nodefill, thick, circle,
+    minimum size=18mm, align=center, inner sep=1pt},
+  hub/.style={draw=accent, fill=soft, thick, circle,
+    minimum size=14mm, align=center, line width=1pt}
 ]
 \node[hub] (z) {$\Ztwo$};
-\node[face, above left=11mm and 15mm of z] (p) {pole\\swap};
-\node[face, above right=11mm and 15mm of z] (a) {address\\fwd/rev};
-\node[face, below=13mm of z] (c) {channel\\$\varphi/\sigma$};
-\draw[-{Latex}] (p) -- (z);
-\draw[-{Latex}] (a) -- (z);
-\draw[-{Latex}] (c) -- (z);
+\node[face, above left=10mm and 14mm of z] (p) {pole\\swap};
+\node[face, above right=10mm and 14mm of z] (a) {address\\fwd/rev};
+\node[face, below=12mm of z] (c) {channel\\$\varphi/\sigma$};
+\draw[-{Stealth[length=2.2mm]}, accent, thick] (p) -- (z);
+\draw[-{Stealth[length=2.2mm]}, accent, thick] (a) -- (z);
+\draw[-{Stealth[length=2.2mm]}, accent, thick] (c) -- (z);
 \end{tikzpicture}
 \caption{Three faces of one underdetermination (Theorem~\ref{thm:z2}).
 Faces are presentations; the group is stated once.}
@@ -505,6 +639,9 @@ downstream consumption.
 \end{definition}
 
 \begin{center}
+\captionof{table}{Gauge demarcation protecting the single dictionary $\Ztwo$.}
+\label{tab:gauges}
+{\small
 \begin{tabular}{@{}lll@{}}
 \toprule
 Gauge & Locus & Class \\
@@ -516,7 +653,7 @@ Record gauge per tick & Theorem~\ref{thm:arrow} & packaging \\
 Factorisation gauge per step & Theorems~\ref{thm:exists}--\ref{thm:canonfail}
   & packaging \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \end{center}
 
 \begin{remark}[Status]
@@ -583,19 +720,23 @@ confined to marked layers and to Section~\ref{sec:status}.
 \section*{Formal companion}
 \label{sec:companion}
 
-Representative declarations:
-\texttt{classification\_at},
-\texttt{canon\_initial},
-\texttt{symmetric\_excludes\_erase},
-\texttt{seal\_on\_fundamental},
-\texttt{corpus\_not\_universal},
-\texttt{one\_Z2\_three\_faces},
-\texttt{factor\_fin},
-\texttt{canonicity\_fails},
-\texttt{channel\_swap\_is\_reversal},
-\texttt{registration},
-\texttt{caps\_eq},
-\texttt{tick\_identification}.
+Representative declarations (Lean~4; no Mathlib; no $\mathtt{sorry}$):
+\begin{center}
+{\small\ttfamily\raggedright
+classification\_at \textperiodcentered\
+canon\_initial \textperiodcentered\
+symmetric\_excludes\_erase \textperiodcentered\
+seal\_on\_fundamental \textperiodcentered\
+corpus\_not\_universal \textperiodcentered\
+one\_Z2\_three\_faces \textperiodcentered\
+factor\_fin \textperiodcentered\
+canonicity\_fails \textperiodcentered\
+channel\_swap\_is\_reversal \textperiodcentered\
+registration \textperiodcentered\
+caps\_eq \textperiodcentered\
+tick\_identification
+}
+\end{center}
 Axiom footprints are audited per declaration.
 
 \begin{thebibliography}{99}

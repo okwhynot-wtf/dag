@@ -1,5 +1,7 @@
 import Orbit
 import TwoCycle
+import Facticity
+import Ambient
 import Diagonal
 import Tower
 import Ladder
@@ -29,7 +31,7 @@ Generated. Do not edit by hand:
 python3 formal/tools/gen_audit.py
 ```
 
-21 modules, 314 results. Source for `formal/AXIOMS.md`.
+23 modules, 340 results. Source for `formal/AXIOMS.md`.
 -/
 
 -- Orbit (23)
@@ -71,6 +73,36 @@ python3 formal/tools/gen_audit.py
 #print axioms TwoCycle.coproduct_fundamental
 #print axioms TwoCycle.witnessed_fundamental
 #print axioms TwoCycle.fundamental_package
+
+-- Facticity (10)
+#print axioms Facticity.orbit_of_symmetric
+#print axioms Facticity.nondegenerate_two_cycle
+#print axioms Facticity.nondegenerate_live_on_orbit
+#print axioms Facticity.degenerate_not_live_on_orbit
+#print axioms Facticity.liveOnOrbit_iff_nondegenerate
+#print axioms Facticity.live_implies_liveOnOrbit
+#print axioms Facticity.nondegenerate_generated_live
+#print axioms Facticity.NondegeneratePointedAct.liveOnOrbit
+#print axioms Facticity.exists_nondegenerate_pointed_act_model
+#print axioms Facticity.facticity_package
+
+-- Ambient (16)
+#print axioms Ambient.powerId_two_iff_symmetric
+#print axioms Ambient.powerId_one_is_rest
+#print axioms Ambient.idempotentErase_ambient
+#print axioms Ambient.idempotentErase_erasing
+#print axioms Ambient.idempotentErase_not_lossless
+#print axioms Ambient.eqAmbient_pos_need_not_lossless
+#print axioms Ambient.cycle3_powerId
+#print axioms Ambient.cycle3_asymmetric
+#print axioms Ambient.powerId_ge_three_need_not_symmetric
+#print axioms Ambient.cycle3_lossless
+#print axioms Ambient.powerId_two_excludes_erase
+#print axioms Ambient.powerId_two_excludes_arrow
+#print axioms Ambient.powerId_one_is_degenerate
+#print axioms Ambient.ambient_uniqueness_equational
+#print axioms Ambient.injectivity_of_powerId_two
+#print axioms Ambient.ambient_adequacy_package
 
 -- Diagonal (12)
 #print axioms Diagonal.lawvere

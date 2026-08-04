@@ -135,9 +135,22 @@ theorem channel_swap_is_reversal {α : Type} (U : α → α)
       (Bridge.TwoBounce.reverseOf f)) :=
   Bridge.TwoBounce.channel_swap_is_reversal U f
 
+/-- Face projections are involutions: choosing a face representative is
+    packaging once validity is assessed on the ℤ/2 quotient (or after
+    proving equivariance). Absolute orientation, when present downstream,
+    is certificate-supplied data. -/
+theorem face_choice_is_packaging :
+    (∀ f : Face, ∀ b : Z2, project f (project f b) = b) ∧
+    (∀ a : Obs.Recovery.Address, addressSwap (addressSwap a) = a) ∧
+    (∀ c : Channel, channelSwap (channelSwap c) = c) ∧
+    (∀ b : Bool, poleSwap (poleSwap b) = b) :=
+  ⟨project_involution, address_swap_involution,
+   channel_swap_involution, pole_swap_involution⟩
+
 #print axioms one_Z2_three_faces
 #print axioms addressBit_roundtrip
 #print axioms dm_two_readings
 #print axioms channel_swap_is_reversal
+#print axioms face_choice_is_packaging
 
 end Bridge.OneZ2

@@ -96,6 +96,11 @@ def main() -> int:
     add("")
     add("The spine target is a zero-axiom footprint for every result.")
     add("")
+    add("Architectural (non-Lean) audited residue, inventoried in the paper's")
+    add("Section 12: existence of a non-degenerate pointed act. Lean records a")
+    add("Bool *model* (`Facticity.exists_nondegenerate_pointed_act_model`) and")
+    add("refuses discharge as world-from-Bool; it does not declare a kernel axiom.")
+    add("")
 
     total = clean_n = 0
     missing_names: list[str] = []

@@ -15,12 +15,19 @@ Legend:
 
 The spine target is a zero-axiom footprint for every result.
 
+Architectural (non-Lean) audited residue, inventoried in the paper's
+Section 12: existence of a non-degenerate pointed act. Lean records a
+Bool *model* (`Facticity.exists_nondegenerate_pointed_act_model`) and
+refuses discharge as world-from-Bool; it does not declare a kernel axiom.
+
 ## `formal/spine/`
 
 | Module | results | clean | propext | propext + Quot.sound | declared |
 |---|---:|---:|---:|---:|---:|
 | `Orbit` | 23 | 23 |  |  |  |
 | `TwoCycle` | 13 | 13 |  |  |  |
+| `Facticity` | 10 | 10 |  |  |  |
+| `Ambient` | 16 | 16 |  |  |  |
 | `Diagonal` | 12 | 12 |  |  |  |
 | `Tower` | 25 | 25 |  |  |  |
 | `Ladder` | 10 | 10 |  |  |  |
@@ -79,7 +86,7 @@ The spine target is a zero-axiom footprint for every result.
 |---|---:|---:|---:|---:|---:|
 | `Alphabet` | 7 | 7 |  |  |  |
 | `Capacity` | 13 | 9 | 4 |  |  |
-| `OneZ2` | 11 | 11 |  |  |  |
+| `OneZ2` | 12 | 12 |  |  |  |
 | `RegistrationSpine` | 8 | 8 |  |  |  |
 | `TickSimulation` | 21 | 17 | 4 |  |  |
 | `Environment` | 15 | 15 |  |  |  |
@@ -109,7 +116,7 @@ The spine target is a zero-axiom footprint for every result.
 
 | Module | results | clean | propext | propext + Quot.sound | declared |
 |---|---:|---:|---:|---:|---:|
-| `Certificate` | 4 | 4 |  |  |  |
+| `Certificate` | 8 | 8 |  |  |  |
 | `LCertificate` | 2 | 2 |  |  |  |
 | `Quintom.Kernel` | 8 | 8 |  |  |  |
 | `Quintom.Certificate` | 8 | 8 |  |  |  |
@@ -123,5 +130,5 @@ The spine target is a zero-axiom footprint for every result.
 | `NoClone` | 11 | 11 |  |  |  |
 | `MetaProblem` | 11 | 9 | 2 |  |  |
 
-Totals: 1305 audited results; 1115 clean.
+Totals: 1336 audited results; 1146 clean.
 

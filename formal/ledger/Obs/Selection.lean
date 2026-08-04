@@ -3,57 +3,31 @@ import Geom.Ledger
 /-!
 # Obs.Selection
 
-Observer selection on a finite swap conveyor, formalised from the dynamics up.
+Observer selection on a finite swap conveyor.
 
 A **state** is the system bit together with `N` environment cells
-(`Bool × List Bool`, cell list of length `N`).  The kernel is SWAP: tick `t`
-exchanges the system bit with cell `t % N` (`step`).  `forwardFrom x0 D N` runs
-the ticks at phases `0, 1, …, D-1` in order.
+(`Bool × List Bool`). Tick `t` exchanges the system bit with cell `t % N`
+(`step`); `forwardFrom x0 D N` runs phases `0, …, D-1`.
 
-The **fiducial** (product) initial states are the two states with every cell
-blank (`fiducials`).  `Prop_D` (`propList`) is their image under
-`forwardFrom · D N`.  The depth-`D` **observer stock** (`stock`) is the system
-bit together with cells `0 … D-1`; `Syn_D` (`synList`) is every `N`-cell state
-whose stock equals the stock of some propagated state, and
-`Conf_D = Syn_D \ Prop_D` (`confList`).
+Fiducial (product) initials are the blank-cell states (`fiducials`);
+`Prop_D` (`propList`) is their image under `forwardFrom · D N`. The
+depth-`D` **observer stock** (`stock`) is the system bit with cells
+`0 … D-1`; `Syn_D` (`synList`) is every `N`-cell state sharing such a
+stock; `Conf_D = Syn_D \ Prop_D` (`confList`).
 
-Nothing below is stipulated.  The dynamical input is `propagated_state`: for
-`1 ≤ D ≤ N` and any system bit `s`,
+For `1 ≤ D ≤ N`, `propagated_state` gives
+`forwardFrom (s, replicate N false) D N = (false, s :: replicate (N-1) false)`,
+and the cardinalities follow:
 
-    forwardFrom (s, replicate N false) D N = (false, s :: replicate (N-1) false)
-
-— the first tick moves the system bit into cell `0`, and every later tick (at
-phase `1 ≤ i ≤ D-1 ≤ N-1`) swaps blank with blank.  From that:
-
-* `|Prop_D| = 2`                  (`propList_length`, `propList_distinct`)
-* `|Syn_D|  = 2^{N-D+1}`          (`synList_length`, `synList_distinct`)
-* `|Conf_D| = 2^{N-D+1} - 2`      (`confList_length`, `confList_distinct`)
+* `|Prop_D| = 2` (`propList_length`, `propList_distinct`)
+* `|Syn_D| = 2^{N-D+1}` (`synList_length`, `synList_distinct`)
+* `|Conf_D| = 2^{N-D+1} - 2` (`confList_length`, `confList_distinct`)
 * `Syn_N = Prop_N`, `Conf_N = []` (`syn_eq_prop_at_max`, `conf_empty_at_max`)
 
-Each list is `Distinct`, so its `length` really is the cardinality of the set
-it enumerates.  The enumerations are pinned to the semantics by
-`mem_synList_iff` (a state lies in `synList` iff it has `N` cells and shares a
-depth-`D` observer stock with a propagated state) and `mem_confList_iff`
-(`confList` is exactly `synList` minus `propList`).  Both genuinely need
-`1 ≤ D` and `D ≤ N`: outside that window the conveyor has not written the cells
-the observer reads and the closed forms fail.
-
-`mem_propList_iff` is the Lean form of the Python's `archive_determines_imprint`
-— the depth-`D` archive pins the imprint bit, so `Prop_D` has exactly the two
-elements indexed by that bit.
-
-Pin: `python/obs/selection.py` checks the same counts exhaustively for
-`N ≤ 8`, `1 ≤ D ≤ N` (and raises for `D < 1` or `D > N`).  There the observer's
-cell list is `recent_cells D ((D-1) % N) N`, i.e. `[(D-1-(D-1-k)) % N | k < D]`,
-which is exactly `[0, 1, …, D-1]` whenever `D ≤ N`; `stock` takes that
-simplified form as its definition.
-
-Not proved here: anything about `D = 0` or `D > N` (there are no closed forms
-to prove there), and nothing about non-product initial states.
-
-Bare prelude, no Mathlib.  Core `List`/`Nat` lemmas such as `List.length_append`
-carry `propext`, so the arithmetic and list plumbing below is proved locally to
-keep every declaration in this file axiom-free.
+Membership characterisations: `mem_synList_iff`, `mem_confList_iff`,
+`mem_propList_iff` (depth-`D` archive pins the imprint bit). Enumerations
+are `Distinct`, so `length` equals set cardinality. Statements use
+`1 ≤ D ≤ N`.
 -/
 
 namespace Obs.Selection

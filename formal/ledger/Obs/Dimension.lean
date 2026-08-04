@@ -64,10 +64,9 @@ theorem ascent_comparable {tTurn i j : Nat}
 
 /-! ### Dushnik--Miller dimension
 
-Order dimension is *defined* here, not stipulated: the dimension of an order
-is the least size of a family of linear extensions whose intersection, on the
-window, is the order itself. Dimension one then has to be proved (a realiser
-of size one exists) and lower-bounded (no realiser of size zero does). -/
+Order dimension is the least size of a family of linear extensions whose
+intersection, on the window, is the order. Dimension one is realised by a
+single extension and has no size-zero realiser. -/
 
 /-- `L` is a strict linear order on the window `{0,…,tTurn}`. -/
 def StrictLinear (tTurn : Nat) (L : Nat → Nat → Prop) : Prop :=

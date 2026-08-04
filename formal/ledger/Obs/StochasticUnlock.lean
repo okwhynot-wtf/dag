@@ -136,9 +136,8 @@ theorem marginal_autonomy_price (RLs : List RL)
 
 /-! ## Soundness (Theorem S1)
 
-Under an autonomous marginal law (supplied by strong lumpability; bridge
-pinned computationally), a pair merged at imprint is merged at every
-horizon. Pure induction plus garble_congr. -/
+Under an autonomous marginal law, a pair merged at imprint is merged at
+every horizon (`merged_forever`). -/
 
 theorem merged_forever (RLs : List RL)
     {law₁ law₂ : Nat → RL → Q} (g : RL → RL → Q)
@@ -234,12 +233,10 @@ theorem access_or_autonomy (RLs : List RL) (RUs : List RU)
 /-! ## Blackwell layer
 
 Experiments are content-indexed laws. A channel garbling the locked
-experiment into the probe experiment on a whole content list transports law
-agreement content-by-content; consequently a probe separating any merged
-pair escapes the garbling downset of the locked experiment on every ensemble
-containing the pair. The converse machinery -- deciding the garbling order
-with exact certified linear programming and reading Farkas certificates as
-decision problems -- lives in `stoch/blackwell.py`. -/
+experiment into the probe experiment on a content list transports law
+agreement content-by-content; a probe separating any merged pair is not in
+the garbling downset of the locked experiment on any ensemble containing
+the pair. -/
 
 /-- Garbling refines merging: a probe in the garbling downset of the locked
 experiment separates nothing the locked experiment merges. Free probes are
@@ -273,13 +270,9 @@ theorem ensemble_access_price (RLs : List RL) (RUs : List RU)
 
 /-! ## Counting form of the alphabet bound
 
-An injective ("unital", entropy-capacity-preserving) dilation of a merge
-must write pairwise-distinct environment records for the merged states: the
-environment alphabet is at least the merge's in-degree, so its entropy
-capacity is at least ln K. Pure logic, no algebra: the thermodynamic ledger
-The quantitative
-clauses (entropy accounting, detailed-balance entropy production, the
-Sagawa-Ueda register terms) live in `stoch/thermo.py`. -/
+An injective dilation of a merge writes pairwise-distinct environment
+records for the merged states: the environment alphabet is at least the
+merge in-degree (counting form of the ln K capacity bound). -/
 
 /-- Pair extensionality, prelude-safe. -/
 theorem pair_ext {α β : Type} {p q : α × β}
@@ -304,27 +297,18 @@ theorem env_records_distinct {X E S E' : Type} (G : X × E → S × E')
 
 /-! ## Second law (counting form)
 
-What the spine can honestly derive of the second law, in its own discipline
-(prelude only, no order or algebra on `Q`, empty axiom footprint), is the
-exact combinatorial skeleton beneath the H-theorem: distinguishability as a
-Lyapunov function. Count the distinguishability classes of a content
-ensemble -- laws compared by `EqOn` at the declared readout values. Then:
+Distinguishability class count as a Lyapunov function on content ensembles
+(laws compared by `EqOn` at declared readout values):
 
 * **Arrow** (`second_law_arrow`): under any autonomous stochastic law the
-  class count never increases. Counting form of monotone D(μ‖ν): channels
-  lose distinguishability, exactly, with no logarithm.
-* **Strict arrow** (`second_law_strict`): at a merge event -- a pair
-  separated at `n`, merged at `n+1` -- the count strictly drops.
-* **No revival**: merged stays merged (`merged_forever`); an increase (a
-  crossing step) is impossible autonomously (`marginal_autonomy_price`).
-  The arrow is imported exactly where the hypothesis list says: the
-  autonomous Markov step.
+  class count never increases.
+* **Strict arrow** (`second_law_strict`): at a merge (separated at `n`,
+  merged at `n+1`) the count strictly drops.
+* **No revival**: merged stays merged (`merged_forever`); an autonomous
+  increase is impossible (`marginal_autonomy_price`).
 * **Ledger** (`env_records_distinct_list`, `env_alphabet_ge_indegree`):
-  Distinguishability lost by the
-  system is not destroyed: any injective dilation of a K-fold merge writes
-  K pairwise-distinct environment records, so the environment alphabet is
-  at least K and its entropy capacity at least ln K. The quantitative
-  reading (logs, KL, σ ≥ 0) stays pinned in `stoch/thermo.py` (T3). -/
+  an injective dilation of a K-fold merge writes K pairwise-distinct
+  environment records, so the environment alphabet is at least K. -/
 
 /-- Number of distinguishability classes represented in a list: an element
 scores iff nothing later in the list is equivalent to it (count of last
@@ -508,7 +492,7 @@ theorem second_law_strict (RLs : List RL) (law : Nat → C → RL → Q)
     (fun _ _ _ hab hbc r hr => Eq.trans (hab r hr) (hbc r hr))
     Cs ⟨c₁, h₁, c₂, h₂, hmerge, hsep⟩
 
-/-! ### The ledger: distinguishability is exported, not destroyed -/
+/-! ### The ledger: distinct environment records -/
 
 /-- Pairwise distinctness of a list. -/
 def Distinct : List α → Prop
@@ -620,12 +604,10 @@ theorem env_records_distinct_list {X E S E' : Type} (G : X × E → S × E')
             (Eq.symm (hsys z (mem_tail x hz))))
     · exact ih hd.2 (fun z hz => hsys z (mem_tail x hz))
 
-/-- **The second law, ledger clause.** The ln K bound for arbitrary K in
-counting form: the environment alphabet of an injective dilation is at
-least the merge's in-degree, so its entropy capacity is at least ln K
-(logarithm read in `stoch/thermo.py`). Distinguishability lost by the
-system under `second_law_strict` is written, distinct record by distinct
-record, into the environment. -/
+/-- **The second law, ledger clause.** Counting form of the ln K bound:
+the environment alphabet of an injective dilation is at least the merge
+in-degree. Distinguishability lost under `second_law_strict` is written
+as pairwise-distinct environment records. -/
 theorem env_alphabet_ge_indegree {X E S E' : Type} [DecidableEq E']
     (G : X × E → S × E')
     (hinj : ∀ a b : X × E, G a = G b → a = b) (e0 : E) (s : S)
@@ -643,27 +625,17 @@ theorem env_alphabet_ge_indegree {X E S E' : Type} [DecidableEq E']
 
 /-! ## Second law (quantitative form)
 
-Logarithmic entropy is beyond the prelude discipline, but a quantitative
-H-theorem is not. The collision probability (purity) `Σ_r p(r)²` contracts
-under every doubly stochastic kernel, so Tsallis-2 (linear) entropy
-`1 - Σp²` never decreases: an exact-arithmetic second law whose only
-inequality input is the two-point convexity of squares, `(a-b)² ≥ 0`. It
-responds continuously as laws approach each other -- the quantitative
-counterpart of the discrete class count, driven by the same kernel
-hypotheses. The algebraic interface (`EOR`) is declared field by field and
-discharged at exact rationals in the Python layer; the logarithmic ledger
-(Shannon, KL, data processing) stays pinned in `stoch/thermo.py` (T3), and
-a Mathlib tier for the classical `ΔS ≥ 0` remains open as future work. -/
+Collision probability (purity) `Σ_r p(r)²` contracts under every doubly
+stochastic kernel, so Tsallis-2 entropy `1 - Σp²` never decreases. The only
+inequality input is two-point convexity of squares, `(a-b)² ≥ 0`. The
+algebraic interface is the ordered bundle `EOR`. -/
 
 section Quantitative
 
 variable [OfNat Q 1] [LE Q]
 
-/-- The declared algebraic interface for the quantitative layer: an ordered
-commutative-semiring fragment. `amgm2` is `(a-b)² ≥ 0` expanded without
-subtraction; `halve` is order-halving. Every quantitative hypothesis of the
-second law is a named field here; instantiation at exact rationals is
-discharged computationally. -/
+/-- Ordered commutative-semiring fragment for the quantitative layer.
+    `amgm2` is `(a-b)² ≥ 0` without subtraction; `halve` is order-halving. -/
 class EOR (Q : Type) [Add Q] [Mul Q] [OfNat Q 0] [OfNat Q 1] [LE Q] : Prop where
   addA   : ∀ a b c : Q, a + b + c = a + (b + c)
   addC   : ∀ a b : Q, a + b = b + a
@@ -969,14 +941,9 @@ end Quantitative
 /-! ### Non-vacuity witness for the ordered layer
 
 The quantitative second law (`purity_garble_le`, `second_law_purity`,
-`second_law_tsallis`) consumes the ordered bundle `EOR`, which is strictly
-stronger than the unordered `SRData`-style interfaces: it carries an order,
-`amgm2`, and order-halving. `natEOR` shows the bundle has a nondegenerate
-model inside the prelude discipline -- `Nat` with its native order -- at an
-empty axiom footprint. (The intended working instantiation is `Rat`, whose
-fields are the corresponding ordered-field facts; it lives one Mathlib
-import away, and its arithmetic content is exercised at exact rationals in
-`stoch/thermo.py`.) -/
+`second_law_tsallis`) uses the ordered bundle `EOR` (order, `amgm2`,
+order-halving). `natEOR` exhibits a nondegenerate model: `Nat` with its
+native order. -/
 
 /-- Right distributivity on `Nat`, reproved from the axiom-free core facts
 (`Nat.add_mul` may carry `propext`). -/

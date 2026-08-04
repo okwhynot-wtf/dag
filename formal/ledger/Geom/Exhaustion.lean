@@ -664,12 +664,11 @@ theorem exhaustion [DecidableEq Eint] (hU : Inj U) (T K : Nat)
   rw [length_map_eq] at hlen
   exact Nat.le_trans (freshVecs_length_ge es T hK) hlen
 
-/-- **A2, contrapositive (the headline: freshness fails by the
-exhaustion tick).** If the marginal keeps merging its `K ≥ ·` scheduled
-units and the buffer stays schedule-confined, but the tick-`T` capacity
-is smaller than `K ^ T`, then at some tick `t < T` the stream slot
-distinguishes a merged datum: the record ships out. The failing tick is
-found by decidable bounded search. -/
+/-- **A2, contrapositive.** If the marginal keeps merging its `K ≥ ·`
+scheduled units and the buffer stays schedule-confined, but tick-`T`
+capacity is smaller than `K ^ T`, then at some tick `t < T` the stream
+slot distinguishes a merged datum. The failing tick is obtained by
+decidable bounded search. -/
 theorem freshness_fails [DecidableEq Eout] [DecidableEq Eint]
     (hU : Inj U) (T K : Nat)
     (hm : ∀ t, t < T → MergesAt U σ es caps t)

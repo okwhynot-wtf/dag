@@ -62,11 +62,11 @@ theorem continuum_displaced_locked_merged
 
 /-! ## Continuum ledger: DPI under induced readout maps
 
-  On a continuum ambient carrier, image-counting `|Im|` is not the right
-  historical monotone. When an induced readout map `g` exists
-  (`read ∘ step = g ∘ read`), the Shannon mutual information satisfies
-  `I(C₀; R_{t+1}) ≤ I(C₀; R_t)` by data processing. We package that as an
-  abstract DPI witness (computational exact-bit pins in Python).
+  On a continuum ambient carrier, image-counting `|Im|` is not the historical
+  monotone. When an induced readout map `g` exists
+  (`read ∘ step = g ∘ read`), Shannon mutual information satisfies
+  `I(C₀; R_{t+1}) ≤ I(C₀; R_t)` by data processing. `ContinuumDPILedger`
+  records that monotonicity abstractly.
 -/
 
 /-- Abstract DPI ledger along iterates of an induced readout map. -/
@@ -77,8 +77,8 @@ structure ContinuumDPILedger (Readout : Type) where
   /-- Data-processing monotonicity along g. -/
   dpi_monotone : ∀ t : Nat, I (t + 1) ≤ I t
 
-/-- From an induced readout map, a DPI ledger is the continuum historical package.
-    Existence of concrete I is computational (Python); structure records the law. -/
+/-- From an induced readout map, a DPI ledger records the continuum
+    historical monotonicity law for a supplied `I`. -/
 def ledger_of_induced_dpi
     {Readout : Type}
     (g : Readout → Readout)

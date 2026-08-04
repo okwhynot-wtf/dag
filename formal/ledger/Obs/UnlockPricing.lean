@@ -47,9 +47,8 @@ theorem no_postprocessing_of_separating
 
 /-- A separating probe lies strictly outside the locked algebra in the
     refinement order: `readU ⋠ readL`. No global post-processing of the
-    locked readout reproduces the probe, since restricting one to the
-    pair's `t`-states would contradict the access price. This is the
-    formal content of "genuinely new observational access". -/
+    locked readout reproduces the probe: restricting one to the pair's
+    `t`-states would contradict the access price. -/
 theorem separating_probe_not_coarsening
     {X Content ReadLocked ReadUnlocked : Type}
     {step : X → X} {book : Content → X}
@@ -91,8 +90,8 @@ theorem displacement_pays_access
 
 /-- **Autonomy price.** Broken read-closure means no induced readout map
     exists: there is no `g : R → R` with `read ∘ step = g ∘ read`, so the
-    readout process is not a self-contained dynamical system and the
-    historical monotonicity guarantee is forfeit. -/
+    readout process is not autonomous and historical monotonicity from
+    read-closure does not apply. -/
 theorem broken_closure_pays_autonomy
     {X Readout : Type} {step : X → X} {read : X → Readout}
     (hn : NotReadClosed step read) :

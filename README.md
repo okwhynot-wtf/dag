@@ -11,6 +11,8 @@ Layer 0  SPINE        formal/spine
 
 Downward imports only. Bridge theorems live in `formal/bridge/`.
 
+Symbolic law: [`docs/DAG_SYMBOLIC.txt`](docs/DAG_SYMBOLIC.txt).
+
 ## Verify
 
 ```bash

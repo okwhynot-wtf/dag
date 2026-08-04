@@ -29,6 +29,7 @@
 | Dil carrier reachability (record-generated) | `Bridge.Dil.inductive_carrier_reachable` | Bridge |
 | R-1 recombination budget fragment | `Bridge.RecombinationBudget.r1_recombination_budget_fragment` | Bridge |
 | O-3 restriction fragment | `Bridge.LedgerSheaf.o3_restriction_fragment` | Bridge |
+| O-3 dynamics-section fragment | `Bridge.LedgerSheaf.o3_dynamics_section_fragment` | Bridge |
 | T-12 measure fragment (uniform / no selector) | `Bridge.BranchMeasure.T12_measure_fragment` | Bridge |
 | Finite Ollivier trial (counting transport) | `Bridge.BranchMeasure.ollivier_trial_fragment` | Bridge |
 | Partial Lorentzian dictionary (no Lorentz group) | `Bridge.LorentzianDict.partial_lorentzian_dictionary` | Bridge |

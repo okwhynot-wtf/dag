@@ -21,7 +21,7 @@ caricatures are in scope; continuum identifications are not.
 
 | Item | Attack shape |
 |---|---|
-| **O-3 ledger sheaf** | Stalk glue + **restriction fragment** landed (`restrictTo`); full dynamics sheaf still open |
+| **O-3 ledger sheaf** | Stalk glue + restriction + **dynamics-section fragment** landed (`DynamicsSection` / `o3_dynamics_section_fragment`); Mathlib sheaf/site + continuum locality still open |
 | **R-1 recombination budget** | **Counting landed** (`RecombinationBudget`: tree face demand ≤ `|caps d|`; expand can fail at d=1). Ultrametric ≠ space remains structural |
 | **Combinatorial temperature caricature** | **E1 landed** + **period-2/KMS toy** (`Period2KMS.period2_kms_caricature`). Not Unruh / continuum KMS |
 | **Finite-mode Page / Bogoliubov toy** | **E2 Page horizon landed** (T-10 thermal→speech + matter channel). Bogoliubov / continuum QFT stays refused |
@@ -75,7 +75,8 @@ I-4 L-certificate: **Page**;
 T-12 Branch/measurement no-go: **NoClone** paired with Lossless.
 T-16 discharges the Jacobson *skeleton* (capacity, Landauer, seal-horizon,
 saturation EoS, Forman `G~T` caricature, local ledger stalks). Continuum
-Einstein remains refused; O-2 structural; O-3 / R-1 budget in tractable open.
+Einstein remains refused; O-2 structural; O-3 Mathlib sheaf / R-1 ultrametric
+in tractable/structural open (counting + dynamics sections landed).
 
 ## Interpretation (hedged)
 

@@ -259,7 +259,8 @@ Forman) plus the discrete `G ~ T` caricature: unpaid Forman flatness on
 an edge is paid by registered 2-cells; at saturation, stress-energy proxy
 (record flux) equals consumed capacity; local ledger stalks over branch
 loci with overlap compatibility. Continuum field equations **do not fall
-out** — O-2 (no Unruh `T`), O-3 (no ledger sheaf), O-4/O-5, R-1 remain.
+out** — O-2 (no Unruh `T`), O-3 (Mathlib sheaf/site still open; dynamics
+sections landed), O-4/O-5, R-1 remain.
 Refused: `G_{μν} = 8π T_{μν}` as Lean; temperature; continuum metric.
 
 ---
@@ -325,7 +326,8 @@ from the opposite direction. File as coincidence until a theorem promotes it.
 Canonical detail: `docs/RESIDUE.md`. Summary:
 
 **Tractable open work (Lean-attackable):**
-- **O-3** sheaf of local ledgers (glue `LocalLedgerPatch` stalks);
+- **O-3** sheaf of local ledgers (stalk glue + dynamics sections landed;
+  Mathlib sheaf/site still open);
 - **R-1 recombination budget** — faces-per-node vs aliveness cost of
   Forman near-flatness (ultrametric obstruction real; counting is Lean);
 - combinatorial temperature caricature (counting entropy / period-2 toys;

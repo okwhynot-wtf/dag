@@ -344,6 +344,22 @@ theorem milestone_o3_restrict :
   ⟨fun p ℓ => Bridge.LedgerSheaf.restrict_preserves_capacity p ℓ,
    Bridge.Alphabet.Kmin_eq⟩
 
+/-- O-3 dynamics-section fragment: balanced patches restrict/glue Fin-combinatorially. -/
+theorem milestone_o3_dynamics :
+    (∀ {X E S E' : Type}
+      (σ : Bridge.LedgerSheaf.DynamicsSection X E S E') ℓ,
+      (σ.restrict ℓ).patch.alphabet.length = σ.patch.alphabet.length) ∧
+    (∀ {X E S E' : Type}
+      (σ τ : Bridge.LedgerSheaf.DynamicsSection X E S E'),
+      Bridge.EinsteinSkeleton.OverlapCompatible σ.patch τ.patch →
+      σ.patch.locus = τ.patch.locus →
+        Bridge.EffectiveMatter.effectiveMatter σ.patch =
+          Bridge.EffectiveMatter.effectiveMatter τ.patch) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨fun σ ℓ => Bridge.LedgerSheaf.dynamicsSection_restrict_capacity σ ℓ,
+   fun σ τ hov hl => Bridge.LedgerSheaf.dynamicsSection_glue_matter σ τ hov hl,
+   Bridge.Alphabet.Kmin_eq⟩
+
 theorem milestone_r1_budget :
     (∀ d, 1 ≤ d →
       Bridge.RecombinationBudget.facesToFlatten d ≤
@@ -468,6 +484,7 @@ theorem bridge_arc :
 #print axioms milestone_phase_D
 #print axioms milestone_o3_glue
 #print axioms milestone_o3_restrict
+#print axioms milestone_o3_dynamics
 #print axioms milestone_r1_budget
 #print axioms milestone_phase_E
 #print axioms milestone_area_as_caps

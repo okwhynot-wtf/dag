@@ -3,18 +3,20 @@ import EffectiveMatter
 import Alphabet
 
 /-!
-# O-3 fragment — stalk glue for local ledger patches
+# O-3 fragment — stalk glue + dynamics sections for local ledger patches
 
 Jacobson needs independent local balance laws. T-16 supplies stalks
-(`LocalLedgerPatch`). This module begins the sheaf programme:
+(`LocalLedgerPatch`). This module advances the sheaf programme:
 
 - covers with pairwise `OverlapCompatible` patches
 - glue: same locus ⇒ equal capacity length
 - effective matter (fiber length) agrees whenever both patches are
   length-saturated against a shared capacity
+- restriction maps (`restrictTo`) preserving capacity / matter / balance
+- `DynamicsSection` = balanced local patch; restrict + glue lemmas
 
-Not a full sheaf (no restriction maps, no gluable sections of dynamics).
-Continuum locality refused; this is combinatorial stalk agreement.
+Fence: Fin-combinatorial stalk agreement only — not a Mathlib sheaf/site;
+does not close `OpenGap.O3_noLedgerSheaf`; continuum locality refused.
 -/
 
 namespace Bridge.LedgerSheaf
@@ -193,6 +195,89 @@ theorem o3_restriction_fragment :
    fun p q hcap ℓ => restrict_overlap_of_cap p q hcap ℓ,
    Bridge.Alphabet.Kmin_eq⟩
 
+/-- A **dynamics section** on a local ledger patch: the fiber saturates
+    the alphabet (balance / area-as-caps reading). This is the Fin-combinatorial
+    stand-in for a section of an O-3 “dynamics sheaf” — not a Mathlib sheaf. -/
+structure DynamicsSection (X E S E' : Type) where
+  patch : LocalLedgerPatch X E S E'
+  balanced : patch.fiber.length = patch.alphabet.length
+
+/-- Restrict a dynamics section; balance is preserved. -/
+def DynamicsSection.restrict {X E S E' : Type}
+    (σ : DynamicsSection X E S E') (locus' : Nat) :
+    DynamicsSection X E S E' where
+  patch := restrictTo σ.patch locus'
+  balanced := by
+    simpa [restrict_preserves_fiber, restrict_preserves_capacity]
+      using σ.balanced
+
+theorem dynamicsSection_restrict_capacity {X E S E' : Type}
+    (σ : DynamicsSection X E S E') (locus' : Nat) :
+    (σ.restrict locus').patch.alphabet.length =
+      σ.patch.alphabet.length :=
+  restrict_preserves_capacity σ.patch locus'
+
+theorem dynamicsSection_restrict_matter {X E S E' : Type}
+    (σ : DynamicsSection X E S E') (locus' : Nat) :
+    effectiveMatter (σ.restrict locus').patch =
+      effectiveMatter σ.patch :=
+  restrict_preserves_effectiveMatter σ.patch locus'
+
+/-- Overlap-compatible dynamics sections at equal locus agree on capacity
+    and effective matter (zero under balance). -/
+theorem dynamicsSection_glue_capacity {X E S E' : Type}
+    (σ τ : DynamicsSection X E S E')
+    (hov : OverlapCompatible σ.patch τ.patch)
+    (hlocus : σ.patch.locus = τ.patch.locus) :
+    σ.patch.alphabet.length = τ.patch.alphabet.length :=
+  glue_capacity_on_locus hov hlocus
+
+theorem dynamicsSection_glue_matter {X E S E' : Type}
+    (σ τ : DynamicsSection X E S E')
+    (hov : OverlapCompatible σ.patch τ.patch)
+    (hlocus : σ.patch.locus = τ.patch.locus) :
+    effectiveMatter σ.patch = effectiveMatter τ.patch :=
+  glue_effectiveMatter_at_saturation_length
+    hov hlocus σ.balanced τ.balanced
+
+/-- Two dynamics sections with equal capacity restrict to an overlap-compatible
+    cover (Fin toy glue for the dynamics layer). -/
+theorem dynamicsSection_cover_compatible {X E S E' : Type}
+    (σ τ : DynamicsSection X E S E')
+    (hcap : σ.patch.alphabet.length = τ.patch.alphabet.length)
+    (ℓ : Nat) :
+    OverlapCompatible (σ.restrict ℓ).patch (τ.restrict ℓ).patch :=
+  restrict_overlap_of_cap σ.patch τ.patch hcap ℓ
+
+/-- **O-3 dynamics-section fragment.** Balanced local patches (= dynamics
+    sections) restrict with preserved capacity/matter; glue on overlap at equal
+    locus; cover restriction stays overlap-compatible. Fence: Fin-combinatorial
+    stalk agreement only — not a Mathlib sheaf/site; does not close
+    `OpenGap.O3_noLedgerSheaf`; no continuum locality. -/
+theorem o3_dynamics_section_fragment :
+    (∀ {X E S E' : Type} (σ : DynamicsSection X E S E') ℓ,
+      (σ.restrict ℓ).patch.alphabet.length = σ.patch.alphabet.length) ∧
+    (∀ {X E S E' : Type} (σ : DynamicsSection X E S E') ℓ,
+      effectiveMatter (σ.restrict ℓ).patch = effectiveMatter σ.patch) ∧
+    (∀ {X E S E' : Type} (σ τ : DynamicsSection X E S E'),
+      OverlapCompatible σ.patch τ.patch →
+      σ.patch.locus = τ.patch.locus →
+        σ.patch.alphabet.length = τ.patch.alphabet.length) ∧
+    (∀ {X E S E' : Type} (σ τ : DynamicsSection X E S E'),
+      OverlapCompatible σ.patch τ.patch →
+      σ.patch.locus = τ.patch.locus →
+        effectiveMatter σ.patch = effectiveMatter τ.patch) ∧
+    (∀ {X E S E' : Type} (σ τ : DynamicsSection X E S E')
+      (hcap : σ.patch.alphabet.length = τ.patch.alphabet.length) ℓ,
+      OverlapCompatible (σ.restrict ℓ).patch (τ.restrict ℓ).patch) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨fun σ ℓ => dynamicsSection_restrict_capacity σ ℓ,
+   fun σ ℓ => dynamicsSection_restrict_matter σ ℓ,
+   fun σ τ hov hl => dynamicsSection_glue_capacity σ τ hov hl,
+   fun σ τ hov hl => dynamicsSection_glue_matter σ τ hov hl,
+   fun σ τ hcap ℓ => dynamicsSection_cover_compatible σ τ hcap ℓ,
+   Bridge.Alphabet.Kmin_eq⟩
+
 #print axioms glue_capacity_on_locus
 #print axioms cover_glue_capacity
 #print axioms glue_effectiveMatter_at_saturation_length
@@ -200,5 +285,7 @@ theorem o3_restriction_fragment :
 #print axioms o3_stalk_glue_fragment
 #print axioms o3_restriction_fragment
 #print axioms restrict_preserves_balance
+#print axioms o3_dynamics_section_fragment
+#print axioms dynamicsSection_glue_matter
 
 end Bridge.LedgerSheaf

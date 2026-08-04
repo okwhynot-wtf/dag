@@ -7,9 +7,11 @@ import Obs.Dimension
 # T-14 Forman–Ricci curvature on the branch tree
 
 Measure-free combinatorial curvature (Forman): for an unweighted edge,
-`Ric_F = (4 + #faces) − deg(u) − deg(v)`. Ollivier–Ricci is refused
-(needs measures). Metric/Riemann curvature remains unstateable (needs
-space + signature — R-1), which is absence, not preclusion.
+`Ric_F = (4 + #faces) − deg(u) − deg(v)`. Continuum / measure-theoretic
+Ollivier–Ricci is refused; a finite counting trial lives in
+`BranchMeasure.ollivier_trial_fragment`. Metric/Riemann curvature remains
+unstateable (needs space + signature — R-1), which is absence, not
+preclusion.
 
 On the K-ary branch tree with `K = Kmin = 2`:
   root degree 2; every internal node degree `K+1 = 3`.

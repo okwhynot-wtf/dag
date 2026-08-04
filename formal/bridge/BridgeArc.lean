@@ -255,6 +255,16 @@ theorem milestone_T12_measure :
     Bridge.Alphabet.Kmin = 2 :=
   ⟨Bridge.BranchMeasure.T12_measure_fragment.1, Bridge.Alphabet.Kmin_eq⟩
 
+/-- Finite Ollivier-style trial (counting transport; continuum refused). -/
+theorem milestone_ollivier_trial :
+    Bridge.Forman.StrictlyNegative
+      (Bridge.Forman.internalDeg Bridge.Alphabet.Kmin)
+      (Bridge.Forman.internalDeg Bridge.Alphabet.Kmin) ∧
+    Bridge.BranchMeasure.continuum_ollivier_refused = True.intro ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨Bridge.BranchMeasure.uniform_mass_preserves_forman_neg,
+   rfl, Bridge.Alphabet.Kmin_eq⟩
+
 theorem milestone_T13 :
     (∀ T, Bridge.Expansion.countedVolume 2 (T + 1) =
       2 * Bridge.Expansion.countedVolume 2 T) ∧
@@ -437,6 +447,7 @@ theorem bridge_arc :
 #print axioms milestone_T11
 #print axioms milestone_T12
 #print axioms milestone_T12_measure
+#print axioms milestone_ollivier_trial
 #print axioms milestone_T13
 #print axioms milestone_T14
 #print axioms milestone_T15

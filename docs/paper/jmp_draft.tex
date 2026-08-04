@@ -161,8 +161,9 @@ classification of self-actions}. Given $a:\alpha\to\alpha$, the local
 possibilities at a state are rest, two-cycle, asymmetric step, and---as a
 pairwise defect---erasure. In a precisely specified ambient, every shape
 except one encounters an obstruction. The survivor is the live two-cycle.
-Negation on $\Bool$ is not assumed at the outset; it is the unique object
-(up to label swap) satisfying the universal property of that survivor.
+Negation on $\Bool$~\cite{bool} is not assumed at the outset; it is the
+unique object (up to label swap) satisfying the universal property, in
+the standard categorical sense~\cite{maclane}, of that survivor.
 
 The formal development then follows a fixed dependency:
 
@@ -205,8 +206,9 @@ suggests, marked as such.
 identifications, admitted only by certificate.
 \end{enumerate}
 Claims are tagged by status: proved, corollary, interpretation, open,
-refused, or philosophical residue. The companion Lean~4 corpus (no
-Mathlib, no $\mathtt{sorry}$) supplies declaration names; this paper is
+refused, or philosophical residue. The companion Lean~4 corpus~\cite{lean4}
+(no Mathlib~\cite{mathlib}, no $\mathtt{sorry}$) supplies declaration
+names; this paper is
 self-contained at the level of statements.
 
 \paragraph{Roadmap.}
@@ -219,6 +221,7 @@ registration and capacity, and identify the arrow with address.
 Section~\ref{sec:z2} states the single $\Ztwo$ and the gauge demarcation.
 Section~\ref{sec:dict} confines dictionary readings.
 Section~\ref{sec:status} collects open, refused, and philosophical items.
+Section~\ref{sec:related} situates the development in prior work.
 Section~\ref{sec:concl} concludes.
 
 
@@ -380,6 +383,10 @@ Section~\ref{sec:z2}.
 
 \dep{Theorem~\ref{thm:canon} (liveness of fundamentals).}
 
+The engine is Lawvere's diagonal argument~\cite{lawvere}, the common
+abstraction of Cantor's theorem~\cite{cantor} and kindred fixed-point
+arguments~\cite{yanofsky}.
+
 \begin{theorem}[Seal on a fundamental]
 \label{thm:seal}
 Let $a$ be live. No map $f:A\to (A\to\Bool)$ is point-surjective: the
@@ -396,9 +403,10 @@ self-portrait lags. Completeness-in-the-limit is a fair-schedule
 \end{theorem}
 
 \begin{remark}[Status]
-Theorems~\ref{thm:seal}--\ref{thm:corpus} are proved (Lawvere-style;
-no arithmetisation). Host-logic incompleteness and G\"odel coding of the
-corpus text are \emph{refused} (Section~\ref{sec:status}).
+Theorems~\ref{thm:seal}--\ref{thm:corpus} are proved
+(Lawvere-style~\cite{lawvere}; no arithmetisation). Host-logic
+incompleteness and G\"odel coding of the corpus text in the sense
+of~\cite{godel} are \emph{refused} (Section~\ref{sec:status}).
 \end{remark}
 
 
@@ -438,7 +446,11 @@ direction---reappears for channel labels in Section~\ref{sec:reg}.
 
 Spine acts are involutions. A ledger microstep is a forward map
 $U:S\times E\to S\times E$. The interface demand is that global
-injectivity of $U$ import Proposition~\ref{prop:no-erase}.
+injectivity of $U$ import Proposition~\ref{prop:no-erase}. Reading
+injectivity as ``no erasure'' follows the logical-reversibility
+tradition~\cite{bennett,fredkintoffoli}; its thermodynamic
+counterpart~\cite{landauer} is confined to the dictionary layer
+(Section~\ref{sec:dict}).
 
 \begin{definition}[Two-bounce factorisation]
 \label{def:twobounce}
@@ -461,7 +473,11 @@ least-value basepoint, with $\sigma:=U\comp\phi$.
 
 \begin{remark}[Status]
 Theorems~\ref{thm:converse}--\ref{thm:exists} are proved. On finite
-carriers, injectivity and two-bounce form coincide. Special cases
+carriers, injectivity and two-bounce form coincide: existence recovers,
+constructively, the classical fact that every finite permutation is a
+product of two involutions~\cite{petersentenner}, and maps so factorised
+are the \emph{reversible} maps of dynamical-systems
+theory~\cite{lambroberts}. Special cases
 (involutions as $U\comp\mathrm{id}$; Boolean injections; swap step) are
 included.
 \end{remark}
@@ -541,8 +557,8 @@ exchange covers reversal (Theorem~\ref{thm:swap}).}
 
 \begin{interpretation}
 \label{int:mirrors}
-In the dihedral picture, a rotation fixes the angle between mirrors, not
-their absolute position. Theorem~\ref{thm:canonfail} is that fact on
+In the dihedral picture~\cite{dihedral}, a rotation fixes the angle
+between mirrors, not their absolute position. Theorem~\ref{thm:canonfail} is that fact on
 finite carriers; Theorem~\ref{thm:swap} promotes the exchange.
 \end{interpretation}
 
@@ -659,7 +675,11 @@ Factorisation gauge per step & Theorems~\ref{thm:exists}--\ref{thm:canonfail}
 Theorem~\ref{thm:z2} and Definition~\ref{def:gauge} keep one dictionary
 $\Ztwo$: factorisation non-uniqueness (Theorem~\ref{thm:canonfail}) is
 packaging; channel \emph{labels} are conventional; channel \emph{swap}
-is content.
+is content. The content/packaging demarcation is a formal analogue of
+the question which symmetries carry representational
+significance~\cite{bradingcastellani,dewar}; underdetermination by label
+swap is the formal shadow of permutation-style underdetermination of
+reference~\cite{quine,putnam}.
 \end{remark}
 
 
@@ -670,7 +690,8 @@ is content.
 \label{int:dict}
 Dictionary entries are optional certificates that a physical or
 contemplative model realises kernel symmetries (for example, swap as
-negation, dissipation as registration). They do not derive continuum
+negation; dissipation as registration, in the sense of Landauer's
+principle~\cite{landauer}). They do not derive continuum
 spacetimes or observational numbers from $\Bool$.
 \end{interpretation}
 
@@ -702,6 +723,70 @@ Facticity of liveness; adequacy of the pointed unoriented ambient
 (Interpretation~\ref{int:ambient}); which face of the $\Ztwo$ is treated
 as free in applications.
 \end{statusphil}
+
+
+\section{Relation to prior work}
+\label{sec:related}
+
+\paragraph{Diagonal and fixed-point arguments.}
+The seal (Theorem~\ref{thm:seal}) instantiates Lawvere's diagonal
+schema~\cite{lawvere}, the common form of Cantor's
+theorem~\cite{cantor} and, via arithmetisation, of G\"odel's first
+incompleteness theorem~\cite{godel}; Yanofsky~\cite{yanofsky} surveys
+the family. Those applications fix a logical or set-theoretic universe
+and derive a limitative theorem inside it. Here the carrier of the
+diagonal argument is itself the output of the classification
+(Sections~\ref{sec:class}--\ref{sec:fund}): the seal is a structural
+property of any fundamental act, not of a formal system. No
+arithmetisation is performed, and host-logic incompleteness is refused,
+not claimed (Section~\ref{sec:status}).
+
+\paragraph{Reversible computation.}
+Reading injectivity as ``no erasure'' follows the logical-reversibility
+tradition~\cite{bennett,fredkintoffoli}, with Landauer's
+principle~\cite{landauer} as its thermodynamic counterpart. That
+literature takes reversibility as a premise about computing machinery.
+Here losslessness is not a premise: erasure is excluded in-arena by one
+equation (Proposition~\ref{prop:no-erase}), and reversibility of
+forward microsteps is recovered by the two-bounce factorisation
+(Theorems~\ref{thm:converse}--\ref{thm:exists}). The thermodynamic
+reading survives only as a dictionary certificate
+(Section~\ref{sec:dict}).
+
+\paragraph{Involutions and reversing symmetries.}
+That every finite permutation is a product of two involutions is
+classical~\cite{petersentenner}, as is the dihedral factorisation of a
+rotation into reflections~\cite{dihedral}; maps so factorised are the
+reversible maps of dynamical-systems theory~\cite{lambroberts}. The
+contribution here is not the existence of the factorisation but the
+disposition of its non-uniqueness: canonicity fails
+(Theorem~\ref{thm:canonfail}), the failure is classified as packaging
+rather than content (Definition~\ref{def:gauge}), and channel
+swap---which is content---covers step reversal independently of the
+chosen factorisation (Theorem~\ref{thm:swap}).
+
+\paragraph{Symmetry and underdetermination.}
+Which symmetries carry representational significance is a standing
+question in the philosophy of physics~\cite{bradingcastellani,dewar};
+permutation-style underdetermination of reference descends from
+Quine~\cite{quine} and Putnam's model-theoretic argument~\cite{putnam}.
+Those debates are conducted informally over rich physical or semantic
+theories. The analogue here is deliberately narrow: the
+content/packaging distinction is a definition in the formal text
+(Definition~\ref{def:gauge}), each gauge is classified by theorem
+(Table~\ref{tab:gauges}), and the residual underdetermination is
+exactly inventoried---one $\Ztwo$, three faces (Theorem~\ref{thm:z2}).
+Nothing is asserted about physical theories; within its scope the
+inventory is complete and machine-checked.
+
+\paragraph{Machine-checked philosophical argument.}
+Formalising a philosophical argument in a proof assistant has
+precedent, notably the automation of G\"odel's ontological
+argument~\cite{benzmueller}. The role of verification differs here: the
+proof assistant certifies not a single argument but an
+architecture---downward-only imports across three layers
+(Section~\ref{sec:arch}), axiom footprints audited per declaration, and
+interpretation confined to a layer the formal text cannot import.
 
 
 \section{Conclusion}
@@ -740,28 +825,124 @@ Axiom footprints are audited per declaration.
 
 \begin{thebibliography}{99}
 
-\bibitem{lawvere}
-F.~W.~Lawvere.
-\newblock Diagonal arguments and Cartesian closed categories.
-\newblock \emph{Category Theory, Homology Theory and Their Applications},
-  1969.
+\bibitem{bennett}
+C.~H.~Bennett.
+\newblock Logical reversibility of computation.
+\newblock \emph{IBM Journal of Research and Development}, 17(6):525--532,
+  1973.
+
+\bibitem{benzmueller}
+C.~Benzm\"uller and B.~Woltzenlogel~Paleo.
+\newblock Automating G\"odel's ontological proof of God's existence with
+  higher-order automated theorem provers.
+\newblock In \emph{ECAI 2014}, volume 263 of \emph{Frontiers in
+  Artificial Intelligence and Applications}, pages 93--98. IOS Press,
+  2014.
+
+\bibitem{bool}
+G.~Boole.
+\newblock \emph{An Investigation of the Laws of Thought, on Which Are
+  Founded the Mathematical Theories of Logic and Probabilities}.
+\newblock Walton and Maberly, London, 1854.
+
+\bibitem{bradingcastellani}
+K.~Brading and E.~Castellani, editors.
+\newblock \emph{Symmetries in Physics: Philosophical Reflections}.
+\newblock Cambridge University Press, Cambridge, 2003.
+
+\bibitem{cantor}
+G.~Cantor.
+\newblock \"Uber eine elementare Frage der Mannigfaltigkeitslehre.
+\newblock \emph{Jahresbericht der Deutschen Mathematiker-Vereinigung},
+  1:75--78, 1891.
 
 \bibitem{dihedral}
 H.~S.~M.~Coxeter.
 \newblock \emph{Regular Polytopes}.
-\newblock Dover, 1973.
+\newblock Dover, New York, third edition, 1973.
 \newblock (Dihedral factorisation of rotations as products of reflections.)
 
-\bibitem{bool}
-G.~Boole.
-\newblock \emph{An Investigation of the Laws of Thought}.
-\newblock 1854.
+\bibitem{lean4}
+L.~de~Moura and S.~Ullrich.
+\newblock The Lean 4 theorem prover and programming language.
+\newblock In \emph{Automated Deduction --- CADE 28}, volume 12699 of
+  \emph{Lecture Notes in Computer Science}, pages 625--635. Springer,
+  2021.
+
+\bibitem{dewar}
+N.~Dewar.
+\newblock Sophistication about symmetries.
+\newblock \emph{British Journal for the Philosophy of Science},
+  70(2):485--521, 2019.
+
+\bibitem{fredkintoffoli}
+E.~Fredkin and T.~Toffoli.
+\newblock Conservative logic.
+\newblock \emph{International Journal of Theoretical Physics},
+  21(3--4):219--253, 1982.
+
+\bibitem{godel}
+K.~G\"odel.
+\newblock \"Uber formal unentscheidbare S\"atze der \emph{Principia
+  Mathematica} und verwandter Systeme~I.
+\newblock \emph{Monatshefte f\"ur Mathematik und Physik}, 38:173--198,
+  1931.
+
+\bibitem{lambroberts}
+J.~S.~W.~Lamb and J.~A.~G.~Roberts.
+\newblock Time-reversal symmetry in dynamical systems: a survey.
+\newblock \emph{Physica D}, 112(1--2):1--39, 1998.
+
+\bibitem{landauer}
+R.~Landauer.
+\newblock Irreversibility and heat generation in the computing process.
+\newblock \emph{IBM Journal of Research and Development}, 5(3):183--191,
+  1961.
+
+\bibitem{lawvere}
+F.~W.~Lawvere.
+\newblock Diagonal arguments and cartesian closed categories.
+\newblock In \emph{Category Theory, Homology Theory and their
+  Applications~II}, volume 92 of \emph{Lecture Notes in Mathematics},
+  pages 134--145. Springer, 1969.
+\newblock Reprinted with author commentary in \emph{Reprints in Theory and
+  Applications of Categories}, 15:1--13, 2006.
+
+\bibitem{maclane}
+S.~Mac~Lane.
+\newblock \emph{Categories for the Working Mathematician}.
+\newblock Volume~5 of \emph{Graduate Texts in Mathematics}. Springer, New
+  York, second edition, 1998.
+
+\bibitem{mathlib}
+The mathlib Community.
+\newblock The Lean mathematical library.
+\newblock In \emph{Proceedings of the 9th ACM SIGPLAN International
+  Conference on Certified Programs and Proofs (CPP 2020)}, pages
+  367--381. ACM, 2020.
+
+\bibitem{petersentenner}
+T.~K.~Petersen and B.~E.~Tenner.
+\newblock How to write a permutation as a product of involutions (and why
+  you might care).
+\newblock \emph{Integers}, 13:\#A63, 2013.
+
+\bibitem{putnam}
+H.~Putnam.
+\newblock Models and reality.
+\newblock \emph{Journal of Symbolic Logic}, 45(3):464--482, 1980.
 
 \bibitem{quine}
 W.~V.~Quine.
 \newblock Ontological relativity.
-\newblock In \emph{Ontological Relativity and Other Essays}, Columbia,
-  1969.
+\newblock In \emph{Ontological Relativity and Other Essays}, pages 26--68.
+  Columbia University Press, New York, 1969.
+
+\bibitem{yanofsky}
+N.~S.~Yanofsky.
+\newblock A universal approach to self-referential paradoxes,
+  incompleteness and fixed points.
+\newblock \emph{Bulletin of Symbolic Logic}, 9(3):362--386, 2003.
 
 \end{thebibliography}
 

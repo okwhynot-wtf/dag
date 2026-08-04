@@ -43,6 +43,8 @@
 | T-2 tick identification (licensed remnant) | `Bridge.TickSimulation.tick_identification_licensed` | Bridge |
 | T-2 straightening fragment (UF≅append-on-base) | `Bridge.Dil.straighten_fragment` | Bridge |
 | T-2 ID proof-skeleton ingredients | `Bridge.TickSimulation.tick_identification_ingredients` | Bridge |
+| T-2 classified remnant (dichotomy + append glue) | `Bridge.TickSimulation.tick_identification_classified` | Bridge |
+| T-2 per-tick Dil induction step | `Bridge.TickSimulation.tick_identification_step` | Bridge |
 | Period-2 / KMS↔involution toy | `Bridge.Period2KMS.period2_kms_caricature` | Bridge |
 | Area-as-caps sharpening (Bekenstein-shaped) | `Bridge.Capacity.area_as_caps_sharpening` | Bridge |
 | Dil base-relative UF rigidity iso | `Bridge.Dil.rigidity_iso_of_base` | Bridge |
@@ -76,5 +78,6 @@
 
 Open work: see `docs/RESIDUE.md` (tractable vs structural vs philosophical).
 T-2 carrier-level Registration→naming is **obstructed** (documented;
-necessity half of classification); label-namer + straighten discharged;
-induction glue still open.
+necessity half of classification); label-namer + straighten + per-tick
+Dil append glue discharged (`tick_identification_classified`); rename to
+`tick_identification` / drop `_licensed` reserved for v0.2 freeze.

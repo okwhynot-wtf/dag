@@ -49,8 +49,8 @@ caricatures are in scope; continuum identifications are not.
 | Item | Discharged | Remains |
 |---|---|---|
 | **T-1** Environment UP | Fiber UP; Dil keystone; I-2 Fin closed; ladder witness; address-uniform idx | Optional deeper `|S|>K` UF-lift (not required for Fin I-2) |
-| **T-2** Tick simulation | Committed path (`tick_simulation`); **licensed remnant** (`tick_identification_licensed`); **straightening** (`straighten_fragment`: UF≅append-on-base) | Induction glue → classified ID (unbounded demand climbs; Fund/swap-bounded exempt) |
-| **T-2 factorisation** | Namer-shaped label factor (`registers_admits_namer`); **carrier-level factorisation obstructed** by eternal swap on fixed `Bool` vs growing `levelCard` (necessity half: eternal hyp is tight) | Naming↔microtick still licensed; skeleton in `tick_identification_ingredients` |
+| **T-2** Tick simulation | Committed path (`tick_simulation`); **licensed remnant** (`tick_identification_licensed`); **straightening** (`straighten_fragment`: UF≅append-on-base); **classified kernel** (`tick_identification_classified`: Fund exempt + swap necessity + Dil append step) | Rename `_licensed`→`tick_identification` + v0.2 freeze (docs §0/§V); not a carrier functor |
+| **T-2 factorisation** | Namer-shaped label factor (`registers_admits_namer`); **carrier-level factorisation obstructed** by eternal swap on fixed `Bool` vs growing `levelCard` (necessity half: eternal hyp is tight); per-tick Dil glue (`tick_identification_step`) | Naming↔microtick still `_licensed` until v0.2; skeleton in `tick_identification_ingredients` |
 
 ## Refused (genuine — keep)
 

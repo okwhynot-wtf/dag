@@ -59,7 +59,7 @@ II. Ledger  (AG over I-1 / I-2)
                                         minimal K=2 schedule = caps;
                                         UF Hom∃ · iso · graded term.;
                                         I-2 Fin alphabet-UF + ladder witness +
-                                        address-uniform idx; T-2 licensed))
+                                        address-uniform idx; T-2 licensed)
   |caps T| = 2^(T+2)                   predicateCount(T)
   committed prof = expand              prof(T)=T
   alive:  2^T ≤ 2^(T+2)                eternally, by arithmetic
@@ -161,7 +161,7 @@ VII. Residue / refusal
 ═══════════════════════════════════════════════════════════════════════════════
 
   open (tractable): deeper `|S|>K` alphabet-UF lift (optional; Fin I-2 closed);
-          T-2 induction glue (straightening landed; classified ID open);
+          T-2 rename/v0.2 (`tick_identification_classified` landed; keep `_licensed`);
           O-3 Mathlib sheaf/site (stalk glue + restriction + dynamics
             sections landed; continuum locality refused);
           R-1 counting landed (tree faces ≤ caps; ultrametric≠space remains);

@@ -1203,6 +1203,23 @@ def freeOnBaseUF (S : Type) (u : S → S) (Base : Type) (zBase : Base) :
           cases h
           rfl
 
+/-- **Induction step (archive face).** On `freeOnBase`, one microtick is
+    exactly one append: freeze the base letter, `Word.cons` the system
+    letter. This is the operational content of T-2 induction glue on Dil
+    carriers — not a `Registration → Ladder.Level` functor. -/
+theorem freeOnBase_append_step (S : Type) (u : S → S) (Base : Type)
+    (zBase : Base) (T : Nat) (s : S) (e0 : Base) (w : Word S T) :
+    (freeOnBase S u Base zBase).r T s (e0, w) = (e0, Word.cons s w) :=
+  rfl
+
+/-- Peel after append: UF factor recovers the just-written letter and prior
+    archive letter (namer-shaped invertibility on history). -/
+theorem freeOnBase_factor_cons (S : Type) (u : S → S) (Base : Type)
+    (zBase : Base) (T : Nat) (s : S) (e0 : Base) (w : Word S T) :
+    (freeOnBaseUF S u Base zBase).factor T (e0, Word.cons s w) =
+      (s, (e0, w)) :=
+  rfl
+
 /-- Replay a free word from an arbitrary base letter (not just `z0`). -/
 def interpretFromBase {S : Type} {u : S → S} (A : Archive S u) :
     (T : Nat) → A.E 0 → Word S T → A.E T

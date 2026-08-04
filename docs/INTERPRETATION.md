@@ -109,8 +109,16 @@ half of a future classification: bounded-demand / Fund 2-cycles don't
 climb; they were never supposed to. **Straightening** landed
 (`straighten_fragment`): every UF archive ≅ append-only on its frozen
 base; record gauge = base relabelling (the torsor rigidity couldn't kill).
-Skeleton package: `tick_identification_ingredients`. Induction glue across
-ticks still open — keep `_licensed`; not a total functor on carriers.
+Skeleton package: `tick_identification_ingredients`.
+
+**Classified remnant (VERIFY kernel):** `tick_identification_classified`
+— Fund exempt; swap proves dichotomy necessity; UF archives straighten
+and each microtick is `Word.cons` on `freeOnBase` (`tick_identification_step`);
+namer labels + rate weld + ladder `NamingExtension`. Slogan: *eternal
+registering dynamics factor through naming extensions up to record gauge;
+periodic dynamics exempt at Fund; obstructed swap proves dichotomy
+exhaustive.* Fence: not a total functor on carriers. Keep `_licensed`
+until rename to `tick_identification` + docs freeze **v0.2**.
 
 ## Period-2 / KMS and area-as-caps (fence)
 

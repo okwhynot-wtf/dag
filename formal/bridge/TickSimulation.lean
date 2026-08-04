@@ -234,6 +234,144 @@ theorem tick_identification_ingredients :
    oscillator_silent.1,
    Bridge.Alphabet.Kmin_eq⟩
 
+/-! ## Classified T-2 design (target → `tick_identification`)
+
+Target slogan (Claude): *eternal registering dynamics factor through
+naming extensions up to record gauge; periodic dynamics exempt at Fund;
+obstructed swap proves dichotomy exhaustive.*
+
+### Predicates (corpus types, not abstract jargon)
+
+* **Fund-exempt / periodic:** `¬ Merges oscStep` — oscillator on
+  `Bool × Unit` never demands a namer (`oscillator_no_namer_demand`).
+* **Bounded-reuse eternal registration:** `swapStep` registers every
+  microtick on fixed `E = Bool` while `Density.levelCard` climbs —
+  `registration_vs_naming_obstruction` (necessity: unbounded hyp tight).
+* **UF-archive remnant (positive half):** Dil `UniqueFactorization`
+  archives straighten (`isoToFreeOnBase`) to `freeOnBase`; each microtick
+  is `Word.cons` on a frozen base (`freeOnBase_append_step`); gauge =
+  base agreement (`record_gauge_is_base_bijection`). Ladder side supplies
+  `Tower.NamingExtension` at each `k`; rate weld matches expand/caps.
+
+### Induction glue (operational)
+
+After `isoToFreeOnBase`, letter at tick `T` is `(e0, w : Word S T)`.
+One microtick = `r T s (e0,w) = (e0, cons s w)` — append-only on
+`freeOnBase`. Peeling recovers `(s,(e0,w))` (`freeOnBase_factor_cons` /
+`factorHistory_step`). That is the per-tick glue on Dil carriers.
+It does **not** mean arbitrary `S×E → S×E` Registration sequences become
+`Ladder.Level` morphisms.
+
+### Fence
+
+Can prove Fin-combinatorially now: dichotomy package below (Fund exempt +
+swap obstruction + UF straighten/append + namer labels + rate weld +
+ladder `NamingExtension`).
+
+Would overclaim: a total functor `Registers U ↦ NamingExtension` on
+carriers; or that `swapStep` factors as carrier naming.
+
+Keep `_licensed` until a future rename to `tick_identification` when
+docs freeze **v0.2** (section 0 cites the theorem; section V inherits
+proved status). The statement below is the VERIFY-safe classification
+kernel — strongest remnant that retires the modelling choice without
+the overclaim.
+-/
+
+/-- Fund / period-2 pole: no merge ⇒ no namer demand. -/
+def FundExempt : Prop := ¬ Merges Geom.Registration.oscStep
+
+/-- Eternal registration on a reusable 2-letter env (swap clothes). -/
+def BoundedReuseRegisters : Prop :=
+  Inj Geom.Registration.swapStep ∧
+  Merges Geom.Registration.swapStep ∧
+  Registers Geom.Registration.swapStep
+
+/-- Naming carriers strictly grow past the Fund card. -/
+def NamingCarrierClimbs : Prop :=
+  ∀ T, 1 ≤ T → Density.levelCard 0 < Density.levelCard T
+
+/-- **Per-tick induction step on Dil.** UF ⇒ straighten; microtick on the
+    normal form is append (`Word.cons`); factor peels the letter back. -/
+theorem tick_identification_step {S : Type} {u : S → S}
+    {A : Bridge.Dil.Archive S u} (fa : Bridge.Dil.UniqueFactorization A) :
+    (∃ _i : Bridge.Dil.ArchiveIso A
+      (Bridge.Dil.freeOnBase S u (A.E 0) A.z0), True) ∧
+    (∀ (T : Nat) (s : S) (e0 : A.E 0) (w : Bridge.Dil.Word S T),
+      (Bridge.Dil.freeOnBase S u (A.E 0) A.z0).r T s (e0, w) =
+        (e0, Bridge.Dil.Word.cons s w)) ∧
+    (∀ (T : Nat) (s : S) (e0 : A.E 0) (w : Bridge.Dil.Word S T),
+      (Bridge.Dil.freeOnBaseUF S u (A.E 0) A.z0).factor T
+        (e0, Bridge.Dil.Word.cons s w) = (s, (e0, w))) :=
+  ⟨Bridge.Dil.uf_straightens_mod_base fa,
+   fun T s e0 w => Bridge.Dil.freeOnBase_append_step S u (A.E 0) A.z0 T s e0 w,
+   fun T s e0 w => Bridge.Dil.freeOnBase_factor_cons S u (A.E 0) A.z0 T s e0 w⟩
+
+/-- **Dichotomy (necessity + exemption).** Periodic Fund never demands a
+    namer; eternal swap registers on fixed `|E|=2` while naming climbs —
+    so carrier-level Registration→naming cannot be total. -/
+theorem tick_identification_dichotomy :
+    FundExempt ∧
+    BoundedReuseRegisters ∧
+    NamingCarrierClimbs ∧
+    (∀ T, Density.levelCard T = T + 2) ∧
+    Density.levelCard 0 = 2 :=
+  ⟨oscillator_silent.1,
+   ⟨Geom.Registration.swap_inj,
+     Geom.Registration.swap_registers.2.1,
+     Geom.Registration.swap_registers.2.2⟩,
+   fun T hT =>
+     (Bridge.RegistrationFactor.registration_vs_naming_obstruction).2.2.2 T hT,
+   Bridge.RegistrationFactor.naming_carrier_card,
+   Density.levelCard_eq 0⟩
+
+/-- **Classified T-2 remnant (VERIFY kernel).**
+
+    Eternal UF-archive dynamics straighten to append-only on a frozen base
+    (record gauge = base relabel); each microtick is `Word.cons`; labels
+    admit namer shape; rates weld to caps; ladder steps are
+    `NamingExtension`. Periodic Fund is exempt. Obstructed swap proves the
+    dichotomy's necessity half (unbounded/UF hyp cannot be dropped).
+
+    Fence: not `Registers U → NamingExtension` on arbitrary carriers.
+    Rename to `tick_identification` and drop `_licensed` when docs freeze
+    v0.2 citing this classification. -/
+theorem tick_identification_classified :
+    FundExempt ∧
+    BoundedReuseRegisters ∧
+    NamingCarrierClimbs ∧
+    (∀ {S : Type} {u : S → S} {A : Bridge.Dil.Archive S u}
+      (fa : Bridge.Dil.UniqueFactorization A),
+      (∃ _i : Bridge.Dil.ArchiveIso A
+        (Bridge.Dil.freeOnBase S u (A.E 0) A.z0), True) ∧
+      (∀ (T : Nat) (s : S) (e0 : A.E 0) (w : Bridge.Dil.Word S T),
+        (Bridge.Dil.freeOnBase S u (A.E 0) A.z0).r T s (e0, w) =
+          (e0, Bridge.Dil.Word.cons s w))) ∧
+    (∀ {S E : Type} {U : S × E → S × E},
+      Inj U →
+        ∀ w : Bridge.Environment.TwoMerge S E U,
+          Bridge.RegistrationFactor.outsideSingleton
+            (Bridge.Environment.recordLabel w false)
+            (Bridge.Environment.recordLabel w true)) ∧
+    (∀ T,
+      Geom.Profile.capacityOf 2 Geom.Profile.expand (T + 1) =
+        2 * Geom.Profile.capacityOf 2 Geom.Profile.expand T ∧
+      Bridge.Capacity.caps (T + 1) = 2 * Bridge.Capacity.caps T) ∧
+    (∀ k, Tower.NamingExtension
+      (Ladder.rep k) (Ladder.rep (k + 1)) some (Ladder.dodgeEscape k)) ∧
+    (∀ T, Geom.Profile.Alive 2 Geom.Profile.expand T) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨tick_identification_dichotomy.1,
+   tick_identification_dichotomy.2.1,
+   tick_identification_dichotomy.2.2.1,
+   fun fa => ⟨(tick_identification_step fa).1,
+     (tick_identification_step fa).2.1⟩,
+   fun hU w => (Bridge.RegistrationFactor.registers_admits_namer hU w).1,
+   rate_weld,
+   naming_tick_extension,
+   expand_eternally_alive,
+   Bridge.Alphabet.Kmin_eq⟩
+
 #print axioms tick_simulation
 #print axioms committed_yields_mute
 #print axioms rate_weld
@@ -241,5 +379,8 @@ theorem tick_identification_ingredients :
 #print axioms tick_simulation_fragment
 #print axioms tick_identification_licensed
 #print axioms tick_identification_ingredients
+#print axioms tick_identification_step
+#print axioms tick_identification_dichotomy
+#print axioms tick_identification_classified
 
 end Bridge.TickSimulation

@@ -6,6 +6,7 @@ defaultTargets = ["ArchiveLedger"]
 name = "ArchiveLedger"
 srcDir = "."
 roots = [
+  "Audit",
   "Geom.Core",
   "Geom.Registration",
   "Geom.Ledger",

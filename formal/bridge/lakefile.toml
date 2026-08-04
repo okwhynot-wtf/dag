@@ -14,6 +14,7 @@ path = "../ledger"
 name = "DAGBridge"
 srcDir = "."
 roots = [
+  "Audit",
   "Alphabet",
   "Capacity",
   "OneZ2",

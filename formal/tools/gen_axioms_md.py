@@ -21,7 +21,9 @@ from gen_audit import PACKAGES, FORMAL, ROOT, qualified_theorems  # noqa: E402
 
 KERNEL = ("propext", "Quot.sound", "Classical.choice")
 
-PAT = re.compile(r"info: ([^:]+\.lean):\d+:\d+: '([^']+)' "
+# Lean identifiers may end in `'`, so the name is matched lazily up to the
+# quote that precedes the verdict text rather than as a quote-free run.
+PAT = re.compile(r"info: ([^:]+\.lean):\d+:\d+: '(.+?)' "
                  r"(does not depend on any axioms|depends on axioms: \[(.*)\])")
 
 
@@ -95,7 +97,8 @@ def main() -> int:
     add("The spine target is a zero-axiom footprint for every result.")
     add("")
 
-    total = clean_n = missing = 0
+    total = clean_n = 0
+    missing_names: list[str] = []
     reached: set[str] = set()
     for pkg, modules in PACKAGES.items():
         add(f"## `formal/{pkg}/`")
@@ -108,7 +111,7 @@ def main() -> int:
             buckets = collections.Counter()
             for t in thms:
                 if t not in verdicts:
-                    missing += 1
+                    missing_names.append(f"{pkg}/{mod}: {t}")
                     continue
                 ax = verdicts[t]
                 buckets[classify(ax)] += 1
@@ -125,14 +128,18 @@ def main() -> int:
         add("")
 
     add(f"Totals: {total} audited results; {clean_n} clean.")
-    if missing:
+    if missing_names:
         add("")
-        add(f"({missing} theorems missing from the build log; rerun `gen_audit.py`.)")
+        add(f"({len(missing_names)} theorems missing from the build log; "
+            "rerun `gen_audit.py`.)")
     add("")
 
     dest.write_text("\n".join(w) + "\n", encoding="utf-8")
-    print(f"wrote {dest}: {total} results, {clean_n} clean, {missing} missing")
-    return 1 if missing else 0
+    print(f"wrote {dest}: {total} results, {clean_n} clean, "
+          f"{len(missing_names)} missing")
+    for name in missing_names:
+        print(f"  missing: {name}", file=sys.stderr)
+    return 1 if missing_names else 0
 
 
 if __name__ == "__main__":

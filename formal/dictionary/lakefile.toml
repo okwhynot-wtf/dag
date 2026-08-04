@@ -18,6 +18,7 @@ path = "../bridge"
 name = "DAGDictionary"
 srcDir = "."
 roots = [
+  "Audit",
   "Certificate",
   "LCertificate",
   "Quintom.Kernel",

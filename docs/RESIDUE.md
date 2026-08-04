@@ -31,7 +31,8 @@ caricatures are in scope; continuum identifications are not.
 | **Area-as-capacity sharpening** | Tighten Bekenstein-shaped reading of `‖caps T‖` (already present); not continuum area theorems |
 | **RE-side growth law** | Seek quintom mode-count ↔ capacity-law analogue (table V dash: not yet sought) |
 | **Lorentzian dictionary (partial)** | What can be said with order dim-1 + capacity growth without full Lorentz group? Separate from O-2 boost gap |
-| Arbitrary `U_S` UP | Beyond fiber tagging (`arbitraryUS_UP_open`) |
+| **T-1 / Dil keystone** | **Partial:** `Bridge.Dil` — free archive initial, capacity step law, registration corollary, caps = minimal K=2 schedule. **Open:** uniform-fiber rigidity iso; graded terminality; predicate-space record map (full I-2). Markers: `rigidity_uniform_open`, `graded_terminality_open` |
+| Arbitrary `U_S` UP | Beyond fiber tagging (`arbitraryUS_UP_open`); Dil is the attack shape |
 
 ## Structural open (hard walls; not “just write the proof”)
 
@@ -46,7 +47,7 @@ caricatures are in scope; continuum identifications are not.
 
 | Item | Discharged | Remains |
 |---|---|---|
-| **T-1** Environment UP | Fiber-tagging UP (`environment_universality`) | Arbitrary `U_S` beyond fiber tagging |
+| **T-1** Environment UP | Fiber-tagging UP (`environment_universality`); Dil sprint (`keystone_dil_sprint`: free initial + capacity law + minimal schedule) | Uniform rigidity; graded terminality; full I-2 record-map realisation |
 | **T-2** Tick simulation | Committed path (`tick_simulation`) | — |
 | **T-2 factorisation** | Namer-shaped label factor (`registers_admits_namer`); **carrier-level factorisation obstructed** by eternal swap on fixed `Bool` vs growing `levelCard` | Naming↔microtick = committed expand + label-namer fragment only |
 

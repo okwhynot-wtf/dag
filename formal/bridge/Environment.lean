@@ -15,8 +15,10 @@ Define record-labels as the universal completion of a merge fiber:
 `|caps T| = 2^(T+2)`. Alphabet bound `|E| ≥ K` is the first corollary
 (at `Kmin = 2`).
 
-Full arrow-theoretic UP for *arbitrary* system maps `U_S` (beyond
-fiber-tagging completions) remains open — see `docs/RESIDUE.md`.
+Keystone progress: `Bridge.Dil` lands free-archive initiality, the
+capacity step law, registration-from-joint-inj, and the minimal K=2
+schedule realised by `|caps T|`. Uniform-fiber rigidity and graded
+terminality (full I-2 discharge) remain open — see `docs/RESIDUE.md`.
 -/
 
 namespace Bridge.Environment
@@ -179,7 +181,8 @@ theorem environment_universality_fragment :
     (∀ T, Bridge.Alphabet.Kmin ≤ capCount T) :=
   ⟨capCount_eq, env_exists, env_ge_Kmin.1, env_ge_Kmin.2⟩
 
-/-- Obstruction marker: UP for arbitrary `U_S` shapes beyond fiber tagging. -/
+/-- Obstruction marker: UP for arbitrary `U_S` shapes beyond fiber tagging.
+    Partial discharge: see `Bridge.Dil.keystone_dil_sprint`. -/
 def arbitraryUS_UP_open : True := True.intro
 
 #print axioms environment_universality

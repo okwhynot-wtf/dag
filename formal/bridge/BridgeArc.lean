@@ -4,6 +4,7 @@ import OneZ2
 import RegistrationSpine
 import TickSimulation
 import Environment
+import Dil
 import RegistrationFactor
 import ArchiveMustSpeak
 import SecondLaw
@@ -88,6 +89,19 @@ theorem milestone_M5 :
         (some a : Bridge.Environment.E (k + 1)) ≠ b) ∧
     Bridge.Alphabet.Kmin = 2 :=
   Bridge.Environment.environment_universality
+
+/-- Keystone Dil sprint: free archive initial; capacity law; minimal schedule. -/
+theorem milestone_keystone_dil :
+    (∀ {S : Type} {u : S → S} (A : Bridge.Dil.Archive S u),
+      (∃ _h : Bridge.Dil.Hom (Bridge.Dil.free S u) A, True) ∧
+      (∀ h₁ h₂ : Bridge.Dil.Hom (Bridge.Dil.free S u) A, h₁ = h₂)) ∧
+    Bridge.Dil.MinimalSchedule 2 Bridge.Capacity.caps ∧
+    (∀ T, Bridge.Capacity.caps T = 2 ^ (T + 2)) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨fun A => (Bridge.Dil.keystone_dil_sprint).1 A,
+   Bridge.Dil.keystone_dil_sprint.2.2.2.1,
+   Bridge.Dil.keystone_dil_sprint.2.2.2.2.1,
+   Bridge.Dil.keystone_dil_sprint.2.2.2.2.2⟩
 
 /-- T-2 factorisation: namer-shaped positive + carrier obstruction. -/
 theorem milestone_M4b :
@@ -254,6 +268,8 @@ theorem bridge_arc :
    Bridge.Forman.internal_edge_forman_neg⟩
 
 #print axioms milestone_M1
+#print axioms milestone_M5
+#print axioms milestone_keystone_dil
 #print axioms milestone_M4b
 #print axioms milestone_T10
 #print axioms milestone_T11

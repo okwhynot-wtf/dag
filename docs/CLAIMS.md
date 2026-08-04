@@ -34,6 +34,8 @@
 | Dil packaged UF↔UF rigidity iso | `Bridge.Dil.rigidity_iso_of_UF` | Bridge |
 | Dil graded terminality (UF+pointed) | `Bridge.Dil.graded_terminality_of_UF` | Bridge |
 | I-2 Bool caps Fin record-map fragment | `Bridge.Dil.i2_caps_record_map_fragment` | Bridge |
+| I-2 Fin alphabet-UF closed (base-relative) | `Bridge.Dil.i2_fin_closed` | Bridge |
+| Dil base-relative UF rigidity iso | `Bridge.Dil.rigidity_iso_of_base` | Bridge |
 | QEC L-certificate (syndrome = registration) | `Dictionary.QEC.qec_admitted` | Dictionary |
 | T-1 record-label injectivity | `Bridge.Environment.recordLabel_injective` | Bridge |
 | Bridge arc weld | `Bridge.Arc.bridge_arc` | Bridge |

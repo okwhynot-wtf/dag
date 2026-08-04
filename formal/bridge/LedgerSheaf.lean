@@ -107,8 +107,61 @@ theorem two_patch_cover_compatible
   | Or.inr hap, Or.inr hbq =>
     subst hap; subst hbq; rfl
 
+/-! ## Restriction maps (sheaf programme, next rung) -/
+
+/-- Restrict a patch to a new locus tag, keeping the ledger data.
+    Combinatorial stand-in for restriction along a branch inclusion. -/
+def restrictTo {X E S E' : Type}
+    (p : LocalLedgerPatch X E S E') (locus' : Nat) :
+    LocalLedgerPatch X E S E' where
+  locus := locus'
+  G := p.G
+  e0 := p.e0
+  s := p.s
+  fiber := p.fiber
+  alphabet := p.alphabet
+
+theorem restrict_preserves_capacity {X E S E' : Type}
+    (p : LocalLedgerPatch X E S E') (locus' : Nat) :
+    (restrictTo p locus').alphabet.length = p.alphabet.length :=
+  rfl
+
+theorem restrict_preserves_fiber {X E S E' : Type}
+    (p : LocalLedgerPatch X E S E') (locus' : Nat) :
+    (restrictTo p locus').fiber.length = p.fiber.length :=
+  rfl
+
+theorem restrict_preserves_effectiveMatter {X E S E' : Type}
+    (p : LocalLedgerPatch X E S E') (locus' : Nat) :
+    effectiveMatter (restrictTo p locus') = effectiveMatter p :=
+  rfl
+
+/-- Restriction is idempotent on ledger data: re-tagging twice = once. -/
+theorem restrict_idempotent_data {X E S E' : Type}
+    (p : LocalLedgerPatch X E S E') (ℓ₁ ℓ₂ : Nat) :
+    (restrictTo (restrictTo p ℓ₁) ℓ₂).alphabet = p.alphabet ∧
+    (restrictTo (restrictTo p ℓ₁) ℓ₂).fiber = p.fiber :=
+  ⟨rfl, rfl⟩
+
+/-- Overlap after re-tag: if capacities already agree, matching locus tags glue. -/
+theorem restrict_overlap_of_cap {X E S E' : Type}
+    (p q : LocalLedgerPatch X E S E')
+    (hcap : p.alphabet.length = q.alphabet.length) (ℓ : Nat) :
+    OverlapCompatible (restrictTo p ℓ) (restrictTo q ℓ) := by
+  intro _
+  exact hcap
+
+/-- Local balance (fiber length = alphabet length) is stable under restrict. -/
+theorem restrict_preserves_balance {X E S E' : Type}
+    (p : LocalLedgerPatch X E S E') (locus' : Nat)
+    (hbal : p.fiber.length = p.alphabet.length) :
+    (restrictTo p locus').fiber.length =
+      (restrictTo p locus').alphabet.length := by
+  simpa [restrict_preserves_fiber, restrict_preserves_capacity] using hbal
+
 /-- **O-3 fragment package.** Stalk glue for capacity (and effective matter
-    at equal saturated lengths). Full sheaf of dynamics remains open. -/
+    at equal saturated lengths); restriction preserves capacity / matter /
+    balance. Full sheaf of dynamics remains open. -/
 theorem o3_stalk_glue_fragment :
     (∀ {X E S E' : Type} {p q : LocalLedgerPatch X E S E'},
       OverlapCompatible p q → p.locus = q.locus →
@@ -123,10 +176,29 @@ theorem o3_stalk_glue_fragment :
    glue_effectiveMatter_at_saturation_length,
    Bridge.Alphabet.Kmin_eq⟩
 
+/-- **O-3 restriction fragment.** Restriction maps preserve capacity,
+    effective matter, and saturation balance; overlap after re-tag when
+    capacities agree. -/
+theorem o3_restriction_fragment :
+    (∀ {X E S E' : Type} (p : LocalLedgerPatch X E S E') ℓ,
+      (restrictTo p ℓ).alphabet.length = p.alphabet.length) ∧
+    (∀ {X E S E' : Type} (p : LocalLedgerPatch X E S E') ℓ,
+      effectiveMatter (restrictTo p ℓ) = effectiveMatter p) ∧
+    (∀ {X E S E' : Type} (p q : LocalLedgerPatch X E S E')
+      (hcap : p.alphabet.length = q.alphabet.length) ℓ,
+      OverlapCompatible (restrictTo p ℓ) (restrictTo q ℓ)) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨fun p ℓ => restrict_preserves_capacity p ℓ,
+   fun p ℓ => restrict_preserves_effectiveMatter p ℓ,
+   fun p q hcap ℓ => restrict_overlap_of_cap p q hcap ℓ,
+   Bridge.Alphabet.Kmin_eq⟩
+
 #print axioms glue_capacity_on_locus
 #print axioms cover_glue_capacity
 #print axioms glue_effectiveMatter_at_saturation_length
 #print axioms two_patch_cover_compatible
 #print axioms o3_stalk_glue_fragment
+#print axioms o3_restriction_fragment
+#print axioms restrict_preserves_balance
 
 end Bridge.LedgerSheaf

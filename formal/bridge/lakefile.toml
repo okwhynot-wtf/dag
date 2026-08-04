@@ -33,6 +33,7 @@ roots = [
   "EffectiveMatter",
   "FluxPattern",
   "LedgerSheaf",
+  "RecombinationBudget",
   "PhaseEToys",
   "BridgeArc",
 ]

@@ -17,6 +17,7 @@ import EinsteinSkeleton
 import EffectiveMatter
 import FluxPattern
 import LedgerSheaf
+import RecombinationBudget
 import PhaseEToys
 import Geom.Registration
 import Geom.Profile
@@ -226,6 +227,26 @@ theorem milestone_o3_glue :
     Bridge.Alphabet.Kmin = 2 :=
   ⟨Bridge.LedgerSheaf.glue_capacity_on_locus, Bridge.Alphabet.Kmin_eq⟩
 
+theorem milestone_o3_restrict :
+    (∀ {X E S E' : Type}
+      (p : Bridge.EinsteinSkeleton.LocalLedgerPatch X E S E') ℓ,
+      (Bridge.LedgerSheaf.restrictTo p ℓ).alphabet.length =
+        p.alphabet.length) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨fun p ℓ => Bridge.LedgerSheaf.restrict_preserves_capacity p ℓ,
+   Bridge.Alphabet.Kmin_eq⟩
+
+theorem milestone_r1_budget :
+    (∀ d, 1 ≤ d →
+      Bridge.RecombinationBudget.facesToFlatten d ≤
+        Bridge.Capacity.caps d) ∧
+    (¬ Bridge.RecombinationBudget.facesToFlatten 1 ≤
+      Geom.Profile.capacityOf 2 Geom.Profile.expand 1) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨Bridge.RecombinationBudget.r1_faces_within_caps,
+   Bridge.RecombinationBudget.r1_faces_exceed_expand_at_one,
+   Bridge.Alphabet.Kmin_eq⟩
+
 theorem milestone_phase_E :
     (∀ T, Bridge.PhaseEToys.deltaS T = 1) ∧
     (∀ T, Bridge.PhaseEToys.heatQuantum T =
@@ -297,6 +318,8 @@ theorem bridge_arc :
 #print axioms milestone_effective_matter_sprint
 #print axioms milestone_phase_D
 #print axioms milestone_o3_glue
+#print axioms milestone_o3_restrict
+#print axioms milestone_r1_budget
 #print axioms milestone_phase_E
 #print axioms bridge_arc
 

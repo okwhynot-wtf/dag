@@ -420,8 +420,57 @@ theorem rigidity_partition_fragment {S E E' : Type} [DecidableEq E']
           (hy s hs s' hs') hne e₁ e₂ (h1.trans h2.symm)
   · exact (minimal_step_covers u r hjoint xs hxd hy enum hEd enum' hE'd hE'c heq).1
 
+/-! ## Inductive uniqueness on record-reachable elements -/
+
+/-- Elements generated from `z0` by successive records (reduced archive). -/
+inductive Reachable {S : Type} {u : S → S} (A : Archive S u) :
+    (T : Nat) → A.E T → Prop where
+  | base : Reachable A 0 A.z0
+  | step {T : Nat} {e : A.E T} (s : S) :
+      Reachable A T e → Reachable A (T + 1) (A.r T s e)
+
+/-- Free words are entirely reachable. -/
+theorem free_reachable {S : Type} (u : S → S) :
+    ∀ T (w : Word S T), Reachable (free S u) T w := by
+  intro T w
+  induction w with
+  | nil => exact Reachable.base
+  | cons s tail ih => exact Reachable.step s ih
+
+/-- Morphisms that agree at `z0` agree on all reachable elements. -/
+theorem hom_unique_on_reachable {S : Type} {u : S → S}
+    {A B : Archive S u} (h₁ h₂ : Hom A B)
+    (hz : h₁.map 0 A.z0 = h₂.map 0 A.z0) :
+    ∀ T (e : A.E T), Reachable A T e → h₁.map T e = h₂.map T e := by
+  intro T e hr
+  induction hr with
+  | base => exact hz
+  | @step T e s hrec ih =>
+    have n₁ := h₁.nat_r T s e
+    have n₂ := h₂.nat_r T s e
+    rw [n₁, n₂, ih]
+
+/-- **Inductive uniqueness fragment.** On reduced archives (everything
+    reachable from `z0`), a Hom is uniquely determined by its value at `z0`.
+    Specialises to free archives; for minimal archives, reachability of the
+    whole carrier is the remaining iso gap (`rigidity_iso_open`). -/
+theorem hom_unique_reduced {S : Type} {u : S → S}
+    {A B : Archive S u} (h₁ h₂ : Hom A B)
+    (hz : h₁.map 0 A.z0 = h₂.map 0 A.z0)
+    (hreach : ∀ T (e : A.E T), Reachable A T e) :
+    ∀ T (e : A.E T), h₁.map T e = h₂.map T e :=
+  fun T e => hom_unique_on_reachable h₁ h₂ hz T e (hreach T e)
+
+/-- Free-archive case of inductive uniqueness (whole carrier reachable). -/
+theorem free_hom_unique_by_z0 {S : Type} {u : S → S}
+    {A : Archive S u} (h₁ h₂ : Hom (free S u) A)
+    (hz : h₁.map 0 Word.nil = h₂.map 0 Word.nil) :
+    ∀ T (w : Word S T), h₁.map T w = h₂.map T w :=
+  hom_unique_reduced h₁ h₂ hz (free_reachable u)
+
 /-- Full unique isomorphism of minimal archives once `E 0` is matched.
-    Partition fragment landed; inductive iso construction remains. -/
+    Need: every element of a minimal archive is `Reachable` (exhaustion
+    of the carrier by record blocks). Partition + uniqueness landed. -/
 def rigidity_iso_open : True := True.intro
 
 /-- Graded terminality of the ladder minimal archive among reduced
@@ -468,6 +517,8 @@ theorem keystone_dil_sprint :
 #print axioms capacity_step
 #print axioms registration
 #print axioms rigidity_partition_fragment
+#print axioms hom_unique_on_reachable
+#print axioms free_hom_unique_by_z0
 #print axioms predicate_minimal_schedule
 #print axioms caps_realise_minimal_schedule
 #print axioms keystone_dil_sprint

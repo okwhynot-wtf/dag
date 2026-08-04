@@ -1,5 +1,5 @@
 Diagonal Archive Geometry — symbolic law
-corpus hybrid/ DAG v0.1.13
+corpus hybrid/ DAG v0.1.14
 
 ═══════════════════════════════════════════════════════════════════════════════
 0. Layers  (downward imports only)
@@ -53,6 +53,9 @@ II. Ledger  (AG over I-1 / I-2)
   K > 2                                admissible, non-minimal
 
   E(T)  :=  L_T                        I-2 environment = ladder carrier
+                                       (Dil: free initial · capacity law ·
+                                        minimal K=2 schedule = caps;
+                                        rigidity / graded terminality open)
   |caps T| = 2^(T+2)                   predicateCount(T)
   committed prof = expand              prof(T)=T
   alive:  2^T ≤ 2^(T+2)                eternally, by arithmetic
@@ -152,13 +155,15 @@ VI. Compression
 VII. Residue / refusal
 ═══════════════════════════════════════════════════════════════════════════════
 
-  open (tractable): O-3 full sheaf dynamics (stalk glue done; restrictions open);
+  open (tractable): **T-1 Dil keystone** (free+capacity+schedule landed;
+            rigidity / graded terminality / predicate record-map open);
+          O-3 full sheaf dynamics (stalk glue done; restrictions open);
           R-1 recombination budget (faces vs aliveness; Lean counting);
-          period-2 / KMS↔involution toys (combinatorial T_c / Page / Friedmann
-            discrete toys landed — Phase E); matter-as-input host API optional;
+          T-10 Page flux *shape* (existence landed; min(t,C−t) curve open);
+          period-2 / KMS↔involution toys; matter-as-input host API optional;
           finite branch measures (Ollivier trial); area-as-caps sharpening;
           RE-side growth law (not yet sought); partial Lorentzian dictionary;
-          arbitrary U_S UP (beyond fiber tagging); Bogoliubov continuum still out
+          Bogoliubov continuum still out
   open (structural): **O-2** no boost / Unruh T (only ℤ/2; deepest Einstein gap);
           **R-1** ultrametric≠space (attack via recombination budget above);
           **O-4** continuum Lorentzian limit;
@@ -185,7 +190,7 @@ VII. Residue / refusal
   bridge:  Alphabet · Capacity · OneZ2 · RegistrationSpine · Environment ·
            TickSimulation · RegistrationFactor · ArchiveMustSpeak · SecondLaw ·
            Measurement · Expansion · Forman · Saturation · EinsteinSkeleton ·
-           EffectiveMatter · FluxPattern · LedgerSheaf · PhaseEToys
+           EffectiveMatter · FluxPattern · LedgerSheaf · PhaseEToys · Dil
   dict:    Certificate (K) · LCertificate · Quintom.* · BitFlip · Kramers · Page ·
            NoClone (measurement) · MetaProblem
 

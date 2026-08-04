@@ -53,4 +53,8 @@ an initial assumption.
 cd paper && pdflatex jmp_draft.tex && pdflatex jmp_draft.tex
 ```
 
+Format notes (still open `article` class for JMP initial submission): Palatino body,
+restrained slate accents, status callouts for open/refused/philosophical, TikZ
+dependency and architecture figures, anonymous running heads.
+
 Before JMP upload: anonymize PDF metadata (`pdfinfo` / ExifTool); do not include this README in the submission zip unless stripped of identity cues.

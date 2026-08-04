@@ -42,7 +42,7 @@ ledger, now that Forman curvature (T-14) and saturation EoS (T-15) exist.
 **What does not fall out.**
 - O-2 (structural): boosts / Unruh `T` — only ℤ/2. Deepest Einstein gap.
 - O-3 (tractable open work): sheaf of local ledgers — stalks exist; glue
-  programme filed in `docs/RESIDUE.md`.
+  programme open.
 - R-1 (structural obstruction + tractable budget): ultrametric ≠ space;
   recombination counting is Lean-attackable.
 - O-4 / O-5: continuum Lorentzian limit; matter from the framework.

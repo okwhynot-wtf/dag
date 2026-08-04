@@ -11,9 +11,9 @@ import Obs.StochasticUnlock
 /-!
 # Effective matter — sprint A1–A3, B4, C2
 
-Hypothesis H (see `docs/MATTER_FLUX_PLAN.md`): matter is an emergent
-effective description of record flux that a bounded lossless ledger is
-forced to emit at capacity saturation.
+Hypothesis H: matter is an emergent effective description of record
+flux that a bounded lossless ledger is forced to emit at capacity
+saturation.
 
 This module makes H *testable*:
 - **A1** `effectiveMatter` = stress/flux proxy on a local patch

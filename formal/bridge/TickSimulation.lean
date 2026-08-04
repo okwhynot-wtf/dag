@@ -332,8 +332,7 @@ theorem tick_identification_dichotomy :
     `NamingExtension`. Periodic Fund is exempt. Obstructed swap proves the
     dichotomy's necessity half (unbounded/UF hyp cannot be dropped).
 
-    Fence: not `Registers U → NamingExtension` on arbitrary carriers.
-    Cited by `docs/DAG_SYMBOLIC.txt` §0 / §V at v0.2. -/
+    Fence: not `Registers U → NamingExtension` on arbitrary carriers. -/
 theorem tick_identification :
     FundExempt ∧
     BoundedReuseRegisters ∧

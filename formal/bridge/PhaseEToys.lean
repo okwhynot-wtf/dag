@@ -17,7 +17,7 @@ expansion) show up as discrete caricatures.
 - **E2** Finite Page radiation = post-exhaustion archive speech (T-10)
 - **E3** Discrete Friedmann-shaped capacity update at Kmin (no continuum, no H₀)
 
-Failure of E does not kill H. See `docs/MATTER_FLUX_PLAN.md` Phase E.
+Failure of E does not kill H.
 -/
 
 namespace Bridge.PhaseEToys

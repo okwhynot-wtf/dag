@@ -18,7 +18,7 @@ Define record-labels as the universal completion of a merge fiber:
 Keystone progress: `Bridge.Dil` lands free-archive initiality, capacity,
 registration-from-joint-inj, UF/graded terminality, I-2 Fin alphabet-UF,
 ladder-predicate witness, and address-uniform idx. T-2 tick ID is the
-licensed remnant in `TickSimulation` — see `docs/RESIDUE.md`.
+licensed remnant in `TickSimulation`.
 -/
 
 namespace Bridge.Environment

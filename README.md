@@ -65,6 +65,6 @@ companions BitFlip, NoClone (measurement).
 
 ## Version
 
-DAG hybrid **v0.2.4** — O-2/O-4 linkage (forced blindness; one missing
-1-param object); discrete Tolman reopen shape noted; RE growth prior.
-O-2 cut-shift finding; time–dissipation corollary; Born no-go + T-2 arc.
+DAG hybrid **v0.2.5** — `corpus_not_universal` (Lawvere self-reference:
+seal_self, deficit, lag, ω≠rung); MetaProblem quantitative columns.
+Prior: O-2/O-4 linkage; RE growth; Born no-go; T-2 classified.

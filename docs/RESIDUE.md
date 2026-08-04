@@ -64,8 +64,11 @@ Claim-hygiene and continuum / mind ceilings. Not the same as “no caricature al
 - Continuum QFT mode creation; gravitational evaporating BH as Lean (finite Page *toy* admitted)
 - Continuum Boltzmann / Gibbs statistical mechanics (combinatorial Landauer / counting entropy are not this)
 - Born rule from underdetermination / multiplicity alone (**theorem:** `born_from_multiplicity_nogo`; Gleason domain absent)
-- Hard problem / qualia / experiential claims (meta-problem = structural *reports* only)
+- Hard problem / qualia / experiential claims (meta-problem = structural *reports* only; quantitative spine columns in `SelfReference`)
 - Deriving dynamical matter or Friedmann cosmology **from Bool alone** (matter-as-input dictionary is open work above)
+- Host-level incompleteness (Lean proving its own consistency) — Gödel's business; category error for the corpus
+- Gödel arithmetisation of the corpus (syntax + provability predicate) — refused: numbers-from-Bool fence; Lawvere semantic route already lands incompleteness (`SelfReference`)
+- Self-reference junctions other than corpus↔corpus (world / symbolic doc / git tree / host logic) — see `SelfReference` module header
 
 ## Discharged
 
@@ -78,6 +81,8 @@ T-16 discharges the Jacobson *skeleton* (capacity, Landauer, seal-horizon,
 saturation EoS, Forman `G~T` caricature, local ledger stalks). Continuum
 Einstein remains refused; O-2 structural (cut-shift finding filed); O-3 Mathlib
 sheaf / R-1 ultrametric in open. T-2 classified at v0.2 — see `docs/ARC_V02.md`.
+**SelfReference / corpus_not_universal** (v0.2.5): Lawvere self-application
+at corpus↔corpus; deficit + lag + ω≠rung; MetaProblem quantitative columns.
 
 ## Interpretation (hedged)
 

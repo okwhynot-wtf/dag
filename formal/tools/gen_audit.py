@@ -23,7 +23,7 @@ PACKAGES = {
               "Cause", "Branch", "Limit", "Revision", "SEM",
               "Interior", "Monism", "Apophasis", "Canon",
               "Information", "Observer", "Faces", "Density",
-              "NonCommencement", "OmegaDuration"],
+              "NonCommencement", "OmegaDuration", "SelfReference"],
 }
 
 # Lean identifiers admit `'`, `!`, `?` and unicode letters/subscripts after the

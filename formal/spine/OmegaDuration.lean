@@ -134,6 +134,32 @@ theorem namer_new_at_omega :
       ∀ a : LevelOmega, (some a : Limit.LevelOmegaPlusOne) ≠ b :=
   Limit.omega_plus_one_grows
 
+/-! ## Colimit is duration, not a rung -/
+
+/-- The ω-colimit carrier admits no injection into any finite ladder level.
+    Completeness-as-colimit is therefore not a representation at a rung:
+    `LevelOmega` is a duration (ancestral clock), not a level. -/
+theorem omega_not_a_rung (k : Nat) :
+    ¬ ∃ (f : LevelOmega → Ladder.Level k),
+      ∀ x y, f x = f y → x = y := by
+  intro ⟨f, hinj⟩
+  let g (i : Nat) : Nat :=
+    if h : i < k + 3 then Density.levelToNat k (f (LevelOmega.stage i)) else 0
+  have hg : ∀ i (hi : i < k + 3),
+      g i = Density.levelToNat k (f (LevelOmega.stage i)) := by
+    intro i hi; exact dif_pos hi
+  have hb : ∀ i, i < (k + 2) + 1 → g i < k + 2 := by
+    intro i hi; rw [hg i hi]; exact Density.levelToNat_lt k _
+  have hginj : ∀ i j, i < (k + 2) + 1 → j < (k + 2) + 1 → g i = g j → i = j := by
+    intro i j hi hj heq
+    have heq' : Density.levelToNat k (f (LevelOmega.stage i)) =
+                Density.levelToNat k (f (LevelOmega.stage j)) := by
+      rw [← hg i hi, ← hg j hj, heq]
+    have hlev := Density.levelToNat_inj k _ _ heq'
+    have hdom := hinj _ _ hlev
+    exact Limit.stage_inj hdom
+  exact Density.no_distinct_large (k + 2) g hb hginj
+
 /-! ## Package -/
 
 /--
@@ -154,12 +180,18 @@ theorem omega_duration_package :
     (∀ j k, Limit.appearsBy (LevelOmega.stage j) =
       Limit.appearsBy (LevelOmega.stage k) → j = k) ∧
     (∃ b : Limit.LevelOmegaPlusOne,
-      ∀ a : LevelOmega, (some a : Limit.LevelOmegaPlusOne) ≠ b) :=
+      ∀ a : LevelOmega, (some a : Limit.LevelOmegaPlusOne) ≠ b) ∧
+    (∀ k, ¬ ∃ (f : LevelOmega → Ladder.Level k),
+      ∀ x y, f x = f y → x = y) :=
   ⟨ladder_index_recoverable,
    optionNat_bijective,
    optionLevelOmega_bijective,
    stage_tag_injective,
    appearsBy_recovers_stage,
-   namer_new_at_omega⟩
+   namer_new_at_omega,
+   omega_not_a_rung⟩
+
+#print axioms OmegaDuration.omega_not_a_rung
+#print axioms OmegaDuration.omega_duration_package
 
 end OmegaDuration

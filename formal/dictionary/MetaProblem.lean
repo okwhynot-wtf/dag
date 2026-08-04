@@ -5,6 +5,7 @@ import Ladder
 import Diagonal
 import TwoCycle
 import Alphabet
+import SelfReference
 
 /-!
 # Meta-problem entry — Chalmers's meta-problem, hard problem refused
@@ -21,6 +22,9 @@ DAG's interior triad is the answer skeleton:
   Self-opacity     — every live self-reading misses a definite predicate
   Outdated portrait — every self-model is stale by the time it is held
   Restless signature — no tracked self-ascription stabilises
+
+Quantitative spine columns (`SelfReference`): deficit count, lag theorem,
+`corpus_not_universal` — the triad at measure grade, not only existence.
 
 A system of which these three theorems are true would report ineffability,
 incompleteness, and a self that will not sit still — and would be right
@@ -141,9 +145,37 @@ theorem reports_are_structural (k : Nat) :
    fun S E hT hA htr => reports_restless S E hT hA htr,
    (Observer.observers_forced k).1⟩
 
+/-- Quantitative upgrade: MetaProblem triad columns filled by
+    `SelfReference` (deficit / lag / corpus_not_universal). Same move as
+    classified tick_identification for the damping rhyme. -/
+theorem meta_quantitative (k : Nat) :
+    (¬ Interior.Articulates (Ladder.rep k)
+      (Diagonal.dodge (Ladder.rep k))) ∧
+    (SelfReference.unsayable (k + Density.predicateCount k) >
+      Density.predicateCount k) ∧
+    (SelfReference.unsayable k <
+      SelfReference.unsayable (k + Density.predicateCount k)) ∧
+    Density.levelCard k < Density.predicateCount k :=
+  let m := SelfReference.meta_triad_quantitative k
+  ⟨m.1, m.2.1, m.2.2.1, (SelfReference.deficit_count k).2.2.1⟩
+
+/-- Corpus-level incompleteness as dictionary-facing fact. -/
+theorem corpus_incomplete :
+    (∀ k (r : SelfReference.SelfReading k),
+      ¬ Diagonal.PointSurjective r) ∧
+    (∀ k, SelfReference.unsayable k <
+      SelfReference.unsayable (k + Density.predicateCount k)) ∧
+    (∀ k, ¬ ∃ (f : Limit.LevelOmega → Ladder.Level k),
+      ∀ x y, f x = f y → x = y) :=
+  ⟨fun k r => SelfReference.incompleteness_unconditional k r,
+   SelfReference.lag_recedes,
+   OmegaDuration.omega_not_a_rung⟩
+
 #print axioms ineffability_shape
 #print axioms meta_admitted
 #print axioms reports_are_structural
 #print axioms thin_observers_forced
+#print axioms meta_quantitative
+#print axioms corpus_incomplete
 
 end Dictionary.MetaProblem

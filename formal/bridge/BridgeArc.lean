@@ -124,6 +124,30 @@ theorem milestone_dil_rigidity_iso :
     Bridge.Alphabet.Kmin = 2 :=
   ⟨Bridge.Dil.free_rigidity_self Bool not, Bridge.Alphabet.Kmin_eq⟩
 
+/-- Graded terminality among UF + pointed archives. -/
+theorem milestone_dil_graded_terminality :
+    (∀ {S : Type} {u : S → S} {A B : Bridge.Dil.Archive S u}
+      (fa : Bridge.Dil.UniqueFactorization A)
+      (fb : Bridge.Dil.UniqueFactorization B)
+      (ha : Bridge.Dil.PointedSingleton A)
+      (hb : Bridge.Dil.PointedSingleton B),
+      (∃ _h : Bridge.Dil.Hom A B, True) ∧
+      (∀ h₁ h₂ : Bridge.Dil.Hom A B, h₁ = h₂)) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨fun fa fb ha hb => Bridge.Dil.graded_terminality_of_UF fa fb ha hb,
+   Bridge.Alphabet.Kmin_eq⟩
+
+/-- I-2 Bool caps Fin record-map fragment (non-singleton base). -/
+theorem milestone_i2_caps_record_map :
+    (¬ Bridge.Dil.PointedSingleton (Bridge.Dil.boolCapsArchive not)) ∧
+    Bridge.Dil.MinimalSchedule 2 Bridge.Dil.capCard ∧
+    (∀ T, Bridge.Dil.capCard T = 2 ^ (T + 2)) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨(Bridge.Dil.i2_caps_record_map_fragment not).2.1,
+   (Bridge.Dil.i2_caps_record_map_fragment not).2.2.1,
+   (Bridge.Dil.i2_caps_record_map_fragment not).2.2.2.2.1,
+   Bridge.Alphabet.Kmin_eq⟩
+
 /-- T-2 factorisation: namer-shaped positive + carrier obstruction. -/
 theorem milestone_M4b :
     (∀ {S E : Type} {U : S × E → S × E},
@@ -337,6 +361,8 @@ theorem bridge_arc :
 #print axioms milestone_keystone_dil
 #print axioms milestone_dil_hom_exists
 #print axioms milestone_dil_rigidity_iso
+#print axioms milestone_dil_graded_terminality
+#print axioms milestone_i2_caps_record_map
 #print axioms milestone_M4b
 #print axioms milestone_T10
 #print axioms milestone_T10_shape

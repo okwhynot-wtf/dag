@@ -18,8 +18,10 @@ This module lands the afternoon propositions of the keystone sketch:
 4. Minimal = saturated schedule; ladder predicate count realises `|E_T| = 2^{T+2}`
 
 Rigidity partition fragment landed (cover at equality). Packaged UF↔UF
-iso landed (`rigidity_iso`). Graded terminality and predicate-space record
-map remain open. Tick identification remains T-2-licensed.
+iso landed (`rigidity_iso`). Graded terminality among UF + pointed archives
+landed (`graded_terminality_of_UF`). I-2 caps Fin record-map fragment landed
+(`boolCapsArchive` / `i2_caps_record_map_fragment`); Fin-UF and full
+ladder-predicate addressing remain hedged. Tick ID remains T-2-licensed.
 -/
 
 namespace Bridge.Dil
@@ -769,19 +771,203 @@ theorem free_rigidity_self (S : Type) (u : S → S) :
     (freeUniqueFactorization S u) (freeUniqueFactorization S u)
     (free_is_pointed_singleton S u) (free_is_pointed_singleton S u)
 
-/-- Graded terminality among reduced u-graded archives — still open as a
-    separate addressing claim; UF rigidity iso is the constructive surrogate. -/
-def graded_terminality_open : True := True.intro
+/-- UF + pointed singleton ⇒ every letter is reachable from `z0`. -/
+theorem uf_pointed_carrier_reachable {S : Type} {u : S → S}
+    {A : Archive S u} (fa : UniqueFactorization A) (h0 : PointedSingleton A) :
+    ∀ T (e : A.E T), Reachable A T e := by
+  intro T
+  induction T with
+  | zero =>
+    intro e
+    exact (h0 e) ▸ Reachable.base
+  | succ T ih =>
+    intro e'
+    have hrec := fa.reconstruct T e'
+    -- e' = A.r (factor).1 (factor).2
+    exact hrec ▸ Reachable.step (fa.factor T e').1 (ih (fa.factor T e').2)
+
+/-- At most one Hom under UF + pointed source (given agreement at `z0`). -/
+theorem at_most_one_hom_of_UF {S : Type} {u : S → S}
+    {A B : Archive S u} (h₁ h₂ : Hom A B)
+    (hz : h₁.map 0 A.z0 = h₂.map 0 A.z0)
+    (fa : UniqueFactorization A) (h0 : PointedSingleton A) :
+    ∀ T (e : A.E T), h₁.map T e = h₂.map T e :=
+  hom_unique_reduced h₁ h₂ hz (uf_pointed_carrier_reachable fa h0)
+
+/-- Hom equality from pointwise map equality (Hom is a structure). -/
+theorem Hom.ext {S : Type} {u : S → S} {A B : Archive S u}
+    (h₁ h₂ : Hom A B) (hm : ∀ T e, h₁.map T e = h₂.map T e) :
+    h₁ = h₂ := by
+  cases h₁ with
+  | mk m₁ z₁ n₁ =>
+    cases h₂ with
+    | mk m₂ z₂ n₂ =>
+      have heq : m₁ = m₂ := funext fun T => funext fun e => hm T e
+      cases heq
+      rfl
+
+/-- **Graded terminality.** Among UF + pointed-singleton archives, a Hom
+    exists and is unique (terminality in this graded subcategory). -/
+theorem graded_terminality_of_UF {S : Type} {u : S → S}
+    {A B : Archive S u}
+    (fa : UniqueFactorization A) (_fb : UniqueFactorization B)
+    (ha : PointedSingleton A) (_hb : PointedSingleton B) :
+    (∃ _h : Hom A B, True) ∧
+    (∀ h₁ h₂ : Hom A B, h₁ = h₂) :=
+  ⟨⟨homViaHistory fa ha, True.intro⟩, by
+    intro h₁ h₂
+    apply Hom.ext h₁ h₂
+    intro T e
+    have hz : h₁.map 0 A.z0 = h₂.map 0 A.z0 := by
+      rw [h₁.map_z0, h₂.map_z0]
+    exact at_most_one_hom_of_UF h₁ h₂ hz fa ha T e⟩
+
+/-- Free archive is terminal among UF + pointed archives (re-statement). -/
+theorem free_terminal_among_UF {S : Type} {u : S → S}
+    {A : Archive S u}
+    (fa : UniqueFactorization A) (ha : PointedSingleton A) :
+    (∃ _h : Hom A (free S u), True) ∧
+    (∀ h₁ h₂ : Hom A (free S u), h₁ = h₂) :=
+  graded_terminality_of_UF fa (freeUniqueFactorization S u) ha
+    (free_is_pointed_singleton S u)
 
 /-- Tick identification (naming ↔ microtick) remains T-2-licensed. -/
 def tick_identification_T2_licensed : True := True.intro
+
+/-! ## I-2 caps archive (Fin schedule, non-singleton base) -/
+
+/-- Cap cardinality `2^(T+2)`. -/
+def capCard (T : Nat) : Nat := 2 ^ (T + 2)
+
+theorem capCard_succ (T : Nat) : capCard (T + 1) = 2 * capCard T := by
+  simp only [capCard, Nat.pow_succ, Nat.mul_comm]
+
+theorem capCard_pos (T : Nat) : 0 < capCard T :=
+  Nat.pow_pos (by decide : 0 < 2)
+
+/-- Encode `(s, e)` into the next cap level (low half = false, high = true). -/
+def capRecord {T : Nat} (s : Bool) (e : Fin (capCard T)) :
+    Fin (capCard (T + 1)) :=
+  Fin.mk
+    (e.val + (if s then capCard T else 0))
+    (by
+      have hcard := capCard_succ T
+      have he : e.val < capCard T := e.isLt
+      cases s with
+      | false =>
+        have : e.val < capCard T + capCard T :=
+          Nat.lt_of_lt_of_le he (Nat.le_add_right _ _)
+        simpa [hcard, Nat.two_mul, Nat.add_zero] using this
+      | true =>
+        have : e.val + capCard T < capCard T + capCard T :=
+          Nat.add_lt_add_right he (capCard T)
+        simpa [hcard, Nat.two_mul] using this)
+
+theorem capRecord_val_false {T : Nat} (e : Fin (capCard T)) :
+    (capRecord false e).val = e.val := by
+  simp [capRecord]
+
+theorem capRecord_val_true {T : Nat} (e : Fin (capCard T)) :
+    (capRecord true e).val = e.val + capCard T := by
+  simp [capRecord]
+
+theorem capRecord_inj {T : Nat} (s₁ s₂ : Bool)
+    (e₁ e₂ : Fin (capCard T))
+    (h : capRecord s₁ e₁ = capRecord s₂ e₂) :
+    s₁ = s₂ ∧ e₁ = e₂ := by
+  have hv : (capRecord s₁ e₁).val = (capRecord s₂ e₂).val :=
+    congrArg Fin.val h
+  cases s₁ with
+  | false =>
+    cases s₂ with
+    | false =>
+      have : e₁.val = e₂.val := by
+        simpa [capRecord_val_false] using hv
+      exact ⟨rfl, Fin.ext this⟩
+    | true =>
+      have hv' : e₁.val = e₂.val + capCard T := by
+        simpa [capRecord_val_false, capRecord_val_true] using hv
+      have hlt : e₁.val < capCard T := e₁.isLt
+      have hge : capCard T ≤ e₁.val := by
+        have : capCard T ≤ e₂.val + capCard T := Nat.le_add_left _ _
+        exact hv' ▸ this
+      exact absurd hlt (Nat.not_lt.mpr hge)
+  | true =>
+    cases s₂ with
+    | false =>
+      have hv' : e₁.val + capCard T = e₂.val := by
+        simpa [capRecord_val_true, capRecord_val_false] using hv
+      have hlt : e₂.val < capCard T := e₂.isLt
+      have hge : capCard T ≤ e₂.val := by
+        have : capCard T ≤ e₁.val + capCard T := Nat.le_add_left _ _
+        exact hv' ▸ this
+      exact absurd hlt (Nat.not_lt.mpr hge)
+    | true =>
+      have : e₁.val + capCard T = e₂.val + capCard T := by
+        simpa [capRecord_val_true] using hv
+      have : e₁.val = e₂.val := Nat.add_right_cancel this
+      exact ⟨rfl, Fin.ext this⟩
+
+/-- **I-2 Bool caps archive.** Carrier `Fin (2^(T+2))` with half-split
+    record map. Realises the minimal K=2 schedule with `|E₀| = 4`.
+    Base is *not* a pointed singleton — caps addressing sits outside the
+    free/UF pointed subcategory. -/
+def boolCapsArchive (u : Bool → Bool) : Archive Bool u where
+  E := fun T => Fin (capCard T)
+  z0 := ⟨0, by decide⟩
+  r := fun _ s e => capRecord s e
+  joint_inj := by
+    intro _T s₁ s₂ e₁ e₂ _hu hr
+    exact capRecord_inj s₁ s₂ e₁ e₂ hr
+
+/-- Caps base is not a pointed singleton (`|E₀| = 4`). -/
+theorem boolCaps_not_pointedSingleton (_u : Bool → Bool) :
+    ¬ PointedSingleton (boolCapsArchive _u) := by
+  intro h
+  have h1 := h ⟨1, by decide⟩
+  have : (1 : Nat) = 0 := congrArg Fin.val h1
+  exact absurd this (by decide)
+
+/-- Caps levels realise the committed capacity schedule. -/
+theorem boolCaps_card_eq_caps (_u : Bool → Bool) :
+    (∀ T, capCard T = Bridge.Capacity.caps T) ∧
+    MinimalSchedule 2 capCard ∧
+    capCard 0 = 4 :=
+  ⟨fun T => by simp [capCard, Bridge.Capacity.caps_eq],
+   fun T => capCard_succ T,
+   rfl⟩
+
+/-- Record map is injective in the letter (registration face of the Fin archive). -/
+theorem boolCaps_registers (u : Bool → Bool) (T : Nat)
+    (s₁ s₂ : Bool) (e : Fin (capCard T))
+    (hsu : u s₁ = u s₂) (hne : s₁ ≠ s₂) :
+    (boolCapsArchive u).r T s₁ e ≠ (boolCapsArchive u).r T s₂ e :=
+  archive_registers (boolCapsArchive u) T s₁ s₂ e hsu hne
+
+/-- **I-2 caps record-map fragment.** Concrete Dil archive on Bool with
+    capacity Fin-schedule, jointly injective record map, and non-singleton
+    base (`|E₀| = 4`). Not identified with free/UF pointed rigidity.
+    Unique factorization on this Fin carrier is deferred. -/
+theorem i2_caps_record_map_fragment (u : Bool → Bool) :
+    (∃ _A : Archive Bool u, True) ∧
+    (¬ PointedSingleton (boolCapsArchive u)) ∧
+    MinimalSchedule 2 capCard ∧
+    (∀ T, capCard T = Bridge.Capacity.caps T) ∧
+    (∀ T, capCard T = 2 ^ (T + 2)) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨⟨boolCapsArchive u, True.intro⟩,
+   boolCaps_not_pointedSingleton u,
+   fun T => capCard_succ T,
+   fun T => by simp [capCard, Bridge.Capacity.caps_eq],
+   fun _ => rfl,
+   Bridge.Alphabet.Kmin_eq⟩
 
 /-! ## Keystone sprint package -/
 
 /-- **Keystone Dil sprint.** Free archive initial; capacity step law;
     registration corollary; ladder/caps realise minimal K=2 schedule;
-    rigidity partition fragment at equality. UF rigidity iso landed;
-    graded terminality remains open. -/
+    rigidity partition; UF rigidity iso; graded terminality among UF +
+    pointed archives. I-2 caps record-map is a separate non-pointed face. -/
 theorem keystone_dil_sprint :
     (∀ {S : Type} {u : S → S} (A : Archive S u),
       (∃ _h : Hom (free S u) A, True) ∧
@@ -826,6 +1012,8 @@ theorem keystone_dil_sprint :
 #print axioms history_retract
 #print axioms rigidity_iso_of_UF
 #print axioms free_rigidity_self
+#print axioms graded_terminality_of_UF
+#print axioms i2_caps_record_map_fragment
 #print axioms predicate_minimal_schedule
 #print axioms caps_realise_minimal_schedule
 #print axioms keystone_dil_sprint

@@ -24,9 +24,9 @@ Hawking 1976 = eternal mute merging; AG Registration + T-10 = unitarist
 reply. Entry admitted via **L-certificate**, not I-4.
 
 Kernel-side bonus (conjecture only, not claimed): Hawking pair as
-involution ω ↦ −ω with horizon zero-mode fixed locus — see
-`exhibits/page/README.md`. Requires Bogoliubov / QFT drift; refused as
-Lean claim. The L-certificate stands without it.
+involution ω ↦ −ω with horizon zero-mode fixed locus. Requires
+Bogoliubov / QFT drift; refused as Lean claim. The L-certificate stands
+without it.
 -/
 
 namespace Dictionary.Page

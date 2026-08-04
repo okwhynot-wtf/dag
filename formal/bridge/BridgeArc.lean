@@ -569,18 +569,20 @@ theorem bridge_arc :
 #print axioms milestone_o2_cut_shift
 #print axioms milestone_o2_forced_blindness
 /-- I-1 two-bounce fragment (alias). Spine ¬erase; two-bounce ⇒ Inj;
-    existence on involutions / Bool / swapStep. Fin n + canonicity open. -/
+    existence on involutions / Bool / swapStep / Fin n. Canonicity open. -/
 theorem milestone_i1_two_bounce :
-    (∀ {α : Type} (U : α → α) (f : Bridge.TwoBounce.TwoBounceFactor U),
+    (∀ {α : Type} (U : α → α) (_f : Bridge.TwoBounce.TwoBounceFactor U),
       Orbit.Lossless U) ∧
     (∀ {S E : Type} (U : S × E → S × E)
-      (f : Bridge.TwoBounce.TwoBounceFactor U), Geom.Registration.Inj U) ∧
+      (_f : Bridge.TwoBounce.TwoBounceFactor U), Geom.Registration.Inj U) ∧
     (∀ {α : Type} (U : α → α), Bridge.TwoBounce.IsInvolution U →
       Nonempty (Bridge.TwoBounce.TwoBounceFactor U)) ∧
     (∀ U : Bool → Bool, Bridge.TwoBounce.EndoInj U →
       Nonempty (Bridge.TwoBounce.TwoBounceFactor U)) ∧
     Nonempty (Bridge.TwoBounce.TwoBounceFactor Geom.Registration.swapStep) ∧
-    (∀ {α : Type} (act : α → α), Orbit.SymmetricStep act → ¬ Orbit.Erasing act) :=
+    (∀ {α : Type} (act : α → α), Orbit.SymmetricStep act → ¬ Orbit.Erasing act) ∧
+    (∀ {n : Nat} (U : Fin n → Fin n), Bridge.TwoBounce.EndoInj U →
+      Nonempty (Bridge.TwoBounce.TwoBounceFactor U)) :=
   Bridge.TwoBounce.i1_two_bounce_fragment
 
 #print axioms milestone_partial_lorentzian

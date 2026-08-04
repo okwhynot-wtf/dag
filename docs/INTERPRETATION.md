@@ -122,7 +122,7 @@ Dictionary damping=registration rhyme remains K-certificate (I-4).
 the base; the corollary is their joint return upstairs — inevitability with
 a visible cause, not a surprise. Obligations: adopter accepts an undirected
 base act (arena adequacy); in-arena no-erasure is derived; I-1 `Inj(U)` is
-the losslessness transfer (`TwoBounce` discharge in progress).
+the losslessness transfer (`TwoBounce`: Fin n existence landed; canonicity open).
 
 ## Jacobson quantifier (surfaced)
 

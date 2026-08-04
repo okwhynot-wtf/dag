@@ -1,5 +1,5 @@
 Diagonal Archive Geometry — symbolic law
-corpus hybrid/ DAG v0.2.1
+corpus hybrid/ DAG v0.2.2
 
 ═══════════════════════════════════════════════════════════════════════════════
 0. Layers  (downward imports only)
@@ -127,7 +127,8 @@ IV. Dictionary  (I-4: K-certificate | L-certificate)
 
 ═══════════════════════════════════════════════════════════════════════════════
 V. Identifications  (three corpora, one object)
-    proved status under Bridge.TickSimulation.tick_identification
+    proved for spine/ledger columns under tick_identification;
+    dictionary column remains K/L-certificate grade (I-4)
 ═══════════════════════════════════════════════════════════════════════════════
 
   naming tick             ≅  microtick (UF archives, up to record gauge;
@@ -140,6 +141,8 @@ V. Identifications  (three corpora, one object)
   excluded fixed point    ≅  —                                ≅  w=−1 divide
   pred growth 2^(k+2)     ≅  c(t+1)=K·c(t), K=2               ≅  —
   erasure priced out      ≅  merge ⇒ record                   ≅  H → expansion
+  (corollary, formal cols) undamped ⇒ no naming ticks; arrow iff registration
+                             (`time_dissipation_one_property`)
 
 ═══════════════════════════════════════════════════════════════════════════════
 VI. Compression
@@ -157,6 +160,7 @@ VI. Compression
     +  (E = L_• ,  |caps T| = 2^(T+2) ,  Kmin = 2)
     +  (arrow = address = pole = channel    :  one ℤ/2)
     +  (H=0 ⇒ oscillator triangle;  H>0 ⇒ dissipation registers)
+    +  (undamped ⇒ no naming ticks; arrow iff registration)  [formal cols]
     +  (interior triad ⇒ ineffability reports; hard problem refused)
 
 ═══════════════════════════════════════════════════════════════════════════════
@@ -164,7 +168,6 @@ VII. Residue / refusal
 ═══════════════════════════════════════════════════════════════════════════════
 
   open (tractable): deeper `|S|>K` alphabet-UF lift (optional; Fin I-2 closed);
-          O-2 decision (KMS/modular attack vs feature);
           O-3 Mathlib sheaf/site (stalk glue + restriction + dynamics
             sections landed; continuum locality refused);
           R-1 counting landed (tree faces ≤ caps; ultrametric≠space remains);
@@ -173,7 +176,9 @@ VII. Residue / refusal
           period-2 / KMS toy landed; area-as-caps sharpening landed;
           finite Ollivier trial landed; matter-as-input host API optional;
           RE-side growth law (not yet sought); partial Lorentzian dictionary landed
-  open (structural): **O-2** no boost / Unruh T (only ℤ/2; deepest Einstein gap);
+  open (structural): **O-2** no boost / Unruh T — cut-shift attempt dead-ended
+          (`o2_cut_shift_dead_end`: T_c blind to cut; feature as finding);
+
           **R-1** ultrametric≠space (counting attack landed above);
           **O-4** continuum Lorentzian limit;
           **O-5** SM inventory underdetermined (emergent patterned flux A–E)
@@ -205,7 +210,7 @@ VII. Residue / refusal
            TickSimulation · RegistrationFactor · ArchiveMustSpeak · SecondLaw ·
            Measurement · Expansion · Forman · Saturation · EinsteinSkeleton ·
            EffectiveMatter · FluxPattern · LedgerSheaf · RecombinationBudget ·
-           PhaseEToys · Dil · PageShape · BranchMeasure
+           PhaseEToys · Dil · PageShape · BranchMeasure · ModularCut
   dict:    Certificate (K) · LCertificate · Quintom.* · BitFlip · Kramers · Page ·
            QEC · NoClone (measurement) · MetaProblem
 

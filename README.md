@@ -65,5 +65,5 @@ companions BitFlip, NoClone (measurement).
 
 ## Version
 
-DAG hybrid **v0.2.1** — Born no-go (`born_from_multiplicity_nogo`);
-v0.2.0 classified T-2 arc (`docs/ARC_V02.md`).
+DAG hybrid **v0.2.2** — O-2 cut-shift dead end (feature as finding);
+time–dissipation corollary; §V rescope; Born no-go + T-2 arc prior.

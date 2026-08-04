@@ -38,6 +38,7 @@ exist with crude overlap. Continuum `G_{μν} = 8π T_{μν}` does **not** fall 
 
 **Still blocking continuum Einstein.**
 - **O-2** (structural, deepest): no boosts ⇒ no Unruh `T`
+  (cut-shift attempt dead-ended: `T_c` blind to cut; feature as finding)
 - **O-3** (tractable): stalks + dynamics sections landed; Mathlib sheaf/site still open
 - **R-1** (structural obstruction, tractable budget attack): ultrametric;
   recombination counting is Lean
@@ -109,6 +110,12 @@ exhaustive. Ingredients: straighten (`isoToFreeOnBase`) → append step
 (`tick_identification_step`) → namer shape → rate weld → ladder
 `NamingExtension`. Fence: not a total functor on carriers. Arc write-up:
 `docs/ARC_V02.md`. Historical remnant: `tick_identification_licensed`.
+
+**Time–dissipation corollary** (`time_dissipation_one_property`): Fund is
+exempt from tick identification, and Fund is the H=0 oscillator (vacuum
+dynamics). Undamped dynamics have no naming ticks; the arrow appears
+exactly when registration does. Formal spine/ledger columns: theorem-grade.
+Dictionary damping=registration rhyme remains K-certificate (I-4).
 
 ## Jacobson quantifier (surfaced)
 

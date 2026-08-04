@@ -46,9 +46,11 @@ not a modelling license.
 
 - **§0:** `(identified only where T-2 licenses)` → citation of
   `tick_identification`.
-- **§V:** identifications inherit proved status under that citation
-  (Fund ≅ oscillator is the exempt pole; pred-growth ≅ caps doubling is
-  the rate weld).
+- **§V:** spine/ledger columns proved under that citation; dictionary
+  column stays K/L-certificate grade (I-4). Fund ≅ oscillator is the
+  exempt pole; pred-growth ≅ caps doubling is the rate weld.
+- **Corollary:** `time_dissipation_one_property` — undamped ⇒ no naming
+  ticks; arrow iff registration (theorem for formal columns).
 
 ## Citations
 

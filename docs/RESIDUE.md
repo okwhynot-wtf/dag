@@ -39,7 +39,7 @@ caricatures are in scope; continuum identifications are not.
 
 | Item | Why hard | Still movable? |
 |---|---|---|
-| **O-2** no boost / Unruh `T` | Only symmetry is one ℤ/2; Clausius has no temperature | Needs new structure (boost-like), not a missing lemma. Deepest Einstein gap |
+| **O-2** no boost / Unruh `T` | Only ℤ/2; cut-shift attempt dead-ended (`o2_cut_shift_dead_end`: `T_c` blind to cut) | Feature as finding; reopen needs cut-dependent `T` / continuous modular param. Deepest Einstein gap |
 | **R-1** ultrametric vs space | LCA distance ≠ Archimedean space; paths diverge and stay diverged | Yes via recombination programme above; success not guaranteed |
 | **O-4** continuum Lorentzian limit | No continuum metric in hand | Limit theorems only after R-1 / dictionary progress |
 | **O-5** matter ontology | Softened: A–E support emergent patterned flux + discrete toys | SM-like inventory still underdetermined; not a second substance requirement |
@@ -75,9 +75,8 @@ I-4 L-certificate: **Page**;
 T-12 Branch/measurement no-go: **NoClone** paired with Lossless.
 T-16 discharges the Jacobson *skeleton* (capacity, Landauer, seal-horizon,
 saturation EoS, Forman `G~T` caricature, local ledger stalks). Continuum
-Einstein remains refused; O-2 structural (decision pending); O-3 Mathlib sheaf /
-R-1 ultrametric in open (counting + dynamics sections landed). T-2 classified
-at v0.2 — see `docs/ARC_V02.md`.
+Einstein remains refused; O-2 structural (cut-shift finding filed); O-3 Mathlib
+sheaf / R-1 ultrametric in open. T-2 classified at v0.2 — see `docs/ARC_V02.md`.
 
 ## Interpretation (hedged)
 

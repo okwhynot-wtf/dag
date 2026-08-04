@@ -220,3 +220,8 @@ VII. Residue / refusal
   dict:    Certificate (K) · LCertificate · Quintom.* (incl. Growth) · BitFlip ·
            Kramers · Page · QEC · NoClone (measurement) · MetaProblem
 
+═══════════════════════════════════════════════════════════════════════════════
+  One live ℤ/2, forced records, growing archive: naming = microtick up to gauge;
+  continuum / Born / Unruh refused — the rest is certificate or residue.
+═══════════════════════════════════════════════════════════════════════════════
+

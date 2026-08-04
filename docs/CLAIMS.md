@@ -35,6 +35,9 @@
 | Dil graded terminality (UF+pointed) | `Bridge.Dil.graded_terminality_of_UF` | Bridge |
 | I-2 Bool caps Fin record-map fragment | `Bridge.Dil.i2_caps_record_map_fragment` | Bridge |
 | I-2 Fin alphabet-UF closed (base-relative) | `Bridge.Dil.i2_fin_closed` | Bridge |
+| Ladder-predicate addressing witness | `Bridge.Dil.ladder_predicate_addressing_witness` | Bridge |
+| Address-uniform record factoring (`|S|>K` frag) | `Bridge.Dil.AddressUniform`, `joint_inj_of_addressUniform` | Bridge |
+| T-2 tick identification (licensed remnant) | `Bridge.TickSimulation.tick_identification_licensed` | Bridge |
 | Dil base-relative UF rigidity iso | `Bridge.Dil.rigidity_iso_of_base` | Bridge |
 | QEC L-certificate (syndrome = registration) | `Dictionary.QEC.qec_admitted` | Dictionary |
 | T-1 record-label injectivity | `Bridge.Environment.recordLabel_injective` | Bridge |

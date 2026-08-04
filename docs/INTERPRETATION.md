@@ -94,8 +94,18 @@ alphabet, so `UniqueFactorization` on `boolCapsArchive` is exactly the
 minimal bijection `|E_{T+1}| = K|E_T|`. Rigidity is **base-relative**
 (`rigidity_iso_of_base`): `|E₀| = 4`, iso unique once `h₀` is fixed.
 Pointed UF characterises the free end; alphabet-UF characterises the
-minimal end. Ladder-predicate `Level → Bool` remains the addressing witness,
-not a second carrier theorem.
+minimal end. Ladder-predicate addressing is witnessed
+(`ladder_predicate_addressing_witness`): combinatorial `|Level → Bool|` =
+`caps`, realised by the Fin archive — not a second Predicate `Archive`.
+Address-uniform `idx` fragment lands for `|S| > K` (`AddressUniform`);
+Bool is the trivial `idx = id` case.
+
+## T-2 tick identification (licensed remnant)
+
+Committed expand path + namer-shaped label factor are discharged
+(`tick_identification_licensed`). Carrier-level Registration→naming is
+obstructed (swap vs `levelCard`). Naming-tick ↔ microtick is licensed on
+that remnant only — not a total functor on carriers.
 
 ## Dictionary adapters (fence)
 

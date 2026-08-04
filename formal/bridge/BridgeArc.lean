@@ -160,6 +160,36 @@ theorem milestone_i2_fin_closed :
    (Bridge.Dil.i2_fin_closed not).2.2.2.2.2.1,
    Bridge.Alphabet.Kmin_eq⟩
 
+/-- Ladder-predicate addressing witness + address-uniform idx fragment. -/
+theorem milestone_ladder_predicate_addressing :
+    (∀ T, Density.predicateCount T = Bridge.Capacity.caps T) ∧
+    (∀ T, Bridge.Dil.capCard T = Bridge.Capacity.caps T) ∧
+    (∃ _au : Bridge.Dil.AddressUniform
+      (Bridge.Dil.boolCapsArchive not) id, True) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨(Bridge.Dil.ladder_predicate_addressing_witness).2.1,
+   (Bridge.Dil.ladder_predicate_addressing_witness).2.2.2.1,
+   ⟨Bridge.Dil.boolCaps_addressUniform not, True.intro⟩,
+   Bridge.Alphabet.Kmin_eq⟩
+
+/-- T-2 tick identification licensed remnant (committed path + label factor). -/
+theorem milestone_T2_tick_id_licensed :
+    (∀ T, Bridge.Capacity.caps T = 2 ^ (T + 2)) ∧
+    (∀ T, Geom.Profile.Alive 2 Geom.Profile.expand T) ∧
+    (Geom.Registration.Inj Geom.Registration.swapStep ∧
+      Geom.Registration.Merges Geom.Registration.swapStep ∧
+      Geom.Registration.Registers Geom.Registration.swapStep) ∧
+    (∀ T, 1 ≤ T → Density.levelCard 0 < Density.levelCard T) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨Bridge.TickSimulation.tick_simulation.1,
+   Bridge.TickSimulation.tick_simulation.2.1,
+   ⟨Geom.Registration.swap_inj,
+     Geom.Registration.swap_registers.2.1,
+     Geom.Registration.swap_registers.2.2⟩,
+   fun T hT =>
+     (Bridge.RegistrationFactor.registration_vs_naming_obstruction).2.2.2 T hT,
+   Bridge.Alphabet.Kmin_eq⟩
+
 /-- T-2 factorisation: namer-shaped positive + carrier obstruction. -/
 theorem milestone_M4b :
     (∀ {S E : Type} {U : S × E → S × E},
@@ -376,6 +406,8 @@ theorem bridge_arc :
 #print axioms milestone_dil_graded_terminality
 #print axioms milestone_i2_caps_record_map
 #print axioms milestone_i2_fin_closed
+#print axioms milestone_ladder_predicate_addressing
+#print axioms milestone_T2_tick_id_licensed
 #print axioms milestone_M4b
 #print axioms milestone_T10
 #print axioms milestone_T10_shape

@@ -15,10 +15,10 @@ Define record-labels as the universal completion of a merge fiber:
 `|caps T| = 2^(T+2)`. Alphabet bound `|E| ≥ K` is the first corollary
 (at `Kmin = 2`).
 
-Keystone progress: `Bridge.Dil` lands free-archive initiality, the
-capacity step law, registration-from-joint-inj, and the minimal K=2
-schedule realised by `|caps T|`. Uniform-fiber rigidity and graded
-terminality (full I-2 discharge) remain open — see `docs/RESIDUE.md`.
+Keystone progress: `Bridge.Dil` lands free-archive initiality, capacity,
+registration-from-joint-inj, UF/graded terminality, I-2 Fin alphabet-UF,
+ladder-predicate witness, and address-uniform idx. T-2 tick ID is the
+licensed remnant in `TickSimulation` — see `docs/RESIDUE.md`.
 -/
 
 namespace Bridge.Environment

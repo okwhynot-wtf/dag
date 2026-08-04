@@ -39,5 +39,6 @@ roots = [
   "Period2KMS",
   "ModularCut",
   "LorentzianDict",
+  "TwoBounce",
   "BridgeArc",
 ]

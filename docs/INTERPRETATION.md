@@ -118,6 +118,11 @@ exempt from tick identification, and Fund is the H=0 oscillator (vacuum
 dynamics). Undamped dynamics have no naming ticks; the arrow appears
 exactly when registration does. Formal spine/ledger columns: theorem-grade.
 Dictionary damping=registration rhyme remains K-certificate (I-4).
+**Reframe:** involutivity (`a∘a=id`) excludes ARROW and ERASE together at
+the base; the corollary is their joint return upstairs — inevitability with
+a visible cause, not a surprise. Obligations: adopter accepts an undirected
+base act (arena adequacy); in-arena no-erasure is derived; I-1 `Inj(U)` is
+the losslessness transfer (`TwoBounce` discharge in progress).
 
 ## Jacobson quantifier (surfaced)
 

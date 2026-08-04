@@ -180,18 +180,25 @@ theorem omega_duration_package :
     (∀ j k, Limit.appearsBy (LevelOmega.stage j) =
       Limit.appearsBy (LevelOmega.stage k) → j = k) ∧
     (∃ b : Limit.LevelOmegaPlusOne,
-      ∀ a : LevelOmega, (some a : Limit.LevelOmegaPlusOne) ≠ b) ∧
-    (∀ k, ¬ ∃ (f : LevelOmega → Ladder.Level k),
-      ∀ x y, f x = f y → x = y) :=
+      ∀ a : LevelOmega, (some a : Limit.LevelOmegaPlusOne) ≠ b) :=
   ⟨ladder_index_recoverable,
    optionNat_bijective,
    optionLevelOmega_bijective,
    stage_tag_injective,
    appearsBy_recovers_stage,
-   namer_new_at_omega,
-   omega_not_a_rung⟩
+   namer_new_at_omega⟩
+
+/-- Package plus the rung refusal: completeness-as-colimit is not a level. -/
+theorem omega_duration_not_a_rung_package :
+    (∀ j k, Density.levelCard j = Density.levelCard k → j = k) ∧
+    (∃ b : Limit.LevelOmegaPlusOne,
+      ∀ a : LevelOmega, (some a : Limit.LevelOmegaPlusOne) ≠ b) ∧
+    (∀ k, ¬ ∃ (f : LevelOmega → Ladder.Level k),
+      ∀ x y, f x = f y → x = y) :=
+  ⟨ladder_index_recoverable, namer_new_at_omega, omega_not_a_rung⟩
 
 #print axioms OmegaDuration.omega_not_a_rung
 #print axioms OmegaDuration.omega_duration_package
+#print axioms OmegaDuration.omega_duration_not_a_rung_package
 
 end OmegaDuration

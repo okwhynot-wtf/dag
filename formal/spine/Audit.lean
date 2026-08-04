@@ -29,7 +29,7 @@ Generated. Do not edit by hand:
 python3 formal/tools/gen_audit.py
 ```
 
-21 modules, 307 results. Source for `formal/AXIOMS.md`.
+21 modules, 308 results. Source for `formal/AXIOMS.md`.
 -/
 
 -- Orbit (23)
@@ -340,7 +340,7 @@ python3 formal/tools/gen_audit.py
 #print axioms NonCommencement.ladder_index_recoverable
 #print axioms NonCommencement.non_commencement_package
 
--- OmegaDuration (12)
+-- OmegaDuration (13)
 #print axioms OmegaDuration.optionNat_left_inv
 #print axioms OmegaDuration.optionNat_right_inv
 #print axioms OmegaDuration.optionNat_bijective
@@ -353,6 +353,7 @@ python3 formal/tools/gen_audit.py
 #print axioms OmegaDuration.namer_new_at_omega
 #print axioms OmegaDuration.omega_not_a_rung
 #print axioms OmegaDuration.omega_duration_package
+#print axioms OmegaDuration.omega_duration_not_a_rung_package
 
 -- SelfReference (25)
 #print axioms SelfReference.seal_self

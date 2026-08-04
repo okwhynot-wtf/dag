@@ -1,5 +1,6 @@
 import Density
 import Ladder
+import Alphabet
 import Geom.Profile
 import Geom.Provision
 import Geom.Bounce
@@ -65,8 +66,42 @@ theorem ancestry_survives :
     (∀ T, caps T = 2 ^ (T + 2)) :=
   ⟨levelCard_eq, caps_eq⟩
 
+/-! ## Area-as-caps sharpening (Bekenstein-shaped reading) -/
+
+/-- Area proxy: bit-depth of the capacity ledger (`log₂ |caps T|`).
+    Not continuum area / island theorems. -/
+def areaBits (T : Nat) : Nat := T + 2
+
+theorem areaBits_eq_log_caps (T : Nat) :
+    caps T = 2 ^ areaBits T := by
+  simp [areaBits, caps_eq]
+
+/-- Aliveness demand never exceeds the area/capacity ledger. -/
+theorem demand_le_area (T : Nat) :
+    2 ^ T ≤ 2 ^ areaBits T := by
+  simpa [areaBits_eq_log_caps T] using alive_arith T
+
+/-- One-tick area growth is one bit (same as Phase-E `deltaS`). -/
+theorem areaBits_succ (T : Nat) :
+    areaBits (T + 1) = areaBits T + 1 := by
+  simp [areaBits, Nat.add_assoc]
+
+/-- **Area-as-caps sharpening.** Bekenstein-shaped reading of `|caps T|`
+    as discrete area: `log₂ |caps| = T+2`, demand ≤ area, +1 bit/tick.
+    Continuum area / holographic island theorems remain refused. -/
+theorem area_as_caps_sharpening :
+    (∀ T, caps T = 2 ^ areaBits T) ∧
+    (∀ T, 2 ^ T ≤ caps T) ∧
+    (∀ T, areaBits (T + 1) = areaBits T + 1) ∧
+    (∀ T, areaBits T = Density.levelCard T) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨areaBits_eq_log_caps, alive_arith, areaBits_succ,
+   fun T => by simp [areaBits, levelCard_eq],
+   Bridge.Alphabet.Kmin_eq⟩
+
 #print axioms capacity_dictionary
 #print axioms alive_arith
 #print axioms ancestry_survives
+#print axioms area_as_caps_sharpening
 
 end Bridge.Capacity

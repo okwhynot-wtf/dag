@@ -38,6 +38,8 @@
 | Ladder-predicate addressing witness | `Bridge.Dil.ladder_predicate_addressing_witness` | Bridge |
 | Address-uniform record factoring (`|S|>K` frag) | `Bridge.Dil.AddressUniform`, `joint_inj_of_addressUniform` | Bridge |
 | T-2 tick identification (licensed remnant) | `Bridge.TickSimulation.tick_identification_licensed` | Bridge |
+| Period-2 / KMS↔involution toy | `Bridge.Period2KMS.period2_kms_caricature` | Bridge |
+| Area-as-caps sharpening (Bekenstein-shaped) | `Bridge.Capacity.area_as_caps_sharpening` | Bridge |
 | Dil base-relative UF rigidity iso | `Bridge.Dil.rigidity_iso_of_base` | Bridge |
 | QEC L-certificate (syndrome = registration) | `Dictionary.QEC.qec_admitted` | Dictionary |
 | T-1 record-label injectivity | `Bridge.Environment.recordLabel_injective` | Bridge |

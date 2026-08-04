@@ -13,7 +13,7 @@ corpus geometry/ v1.3.0
   t_exh                      exhaustion tick = last alive horizon
 
 ═══════════════════════════════════════════════════════════════════════════════
-I. Registration  (local)
+I. Registration  (local; derived — joint-inj / Dil capacity corollary)
 ═══════════════════════════════════════════════════════════════════════════════
 
   Inj(U)  ∧  ∃ a≠b. U_S(a)=U_S(b)

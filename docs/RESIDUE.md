@@ -30,6 +30,7 @@ caricatures are in scope; continuum identifications are not.
 | **Area-as-capacity sharpening** | **Landed:** `area_as_caps_sharpening` (`log₂|caps|=T+2`, demand ≤ area, +1 bit/tick). Continuum area refused |
 | **RE-side growth law** | **Landed:** `Dictionary.Quintom.Growth.re_side_growth_law` — `modeCount T = \|Channel\|^(T+2) = caps T`, doubles at `Kmin`. DESI / continuum modes / `H₀` refused; ODE exhibit not cited |
 | **Lorentzian dictionary (partial)** | **Landed:** `partial_lorentzian_dictionary` (order dim-1 + caps growth + ℤ/2-only). O-2/O-4 remain |
+| **Discrete Tolman / scale-KMS (low priority)** | Scale-indexed coarse-grainings over tick windows: does effective KMS `T` vary with window size? Only cut-adjacent dependence available with one ℤ/2 and no limits. Shape of any O-2 reopen; not scheduled |
 | **T-1 / Dil keystone** | **Fin-closed:** UF Hom∃/iso/graded term. + I-2 Fin alphabet-UF + **ladder-predicate witness** + **address-uniform idx** fragment. T-2 tick ID packaged as licensed remnant |
 | **T-12 measure** | **Fragment + Born no-go landed:** uniform weights; no unique selector; `born_from_multiplicity_nogo` (symmetry + path products + Gleason domain absent) |
 | **T-10 Page flux shape** | **Landed:** `PageShape` — mute before `C`, stream `t−C`, `t_exh=C+1`, Page tent peak. Bogoliubov / continuum QFT still refused |
@@ -39,9 +40,9 @@ caricatures are in scope; continuum identifications are not.
 
 | Item | Why hard | Still movable? |
 |---|---|---|
-| **O-2** no boost / Unruh `T` | Only ℤ/2; cut-shift attempt dead-ended (`o2_cut_shift_dead_end`: `T_c` blind to cut) | Feature as finding; reopen needs cut-dependent `T` / continuous modular param. Deepest Einstein gap |
+| **O-2** no boost / Unruh `T` | Only ℤ/2; cut-shift dead-ended (`o2_cut_shift_dead_end`). Blindness forced: period is global, one ℤ/2 ⇒ one flow. O-2 ≈ “no continuous 1-param subgroup” | Feature as finding. Same missing object as O-4 (thermal face). Reopen: continuous/scale family (discrete Tolman route below). Deepest Einstein gap |
 | **R-1** ultrametric vs space | LCA distance ≠ Archimedean space; paths diverge and stay diverged | Yes via recombination programme above; success not guaranteed |
-| **O-4** continuum Lorentzian limit | No continuum metric in hand | Limit theorems only after R-1 / dictionary progress |
+| **O-4** continuum Lorentzian limit | Needs continuous 1-param / Lorentz structure the corpus lacks — geometric face of the same gap as O-2 | Linked to O-2: attack on either bears on both; not independent |
 | **O-5** matter ontology | Softened: A–E support emergent patterned flux + discrete toys | SM-like inventory still underdetermined; not a second substance requirement |
 
 ## Documented obstructions (attacked; remnant filed)

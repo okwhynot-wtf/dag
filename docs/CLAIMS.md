@@ -49,6 +49,7 @@
 | T-2 dichotomy (Fund exempt + swap necessity) | `Bridge.TickSimulation.tick_identification_dichotomy` | Bridge |
 | Time–dissipation corollary (arrow iff registration) | `Bridge.TickSimulation.time_dissipation_one_property` | Bridge |
 | O-2 cut-shift dead end (T_c blind to cut) | `Bridge.ModularCut.o2_cut_shift_dead_end` | Bridge |
+| O-2 forced blindness (period global; one ℤ/2 ⇒ one flow) | `Bridge.ModularCut.o2_forced_blindness` | Bridge |
 | Jacobson quantifier / observers forced | `Observer.observers_forced`, `Bridge.EinsteinSkeleton.local_horizon_seal` | Spine/Bridge |
 | Arc write-up (Dil→T-2, v0.2) | `docs/ARC_V02.md` | Docs |
 | Period-2 / KMS↔involution toy | `Bridge.Period2KMS.period2_kms_caricature` | Bridge |
@@ -84,6 +85,5 @@
 | DM fundamental two elements | `Density.fundamental_two_elements` | Spine |
 
 Open work: see `docs/RESIDUE.md` (tractable vs structural vs philosophical).
-T-2 classified at v0.2 (`tick_identification`); Born no-go landed; O-2
-cut-shift attempted (`o2_cut_shift_dead_end` — feature as finding);
-RE-side growth law landed (`re_side_growth_law`, v0.2.3).
+T-2 classified; Born no-go; RE growth; O-2 forced blindness linked to O-4
+(`o2_forced_blindness`); discrete Tolman reopen shape noted (low priority).

@@ -13,15 +13,16 @@ shift of the system/archive cut at saturation as a boost analogue, and
 test whether toy correlators satisfy a KMS condition at inverse
 temperature set by the period.
 
-**Finding (documented dead end).** Period-2 correlators do satisfy a
-β = 2 stationarity caricature, and cut-shift is well-defined at saturated
-capacity — but combinatorial temperature is **independent of cut**
-(`T_c = 1` always; `areaBits` likewise depends only on `T`). No Unruh-like
-`T(cut)` emerges. Absence of boosts is therefore a **finding** of the
-discrete skeleton (one ℤ/2, constant `T_c`), not a missing lemma.
+**Finding (documented dead end / forced blindness).** Period-2 correlators
+do satisfy a β = 2 stationarity caricature, and cut-shift is well-defined
+at saturated capacity — but `T_c` is set by the *period* (global), so the
+cut cannot change it. One ℤ/2 ⇒ one modular flow ⇒ cut-dependent Unruh `T`
+was unavailable before the test. O-2 ≈ “no continuous 1-param subgroup,”
+the same missing object as O-4 (thermal vs geometric faces).
 
 Fence: not continuum KMS; not a Lorentz boost; not Unruh temperature as
-physics. Converts the O-2 “feature” preference into an attempted result.
+physics. Reopen shape (low priority): discrete Tolman / scale-KMS over
+tick windows — see `docs/O2_DECISION.md`.
 -/
 
 namespace Bridge.ModularCut
@@ -143,18 +144,32 @@ theorem no_unruh_from_cut {T : Nat} (c₁ c₂ : SaturatedCut T) :
   ⟨cut_temp_independent c₁, cut_temp_independent c₂, area_blind_to_cut c₁,
    c₁.sum_eq_caps.trans c₂.sum_eq_caps.symm⟩
 
+/-- **Forced blindness.** In the period-2 toy, temperature is set by the
+    period — a global datum — and the cut only chooses where you stand.
+    Cut-dependent `T` would need a family of modular flows (a one-parameter
+    group). With exactly one ℤ/2 there is exactly one flow, so blindness
+    was forced before the Unruh test. O-2 ≈ “no continuous 1-param
+    subgroup”; same missing object as O-4 (thermal vs geometric faces). -/
+theorem o2_forced_blindness :
+    (∀ T (_c : SaturatedCut T), combinatorialTemp T = 1) ∧
+    (∀ T (_c : SaturatedCut T), Bridge.Capacity.areaBits T = T + 2) ∧
+    betaPeriod = 2 ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨fun _T c => cut_temp_independent c,
+   fun _T c => area_blind_to_cut c,
+   rfl, Bridge.Alphabet.Kmin_eq⟩
+
 /-- **O-2 cut-shift attempt — documented dead end.**
 
     Landed: saturated cut + left/right shift; period-2 correlator KMS
     caricature at `β = 2`; mid cut witness.
 
-    Failed Unruh test: `T_c` and `areaBits` are blind to cut position, so
-    cut-shift is not a modular flow that produces observer-dependent
-    temperature. O-2 absence is a **finding** of the discrete skeleton
-    (one ℤ/2; constant combinatorial `T_c`), converting the feature
-    preference into an attempted result.
+    Failed Unruh test: `T_c` and `areaBits` are blind to cut position
+    (`o2_forced_blindness`). Converting the feature preference into an
+    attempted result: O-2 ≈ no continuous 1-param subgroup (linked to O-4).
 
-    Fence: not continuum Unruh; not a Lorentz boost. -/
+    Fence: not continuum Unruh; not a Lorentz boost. Reopen shape: discrete
+    Tolman / scale-KMS over tick windows (low priority; see `O2_DECISION.md`). -/
 theorem o2_cut_shift_dead_end :
     (∀ T, ∃ _c : SaturatedCut T, True) ∧
     (∀ s, Revision.LiarRevision s →
@@ -174,6 +189,7 @@ theorem o2_cut_shift_dead_end :
 #print axioms kms_caricature_at_period
 #print axioms cut_shift_temp_independent
 #print axioms no_unruh_from_cut
+#print axioms o2_forced_blindness
 #print axioms o2_cut_shift_dead_end
 
 end Bridge.ModularCut

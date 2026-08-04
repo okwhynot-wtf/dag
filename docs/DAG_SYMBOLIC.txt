@@ -1,5 +1,5 @@
 Diagonal Archive Geometry — symbolic law
-corpus hybrid/ DAG v0.2.3
+corpus hybrid/ DAG v0.2.4
 
 ═══════════════════════════════════════════════════════════════════════════════
 0. Layers  (downward imports only)
@@ -178,12 +178,15 @@ VII. Residue / refusal
           T-10 Page flux shape landed (`PageShape`); Bogoliubov still out;
           period-2 / KMS toy landed; area-as-caps sharpening landed;
           finite Ollivier trial landed; matter-as-input host API optional;
-          RE-side growth law landed (`re_side_growth_law`); partial Lorentzian dictionary landed
-  open (structural): **O-2** no boost / Unruh T — cut-shift attempt dead-ended
-          (`o2_cut_shift_dead_end`: T_c blind to cut; feature as finding);
-
+          RE-side growth law landed (`re_side_growth_law`); partial Lorentzian dictionary landed;
+          discrete Tolman / scale-KMS (low priority: T vs tick-window size;
+            shape of any O-2 reopen; not scheduled)
+  open (structural): **O-2** no boost / Unruh T — cut-shift dead-ended
+          (`o2_cut_shift_dead_end`); blindness forced (period global; one ℤ/2
+          ⇒ one flow); O-2 ≈ no continuous 1-param subgroup;
+          **O-4** continuum Lorentzian — geometric face of the *same* missing
+          object (attack on either bears on both);
           **R-1** ultrametric≠space (counting attack landed above);
-          **O-4** continuum Lorentzian limit;
           **O-5** SM inventory underdetermined (emergent patterned flux A–E)
   open (philosophical): facticity of liveness; ℤ/2 + branch choice; arena
           adequacy; blank ontology; RE action inputs

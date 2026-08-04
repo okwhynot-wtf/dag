@@ -204,7 +204,7 @@ theorem tick_identification_licensed :
     Induction glue across ticks remains open — keep `_licensed`. -/
 theorem tick_identification_ingredients :
     (∀ {S : Type} {u : S → S} {A : Bridge.Dil.Archive S u}
-      (fa : Bridge.Dil.UniqueFactorization A),
+      (_fa : Bridge.Dil.UniqueFactorization A),
       ∃ _i : Bridge.Dil.ArchiveIso A
         (Bridge.Dil.freeOnBase S u (A.E 0) A.z0), True) ∧
     (∀ T,
@@ -292,7 +292,7 @@ def NamingCarrierClimbs : Prop :=
 /-- **Per-tick induction step on Dil.** UF ⇒ straighten; microtick on the
     normal form is append (`Word.cons`); factor peels the letter back. -/
 theorem tick_identification_step {S : Type} {u : S → S}
-    {A : Bridge.Dil.Archive S u} (_fa : Bridge.Dil.UniqueFactorization A) :
+    {A : Bridge.Dil.Archive S u} (fa : Bridge.Dil.UniqueFactorization A) :
     (∃ _i : Bridge.Dil.ArchiveIso A
       (Bridge.Dil.freeOnBase S u (A.E 0) A.z0), True) ∧
     (∀ (T : Nat) (s : S) (e0 : A.E 0) (w : Bridge.Dil.Word S T),
@@ -338,7 +338,7 @@ theorem tick_identification :
     BoundedReuseRegisters ∧
     NamingCarrierClimbs ∧
     (∀ {S : Type} {u : S → S} {A : Bridge.Dil.Archive S u}
-      (fa : Bridge.Dil.UniqueFactorization A),
+      (_fa : Bridge.Dil.UniqueFactorization A),
       (∃ _i : Bridge.Dil.ArchiveIso A
         (Bridge.Dil.freeOnBase S u (A.E 0) A.z0), True) ∧
       (∀ (T : Nat) (s : S) (e0 : A.E 0) (w : Bridge.Dil.Word S T),

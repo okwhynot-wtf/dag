@@ -65,5 +65,5 @@ companions BitFlip, NoClone (measurement).
 
 ## Version
 
-DAG hybrid **v0.1.23** — Dil stragglers tidied (ladder-predicate witness,
-address-uniform idx); T-2 tick-ID licensed remnant packaged.
+DAG hybrid **v0.1.24** — Period-2/KMS involution toy; area-as-caps
+sharpening; prior Dil/T-2 bank through v0.1.23.

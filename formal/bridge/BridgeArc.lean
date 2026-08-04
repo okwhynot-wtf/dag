@@ -20,6 +20,7 @@ import FluxPattern
 import LedgerSheaf
 import RecombinationBudget
 import PhaseEToys
+import Period2KMS
 import Geom.Registration
 import Geom.Profile
 import Density
@@ -31,6 +32,7 @@ import Ladder
 import Branch
 import Diagonal
 import Limit
+import Revision
 
 /-!
 # Bridge arc — milestone weld
@@ -342,6 +344,27 @@ theorem milestone_r1_budget :
    Bridge.RecombinationBudget.r1_faces_exceed_expand_at_one,
    Bridge.Alphabet.Kmin_eq⟩
 
+/-- Area-as-caps Bekenstein-shaped sharpening. -/
+theorem milestone_area_as_caps :
+    (∀ T, Bridge.Capacity.caps T = 2 ^ Bridge.Capacity.areaBits T) ∧
+    (∀ T, 2 ^ T ≤ Bridge.Capacity.caps T) ∧
+    (∀ T, Bridge.Capacity.areaBits (T + 1) =
+      Bridge.Capacity.areaBits T + 1) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨Bridge.Capacity.areaBits_eq_log_caps, Bridge.Capacity.alive_arith,
+   Bridge.Capacity.areaBits_succ, Bridge.Alphabet.Kmin_eq⟩
+
+/-- Period-2 / KMS↔involution discrete caricature (not Unruh / continuum KMS). -/
+theorem milestone_period2_kms :
+    (∀ s, Revision.LiarRevision s → ∀ n, s (n + 2) = s n) ∧
+    (∀ f b, Bridge.OneZ2.project f (Bridge.OneZ2.project f b) = b) ∧
+    (∀ T, Bridge.PhaseEToys.combinatorialTemp T = 1) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨Bridge.Period2KMS.period2_orbit_under_swap,
+   Bridge.Period2KMS.face_project_is_involution,
+   fun _ => rfl,
+   Bridge.Alphabet.Kmin_eq⟩
+
 theorem milestone_phase_E :
     (∀ T, Bridge.PhaseEToys.deltaS T = 1) ∧
     (∀ T, Bridge.PhaseEToys.heatQuantum T =
@@ -424,6 +447,8 @@ theorem bridge_arc :
 #print axioms milestone_o3_restrict
 #print axioms milestone_r1_budget
 #print axioms milestone_phase_E
+#print axioms milestone_area_as_caps
+#print axioms milestone_period2_kms
 #print axioms bridge_arc
 
 end Bridge.Arc

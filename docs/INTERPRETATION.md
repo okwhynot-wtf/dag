@@ -107,6 +107,13 @@ Committed expand path + namer-shaped label factor are discharged
 obstructed (swap vs `levelCard`). Naming-tick ↔ microtick is licensed on
 that remnant only — not a total functor on carriers.
 
+## Period-2 / KMS and area-as-caps (fence)
+
+- **Period-2/KMS toy** (`Period2KMS`): equilibrium = period-2 under ℤ/2 +
+  constant combinatorial `T_c`. Not continuum KMS; not Unruh (O-2).
+- **Area-as-caps** (`areaBits`): Bekenstein-shaped `log₂|caps|`. Not
+  continuum area / island theorems.
+
 ## Dictionary adapters (fence)
 
 - **QEC L-cert** (`formal/dictionary/QEC.lean`, `exhibits/qec/`): syndrome

@@ -37,9 +37,15 @@ The draft therefore leads with **formal metaphysics**, treats the ledger/diction
 - Honest **residue**: facticity of liveness and ambient adequacy remain philosophical, not smuggled into theorems.
 - Architecture that **separates** a priori arena mathematics from dictionary instantiations (physics as certificate, not coronation).
 
-## Recommended narrative arc
+## Recommended narrative arc (polish)
 
-Arena → seal → one underdetermination → transfer upstairs (two-bounce) → canonicity failure as finding → swap=reversal promotion → gauge inventory → what is refused.
+Classification → fundamentality (UP of survivor) → seal → ladder →
+registration (two-bounce) → archive/capacity → arrow → one ℤ/2 + gauges →
+dictionary → open/refused/philosophical.
+
+Three layers kept strict: formal / interpretation / dictionary.
+Negation presented as unique survivor of eliminative classification, not
+an initial assumption.
 
 ## Build
 

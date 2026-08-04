@@ -1,6 +1,6 @@
 % Anonymized draft for Journal of Mathematical Philosophy (initial submission).
 % Open formatting OK at submission; switch to JMP template after acceptance.
-% Target length: ~3500 words.
+% Polish pass: classification-first; three-layer separation; no new mathematics.
 \documentclass[11pt,a4paper]{article}
 
 \usepackage[margin=1.1in]{geometry}
@@ -16,16 +16,22 @@
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
+\newtheorem{interpretation}[theorem]{Interpretation}
+\newtheorem*{statusopen}{Open}
+\newtheorem*{statusrefused}{Refused}
+\newtheorem*{statusphil}{Philosophical}
 
 \newcommand{\Fund}{\mathsf{Fund}}
 \newcommand{\Bool}{\mathsf{Bool}}
 \newcommand{\comp}{\circ}
 \newcommand{\Ztwo}{\mathbb{Z}/2\mathbb{Z}}
+\newcommand{\act}{a}
 
-\title{Two Bounces and One Underdetermination:\\
-A Machine-Checked Formal Metaphysics of an Involutive Arena}
+\title{Classification of Self-Actions and the Unique Involutive Survivor}
 \author{} % anonymized for double-anonymous review
 \date{}
 
@@ -33,126 +39,189 @@ A Machine-Checked Formal Metaphysics of an Involutive Arena}
 \maketitle
 
 \begin{abstract}
-We develop a formal metaphysics for an \emph{involutive arena}: a pointed
-carrier equipped with a fixed-point-free involution. Within this ambient,
-the two-point carrier with Boolean negation is initial and unique up to
-label swap; a Lawvere-style diagonal argument yields an incompleteness
-(``seal'') with no appeal to arithmetisation; and a single
-$\Ztwo$-underdetermination appears in three faces---pole, address, and
-channel. Transferring losslessness from the arena to forward-composing
-microsteps is discharged by factoring finite injective endomaps as
-products of two involutions. Canonicity of the factorisation fails: the
-absolute position of the two ``mirrors'' is conventional. What is real is
-their exchange, which covers step reversal. We introduce a demarcation
-between \emph{content} gauges and \emph{packaging} gauges that keeps this
-non-uniqueness from inflating the dictionary's single $\Ztwo$. The
-development is machine-checked in Lean~4 without Mathlib and without
-$\mathtt{sorry}$. Physics appears only as optional dictionary certificates,
-not as a coronation of the metaphysics.
+We classify self-actions $a:\alpha\to\alpha$ by local orbit shape. Rest,
+asymmetric step, and erasure each meet a formal obstruction in the ambient
+of pointed symmetric steps; the surviving shape is the fixed-point-free
+two-cycle. That survivor is characterised by a universal property:
+$(\Bool,\neg)$ is initial among pointed unoriented acts, and every
+fundamental act reads as negation. From fundamentality we obtain a
+Lawvere-style seal (no point-surjective self-reading), an $\omega$-ladder
+of namers, and---after transferring losslessness to forward microsteps by
+two-bounce factorisation---registration, capacity, and a single
+$\Ztwo$-underdetermination with three faces. Canonicity of the two-bounce
+pair fails; channel \emph{swap} nevertheless covers step reversal. Content
+gauges are separated from packaging gauges so that factorisation
+non-uniqueness does not inflate the dictionary $\Ztwo$. The development
+is machine-checked in Lean~4 (no Mathlib, no $\mathtt{sorry}$). Physical
+readings appear only in a dictionary layer of certificates.
 \end{abstract}
 
 \noindent\textbf{Keywords:}
-formal metaphysics; involution; Lawvere diagonal; underdetermination;
-gauge; machine-checked mathematics.
+classification; involution; universal property; Lawvere diagonal;
+underdetermination; gauge; machine-checked mathematics.
 
 \section{Introduction}
 \label{sec:intro}
 
-Mathematical philosophy often proceeds by isolating a small formal
-structure and reading it metaphysically. The present paper does that for
-one structure---an involutive self-map on a pointed carrier---and then
-asks how much of a larger ``arena'' can be derived, transferred, and
-honestly refused.
+The central contribution of this paper is an \emph{eliminative
+classification of self-actions}. Given $a:\alpha\to\alpha$, the local
+possibilities at a state are rest, two-cycle, asymmetric step, and---as a
+pairwise defect---erasure. In a precisely specified ambient, every shape
+except one encounters an obstruction. The survivor is the live two-cycle.
+Negation on $\Bool$ is not assumed at the outset; it is the unique object
+(up to label swap) satisfying the universal property of that survivor.
 
-Three results organise the argument.
+The formal development then follows a fixed dependency:
+\begin{center}
+classification $\rightarrow$
+fundamentality $\rightarrow$
+seal $\rightarrow$
+ladder $\rightarrow$
+registration $\rightarrow$
+archive $\rightarrow$
+capacity $\rightarrow$
+arrow $\rightarrow$
+interpretations.
+\end{center}
+Each arrow is a theorem or a defined interface; philosophical commentary
+is postponed until the supporting machinery is in place.
 
-\begin{enumerate}[label=(\roman*)]
-\item \textbf{Canon.} Among pointed involutive acts, $(\Bool,\neg)$ is
-initial. Fundamentality coincides with reading as negation; uniqueness
-holds up to label swap.
-\item \textbf{Seal.} No self-reading is point-surjective onto the
-predicates of its own level. Incompleteness is semantic (Lawvere), not
-arithmetised (G\"odel).
-\item \textbf{One underdetermination, three faces.} Pole swap, address
-reversal, and channel swap are presentations of a single $\Ztwo$. Channel
-\emph{labels} are conventional; channel \emph{swap} is proved content: it
-covers step reversal.
+\paragraph{Method and layers.}
+The text maintains three layers.
+\begin{enumerate}[label=(\arabic*),leftmargin=*]
+\item \textbf{Formal mathematics} --- definitions, theorems, proofs.
+\item \textbf{Philosophical interpretation} --- what the mathematics
+suggests, marked as such.
+\item \textbf{Dictionary} --- optional physical or contemplative
+identifications, admitted only by certificate.
 \end{enumerate}
-
-A fourth result is the hinge between arena and dynamics. Spine acts are
-involutions; ledger microsteps compose forward. The interface demand is
-that global injectivity of a joint step $U$ be the transfer of in-arena
-losslessness. That transfer is discharged by a classical finite fact:
-injective endomaps of $\mathrm{Fin}\,n$ factor as $\sigma\comp\phi$ with
-both factors involutions (``two-bounce''). Canonicity of $(\phi,\sigma)$
-fails; the failure is not a second dictionary $\Ztwo$ but a
-\emph{packaging} gauge---spent inside the discharge, never exported to
-consumers of $U$.
-
-The metaphysical signature that emerges is relational throughout:
-absolute positions (which pole, which mirror, which channel label) are
-unreal; exchanges and relations are real. The paper's contribution is to
-make that signature theorem-shaped, machine-checked, and demarcated
-against gauge inflation.
-
-\paragraph{Scope and method.}
-We present mathematics with a metaphysical reading. Continuum physics,
-host-logic incompleteness, and experiential claims are refused.
-Accompanying Lean declarations are cited by name; the paper is
-self-contained at the level of statements. The formal corpus uses Lean~4
-with no Mathlib dependency and no $\mathtt{sorry}$.
-
-\paragraph{Positioning.}
-Relative to Quinean underdetermination, the present $\Ztwo$ is narrower
-and harder: not ``theory vs world,'' but a proved two-element symmetry
-internal to the arena, with a proved exchange and a failed canonicity
-attempt for absolute labels. Relative to structural realism, the moral
-is similar---relations over absolutes---but obtained as a theorem package
-rather than a stance. Relative to formal metaphysics in the modal or
-mereological style, the primitives here are dynamical (an act) rather
-than static (worlds, parts).
+Claims are tagged by status: proved, corollary, interpretation, open,
+refused, or philosophical residue. The companion Lean~4 corpus (no
+Mathlib, no $\mathtt{sorry}$) supplies declaration names; this paper is
+self-contained at the level of statements.
 
 \paragraph{Roadmap.}
-Section~\ref{sec:arena} fixes the arena and the canon.
-Section~\ref{sec:seal} states the seal.
-Section~\ref{sec:z2} packages the one $\Ztwo$.
-Section~\ref{sec:transfer} discharges the losslessness transfer and proves
-canonicity failure together with swap-as-reversal.
-Section~\ref{sec:gauge} states the content/packaging demarcation.
-Section~\ref{sec:refuse} records residue and refusals.
+Section~\ref{sec:arch} gives the architecture.
+Sections~\ref{sec:class}--\ref{sec:fund} carry out the classification and
+the universal characterisation of the survivor.
+Sections~\ref{sec:seal}--\ref{sec:ladder} obtain seal and ladder.
+Sections~\ref{sec:reg}--\ref{sec:arrow} transfer losslessness, record
+registration and capacity, and identify the arrow with address.
+Section~\ref{sec:z2} states the single $\Ztwo$ and the gauge demarcation.
+Section~\ref{sec:dict} confines dictionary readings.
+Section~\ref{sec:status} collects open, refused, and philosophical items.
 Section~\ref{sec:concl} concludes.
 
 
-\section{The involutive arena and the canon}
-\label{sec:arena}
+\section{Architecture}
+\label{sec:arch}
+
+The companion corpus is stratified into three layers with downward-only
+imports (Figure~\ref{fig:layers}).
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  layer/.style={draw, thick, rounded corners=2pt, minimum width=92mm,
+    minimum height=14mm, align=center, inner sep=4pt},
+  arr/.style={-{Latex}, thick}
+]
+\node[layer, fill=gray!6] (dict) {%
+  \textbf{Interpretation (Dictionary)}\\[-1pt]
+  {\footnotesize physical / contemplative certificates; no upward import}};
+\node[layer, fill=gray!12, below=6mm of dict] (led) {%
+  \textbf{Dynamics (Archive Geometry / Ledger)}\\[-1pt]
+  {\footnotesize $U:S\times E\to S\times E$; registration; capacity; address}};
+\node[layer, fill=gray!18, below=6mm of led] (sp) {%
+  \textbf{Foundation (Diagonal Monism / Spine)}\\[-1pt]
+  {\footnotesize classification; fundamentality; seal; ladder; branch}};
+\draw[arr] (sp) -- (led);
+\draw[arr] (led) -- (dict);
+\end{tikzpicture}
+\caption{Three-layer architecture. Arrows indicate permitted dependence
+(foundation supports dynamics; dynamics support interpretation). The
+figure orients the reader; it proves nothing.}
+\label{fig:layers}
+\end{figure}
+
+\noindent
+Within the foundation, the dependency is
+classification~$\to$~fundamentality~$\to$~seal~$\to$~ladder.
+The dynamics layer imports losslessness along an interface
+(registration via two-bounce), realises archive and capacity on the
+ladder carrier, and exports address as the arrow reading. The dictionary
+layer consumes those exports; it does not feed them.
+
+
+\section{Classification of self-actions}
+\label{sec:class}
 
 \begin{definition}[Arena data]
+\label{def:arena}
 Fix a type $\alpha$ and a map $a:\alpha\to\alpha$. Write
 \[
   \mathsf{Step}(a)(x,y)\ :\Leftrightarrow\ y=a(x).
 \]
 Call $a$ a \emph{symmetric step} when $\mathsf{Step}(a)$ is a symmetric
-relation; equivalently, $a\comp a=\mathrm{id}$ (an involution). Call $a$
-\emph{live} when it has no fixed point: $\forall x.\, a(x)\neq x$. Call
-$a$ \emph{lossless} when it is injective.
+relation; equivalently, $a\comp a=\mathrm{id}$. Call $a$ \emph{live}
+when $\forall x.\, a(x)\neq x$. Call $a$ \emph{lossless} when $a$ is
+injective. Call $a$ \emph{erasing} when distinct states share a
+successor.
 \end{definition}
 
-Pointwise, an act either rests ($a(x)=x$), closes a two-cycle
-($a(x)\neq x$ and $a(a(x))=x$), or carries an asymmetric step
-($a(a(x))\neq x$). Erasure---distinct states with a common
-successor---is the pairwise defect of losslessness.
+\begin{theorem}[Pointwise classification]
+\label{thm:class}
+For decidable equality on $\alpha$, at each $z$ exactly one of the
+following holds: (i)~rest ($a(z)=z$), with all iterates stagnant;
+(ii)~two-cycle at $z$ ($a(z)\neq z$ and $a(a(z))=z$), with every iterate
+equal to $z$ or $a(z)$; (iii)~asymmetric step at $z$ ($a(a(z))\neq z$).
+The three cases are pairwise incompatible. Erasure is diagnosed
+separately as a pairwise defect of losslessness.
+\end{theorem}
 
-Why involutions? Because the ambient is chosen to exclude smuggled
-time and smuggled loss at once. An asymmetric step is already an arrow;
-an erasing step is already a collapse. Symmetric step is the equation
-that bans both. The metaphysics is therefore conditional: \emph{if} one
-works inside an involutive arena, \emph{then} the theorems below apply.
-The facticity of that ``if'' remains residue (Section~\ref{sec:refuse}).
+\begin{remark}[Status]
+Theorem~\ref{thm:class} is proved. It is the eliminative engine of the
+paper: subsequent sections impose ambient constraints under which (i)
+and (iii), and erasure, are excluded as candidates for fundamentality.
+\end{remark}
+
+Symmetric step is the ambient equation used below. It jointly excludes
+asymmetric arrow (case~(iii) globally) and, by the next corollary,
+erasure.
+
+\begin{proposition}[In-arena losslessness]
+\label{prop:no-erase}
+If $a$ is a symmetric step, then $a$ is not erasing.
+\end{proposition}
+
+\begin{remark}[Status]
+Corollary of Definition~\ref{def:arena} (involution $\Rightarrow$
+injectivity). Not an independent creed.
+\end{remark}
+
+\begin{interpretation}
+\label{int:ambient}
+The choice of symmetric step as ambient is a modelling decision: it
+bans smuggled time (asymmetric step) and smuggled loss (erasure) by one
+equation. Whether that ambient is the ``right'' one for fundamentality
+is philosophical residue (Section~\ref{sec:status}), not a theorem.
+\end{interpretation}
+
+
+\section{Fundamentality as universal property}
+\label{sec:fund}
 
 \begin{definition}[Pointed unoriented acts]
+\label{def:ambient}
 Objects are triples $(\alpha,a,z)$ with $a$ a symmetric step and
 $z:\alpha$ a seed. Morphisms are pointed equivariant maps.
 \end{definition}
+
+Rest is incompatible with liveness. Asymmetric step is incompatible with
+symmetric step. Erasure is incompatible with Proposition~\ref{prop:no-erase}.
+Relative to Definition~\ref{def:ambient} and liveness, the only remaining
+pointwise shape is the live two-cycle.
 
 \begin{theorem}[Canon / initiality]
 \label{thm:canon}
@@ -163,54 +232,25 @@ fundamental reads as $\neg$; any two fundamentals correspond uniquely
 up to the pointed reading.
 \end{theorem}
 
-Thus fundamentality is not an extra primitive: it is initiality plus the
-reading theorems. The excluded fixed point (``void'') is just liveness.
-Involutivity simultaneously banishes asymmetric arrow and erasure at the
-base: the same equation $a\comp a=\mathrm{id}$ yields both.
+\begin{remark}[Status]
+Proved. Negation is the unique (up to label swap) object satisfying the
+universal property of the live two-cycle in this ambient---the survivor
+of the classification, not a primitive assumption.
+\end{remark}
 
-\begin{proposition}[In-arena losslessness]
-\label{prop:no-erase}
-If $a$ is a symmetric step, then $a$ is not erasing.
-\end{proposition}
-
-This is the spine's own losslessness theorem. It is \emph{not} a second
-creed beside involutivity; it is a corollary. The metaphysical reading is
-accordingly modest: inside an involutive arena, collapse of distinct
-states under the act is impossible. What happens when one steps
-``upstairs'' to forward-composing dynamics is the subject of
-Section~\ref{sec:transfer}.
-
-\begin{figure}[ht]
-\centering
-\begin{tikzpicture}[
-  font=\small,
-  box/.style={draw, rounded corners=2pt, align=center, inner sep=6pt},
-  arr/.style={-{Latex}, thick}
-]
-\node[box] (arena) {Arena\\[-1pt]{\footnotesize pointed involutive acts}};
-\node[box, right=18mm of arena] (canon) {Canon\\[-1pt]{\footnotesize $(\Bool,\neg)$ initial}};
-\node[box, right=18mm of canon] (seal) {Seal\\[-1pt]{\footnotesize no self-surjection}};
-\node[box, below=12mm of canon] (z2) {One $\Ztwo$\\[-1pt]{\footnotesize pole / address / channel}};
-\node[box, below=12mm of arena] (xfer) {Transfer\\[-1pt]{\footnotesize $U=\sigma\comp\phi$}};
-\draw[arr] (arena) -- (canon);
-\draw[arr] (canon) -- (seal);
-\draw[arr] (canon) -- (z2);
-\draw[arr] (arena) -- (xfer);
-\draw[arr] (z2) -- (xfer);
-\end{tikzpicture}
-\caption{Dependency sketch. Canon and seal live on the arena; the single
-$\Ztwo$ names its underdetermination; two-bounce transfers losslessness
-to forward steps without exporting factor choice.}
-\label{fig:deps}
-\end{figure}
+\begin{interpretation}
+\label{int:fund}
+``The fundamental'' names that initial object after uniqueness.
+Excluded fixed point (``void'') is liveness restated. Label swap of the
+two poles is a content gauge: exported readings mention it; see
+Section~\ref{sec:z2}.
+\end{interpretation}
 
 
-\section{Seal: incompleteness without arithmetisation}
+\section{Seal}
 \label{sec:seal}
 
-Lawvere's fixed-point argument yields incompleteness from a Cartesian
-closed structure and a weakly point-surjective morphism, without coding
-syntax as numbers. The arena supplies a concrete instance.
+Dependence: Theorem~\ref{thm:canon} (liveness of fundamentals).
 
 \begin{theorem}[Seal on a fundamental]
 \label{thm:seal}
@@ -219,99 +259,69 @@ diagonal dodge $x\mapsto \neg(f\,x\,x)$ is missed. Specialising to
 fundamental acts, every self-reading admits an escape.
 \end{theorem}
 
-A companion result at corpus grain states that no self-reading of the
-formal corpus is universal for the predicates of its own level
-(\texttt{corpus\_not\_universal}): names are outnumbered by predicates;
-any completed self-portrait lags. Completeness-in-the-limit is a
-\emph{policy} (a fair schedule of self-readings), not a theorem that the
-corpus catches itself.
-
-\begin{remark}
-The seal is not a claim that Lean cannot prove its own consistency, nor
-a G\"odel arithmetisation of the corpus. Those are refused as category
-errors for this project. The theorem is semantic and local to the arena's
-self-readings.
-\end{remark}
-
-Metaphysically: an involutive arena that can name its own escapes cannot
-close those names into a total self-surjection. Forced growth
-(``emanation'' as naming the dodge) is the positive face of the same
-fact. Concretely, one builds an $\omega$-ladder: level~$0$ is the
-fundamental carrier; each successor adjoins a namer for the previous
-level's dodge; history embeds injectively and conservatively; no level
-exhausts its successor. Duration, in this sense, is the order-type of
-self-escape. Direction along the ladder remains free
-($\square(\mathsf{ascent})\land\neg\square(\mathsf{direction})$): ascent
-is forced, which escape is named is not. The same pattern---forced
-relation, free absolute---returns in Sections~\ref{sec:z2}
-and~\ref{sec:transfer}.
-
-
-\section{One underdetermination, three faces}
-\label{sec:z2}
-
-\begin{theorem}[One $\Ztwo$, three faces]
-\label{thm:z2}
-There is a single two-element underdetermination with three named
-involutive projections:
-\begin{center}
-pole swap (reading) \quad$\cong$\quad
-address $\{\mathsf{fwd},\mathsf{rev}\}$ \quad$\cong$\quad
-channel $\{\varphi,\sigma\}$.
-\end{center}
-Each projection is an involution on a common $\Ztwo$ carrier.
+\begin{theorem}[Corpus-grain incompleteness]
+\label{thm:corpus}
+No self-reading of the formal corpus is universal for the predicates of
+its own level: names are outnumbered by predicates, and any completed
+self-portrait lags. Completeness-in-the-limit is a fair-schedule
+\emph{policy}, not a theorem that the corpus catches itself.
 \end{theorem}
 
-\begin{figure}[ht]
-\centering
-\begin{tikzpicture}[
-  font=\small,
-  face/.style={draw, circle, minimum size=18mm, align=center, inner sep=1pt},
-  hub/.style={draw, thick, circle, minimum size=14mm, align=center}
-]
-\node[hub] (z) {$\Ztwo$};
-\node[face, above left=12mm and 16mm of z] (p) {pole\\swap};
-\node[face, above right=12mm and 16mm of z] (a) {address\\fwd/rev};
-\node[face, below=14mm of z] (c) {channel\\$\varphi/\sigma$};
-\draw[-{Latex}] (p) -- (z);
-\draw[-{Latex}] (a) -- (z);
-\draw[-{Latex}] (c) -- (z);
-\end{tikzpicture}
-\caption{T-7: three named faces of one underdetermination. The faces are
-presentations; the group is stated once.}
-\label{fig:z2}
-\end{figure}
-
-The philosophical load is carried by \emph{stating the group once}.
-Repeating $\Ztwo$ in three vocabularies without identifying them would
-be concordance; identifying them without a theorem would be rhetoric.
-Theorem~\ref{thm:z2} is the identification.
-
-Section~\ref{sec:transfer} sharpens the channel face: absolute channel
-position is unreal (canonicity fails), while channel \emph{exchange} is
-real (swap covers reversal). That is the same relational pattern the
-spine wears at $\neg\square(\mathsf{direction})$ and that cut-blind
-modular dynamics wear when period is global: absolutes are refused;
-relations survive.
+\begin{remark}[Status]
+Theorems~\ref{thm:seal}--\ref{thm:corpus} are proved (Lawvere-style;
+no arithmetisation). Host-logic incompleteness and G\"odel coding of the
+corpus text are \emph{refused} (Section~\ref{sec:status}).
+\end{remark}
 
 
-\section{Transferring losslessness: two bounces}
-\label{sec:transfer}
+\section{Ladder}
+\label{sec:ladder}
+
+Dependence: Theorem~\ref{thm:seal} (named escapes).
+
+\begin{definition}[Naming extension and ladder]
+\label{def:ladder}
+A \emph{naming extension} adjoins a name for an unrepresented escape. The
+committed ladder sets level~$0$ to the fundamental carrier and each
+successor to an option type adjoining a namer for the previous dodge.
+\end{definition}
+
+\begin{theorem}[Ladder properties]
+\label{thm:ladder}
+History embeds injectively and conservatively along the ladder; no level
+is exhausted by its predecessor; underdetermination persists at every
+level. Ascent is forced; choice of which escape is named is free.
+\end{theorem}
+
+\begin{remark}[Status]
+Proved in the foundation layer. Duration, as used below, means the
+order-type of this self-escape sequence.
+\end{remark}
+
+\begin{interpretation}
+\label{int:ladder}
+The pattern ``forced relation, free absolute''---forced ascent, free
+direction---reappears for channel labels in Section~\ref{sec:reg}.
+\end{interpretation}
+
+
+\section{Registration: transferring losslessness}
+\label{sec:reg}
 
 Spine acts are involutions. A ledger microstep is a forward map
-$U:S\times E\to S\times E$. The interface demand (I-1) is that global
-injectivity of $U$ be the import of Proposition~\ref{prop:no-erase} onto
-that forward dynamics.
+$U:S\times E\to S\times E$. The interface demand is that global
+injectivity of $U$ import Proposition~\ref{prop:no-erase}.
 
 \begin{definition}[Two-bounce factorisation]
+\label{def:twobounce}
 A \emph{two-bounce factorisation} of $U:\alpha\to\alpha$ is a pair of
 involutions $(\phi,\sigma)$ with $U=\sigma\comp\phi$ pointwise.
 \end{definition}
 
 \begin{theorem}[Converse]
 \label{thm:converse}
-If $U$ admits a two-bounce factorisation, then $U$ is lossless
-(injective). On a product carrier this is ledger injectivity.
+If $U$ admits a two-bounce factorisation, then $U$ is lossless. On a
+product carrier this is ledger injectivity.
 \end{theorem}
 
 \begin{theorem}[Existence on finite carriers]
@@ -321,12 +331,25 @@ two-bounce factorisation. The construction is cycle-wise reflection at a
 least-value basepoint, with $\sigma:=U\comp\phi$.
 \end{theorem}
 
-Existence plus converse discharges the interface shape: on finite
-carriers, injectivity and two-bounce form coincide. Toys
-(involutions as $U\comp\mathrm{id}$; Boolean injections; a swap step)
-sit inside the same package.
+\begin{remark}[Status]
+Theorems~\ref{thm:converse}--\ref{thm:exists} are proved. On finite
+carriers, injectivity and two-bounce form coincide. Special cases
+(involutions as $U\comp\mathrm{id}$; Boolean injections; swap step) are
+included.
+\end{remark}
 
-\subsection{Canonicity fails}
+\begin{theorem}[Registration shape]
+\label{thm:reg}
+Under joint injectivity, a system merge writes a record in the
+environment (registration). Minimal merge alphabet size is $2$, matching
+$|\Fund|$.
+\end{theorem}
+
+\begin{remark}[Status]
+Proved in the dynamics layer, using the injectivity interface above.
+\end{remark}
+
+\subsection{Canonicity of the factor pair}
 
 \begin{theorem}[Canonicity fails]
 \label{thm:canonfail}
@@ -338,16 +361,11 @@ $3$-cycle disagree and are not related by bounce-swap
 $(\phi,\sigma)\mapsto(\sigma,\phi)$.
 \end{theorem}
 
-In the dihedral picture, a rotation determines the angle between its two
-mirrors, not their absolute position. Theorem~\ref{thm:canonfail} is
-that fact discretely: the step fixes the relation between the bounces;
-where the mirror pair sits is convention. Absolute channel position is
-unreal; relative channel structure is real.
-
-\subsection{Channel-swap is reversal}
-
-Non-uniqueness does not block a proved channel column. Section~III never
-needed canonical factors; it needed a canonical \emph{swap}.
+\begin{remark}[Status]
+Proved negative. The absolute position of the factor pair is a
+\emph{packaging} gauge (Section~\ref{sec:z2}): the ledger consumes $U$,
+never $(\phi,\sigma)$.
+\end{remark}
 
 \begin{theorem}[Channel-swap is reversal]
 \label{thm:swap}
@@ -361,10 +379,8 @@ independent of which factorisation of $U$ was chosen.
 From $U=\sigma\comp\phi$ and the involution equations,
 $\phi(\sigma(U(x)))=\phi(\sigma(\sigma(\phi(x))))=\phi(\phi(x))=x$ and
 $U(\phi(\sigma(x)))=\sigma(\phi(\phi(\sigma(x))))=\sigma(\sigma(x))=x$.
-The swapped pair $(\sigma,\phi)$ satisfies
-$(\phi\comp\sigma)=\phi\comp\sigma$ definitionally as a two-bounce
-presentation of the reverse step. No uniqueness of $(\phi,\sigma)$ was
-used.
+The swapped pair $(\sigma,\phi)$ presents the reverse step. Uniqueness
+of $(\phi,\sigma)$ is not used.
 \end{proof}
 
 \begin{figure}[ht]
@@ -383,35 +399,109 @@ used.
 \node[m, left=12mm of rev] (y) {$y$};
 \draw[arr] (y) -- node[above]{$\sigma$} (rev);
 \draw[arr, dashed] (ux) -- node[right]{\footnotesize inverse} (rev);
-\node[below=3mm of phix, align=center, font=\footnotesize] {bounce order\\$U=\sigma\comp\phi$};
-\node[below=22mm of phix, align=center, font=\footnotesize]
-  {swap order presents $U^{-1}=\phi\comp\sigma$};
+\node[below=3mm of phix, align=center, font=\footnotesize]
+  {$U=\sigma\comp\phi$};
+\node[below=20mm of phix, align=center, font=\footnotesize]
+  {swap presents $U^{-1}=\phi\comp\sigma$};
 \end{tikzpicture}
-\caption{Two-bounce presentation and its swap. Labels $(\phi,\sigma)$ are
-conventional; exchanging them runs the step backwards.}
+\caption{Two-bounce presentation and swap. Pair labels are conventional;
+exchange covers reversal (Theorem~\ref{thm:swap}).}
 \label{fig:bounce}
 \end{figure}
 
-On an involution, the reverse step equals $U$ itself, so factor-swap
-re-presents the same step---the T-7-shaped reorder already visible in
-$\neg\comp\mathrm{id}$ versus $\mathrm{id}\comp\neg$. In general,
-channel-swap and address-swap (reading the step forward versus reverse)
-project to the same inversion $U\mapsto U^{-1}$. The corpus cannot say
-which mirror is which, and can prove that swapping them is running the
-step backwards.
+\begin{interpretation}
+\label{int:mirrors}
+In the dihedral picture, a rotation fixes the angle between mirrors, not
+their absolute position. Theorem~\ref{thm:canonfail} is that fact on
+finite carriers; Theorem~\ref{thm:swap} promotes the exchange.
+\end{interpretation}
 
 
-\section{Content gauges and packaging gauges}
-\label{sec:gauge}
+\section{Archive and capacity}
+\label{sec:archive}
 
-Gauge inflation is the natural hostile-reader objection once
-factorisation non-uniqueness is on the table: has a second $\Ztwo$
-appeared beside T-7? The answer is no, once a demarcation is stated.
+Dependence: ladder carrier (Section~\ref{sec:ladder}) as environment;
+registration (Theorem~\ref{thm:reg}).
+
+\begin{theorem}[Archive and capacity]
+\label{thm:caps}
+Taking the environment at horizon $T$ to be the ladder carrier at
+level~$T$, the committed capacity schedule satisfies
+$|\mathrm{caps}\,T|=2^{T+2}$. Joint injectivity, merge, muting, and
+confinement imply the combinatorial bound $K^{T}\le|\mathrm{caps}\,T|$;
+at $K=2$ the committed ladder is eternally alive by arithmetic.
+\end{theorem}
+
+\begin{remark}[Status]
+Proved in the dynamics layer. Continuum area or continuum entropy
+identifications are refused.
+\end{remark}
+
+
+\section{Arrow as address}
+\label{sec:arrow}
+
+Dependence: registration and archive growth.
+
+\begin{theorem}[Arrow reading]
+\label{thm:arrow}
+The dynamical arrow---archive ascent under registration---is identified
+with address valued in $\{\mathsf{fwd},\mathsf{rev}\}$. Tick identification
+(naming tick with microtick) holds for the classified fragment of
+uniform free archives up to record gauge; periodic fund-exempt dynamics
+and swap necessity are part of that classification.
+\end{theorem}
+
+\begin{remark}[Status]
+Proved as a classified package in the dynamics layer. Record gauge is
+packaging: exported only inside ``up to record gauge'' clauses.
+\end{remark}
+
+
+\section{One underdetermination and gauges}
+\label{sec:z2}
+
+Dependence: pole swap from Theorem~\ref{thm:canon}; address from
+Theorem~\ref{thm:arrow}; channel from Definition~\ref{def:twobounce} and
+Theorem~\ref{thm:swap}.
+
+\begin{theorem}[One $\Ztwo$, three faces]
+\label{thm:z2}
+There is a single two-element underdetermination with three named
+involutive projections:
+\begin{center}
+pole swap \quad$\cong$\quad
+address $\{\mathsf{fwd},\mathsf{rev}\}$ \quad$\cong$\quad
+channel $\{\varphi,\sigma\}$.
+\end{center}
+Each projection is an involution on a common $\Ztwo$ carrier.
+\end{theorem}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  face/.style={draw, circle, minimum size=17mm, align=center, inner sep=1pt},
+  hub/.style={draw, thick, circle, minimum size=13mm, align=center}
+]
+\node[hub] (z) {$\Ztwo$};
+\node[face, above left=11mm and 15mm of z] (p) {pole\\swap};
+\node[face, above right=11mm and 15mm of z] (a) {address\\fwd/rev};
+\node[face, below=13mm of z] (c) {channel\\$\varphi/\sigma$};
+\draw[-{Latex}] (p) -- (z);
+\draw[-{Latex}] (a) -- (z);
+\draw[-{Latex}] (c) -- (z);
+\end{tikzpicture}
+\caption{Three faces of one underdetermination (Theorem~\ref{thm:z2}).
+Faces are presentations; the group is stated once.}
+\label{fig:z2}
+\end{figure}
 
 \begin{definition}[Content vs packaging]
+\label{def:gauge}
 A gauge is \emph{content} when some exported statement mentions the
 choice. A gauge is \emph{packaging} when the choice is quotiented before
-anything downstream consumes it.
+downstream consumption.
 \end{definition}
 
 \begin{center}
@@ -419,86 +509,82 @@ anything downstream consumes it.
 \toprule
 Gauge & Locus & Class \\
 \midrule
-Label / pole swap & canon readings & content \\
-Address fwd/rev & recovery / arrow line & content \\
+Label / pole swap & Theorem~\ref{thm:canon} & content \\
+Address fwd/rev & Theorem~\ref{thm:arrow} & content \\
 Channel swap & Theorem~\ref{thm:swap} & content \\
-Record gauge per tick & archive normal form & packaging \\
-Factorisation gauge per step & Theorems~\ref{thm:exists}--\ref{thm:canonfail} & packaging \\
+Record gauge per tick & Theorem~\ref{thm:arrow} & packaging \\
+Factorisation gauge per step & Theorems~\ref{thm:exists}--\ref{thm:canonfail}
+  & packaging \\
 \bottomrule
 \end{tabular}
 \end{center}
 
-The ledger consumes $U$, never the pair $(\phi,\sigma)$. Axis choice on
-a $3$-cycle is spent entirely inside I-1 discharge. Record gauge appears
-only inside ``up to record gauge'' clauses. By contrast, pole, address,
-and channel swap survive into the dictionary line and the arrow
-identification, so they are content---and they are the \emph{same}
-content, stated once as Theorem~\ref{thm:z2}.
-
-This demarcation has been used twice before being named (record gauge;
-factorisation gauge). Naming it makes the one-$\Ztwo$ claim
-hostile-reader-proof: the gauge grew, and it grew in a direction that
-never touches the dictionary.
+\begin{remark}[Status]
+Theorem~\ref{thm:z2} and Definition~\ref{def:gauge} keep one dictionary
+$\Ztwo$: factorisation non-uniqueness (Theorem~\ref{thm:canonfail}) is
+packaging; channel \emph{labels} are conventional; channel \emph{swap}
+is content.
+\end{remark}
 
 
-\section{Residue and refusals}
-\label{sec:refuse}
+\section{Dictionary interpretations}
+\label{sec:dict}
 
-Not everything nearby is a theorem, and the paper's credibility depends
-on saying so.
+\begin{interpretation}
+\label{int:dict}
+Dictionary entries are optional certificates that a physical or
+contemplative model realises kernel symmetries (for example, swap as
+negation, dissipation as registration). They do not derive continuum
+spacetimes or observational numbers from $\Bool$.
+\end{interpretation}
 
-\paragraph{Philosophical residue.}
-The facticity of liveness---why there is a live act at all---is not
-discharged. Ambient adequacy (whether pointed unoriented acts are the
-right setting for fundamentality) remains contestable. These are
-residue, not hidden axioms of the theorems above.
+\begin{remark}[Status]
+Layer~3 only. No theorem in Sections~\ref{sec:class}--\ref{sec:z2}
+depends on a dictionary certificate.
+\end{remark}
 
-\paragraph{Refused.}
-Premise-free global laws of time; continuum spacetime and continuum
-Einstein equations as theorems of this corpus; host-logic incompleteness
-and G\"odel arithmetisation of the formal text; experiential or qualia
-claims. Dictionary instantiations (physical models admitted by
-certificate) are existence proofs that the kernel symmetry has witnesses,
-not a derivation of the world from $\Bool$.
 
-\paragraph{Extension, not the thesis.}
-A ledger layer (registration, capacity, discrete Einstein skeleton) and
-dictionary certificates sit above the arena. They illustrate transfer and
-constraint; they are not required for Theorems~\ref{thm:canon}--\ref{thm:swap}.
-The present paper isolates the metaphysical core.
+\section{Open, refused, and philosophical}
+\label{sec:status}
+
+\begin{statusopen}
+Continuum Lorentzian structure and boosts (no continuous one-parameter
+subgroup from a single $\Ztwo$); Mathlib-level sheaf assembly beyond
+landed stalk fragments; recombination budget versus ultrametric
+obstruction; deeper alphabet-lift optional once Fin interfaces close.
+\end{statusopen}
+
+\begin{statusrefused}
+Premise-free global laws of time; continuum Einstein equations as
+theorems of this corpus; host-logic incompleteness; G\"odel
+arithmetisation of the formal text; experiential or qualia claims;
+derivation of the world from $\Bool$ alone.
+\end{statusrefused}
+
+\begin{statusphil}
+Facticity of liveness; adequacy of the pointed unoriented ambient
+(Interpretation~\ref{int:ambient}); which face of the $\Ztwo$ is treated
+as free in applications.
+\end{statusphil}
 
 
 \section{Conclusion}
 \label{sec:concl}
 
-An involutive arena yields a short list of hard theorems: a Boolean
-canon; a Lawvere seal; one $\Ztwo$ with three faces; a discharged
-losslessness transfer whose factorisation is non-canonical; and a proved
-identification of channel-swap with step reversal. The accompanying
-demarcation between content and packaging gauges prevents
-non-uniqueness from counting as a second underdetermination.
-
-Taken together, the strengths are not merely additive. Initiality gives
-a unique fundamental \emph{object}; the seal gives a negative
-\emph{epistemic} bound on self-reading; T-7 gives a unique
-\emph{underdetermination}; two-bounce gives a discharged
-\emph{interface}; canonicity failure plus swap-as-reversal give a
-\emph{relational} reading of the channel face that matches the spine's
-refusal of absolute direction. The gauge demarcation is what makes the
-package stable under hostile reading.
-
-The system keeps refusing absolutes at every level anyone proposes
-one---direction of ascent, position of mirrors, labels of channels---and
-the refusals were found by attempting the opposite. That is the strongest
-kind of negative result available to formal metaphysics: not a slogan, but
-a failed canonicity proof, machine-checked, that promotes the exchange it
-could not eliminate.
+The classification theorem restricts self-actions to the live two-cycle
+under the stated ambient. Fundamentality is the universal property of
+that survivor: the unique object is $(\Bool,\neg)$ up to label swap.
+Seal, ladder, registration (via two-bounce), archive capacity, and arrow
+as address follow in dependency order. One $\Ztwo$ is stated once; content
+and packaging gauges prevent factorisation non-uniqueness from counting
+as a second underdetermination. Philosophical and dictionary claims are
+confined to marked layers and to Section~\ref{sec:status}.
 
 \section*{Formal companion}
 \label{sec:companion}
 
-Statements correspond to a Lean~4 development (no Mathlib, no
-$\mathtt{sorry}$). Representative declarations:
+Representative declarations:
+\texttt{classification\_at},
 \texttt{canon\_initial},
 \texttt{symmetric\_excludes\_erase},
 \texttt{seal\_on\_fundamental},
@@ -506,10 +592,11 @@ $\mathtt{sorry}$). Representative declarations:
 \texttt{one\_Z2\_three\_faces},
 \texttt{factor\_fin},
 \texttt{canonicity\_fails},
-\texttt{channel\_swap\_is\_reversal}.
-Axiom footprints are audited per declaration; the core arena results are
-axiom-free or depend at most on standard propositional extensionality /
-choice used in finite search.
+\texttt{channel\_swap\_is\_reversal},
+\texttt{registration},
+\texttt{caps\_eq},
+\texttt{tick\_identification}.
+Axiom footprints are audited per declaration.
 
 \begin{thebibliography}{99}
 
@@ -529,15 +616,12 @@ H.~S.~M.~Coxeter.
 G.~Boole.
 \newblock \emph{An Investigation of the Laws of Thought}.
 \newblock 1854.
-\newblock (Historical locus of Boolean negation as fundamental operation.)
 
 \bibitem{quine}
 W.~V.~Quine.
 \newblock Ontological relativity.
 \newblock In \emph{Ontological Relativity and Other Essays}, Columbia,
   1969.
-\newblock (Underdetermination / proxy functions; contrast with proved
-  exchange here.)
 
 \end{thebibliography}
 

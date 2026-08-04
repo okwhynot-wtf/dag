@@ -26,7 +26,7 @@ caricatures are in scope; continuum identifications are not.
 | **Combinatorial temperature caricature** | **E1 landed** + **period-2/KMS toy** (`Period2KMS.period2_kms_caricature`). Not Unruh / continuum KMS |
 | **Finite-mode Page / Bogoliubov toy** | **E2 Page horizon landed** (T-10 thermal→speech + matter channel). Bogoliubov / continuum QFT stays refused |
 | **Matter = saturated record flux (A–E green)** | Effective matter = forced flux at saturation; patterned (`FluxPattern`); Phase E toys name T / radiation / capacity growth. Host-API optional. SM/Friedmann-from-Bool stays refused |
-| **Finite measures on branches** | Optional: random-walk / counting measures → Ollivier-style trial on finite trees. Continuum measure theory not required |
+| **Finite measures on branches** | **Landed:** `ollivier_trial_fragment` (uniform child masses + sibling transport non-pos signal). Continuum Ollivier refused |
 | **Area-as-capacity sharpening** | **Landed:** `area_as_caps_sharpening` (`log₂|caps|=T+2`, demand ≤ area, +1 bit/tick). Continuum area refused |
 | **RE-side growth law** | Seek quintom mode-count ↔ capacity-law analogue (table V dash: not yet sought) |
 | **Lorentzian dictionary (partial)** | What can be said with order dim-1 + capacity growth without full Lorentz group? Separate from O-2 boost gap |

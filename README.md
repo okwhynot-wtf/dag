@@ -65,5 +65,5 @@ companions BitFlip, NoClone (measurement).
 
 ## Version
 
-DAG hybrid **v0.1.24** — Period-2/KMS involution toy; area-as-caps
-sharpening; prior Dil/T-2 bank through v0.1.23.
+DAG hybrid **v0.1.25** — Finite Ollivier trial on branch measures;
+period-2/KMS + area-as-caps from v0.1.24.

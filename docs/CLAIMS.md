@@ -30,6 +30,7 @@
 | R-1 recombination budget fragment | `Bridge.RecombinationBudget.r1_recombination_budget_fragment` | Bridge |
 | O-3 restriction fragment | `Bridge.LedgerSheaf.o3_restriction_fragment` | Bridge |
 | T-12 measure fragment (uniform / no selector) | `Bridge.BranchMeasure.T12_measure_fragment` | Bridge |
+| Finite Ollivier trial (counting transport) | `Bridge.BranchMeasure.ollivier_trial_fragment` | Bridge |
 | Dil Hom existence via unique factorization | `Bridge.Dil.hom_exists_of_UF` | Bridge |
 | Dil packaged UF↔UF rigidity iso | `Bridge.Dil.rigidity_iso_of_UF` | Bridge |
 | Dil graded terminality (UF+pointed) | `Bridge.Dil.graded_terminality_of_UF` | Bridge |

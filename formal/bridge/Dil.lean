@@ -531,16 +531,151 @@ theorem recordGenerated_of_minimal_cover {S E E' : Type} [DecidableEq E']
     match exists_of_mem_map hb with
     | ⟨e, he, hre⟩ => exact ⟨s, hs, e, he, hre⟩
 
-/-- Existence of Hom between two arbitrary minimal archives (needs a
-    matched base bijection + coherent record transport) remains open. -/
-def rigidity_iso_open : True := True.intro
+/-! ## Hom existence via unique record factorization -/
 
-/-- Graded terminality of the ladder minimal archive among reduced
-    u-graded archives. Open — addressing obstruction flagged in sketch. -/
+/-- Every letter at `T+1` factors uniquely as a single record step. -/
+structure UniqueFactorization {S : Type} {u : S → S} (A : Archive S u) where
+  factor : (T : Nat) → A.E (T + 1) → S × A.E T
+  reconstruct :
+    ∀ T (e' : A.E (T + 1)),
+      e' = A.r T (factor T e').1 (factor T e').2
+  unique :
+    ∀ T (e' : A.E (T + 1)) (s : S) (e : A.E T),
+      e' = A.r T s e → factor T e' = (s, e)
+
+/-- Free archive has unique factorization (word head / tail). -/
+def freeUniqueFactorization (S : Type) (u : S → S) :
+    UniqueFactorization (free S u) where
+  factor := fun _T w =>
+    match w with
+    | Word.cons s t => (s, t)
+  reconstruct := by
+    intro T e'
+    cases e'
+    rfl
+  unique := by
+    intro T e' s e h
+    cases e'
+    cases h
+    rfl
+
+/-- Transport a base map along unique factorization to a full Hom. -/
+def mapFromUF {S : Type} {u : S → S} {A B : Archive S u}
+    (fa : UniqueFactorization A) (h0 : A.E 0 → B.E 0) :
+    (T : Nat) → A.E T → B.E T
+  | 0, e => h0 e
+  | T + 1, e' =>
+    B.r T (fa.factor T e').1 (mapFromUF fa h0 T (fa.factor T e').2)
+
+theorem mapFromUF_nat {S : Type} {u : S → S} {A B : Archive S u}
+    (fa : UniqueFactorization A) (h0 : A.E 0 → B.E 0)
+    (T : Nat) (s : S) (e : A.E T) :
+    mapFromUF fa h0 (T + 1) (A.r T s e) =
+      B.r T s (mapFromUF fa h0 T e) := by
+  have hfac : fa.factor T (A.r T s e) = (s, e) :=
+    fa.unique T (A.r T s e) s e rfl
+  -- mapFromUF (T+1) unfolds to B.r (factor).1 (mapFromUF (factor).2)
+  change B.r T (fa.factor T (A.r T s e)).1
+      (mapFromUF fa h0 T (fa.factor T (A.r T s e)).2) =
+    B.r T s (mapFromUF fa h0 T e)
+  rw [hfac]
+
+/-- **Hom existence.** Unique factorization + pointed base map ⇒ Hom. -/
+def homFromUF {S : Type} {u : S → S} {A B : Archive S u}
+    (fa : UniqueFactorization A) (h0 : A.E 0 → B.E 0)
+    (hz : h0 A.z0 = B.z0) : Hom A B where
+  map := mapFromUF fa h0
+  map_z0 := hz
+  nat_r := fun T s e => mapFromUF_nat fa h0 T s e
+
+/-- Free archive always admits a Hom into any archive (re-proof via UF). -/
+def freeHomViaUF {S : Type} {u : S → S} (A : Archive S u) :
+    Hom (free S u) A :=
+  homFromUF (freeUniqueFactorization S u)
+    (fun _ => A.z0) rfl
+
+/-- History embedding: factorisation replay as a free word. -/
+def historyWord {S : Type} {u : S → S} {A : Archive S u}
+    (fa : UniqueFactorization A) (_h0 : PointedSingleton A) :
+    (T : Nat) → A.E T → Word S T
+  | 0, _e => Word.nil
+  | T + 1, e' =>
+    Word.cons (fa.factor T e').1 (historyWord fa _h0 T (fa.factor T e').2)
+
+theorem history_section {S : Type} {u : S → S} {A : Archive S u}
+    (fa : UniqueFactorization A) (h0 : PointedSingleton A) :
+    ∀ T (e : A.E T), interpret A T (historyWord fa h0 T e) = e := by
+  intro T
+  induction T with
+  | zero =>
+    intro e
+    exact (h0 e).symm
+  | succ T ih =>
+    intro e'
+    have hrec := fa.reconstruct T e'
+    have ih' := ih (fa.factor T e').2
+    change A.r T (fa.factor T e').1
+        (interpret A T (historyWord fa h0 T (fa.factor T e').2)) = e'
+    rw [ih']
+    exact hrec.symm
+
+theorem historyWord_step {S : Type} {u : S → S} {A : Archive S u}
+    (fa : UniqueFactorization A) (h0 : PointedSingleton A)
+    (T : Nat) (s : S) (e : A.E T) :
+    historyWord fa h0 (T + 1) (A.r T s e) =
+      Word.cons s (historyWord fa h0 T e) := by
+  have hfac : fa.factor T (A.r T s e) = (s, e) :=
+    fa.unique T (A.r T s e) s e rfl
+  change Word.cons (fa.factor T (A.r T s e)).1
+      (historyWord fa h0 T (fa.factor T (A.r T s e)).2) =
+    Word.cons s (historyWord fa h0 T e)
+  rw [hfac]
+
+/-- Hom A → B by pushing history into B's interpret (UF source). -/
+def homViaHistory {S : Type} {u : S → S} {A B : Archive S u}
+    (fa : UniqueFactorization A) (h0 : PointedSingleton A) : Hom A B where
+  map := fun T e => interpret B T (historyWord fa h0 T e)
+  map_z0 := rfl
+  nat_r := by
+    intro T s e
+    have hhist := historyWord_step fa h0 T s e
+    -- LHS = interpret B (history (A.r s e)) = interpret B (cons s (history e))
+    change interpret B (T + 1) (historyWord fa h0 (T + 1) (A.r T s e)) =
+      B.r T s (interpret B T (historyWord fa h0 T e))
+    rw [hhist]
+    rfl
+
+/-- **Hom existence.** Unique factorization + pointed singleton ⇒ Hom into
+    any target archive. Free always factorises. -/
+theorem hom_exists_of_UF {S : Type} {u : S → S} {A B : Archive S u}
+    (fa : UniqueFactorization A) (h0 : PointedSingleton A) :
+    ∃ _h : Hom A B, True :=
+  ⟨homViaHistory fa h0, True.intro⟩
+
+theorem free_always_factors (S : Type) (u : S → S) :
+    ∃ _fa : UniqueFactorization (free S u), True :=
+  ⟨freeUniqueFactorization S u, True.intro⟩
+
+theorem free_is_pointed_singleton (S : Type) (u : S → S) :
+    PointedSingleton (free S u) := by
+  intro e
+  cases e
+  rfl
+
+/-- Free → any archive via UF. -/
+theorem free_hom_exists_via_UF {S : Type} {u : S → S} (A : Archive S u) :
+    ∃ _h : Hom (free S u) A, True :=
+  hom_exists_of_UF (freeUniqueFactorization S u) (free_is_pointed_singleton S u)
+
+/-- Graded terminality among reduced u-graded archives — still open as a
+    separate addressing claim; UF is the constructive surrogate used above. -/
 def graded_terminality_open : True := True.intro
 
 /-- Tick identification (naming ↔ microtick) remains T-2-licensed. -/
 def tick_identification_T2_licensed : True := True.intro
+
+/-- Packaged bijective base match ⇒ iso of UF archives — marker. -/
+def rigidity_iso_open : True := True.intro
 
 /-! ## Keystone sprint package -/
 
@@ -584,6 +719,10 @@ theorem keystone_dil_sprint :
 #print axioms inductive_carrier_reachable
 #print axioms at_most_one_hom_recordGenerated
 #print axioms recordGenerated_of_minimal_cover
+#print axioms mapFromUF_nat
+#print axioms hom_exists_of_UF
+#print axioms free_hom_exists_via_UF
+#print axioms history_section
 #print axioms predicate_minimal_schedule
 #print axioms caps_realise_minimal_schedule
 #print axioms keystone_dil_sprint

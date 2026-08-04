@@ -30,7 +30,7 @@ caricatures are in scope; continuum identifications are not.
 | **Area-as-capacity sharpening** | Tighten Bekenstein-shaped reading of `‖caps T‖` (already present); not continuum area theorems |
 | **RE-side growth law** | Seek quintom mode-count ↔ capacity-law analogue (table V dash: not yet sought) |
 | **Lorentzian dictionary (partial)** | What can be said with order dim-1 + capacity growth without full Lorentz group? Separate from O-2 boost gap |
-| **T-1 / Dil keystone** | **Partial:** partition + Hom uniqueness + **carrier reachability** from `RecordGenerated`. **Open:** Hom *existence* between two minimal archives (`rigidity_iso_open`); graded terminality |
+| **T-1 / Dil keystone** | **Partial:** UF ⇒ **Hom existence** (`hom_exists_of_UF`) + reachability/uniqueness. **Open:** packaged bijection iso of two UF archives; graded terminality |
 | **T-12 measure** | **Fragment landed:** uniform child weights (`Kmin`); no unique law-derived selector. Asymmetric Born-from-underdetermination alone still refused |
 | **T-10 Page flux shape** | **Landed:** `PageShape` — mute before `C`, stream `t−C`, `t_exh=C+1`, Page tent peak. Bogoliubov / continuum QFT still refused |
 | Arbitrary `U_S` UP | Beyond fiber tagging (`arbitraryUS_UP_open`); Dil is the attack shape |
@@ -57,7 +57,7 @@ caricatures are in scope; continuum identifications are not.
 Claim-hygiene and continuum / mind ceilings. Not the same as “no caricature allowed.”
 
 - Cosmological number or observable `H₀` / seconds **identified from** Bool or naming ticks (units gap)
-- Quintom as the world's dynamics; DESI as forecast (model-class observation only)
+- Quintom as the world's dynamics; DESI as forecast (null stated: `exhibits/quintom/DESI_NULL.md`)
 - Premise-free global Law of Time
 - Continuum spacetime manifold; continuum area/island theorems; continuum Einstein `G_{μν}=8πT_{μν}` as Lean gravity
 - Continuum QFT mode creation; gravitational evaporating BH as Lean (finite Page *toy* admitted)

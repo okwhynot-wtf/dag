@@ -87,6 +87,14 @@ emergent-flux programme; matter-as-input demoted to optional host API.
 Continuum `T_{μν}` / SM inventory still refused. Phase E is interpretation
 only — familiar names, not load-bearing for H.
 
+## Dictionary adapters (fence)
+
+- **QEC L-cert** (`formal/dictionary/QEC.lean`, `exhibits/qec/`): syndrome
+  extraction fills the same Registration / L-certificate schema as Page on a
+  Bool swap toy. Not a threshold theorem; not a holographic code claim.
+- **DESI / quintom null** (`exhibits/quintom/DESI_NULL.md`): certificate ≠
+  DESI prediction. Do not treat residual DESI tension as a DAG forecast.
+
 ## Coincidence: flatness embarrassment (not promoted)
 
 Cosmology's near-flat universe is an unsolved calibration puzzle. DAG's

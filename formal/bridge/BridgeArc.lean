@@ -106,6 +106,17 @@ theorem milestone_keystone_dil :
    Bridge.Dil.keystone_dil_sprint.2.2.2.2.1,
    Bridge.Dil.keystone_dil_sprint.2.2.2.2.2⟩
 
+/-- Hom existence via unique factorization (Dil rigidity progress). -/
+theorem milestone_dil_hom_exists :
+    (∀ {S : Type} {u : S → S} (A : Bridge.Dil.Archive S u),
+      ∃ _h : Bridge.Dil.Hom (Bridge.Dil.free S u) A, True) ∧
+    (∃ _fa : Bridge.Dil.UniqueFactorization
+      (Bridge.Dil.free Bool not), True) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨fun A => Bridge.Dil.free_hom_exists_via_UF A,
+   Bridge.Dil.free_always_factors Bool not,
+   Bridge.Alphabet.Kmin_eq⟩
+
 /-- T-2 factorisation: namer-shaped positive + carrier obstruction. -/
 theorem milestone_M4b :
     (∀ {S E : Type} {U : S × E → S × E},
@@ -317,6 +328,7 @@ theorem bridge_arc :
 #print axioms milestone_M1
 #print axioms milestone_M5
 #print axioms milestone_keystone_dil
+#print axioms milestone_dil_hom_exists
 #print axioms milestone_M4b
 #print axioms milestone_T10
 #print axioms milestone_T10_shape

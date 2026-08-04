@@ -58,13 +58,13 @@ python exhibits/quintom/integrate.py
 | T-8 | Fixed-point discipline (kernel) | Discharged; ODE exhibit |
 | T-6 | Damping = registration | Kernel skeleton; H-id exhibit |
 | T-2 | Tick simulation | Committed path + namer factor; carrier obstructed |
-| T-1 | Environment universality | Dil: free/capacity/partition/Hom-unique; carrier iso open |
+| T-1 | Environment universality | Dil: free/capacity/partition/UP + Hom∃ via UF; packaged UF↔UF iso open |
 
-Dictionary (substantive order): Quintom → Kramers → Page → **MetaProblem**;
+Dictionary (substantive order): Quintom → Kramers → Page → QEC → **MetaProblem**;
 companions BitFlip, NoClone (measurement).
 
 ## Version
 
-DAG hybrid **v0.1.17** — Dil carrier reachability; T-12 uniform measure
-fragment (no unique selector). Next: Hom-existence between minimal archives;
-dictionary QEC / DESI null-or-shape.
+DAG hybrid **v0.1.18** — Dil Hom-existence via unique factorization; QEC
+L-certificate (syndrome = registration); DESI null note (certificate ≠
+prediction).

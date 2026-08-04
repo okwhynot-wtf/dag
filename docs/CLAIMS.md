@@ -30,6 +30,8 @@
 | R-1 recombination budget fragment | `Bridge.RecombinationBudget.r1_recombination_budget_fragment` | Bridge |
 | O-3 restriction fragment | `Bridge.LedgerSheaf.o3_restriction_fragment` | Bridge |
 | T-12 measure fragment (uniform / no selector) | `Bridge.BranchMeasure.T12_measure_fragment` | Bridge |
+| Dil Hom existence via unique factorization | `Bridge.Dil.hom_exists_of_UF` | Bridge |
+| QEC L-certificate (syndrome = registration) | `Dictionary.QEC.qec_admitted` | Dictionary |
 | T-1 record-label injectivity | `Bridge.Environment.recordLabel_injective` | Bridge |
 | Bridge arc weld | `Bridge.Arc.bridge_arc` | Bridge |
 | I-4 Bool certificate | `Dictionary.Certificate.bool_admitted` | Dictionary |
@@ -50,6 +52,8 @@
 | Dictionary extensible (Bool + BitFlip) | `Dictionary.BitFlip.dictionary_extensible` | Dictionary |
 | Quintom H=0/H>0 exhibit | `exhibits/quintom/integrate.py` | Exhibit |
 | Page exhibit notes + Hawking-pair conjecture | `exhibits/page/README.md` | Exhibit |
+| QEC exhibit notes (syndrome ≠ physical QEC) | `exhibits/qec/README.md` | Exhibit |
+| DESI / quintom null (certificate ≠ prediction) | `exhibits/quintom/DESI_NULL.md` | Exhibit |
 | Measurement / no-clone notes | `exhibits/measurement/README.md` | Exhibit |
 | Meta-problem notes (hard problem refused) | `exhibits/metaproblem/README.md` | Exhibit |
 | AG merge registers | `Geom.Registration.merge_registers` | Ledger |

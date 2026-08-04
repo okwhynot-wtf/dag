@@ -1,5 +1,5 @@
 Diagonal Archive Geometry — symbolic law
-corpus hybrid/ DAG v0.1.17
+corpus hybrid/ DAG v0.1.18
 
 ═══════════════════════════════════════════════════════════════════════════════
 0. Layers  (downward imports only)
@@ -155,8 +155,8 @@ VI. Compression
 VII. Residue / refusal
 ═══════════════════════════════════════════════════════════════════════════════
 
-  open (tractable): **T-1 Dil keystone** (reachability + Hom-uniqueness;
-            Hom-existence between minimal archives / graded terminality open);
+  open (tractable): **T-1 Dil keystone** (UF Hom-existence + reachability;
+            packaged bijective iso of two UF archives / graded terminality open);
           O-3 full sheaf dynamics (stalk glue + restriction landed;
             dynamics sections open);
           R-1 counting landed (tree faces ≤ caps; ultrametric≠space remains);
@@ -193,7 +193,7 @@ VII. Residue / refusal
            TickSimulation · RegistrationFactor · ArchiveMustSpeak · SecondLaw ·
            Measurement · Expansion · Forman · Saturation · EinsteinSkeleton ·
            EffectiveMatter · FluxPattern · LedgerSheaf · RecombinationBudget ·
-           PhaseEToys · Dil · PageShape
+           PhaseEToys · Dil · PageShape · BranchMeasure
   dict:    Certificate (K) · LCertificate · Quintom.* · BitFlip · Kramers · Page ·
-           NoClone (measurement) · MetaProblem
+           QEC · NoClone (measurement) · MetaProblem
 

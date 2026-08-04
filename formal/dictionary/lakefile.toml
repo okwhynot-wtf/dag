@@ -27,6 +27,7 @@ roots = [
   "BitFlip",
   "Kramers",
   "Page",
+  "QEC",
   "NoClone",
   "MetaProblem",
 ]

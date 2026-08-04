@@ -50,8 +50,9 @@
 | Time–dissipation corollary (arrow iff registration) | `Bridge.TickSimulation.time_dissipation_one_property` | Bridge |
 | O-2 cut-shift dead end (T_c blind to cut) | `Bridge.ModularCut.o2_cut_shift_dead_end` | Bridge |
 | O-2 forced blindness (period global; one ℤ/2 ⇒ one flow) | `Bridge.ModularCut.o2_forced_blindness` | Bridge |
-| I-1 two-bounce fragment (¬erase; two-bounce⇒Inj; toys+Fin n) | `Bridge.TwoBounce.i1_two_bounce_fragment` | Bridge |
+| I-1 two-bounce fragment (¬erase; two-bounce⇒Inj; toys+Fin n; ¬canonicity) | `Bridge.TwoBounce.i1_two_bounce_fragment` | Bridge |
 | I-1 Fin n two-bounce existence | `Bridge.TwoBounce.factor_fin` | Bridge |
+| I-1 canonicity fails (essential non-uniqueness) | `Bridge.TwoBounce.canonicity_fails`, `i1_canonicity_package` | Bridge |
 | SymmetricStep excludes Erasing | `Bridge.TwoBounce.symmetric_excludes_erase` | Bridge |
 | Jacobson quantifier / observers forced | `Observer.observers_forced`, `Bridge.EinsteinSkeleton.local_horizon_seal` | Spine/Bridge |
 | Arc write-up (Dil→T-2, v0.2) | `docs/ARC_V02.md` | Docs |

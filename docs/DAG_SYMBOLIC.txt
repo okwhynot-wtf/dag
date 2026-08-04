@@ -47,8 +47,8 @@ II. Ledger  (AG over I-1 / I-2)
   U : S×E → S×E = (U_S, U_E)           joint microstep
   global Inj(U)                        I-1 transfer of spine losslessness
                                        (stipulation → TwoBounce discharge:
-                                        U=σ∘φ; converse+toys landed;
-                                        Fin n existence + canonicity open)
+                                        U=σ∘φ; converse+toys+Fin n landed;
+                                        canonicity open)
   merges live in U_S above base; compensated in U_E
 
   Inj(U) ∧ ∃merge(U)  ⟹  ∃record(U)    Registration
@@ -233,6 +233,6 @@ VII. Residue / refusal
 
 ═══════════════════════════════════════════════════════════════════════════════
   Fund ≅ ¬  ·  a∘a=id ⇒ ¬erase  ·  merge ⇒ record  ·  |caps T| = 2^(T+2)
-  ·  naming ≅ μtick / gauge  ·  (I-1: U = σ∘φ · Fin n open)
+  ·  naming ≅ μtick / gauge  ·  (I-1: U = σ∘φ · Fin n landed · canonicity open)
 ═══════════════════════════════════════════════════════════════════════════════
 

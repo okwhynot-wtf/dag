@@ -66,7 +66,7 @@ from a higher one.
 | (α, a, z), a∘a = id | DM | pointed unoriented act | primitive (arena) |
 | Bool, ¬ | DM | the Fundamental, unique survivor | theorem |
 | Lₖ, Lₖ₊₁ = Option(Lₖ) | DM | ladder | theorem |
-| U : S×E → S×E | AG | joint microstep | **I-1 transfer:** global `Inj(U)` stipulated as spine losslessness on the product; discharge shape `TwoBounce` (U = σ∘φ, existence partial, canonicity open) |
+| U : S×E → S×E | AG | joint microstep | **I-1 transfer:** global `Inj(U)` stipulated as spine losslessness on the product; discharge shape `TwoBounce` (U = σ∘φ, Fin n existence landed, canonicity open) |
 | K ≥ 2 | AG | merge rate / blank alphabet | K = 2 minimal, **derived** via `fundamental_two_elements`; K > 2 admissible as alphabet generalisation, flagged non-minimal |
 | caps T | AG | capacity at tick T | **identified** with the level-T predicate space, |caps T| = 2^(T+2) |
 | prof | AG | capacity profile | committed ladder realises the `expand` constructor |
@@ -109,10 +109,11 @@ modality, stage tags. Ledger may not re-postulate any of these.
 `TwoBounce.symmetric_excludes_erase`). Global `Inj(U)` on `S×E` is the
 interface import of that losslessness onto forward-composing microsteps —
 same status I-2 had before Dil. Discharge shape: `U` admissible iff
-`U = σ ∘ φ` with involutions `φ, σ` (`Bridge.TwoBounce`); converse and
-toy existence landed (`i1_two_bounce_fragment`); general `Fin n` existence
-and canonicity of `(φ, σ)` open. Channel rhyme with dictionary `φ`, `σ`
-suggestive until canonicity lands or fails.
+`U = σ ∘ φ` with involutions `φ, σ` (`Bridge.TwoBounce`); converse,
+toy existence, and every injection on `Fin n` landed
+(`i1_two_bounce_fragment`, `factor_fin`); canonicity of `(φ, σ)` open.
+Channel rhyme with dictionary `φ`, `σ` suggestive until canonicity lands
+or fails.
 
 **I-2 Environment implementation.** AG's E at horizon T is the DM ladder
 carrier at level T, with cap slots the `none`-namers and |caps T| the
@@ -314,8 +315,9 @@ from the opposite direction. File as coincidence until a theorem promotes it.
 1. **Lossless spine vs lossy ledger.** Resolution: stratification + corrected
    obligations. The base act is undirected (`a∘a=id`); no-erasure is a
    theorem *inside* the arena, not a separate creed. Global `Inj(U)` is the
-   I-1 transfer of that losslessness onto the product (two-bounce discharge
-   in progress). Merges live strictly in `U_S` above the base and are
+   I-1 transfer of that losslessness onto the product (two-bounce: Fin n
+   existence landed; canonicity open). Merges live strictly in `U_S` above the base and are
+
    compensated in `U_E` (T-4). Involutivity banishes ARROW and ERASE together
    at the base; `time_dissipation_one_property` returns them together upstairs
    (arrow iff registration).

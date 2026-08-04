@@ -1,5 +1,5 @@
 Diagonal Archive Geometry — symbolic law
-corpus hybrid/ DAG v0.2.0
+corpus hybrid/ DAG v0.2.1
 
 ═══════════════════════════════════════════════════════════════════════════════
 0. Layers  (downward imports only)
@@ -164,8 +164,7 @@ VII. Residue / refusal
 ═══════════════════════════════════════════════════════════════════════════════
 
   open (tractable): deeper `|S|>K` alphabet-UF lift (optional; Fin I-2 closed);
-          Born no-go (uniform T-12 weight ≠ Born; Gleason unavailable — upgrade
-            refusal to theorem); O-2 decision (KMS/modular attack vs feature);
+          O-2 decision (KMS/modular attack vs feature);
           O-3 Mathlib sheaf/site (stalk glue + restriction + dynamics
             sections landed; continuum locality refused);
           R-1 counting landed (tree faces ≤ caps; ultrametric≠space remains);
@@ -185,14 +184,16 @@ VII. Residue / refusal
               T-2 uses this as necessity half; label-namer factor holds
   refuse: H₀/number-from-Bool; quintom-as-world; premise-free Law of Time;
           continuum spacetime/Einstein/QFT/BH; continuum Boltzmann;
-          Born from underdetermination alone (uniform T-12 weight ≠ Born);
+          Born from multiplicity alone (`born_from_multiplicity_nogo` theorem);
+
           hard problem / qualia;
           matter/Friedmann derived from Bool alone
           (discrete T / Page / capacity-growth toys: Phase E, not continuum)
   coincidence (unpromoted): cosmology flatness puzzle ↔ DAG flatness budget
   not residue: ¬flat(prof); Kmin=2; |caps T|=2^(T+2); one ℤ/2;
                recordLabel∶Bool↪E; tick_identification (classified T-2);
-               straighten; registers_admits_namer; T-10…T-16; E1; E2;
+               straighten; registers_admits_namer; born_from_multiplicity_nogo;
+               T-10…T-16; E1; E2;
                meta reports structural; Forman sign;
                **Jacobson quantifier discharged internally** — every
                self-reading has a dodge; `observers_forced` supplies the

@@ -65,6 +65,5 @@ companions BitFlip, NoClone (measurement).
 
 ## Version
 
-DAG hybrid **v0.2.0** — Classified T-2 (`tick_identification`); Dil →
-Registration-as-derived → straighten → classified ID arc
-(`docs/ARC_V02.md`). Modelling license retired.
+DAG hybrid **v0.2.1** — Born no-go (`born_from_multiplicity_nogo`);
+v0.2.0 classified T-2 arc (`docs/ARC_V02.md`).

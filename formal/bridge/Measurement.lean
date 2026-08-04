@@ -14,8 +14,9 @@ law selects among them. That is an Everett-flavoured object with
 underdetermination as the formal statement of why no mechanism of
 selection appears.
 
-Refused: Born rule, probabilities, preferred basis (corpus has no
-measure; density readings already cut from the paper).
+Refused: Born from multiplicity alone is a **theorem**
+(`BranchMeasure.born_from_multiplicity_nogo`); continuum probability /
+preferred basis still out (no Hilbert measure; density readings cut).
 -/
 
 namespace Bridge.Measurement

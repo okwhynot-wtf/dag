@@ -31,6 +31,7 @@
 | O-3 restriction fragment | `Bridge.LedgerSheaf.o3_restriction_fragment` | Bridge |
 | T-12 measure fragment (uniform / no selector) | `Bridge.BranchMeasure.T12_measure_fragment` | Bridge |
 | Dil Hom existence via unique factorization | `Bridge.Dil.hom_exists_of_UF` | Bridge |
+| Dil packaged UF↔UF rigidity iso | `Bridge.Dil.rigidity_iso_of_UF` | Bridge |
 | QEC L-certificate (syndrome = registration) | `Dictionary.QEC.qec_admitted` | Dictionary |
 | T-1 record-label injectivity | `Bridge.Environment.recordLabel_injective` | Bridge |
 | Bridge arc weld | `Bridge.Arc.bridge_arc` | Bridge |

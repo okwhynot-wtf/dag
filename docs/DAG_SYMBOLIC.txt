@@ -1,5 +1,5 @@
 Diagonal Archive Geometry — symbolic law
-corpus hybrid/ DAG v0.1.18
+corpus hybrid/ DAG v0.1.19
 
 ═══════════════════════════════════════════════════════════════════════════════
 0. Layers  (downward imports only)
@@ -55,7 +55,7 @@ II. Ledger  (AG over I-1 / I-2)
   E(T)  :=  L_T                        I-2 environment = ladder carrier
                                        (Dil: free initial · capacity law ·
                                         minimal K=2 schedule = caps;
-                                        rigidity / graded terminality open)
+                                        UF Hom∃ · UF↔UF iso; graded term. open)
   |caps T| = 2^(T+2)                   predicateCount(T)
   committed prof = expand              prof(T)=T
   alive:  2^T ≤ 2^(T+2)                eternally, by arithmetic
@@ -155,8 +155,8 @@ VI. Compression
 VII. Residue / refusal
 ═══════════════════════════════════════════════════════════════════════════════
 
-  open (tractable): **T-1 Dil keystone** (UF Hom-existence + reachability;
-            packaged bijective iso of two UF archives / graded terminality open);
+  open (tractable): **T-1 Dil keystone** (UF Hom∃ + UF↔UF iso landed;
+            graded terminality / I-2 predicate record-map open);
           O-3 full sheaf dynamics (stalk glue + restriction landed;
             dynamics sections open);
           R-1 counting landed (tree faces ≤ caps; ultrametric≠space remains);

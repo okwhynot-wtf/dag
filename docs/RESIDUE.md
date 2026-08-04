@@ -30,7 +30,7 @@ caricatures are in scope; continuum identifications are not.
 | **Area-as-capacity sharpening** | Tighten Bekenstein-shaped reading of `‖caps T‖` (already present); not continuum area theorems |
 | **RE-side growth law** | Seek quintom mode-count ↔ capacity-law analogue (table V dash: not yet sought) |
 | **Lorentzian dictionary (partial)** | What can be said with order dim-1 + capacity growth without full Lorentz group? Separate from O-2 boost gap |
-| **T-1 / Dil keystone** | **Partial:** UF ⇒ **Hom existence** (`hom_exists_of_UF`) + reachability/uniqueness. **Open:** packaged bijection iso of two UF archives; graded terminality |
+| **T-1 / Dil keystone** | **Partial:** UF ⇒ Hom∃ + **packaged UF↔UF iso** (`rigidity_iso`). **Open:** graded terminality; I-2 predicate record-map; T-2 tick ID |
 | **T-12 measure** | **Fragment landed:** uniform child weights (`Kmin`); no unique law-derived selector. Asymmetric Born-from-underdetermination alone still refused |
 | **T-10 Page flux shape** | **Landed:** `PageShape` — mute before `C`, stream `t−C`, `t_exh=C+1`, Page tent peak. Bogoliubov / continuum QFT still refused |
 | Arbitrary `U_S` UP | Beyond fiber tagging (`arbitraryUS_UP_open`); Dil is the attack shape |
@@ -48,7 +48,7 @@ caricatures are in scope; continuum identifications are not.
 
 | Item | Discharged | Remains |
 |---|---|---|
-| **T-1** Environment UP | Fiber-tagging UP; Dil sprint + partition fragment | Inductive minimal-archive iso; graded terminality; full I-2 record-map |
+| **T-1** Environment UP | Fiber-tagging UP; Dil sprint; UF Hom∃ + UF↔UF iso | Graded terminality; full I-2 predicate record-map |
 | **T-2** Tick simulation | Committed path (`tick_simulation`) | — |
 | **T-2 factorisation** | Namer-shaped label factor (`registers_admits_namer`); **carrier-level factorisation obstructed** by eternal swap on fixed `Bool` vs growing `levelCard` | Naming↔microtick = committed expand + label-namer fragment only |
 

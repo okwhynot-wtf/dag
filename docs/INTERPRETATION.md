@@ -38,7 +38,7 @@ exist with crude overlap. Continuum `G_{μν} = 8π T_{μν}` does **not** fall 
 
 **Still blocking continuum Einstein.**
 - **O-2** (structural, deepest): no boosts ⇒ no Unruh `T`
-- **O-3** (tractable): stalks ≠ sheaf — glue programme in open work
+- **O-3** (tractable): stalks + dynamics sections landed; Mathlib sheaf/site still open
 - **R-1** (structural obstruction, tractable budget attack): ultrametric;
   recombination counting is Lean
 - **O-4 / O-5** (limit / input): continuum Lorentzian; matter from framework
@@ -76,8 +76,8 @@ Sprint / phase status:
 - **A–C2 passed** — `effective_matter_sprint` (flux defs, slack, Forman budget)
 - **D passed** — `phase_D_flux_patterns`: ≥2 Bool components; channels/branches
   supply multiplicity; vacuum vs matter onset = oscillator vs registration
-- **O-3 partial** — `o3_stalk_glue_fragment`: same locus ⇒ capacity (and saturated
-  effective matter) agree; full sheaf of dynamics still open
+- **O-3 partial** — stalk glue + restriction + `o3_dynamics_section_fragment`:
+  balanced patches restrict/glue Fin-combinatorially; Mathlib sheaf/site still open
 - **E passed (optional)** — `phase_E_continuum_toys`: combinatorial `T_c` /
   Clausius; Finite Page radiation = post-exhaustion speech; discrete
   Friedmann-shaped capacity update (no continuum, no `H₀`)

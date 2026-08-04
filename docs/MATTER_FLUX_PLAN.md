@@ -94,7 +94,9 @@ is still underdetermined (which inventory), but not scalar-only.
 ### O-3 fragment — **partial** (`Bridge.LedgerSheaf`)
 
 - `glue_capacity_on_locus` / `glue_effectiveMatter_at_saturation_length`
-- `o3_stalk_glue_fragment` — stalk agreement; full sheaf of dynamics still open
+- `o3_stalk_glue_fragment` / `o3_restriction_fragment` — stalk + restrict
+- `o3_dynamics_section_fragment` — balanced `DynamicsSection` restrict/glue;
+  Mathlib sheaf/site + continuum locality still open
 
 ---
 

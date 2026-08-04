@@ -65,5 +65,5 @@ companions BitFlip, NoClone (measurement).
 
 ## Version
 
-DAG hybrid **v0.1.26** — Partial Lorentzian dictionary (order dim-1 +
-caps growth); Ollivier/KMS/area packages from v0.1.24–0.1.25.
+DAG hybrid **v0.1.27** — O-3 dynamics-section fragment (`DynamicsSection`
+restrict/glue); Lorentzian/Ollivier/KMS/area packages from v0.1.24–0.1.26.

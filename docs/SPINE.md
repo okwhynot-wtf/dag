@@ -122,7 +122,17 @@ OmegaDuration (OmegaDuration)
       Nat and LevelOmega (Option-extension equinumerous with carrier)
     stage_tag_injective, appearsBy_recovers_stage — ancestry survives
     namer_new_at_omega — ω+1 namer still outside prior image
+    omega_not_a_rung — colimit admits no injection into any finite level
     omega_duration_package — magnitude flatlines; ancestral clock continues
+        │
+SelfReference (SelfReference)
+    junction: corpus↔corpus only (world / doc / git / host-logic refused)
+    Lawvere semantic route; Gödel arithmetisation refused
+    seal_self — every SelfReading misses its dodge
+    deficit_count / deficit_vanishes — names ≪ predicates (Cantor measure)
+    FairSchedule — flagged policy; completeness-in-limit is schedule-relative
+    lag_theorem — finishing level-k portrait leaves larger silence ahead
+    corpus_not_universal — □(sayable) ∧ ¬□(sayable now); ω ≠ rung
         │
 Master (Monism.diagonal_monism) — one theorem; conjuncts from the same
 modules. Zero-axiom footprint for the package.

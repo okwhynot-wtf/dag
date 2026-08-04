@@ -153,6 +153,12 @@ from the structural boost gap (O-2).
   Bool swap toy. Not a threshold theorem; not a holographic code claim.
 - **DESI / quintom null** (`exhibits/quintom/DESI_NULL.md`): certificate ≠
   DESI prediction. Do not treat residual DESI tension as a DAG forecast.
+- **Corpus self-reference** (`SelfReference.corpus_not_universal`): Lawvere
+  seal applied at corpus↔corpus; deficit (names ≪ predicates), lag (portrait
+  outdated by exponential silence), ω≠rung. Incompleteness now unconditional;
+  completeness-in-limit is a `FairSchedule` policy. Observation: the version
+  history of `DAG_SYMBOLIC.txt` enacts the theorem in prose — each revision
+  says what the previous could not.
 - **RE-side growth law** (`Dictionary.Quintom.Growth.re_side_growth_law`):
   `modeCount T = |Channel|^(T+2) = caps T`, doubles at `Kmin`. Combinatorial
   dictionary weld only — not continuum Fourier modes, not `H₀`, not DESI.

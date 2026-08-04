@@ -27,4 +27,5 @@ roots = [
   "Density",
   "NonCommencement",
   "OmegaDuration",
+  "SelfReference",
 ]

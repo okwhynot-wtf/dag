@@ -18,6 +18,7 @@ import Faces
 import Density
 import NonCommencement
 import OmegaDuration
+import SelfReference
 
 /-!
 # Audit — axiom footprint for `formal/spine/`
@@ -28,7 +29,7 @@ Generated. Do not edit by hand:
 python3 formal/tools/gen_audit.py
 ```
 
-20 modules, 281 results. Source for `formal/AXIOMS.md`.
+21 modules, 308 results. Source for `formal/AXIOMS.md`.
 -/
 
 -- Orbit (23)
@@ -339,7 +340,7 @@ python3 formal/tools/gen_audit.py
 #print axioms NonCommencement.ladder_index_recoverable
 #print axioms NonCommencement.non_commencement_package
 
--- OmegaDuration (11)
+-- OmegaDuration (13)
 #print axioms OmegaDuration.optionNat_left_inv
 #print axioms OmegaDuration.optionNat_right_inv
 #print axioms OmegaDuration.optionNat_bijective
@@ -350,4 +351,33 @@ python3 formal/tools/gen_audit.py
 #print axioms OmegaDuration.appearsBy_stage
 #print axioms OmegaDuration.appearsBy_recovers_stage
 #print axioms OmegaDuration.namer_new_at_omega
+#print axioms OmegaDuration.omega_not_a_rung
 #print axioms OmegaDuration.omega_duration_package
+#print axioms OmegaDuration.omega_duration_not_a_rung_package
+
+-- SelfReference (25)
+#print axioms SelfReference.seal_self
+#print axioms SelfReference.incompleteness_unconditional
+#print axioms SelfReference.ladder_rep_incomplete
+#print axioms SelfReference.pow2_succ
+#print axioms SelfReference.n_lt_pow2
+#print axioms SelfReference.t_le_pow2
+#print axioms SelfReference.two_mul_add3_le_pow
+#print axioms SelfReference.quad_lt_pow
+#print axioms SelfReference.names_eq
+#print axioms SelfReference.predicates_eq
+#print axioms SelfReference.deficit_strict
+#print axioms SelfReference.unsayable_pos
+#print axioms SelfReference.deficit_count
+#print axioms SelfReference.mul_level_lt_pred
+#print axioms SelfReference.deficit_vanishes
+#print axioms SelfReference.completeness_in_limit_is_policy
+#print axioms SelfReference.eventually_sayable
+#print axioms SelfReference.sayability_asymmetry
+#print axioms SelfReference.minimal_reaches_bound
+#print axioms SelfReference.lag_at_bound
+#print axioms SelfReference.lag_theorem
+#print axioms SelfReference.lag_recedes
+#print axioms SelfReference.dodge_gauge_covariant
+#print axioms SelfReference.corpus_not_universal
+#print axioms SelfReference.meta_triad_quantitative

@@ -1,5 +1,5 @@
 Diagonal Archive Geometry — symbolic law
-corpus hybrid/ DAG v0.2.5
+corpus hybrid/ DAG v0.2.6
 
 ═══════════════════════════════════════════════════════════════════════════════
 0. Layers  (downward imports only)
@@ -130,6 +130,8 @@ IV. Dictionary  (I-4: K-certificate | L-certificate)
   MetaProblem (4th substantive; hard problem refused):
     self-opacity · outdated portrait · restless  ⇒  reports of ineffability
     observers_forced = forced +1; qualia out of scope
+    quantitative columns: SelfReference.deficit_count · lag_theorem ·
+      corpus_not_universal  (Lawvere self-application; Gödel route refused)
 
 ═══════════════════════════════════════════════════════════════════════════════
 V. Identifications  (three corpora, one object)
@@ -199,6 +201,7 @@ VII. Residue / refusal
               (swap: fixed |E|=2 forever; naming grows levelCard) — classified
               T-2 uses this as necessity half; label-namer factor holds
   refuse: H₀/number-from-Bool; quintom-as-world; premise-free Law of Time;
+          host-logic incompleteness / Gödel arithmetisation of corpus;
           continuum spacetime/Einstein/QFT/BH; continuum Boltzmann;
           Born from multiplicity alone (`born_from_multiplicity_nogo` theorem);
 
@@ -211,11 +214,14 @@ VII. Residue / refusal
                straighten; registers_admits_namer; born_from_multiplicity_nogo;
                T-10…T-16; E1; E2;
                meta reports structural; Forman sign;
+               **corpus_not_universal** — seal_self · deficit · lag ·
+               ω≠rung; □(sayable) ∧ ¬□(sayable now); incompleteness now
+               unconditional, completeness-in-limit = FairSchedule policy;
                **Jacobson quantifier discharged internally** — every
                self-reading has a dodge; `observers_forced` supplies the
                observers (horizon observer-dependence derived, not postulated)
 
-  spine:   Canon · Orbit · Diagonal · Ladder · Density · NonCommencement · Branch · Interior · OmegaDuration
+  spine:   Canon · Orbit · Diagonal · Ladder · Density · NonCommencement · Branch · Interior · OmegaDuration · SelfReference
   ledger:  Geom.Registration · Profile · Gradient · Obs.Recovery · Obs.Dimension
   bridge:  Alphabet · Capacity · OneZ2 · RegistrationSpine · Environment ·
            TickSimulation · RegistrationFactor · ArchiveMustSpeak · SecondLaw ·

@@ -65,6 +65,12 @@
 | Page L-certificate (ledger entry) | `Dictionary.Page.page_admitted` | Dictionary |
 | NoClone measurement no-go (Lossless companion) | `Dictionary.NoClone.noClone_admitted` | Dictionary |
 | Meta-problem (4th substantive) | `Dictionary.MetaProblem.meta_admitted` | Dictionary |
+| Self-reference / corpus_not_universal | `SelfReference.corpus_not_universal` | Spine |
+| Seal on self-readings | `SelfReference.seal_self` | Spine |
+| Deficit count (names ≪ predicates) | `SelfReference.deficit_count` | Spine |
+| Lag theorem (outdated self-portrait) | `SelfReference.lag_theorem` | Spine |
+| ω not a rung (colimit ≠ level) | `OmegaDuration.omega_not_a_rung` | Spine |
+| MetaProblem quantitative triad | `Dictionary.MetaProblem.meta_quantitative` | Dictionary |
 | T-5 oscillator triangle | `Dictionary.Quintom.Kernel.oscillator_triangle` | Dictionary |
 | T-8 fixed-point discipline | `Dictionary.Quintom.FixedPoint.fixed_point_discipline` | Dictionary |
 | T-6 damping = registration | `Dictionary.Quintom.Damping.damping_registration_skeleton` | Dictionary |

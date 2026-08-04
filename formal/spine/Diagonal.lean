@@ -15,8 +15,6 @@ act and diagonal self-application.
   point-surjection onto `A → α`.
 * **Cantor on the fundamental** (`cantor_fundamental`, `cantor`): every representation
   omits some predicate; `dodgeWith` witnesses omission.
-
-No declared axioms.
 -/
 namespace Diagonal
 

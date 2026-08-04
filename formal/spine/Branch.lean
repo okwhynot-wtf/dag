@@ -20,8 +20,6 @@ extensionally over its children.
   children, stated extensionally.
 * **Package** (`seal_along_every_path`, `ascent_necessary_direction_free`,
   `paths_diverge`, `branch_package`).
-
-No declared axioms. `Ladder.lean` is unchanged.
 -/
 namespace Branch
 

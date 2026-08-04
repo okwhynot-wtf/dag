@@ -3,17 +3,17 @@ import Orbit
 import Alphabet
 
 /-!
-# Kramers time reversal — third dictionary entry
+# Kramers time reversal
 
-Empty-fixed-set mode of clause (c): T² = −1 ⇒ no T-invariant state
+Empty-fixed-set mode of clause (c): T² = −1 implies no T-invariant state
 (orthogonality caricature `ψ ≠ Tψ`), forced degeneracy ≥ 2 (Kramers
 doublet = forced +1), and that floor equals `Bridge.Alphabet.Kmin`.
 
-Kernel side: four-notch circle (T = +1, T² = +2 = central negation).
-No QFT, no Mathlib ℂ, no ODEs. Physical payoff in `exhibits/kramers/`.
-
-Complements RE/quintom (nonempty locus w = −1): this entry demonstrates
-fixed-point-*freeness* — the void has no instances.
+Kernel model: four-notch circle (T = +1, T² = +2 = central negation).
+Continuum QFT / complex Hilbert space / ODEs lie outside this module.
+Together with the RE/quintom nonempty-locus filing (w = −1), the pair
+exhausts clause (c): here fixed-point-freeness, there a distinguished
+locus.
 -/
 
 namespace Dictionary.Kramers

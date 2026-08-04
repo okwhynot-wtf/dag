@@ -22,8 +22,6 @@ These results characterize self-representing carriers. A `RichObserver`
 carries additional stored structure; the package applies to its
 self-reading (`rich_inherits`), while the existence of rich observers is
 not derived here.
-
-No declared axioms.
 -/
 namespace Observer
 

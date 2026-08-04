@@ -7,23 +7,22 @@ import Forman
 /-!
 # T-12 measure fragment — uniform weight vs no asymmetric selector
 
-T-12 supplies ≥2 escapes and no selection mechanism. Two Lean-shaped
-successors:
+T-12 supplies ≥2 escapes and no selection mechanism. Two consequences:
 
-1. **Positive.** Capacity / `Kmin` counting induces a uniform weight on the
-   two children: each escape gets weight 1; total weight = `Kmin`.
-2. **Negative.** No law-derived selector can pick a unique preferred escape
-   for every reading (underdetermination always supplies another).
+1. Capacity / `Kmin` counting induces a uniform weight on the two
+   children: each escape gets weight 1; total weight = `Kmin`.
+2. No law-derived selector can pick a unique preferred escape for every
+   reading (underdetermination always supplies another).
 
-Born rule from multiplicity alone is a **no-go**
+Born rule from multiplicity alone is a no-go
 (`born_from_multiplicity_nogo`): multiplicity-only weights are forced
 symmetric; path products stay symmetric; Gleason has no domain. Continuum
-probability remains refused. The uniform weight is a record-multiplicity
+probability is not derived. The uniform weight is a record-multiplicity
 caricature, not Hilbert-space amplitude.
 
-Finite Ollivier-style trial (below): counting transport on the Kmin tree
-with uniform child masses. Continuum / measure-theoretic Ollivier–Ricci
-stays refused (Forman fence).
+Finite Ollivier-style trial: counting transport on the Kmin tree with
+uniform child masses. Continuum / measure-theoretic Ollivier–Ricci is
+not derived (cf. Forman).
 -/
 
 namespace Bridge.BranchMeasure
@@ -80,7 +79,7 @@ theorem caps_blind_to_escape (T : Nat)
 
 /-- **T-12 measure package.** Uniform child weights from `Kmin`;
     no unique law-derived selector; caps blind to escape choice.
-    Asymmetric Born-from-underdetermination alone remains refused. -/
+    Asymmetric Born from underdetermination alone is not derived. -/
 theorem T12_measure_fragment :
     (∀ k f, ∃ e₁ e₂ : Branch.Predicate k,
       Branch.IsEscape k f e₁ ∧ Branch.IsEscape k f e₂ ∧
@@ -207,7 +206,7 @@ theorem uniform_mass_preserves_forman_neg :
       (Bridge.Forman.internalDeg Bridge.Alphabet.Kmin) :=
   Bridge.Forman.internal_edge_forman_neg
 
-/-- Continuum / measure-theoretic Ollivier remains refused. -/
+/-- Continuum / measure-theoretic Ollivier is not derived. -/
 def continuum_ollivier_refused : True := True.intro
 
 /-- Two T-12 children with uniform mass and non-positive Ollivier signal. -/
@@ -226,7 +225,7 @@ theorem ollivier_children (k : Nat)
 /-- **Finite Ollivier trial.** Uniform T-12 child weights + counting
     sibling transport give a non-positive curvature signal on the Kmin
     tree; Forman negativity is unchanged without faces. Continuum
-    Ollivier stays refused. -/
+    Ollivier is not derived. -/
 theorem ollivier_trial_fragment :
     (∀ k f, ∃ e₁ e₂ : Branch.Predicate k,
       Branch.IsEscape k f e₁ ∧ Branch.IsEscape k f e₂ ∧

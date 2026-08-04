@@ -19,8 +19,6 @@ coordinates, proves uniqueness, and records standard models.
   `(Unit ⊕ Unit, swapU)` satisfy live, symmetric, and generated hypotheses.
 * **Witness recovery** (`witnessed_fundamental`): `TDiff` and `Alive` for the
   identity Bool witness.
-
-Prelude only; no declared axioms.
 -/
 namespace TwoCycle
 

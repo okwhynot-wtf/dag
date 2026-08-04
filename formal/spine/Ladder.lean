@@ -23,7 +23,7 @@ histories that vary which unrepresented predicate is named live in
   reading omits at least two distinct predicates.
 
 Free values on new points are left `false`; the committed ladder names
-the dodge at each tick. No declared axioms.
+the dodge at each tick.
 -/
 namespace Ladder
 

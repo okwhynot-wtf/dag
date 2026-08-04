@@ -15,8 +15,6 @@ out of scope.
   the image `do`-operator on named content.
 * **Asymmetry** (`asymmetry_is_acyclicity`): causal asymmetry on the
   ladder maps to acyclicity of the parent relation.
-
-No declared axioms.
 -/
 namespace SEM
 

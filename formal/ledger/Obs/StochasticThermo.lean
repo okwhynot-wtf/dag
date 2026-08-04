@@ -219,8 +219,8 @@ theorem tv_arrow (D : AbsData Q) (RLs : List RL) (g : RL → RL → Q)
 
 /-- **Lyapunov / free-energy arrow (Theorem S9).** Distance to any
 stationary law `π` of the autonomous kernel never increases (TV form of
-non-increasing free energy). Logarithmic reading pinned in Python thermo
-pins. A stationary law is a fixed point of its own garbling. -/
+non-increasing free energy). A stationary law is a fixed point of its own
+garbling. -/
 theorem lyapunov_arrow (D : AbsData Q) (RLs : List RL) (g : RL → RL → Q)
     (hpos : ∀ r r', r ∈ RLs → r' ∈ RLs → (0 : Q) ≤ g r r')
     (hrow : ∀ r, r ∈ RLs → lsum RLs (fun r' => g r r') = 1)

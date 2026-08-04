@@ -39,6 +39,10 @@ import Revision
 
 /-!
 # Bridge arc — milestone weld
+
+Top-level conjunction of bridge milestones: environment universality,
+Dil completion, tick identification, Page/T-10, measure, Forman,
+expansion, Einstein skeleton, effective matter, and related fragments.
 -/
 
 namespace Bridge.Arc
@@ -98,7 +102,7 @@ theorem milestone_M5 :
     Bridge.Alphabet.Kmin = 2 :=
   Bridge.Environment.environment_universality
 
-/-- Keystone Dil sprint: free archive initial; capacity law; minimal schedule. -/
+/-- Free archive initial; capacity law; minimal schedule. -/
 theorem milestone_keystone_dil :
     (∀ {S : Type} {u : S → S} (A : Bridge.Dil.Archive S u),
       (∃ _h : Bridge.Dil.Hom (Bridge.Dil.free S u) A, True) ∧
@@ -111,7 +115,7 @@ theorem milestone_keystone_dil :
    Bridge.Dil.keystone_dil_sprint.2.2.2.2.1,
    Bridge.Dil.keystone_dil_sprint.2.2.2.2.2⟩
 
-/-- Hom existence via unique factorization (Dil rigidity progress). -/
+/-- Hom existence via unique factorization (Dil rigidity). -/
 theorem milestone_dil_hom_exists :
     (∀ {S : Type} {u : S → S} (A : Bridge.Dil.Archive S u),
       ∃ _h : Bridge.Dil.Hom (Bridge.Dil.free S u) A, True) ∧
@@ -177,7 +181,7 @@ theorem milestone_ladder_predicate_addressing :
    ⟨Bridge.Dil.boolCaps_addressUniform not, True.intro⟩,
    Bridge.Alphabet.Kmin_eq⟩
 
-/-- T-2 tick identification licensed remnant (committed path + label factor). -/
+/-- T-2 tick identification (committed path + label factor). -/
 theorem milestone_T2_tick_id_licensed :
     (∀ T, Bridge.Capacity.caps T = 2 ^ (T + 2)) ∧
     (∀ T, Geom.Profile.Alive 2 Geom.Profile.expand T) ∧
@@ -207,7 +211,7 @@ theorem milestone_T2_straighten :
    Bridge.TickSimulation.oscillator_silent.1,
    Bridge.Alphabet.Kmin_eq⟩
 
-/-- T-2 tick identification (classified): Fund exempt + swap necessity + UF append. -/
+/-- T-2 tick identification: Fund exempt + swap necessity + UF append. -/
 theorem milestone_T2_tick_id :
     Bridge.TickSimulation.FundExempt ∧
     Bridge.TickSimulation.BoundedReuseRegisters ∧
@@ -223,7 +227,7 @@ theorem milestone_T2_tick_id :
    fun fa => (Bridge.TickSimulation.tick_identification.2.2.2.1 fa).1,
    Bridge.Alphabet.Kmin_eq⟩
 
-/-- Backward-compatible alias. -/
+/-- Alias for `milestone_T2_tick_id`. -/
 def milestone_T2_tick_id_classified := milestone_T2_tick_id
 
 /-- T-2 factorisation: namer-shaped positive + carrier obstruction. -/
@@ -299,7 +303,7 @@ theorem milestone_born_nogo :
      Bridge.BranchMeasure.multiplicity_forces_symmetry W k e₁ e₂,
    rfl, Bridge.Alphabet.Kmin_eq⟩
 
-/-- Finite Ollivier-style trial (counting transport; continuum refused). -/
+/-- Finite Ollivier-style trial (counting transport; continuum form not derived). -/
 theorem milestone_ollivier_trial :
     Bridge.Forman.StrictlyNegative
       (Bridge.Forman.internalDeg Bridge.Alphabet.Kmin)
@@ -444,7 +448,7 @@ theorem milestone_time_dissipation :
    Bridge.TickSimulation.time_dissipation_one_property.2.1,
    Bridge.Alphabet.Kmin_eq⟩
 
-/-- O-2 cut-shift attempt: documented dead end (T_c blind to cut). -/
+/-- O-2 cut-shift: `T_c` independent of cut position. -/
 theorem milestone_o2_cut_shift :
     (∀ T, ∃ _c : Bridge.ModularCut.SaturatedCut T, True) ∧
     (∀ T (_c : Bridge.ModularCut.SaturatedCut T),
@@ -568,9 +572,8 @@ theorem bridge_arc :
 #print axioms milestone_time_dissipation
 #print axioms milestone_o2_cut_shift
 #print axioms milestone_o2_forced_blindness
-/-- I-1 two-bounce fragment (alias). Discharged with packaging gauge:
-    spine ¬erase; two-bounce ⇒ Inj; existence; canonicity fails;
-    channel-swap covers reversal. -/
+/-- I-1 two-bounce fragment (alias). Spine ¬erase; two-bounce ⇒ Inj;
+    existence; canonicity fails; channel-swap covers reversal. -/
 theorem milestone_i1_two_bounce :
     (∀ {α : Type} (U : α → α) (_f : Bridge.TwoBounce.TwoBounceFactor U),
       Orbit.Lossless U) ∧

@@ -7,17 +7,17 @@ import Forman
 import Geom.Profile
 
 /-!
-# Phase E — optional continuum toys (not load-bearing for H)
+# Phase E — continuum caricatures
 
-Hypothesis H (matter = saturated record flux) already survives A–D.
-Phase E only asks whether familiar *names* (temperature, radiation,
-expansion) show up as discrete caricatures.
+Hypothesis H (matter = saturated record flux) is already packaged in A–D.
+This module records discrete caricatures of familiar continuum names
+(temperature, radiation, expansion):
 
-- **E1** Combinatorial `T_c` / Clausius: `S = log₂ |caps T| = T+2`, `ΔS = 1`
-- **E2** Finite Page radiation = post-exhaustion archive speech (T-10)
-- **E3** Discrete Friedmann-shaped capacity update at Kmin (no continuum, no H₀)
+- E1 Combinatorial `T_c` / Clausius: `S = log₂ |caps T| = T+2`, `ΔS = 1`
+- E2 Finite Page radiation = post-exhaustion archive speech (T-10)
+- E3 Discrete Friedmann-shaped capacity update at Kmin (no continuum, no H₀)
 
-Failure of E does not kill H.
+These caricatures are independent of hypothesis H.
 -/
 
 namespace Bridge.PhaseEToys
@@ -149,8 +149,8 @@ theorem friedmann_shaped_capacity_update (T : Nat) :
 
 /-! ## Phase E package -/
 
-/-- **Phase E.** Optional toys: Clausius `T_c`, Page radiation, discrete
-    Friedmann-shaped capacity. Failure would not kill H. -/
+/-- **Phase E.** Clausius `T_c`, Page radiation, and discrete
+    Friedmann-shaped capacity update. -/
 theorem phase_E_continuum_toys :
     (∀ T, deltaS T = 1) ∧
     (∀ T, heatQuantum T = combinatorialTemp T * deltaS T) ∧

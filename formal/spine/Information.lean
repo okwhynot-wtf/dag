@@ -15,8 +15,6 @@ losslessness, diagonal seal, and ladder ascent.
   predicates at the fundamental and in general (`Diagonal.seal_bool`).
 * **Growth** (`information_grows`): strict ladder gain at each tick with
   injective lifting and conservative embedding.
-
-No declared axioms.
 -/
 namespace Information
 

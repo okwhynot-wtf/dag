@@ -22,8 +22,6 @@ tower ascent, interior opacity, and causal faithfulness.
   instance.
 * **Retorsion** (`retorsion`): if affirmation and denial of `Draws M` are
   registered distinctly, then `Draws M`.
-
-No declared axioms.
 -/
 namespace Monism
 

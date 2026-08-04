@@ -44,8 +44,7 @@ structure VerdictWrite (X : Type) (Verdict : Type) where
 /-- **Verdict stability** (embedded A7).
 
     Recording a verdict into X does not change what the observer can
-    read. The verdict slot lies outside the readable algebra — the
-    mirror does not see its own inscription.
+    read: the verdict slot is outside the readable algebra.
 
     Formally: `read ∘ write(·,v) = read` for every verdict `v`. -/
 structure VerdictStable (X : Type) (Readout : Type) (Verdict : Type)

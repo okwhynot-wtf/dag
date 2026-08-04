@@ -19,8 +19,6 @@ began after something earlier.
   source of a naming extension.
 * **Ladder contrast** (`ladder_index_recoverable`): level cardinality
   recovers the index, so ladder states wear their history.
-
-No declared axioms.
 -/
 namespace NonCommencement
 
@@ -30,9 +28,8 @@ variable {α : Type}
 
 /-! ## Parity forgetting on involutions
 
-Library lemmas for `Nat.mod` depend on `propext` in this toolchain, so the
-parity character is carried by the recursive remainder `mod2` (equal in
-informal content to `n % 2`). -/
+Parity is carried by the recursive remainder `mod2` (equal in content to
+`n % 2`). -/
 
 /-- Recursive remainder modulo 2: `0` on evens, `1` on odds. -/
 def mod2 : Nat → Nat

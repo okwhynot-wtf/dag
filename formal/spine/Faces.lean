@@ -3,11 +3,10 @@ import Interior
 /-!
 # Faces — comparative exhibit of diagonal signatures
 
-An exhibit only: four spine theorems restated under names whose
-apophatic signatures they parallel in theorem shape. No tradition is
-axiomatized; no dialect carrier is identified with `not`. The claim is
-bounded to structural parallel between named signatures and proved
-forms; rejecting the parallels does not affect the spine.
+Four spine theorems restated under names whose apophatic signatures they
+parallel in theorem shape. No tradition is axiomatized; no dialect carrier
+is identified with `not`. The claim is structural parallel between named
+signatures and proved forms.
 
 | Face | Signature | Theorem shape |
 |---|---|---|
@@ -15,8 +14,6 @@ forms; rejecting the parallels does not affect the spine.
 | Lawvere | untold constant Dao | no point-surjective self-map |
 | Temporal | no final level | no settling; tracked ascription flips |
 | Void | creatio ex nihilo | no fixed state; the excluded coincidence is uninstantiated |
-
-No declared axioms.
 -/
 namespace Faces
 

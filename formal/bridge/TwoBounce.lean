@@ -9,7 +9,7 @@ Classical fact (finite carriers): a self-map is bijective iff it factors as
 a composition of two involutions. Spine acts are involutions
 (`SymmetricStep`); ledger joint steps `U` are forward-composing.
 
-Landed here:
+Results:
 * involution ⇒ lossless ⇒ ¬Erasing (spine packaging)
 * two-bounce ⇒ `Lossless` / product-`Inj` (converse half)
 * existence when `U` is already an involution (`U = U ∘ id`)
@@ -17,14 +17,12 @@ Landed here:
 * existence for ledger `swapStep`
 * existence for every injection on `Fin n` (cycle-wise reflect)
 
-Settled:
+Also:
 * canonicity fails (essential non-uniqueness of `(φ, σ)`)
 * involutive reordering is T-7-shaped; Fin-3 axis choice is a larger
   factorization gauge, not a second dictionary ℤ/2 face
 * factor-swap covers step reversal (`channel_swap_is_reversal`): labels
   conventional, exchange real
-
-No Mathlib; no `sorry`; no declared axioms.
 -/
 namespace Bridge.TwoBounce
 
@@ -107,7 +105,7 @@ def factor_involution_rev {α : Type} (U : α → α) (h : IsInvolution U) :
   σ_inv := fun _ => rfl
   factor := fun _ => rfl
 
-/-! ## `Bool` and ledger toys -/
+/-! ## `Bool` and ledger examples -/
 
 /-- Endomap injectivity (carrier-agnostic). -/
 def EndoInj {α : Type} (U : α → α) : Prop :=
@@ -635,7 +633,7 @@ Two factorisations of the same `U` need not share `φ` (or `σ`). The
 involutive Bool case already kills uniqueness; its binary reordering is
 T-7-shaped (ordered bounce pair), not a new dictionary face. On `Fin 3`
 distinct reflection axes give factorisations unrelated by mere swap,
-so the I-1 discharge gauge properly exceeds ℤ/2 while T-7 stays one ℤ/2. -/
+so the I-1 factorization gauge properly exceeds ℤ/2 while T-7 stays one ℤ/2. -/
 
 theorem not_involution : IsInvolution (not : Bool → Bool) := by
   intro b; cases b <;> rfl
@@ -801,7 +799,7 @@ def factor_cycle3_axis1 : TwoBounceFactor cycle3 where
   factor := fun x => by rw [reflect1_involution x]
 
 /-- Axis choice: two Fin-3 factorisations disagree, and one is not the
-    bounce-swap of the other. (I-1 discharge gauge > ℤ/2 reorder.) -/
+    bounce-swap of the other. (I-1 factorization gauge > ℤ/2 reorder.) -/
 theorem factorization_gauge_exceeds_swap :
     FactorsDisagree factor_cycle3_axis0 factor_cycle3_axis1 ∧
     ¬ IsBounceSwap factor_cycle3_axis0 factor_cycle3_axis1 := by

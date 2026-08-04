@@ -8,17 +8,17 @@ import Geom.Profile
 /-!
 # R-1 recombination budget
 
-Can the registration / aliveness budget buy near-flatness (Forman ≥ 0)
-on the branch tree?
+Whether the registration / aliveness budget can buy near-flatness
+(Forman ≥ 0) on the branch tree.
 
 Crude census: a full binary tree of depth `d` has `2^(d+1) - 2` edges;
 each Kmin edge needs `Kmin = 2` faces to leave Forman negativity.
 Total face demand `2 * (2^(d+1) - 2)` fits inside `|caps d| = 2^(d+2)`
 once written as `2^(d+2) - 4`.
 
-This discharges the *counting* half of R-1 for the complete binary toy.
-The ultrametric ≠ Archimedean-space obstruction remains structural —
-budget for Forman zero does not manufacture spatial metric.
+This establishes the counting half of R-1 for the complete binary tree.
+The ultrametric ≠ Archimedean-space obstruction remains: budget for
+Forman zero does not manufacture a spatial metric.
 -/
 
 namespace Bridge.RecombinationBudget

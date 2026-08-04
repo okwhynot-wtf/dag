@@ -15,7 +15,8 @@ archive never shrinks. Together: dissipation writes records, records
 accumulate irreversibly, and the ledger arrow is the thermodynamic
 arrow's combinatorial shadow.
 
-Refused: temperature, Boltzmann factors, statistical mechanics proper.
+Temperature, Boltzmann factors, and statistical mechanics proper are
+not derived.
 -/
 
 namespace Bridge.SecondLaw

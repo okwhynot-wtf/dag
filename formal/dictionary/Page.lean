@@ -7,11 +7,12 @@ import Alphabet
 /-!
 # Page toy — ledger dictionary entry (black hole information paradox)
 
-Not gravitational BH (QFT / spacetime refused). A Page-style finite
-model: system factor with coarse-graining merge, radiation register as
-`E`, injective joint step, capacity schedule, exhaustion tick.
+A finite Page-style model of evaporation bookkeeping: system factor with
+coarse-graining merge, radiation register `E`, injective joint step,
+capacity schedule, and exhaustion tick. Continuum gravitational / QFT
+black-hole physics lies outside this module.
 
-Under the dictionary:
+Dictionary map:
   Unitarity of evaporation     ↔ Inj(U)
   No-hair (microstates → M…)   ↔ K-fold merge in U_S
   Exactly thermal Hawking      ↔ StreamMute sustained forever
@@ -20,13 +21,11 @@ Under the dictionary:
   Page time                    ↔ t_exh
   Hayden–Preskill decoding     ↔ archive recoverable on ascent
 
-Hawking 1976 = eternal mute merging; AG Registration + T-10 = unitarist
-reply. Entry admitted via **L-certificate**, not I-4.
-
-Kernel-side bonus (conjecture only, not claimed): Hawking pair as
-involution ω ↦ −ω with horizon zero-mode fixed locus. Requires
-Bogoliubov / QFT drift; refused as Lean claim. The L-certificate stands
-without it.
+Hawking 1976 corresponds to eternal mute merging; Registration together
+with T-10 supplies the unitarist reply on the ledger. Admission is by
+L-certificate (not the I-4 K-certificate schema). A kernel-side reading
+of Hawking pairs as an involution with horizon zero-mode locus is not
+claimed in this module.
 -/
 
 namespace Dictionary.Page

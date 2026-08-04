@@ -10,16 +10,17 @@ import Ladder
 /-!
 # Phase D — flux patterns without a second substance
 
-Hypothesis H (matter = saturated record flux) does not need a unique
-particle spectrum. It needs *pattern-in-flux*: distinguishable content
+Hypothesis H (matter = saturated record flux) does not require a unique
+particle spectrum. It requires pattern-in-flux: distinguishable content
 types carved from alphabet / channel / branch structure already present.
 
-- **D1** `FluxComponent`: nonempty alphabet components; Bool has ≥2
-- **D2** branch width / OneZ2 channels index distinct components (`Kmin = 2`)
-- **D3** vacuum onset = oscillator (H=0 skeleton); matter onset = merge⇒record
+- D1 `FluxComponent`: nonempty alphabet components; Bool has ≥2
+- D2 branch width / OneZ2 channels index distinct components (`Kmin = 2`)
+- D3 vacuum onset = oscillator (H=0 skeleton); matter onset = merge⇒record
 
-Falsifier: if all saturated flux were patternless scalar pressure only.
-Here we exhibit ≥2 nondegenerate components linked to channels.
+If all saturated flux were patternless scalar pressure only, the
+hypothesis would fail; the module exhibits ≥2 nondegenerate components
+linked to channels.
 -/
 
 namespace Bridge.FluxPattern

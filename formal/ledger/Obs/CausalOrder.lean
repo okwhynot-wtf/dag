@@ -13,8 +13,7 @@ write order.
 * Interval cardinality matches capacity depth gap on ascent.
 * Merge-rate capacity at tick `t` is `K ^ t` on ascent.
 
-Thin dictionary stake: causal order + capacity volumes from archive-geometry
-data, unique up to address reversal. Not a spacetime metric.
+Orders and capacity volumes are unique up to address reversal.
 -/
 
 namespace Obs.CausalOrder
@@ -155,15 +154,11 @@ theorem archive_preceeds_iff_fwd {T i j : Nat} (hT : 0 < T) :
 
 /-! ## Uniqueness up to address reversal
 
-The two lemmas `unique_up_to_reversal_fwd` / `_rev` below take the global
-direction (Nat-monotone or Nat-antitone) as a hypothesis. That leaves a gap:
-nothing so far says an order on the window *must* be one or the other, and in
-general it need not be -- `0 ≺ 2 ≺ 1` is total and neither.
-
-`direction_dichotomy` closes the gap from local data. An archive is written
-tick by tick, so what it actually supplies is the ordering of *consecutive*
-ticks. Transitivity then propagates that local choice to the whole window, and
-there is no third global reading. -/
+`unique_up_to_reversal_fwd` / `_rev` characterise Nat-monotone (resp.
+Nat-antitone) orders on the window. `direction_dichotomy` recovers the
+global direction from adjacency on consecutive ticks, propagated by
+transitivity: every adjacency-uniform transitive order is forward or
+reverse. -/
 
 /-- The forward order is adjacency-uniform, so it instantiates the hypothesis
 of `direction_dichotomy`. -/

@@ -66,7 +66,7 @@ theorem thermal_window_then_speech
   ⟨fun T hT => (Geom.Profile.bounce_alive_iff hK tTurn T).mpr hT,
    page_time_is_exhaustion hK tTurn⟩
 
-/-- Contrapositive slogan: eternal mute ⇒ unbounded caps (already AG). -/
+/-- Contrapositive: eternal mute ⇒ unbounded caps (already AG). -/
 theorem eternal_mute_needs_unbounded
     {S Eout Eint : Type} [DecidableEq Eint]
     (U : S × Eout × Eint → S × Eout × Eint)

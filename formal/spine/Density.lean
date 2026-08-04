@@ -20,8 +20,6 @@ No `Rat`/`Real`, no asymptotics library, no `Fintype` cardinality proofs.
   `articNum (N+1) + (N+4) = 3 * 2^(N+1)` is the cleared Nat form of
   `Σ_{k=0}^{N} (k+2)/2^(k+2) = 3/2 − (N+4)/2^(N+2)`. The infinite-sum
   reading is **not** a Lean theorem about reals.
-
-No declared axioms.
 -/
 namespace Density
 

@@ -20,7 +20,7 @@ involutivity. A live symmetric act collides in two steps
 collision-free orbit (`no_collision_forces_arrow`) without a finiteness
 hypothesis.
 
-Prelude only; no imports; no declared axioms.
+Uses the Lean prelude only.
 -/
 namespace Orbit
 

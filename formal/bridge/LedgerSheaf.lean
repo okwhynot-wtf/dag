@@ -6,7 +6,7 @@ import Alphabet
 # O-3 fragment — stalk glue + dynamics sections for local ledger patches
 
 Jacobson needs independent local balance laws. T-16 supplies stalks
-(`LocalLedgerPatch`). This module advances the sheaf programme:
+(`LocalLedgerPatch`). This module records the sheaf-shaped fragment:
 
 - covers with pairwise `OverlapCompatible` patches
 - glue: same locus ⇒ equal capacity length
@@ -15,8 +15,9 @@ Jacobson needs independent local balance laws. T-16 supplies stalks
 - restriction maps (`restrictTo`) preserving capacity / matter / balance
 - `DynamicsSection` = balanced local patch; restrict + glue lemmas
 
-Fence: Fin-combinatorial stalk agreement only — not a Mathlib sheaf/site;
-does not close `OpenGap.O3_noLedgerSheaf`; continuum locality refused.
+Fin-combinatorial stalk agreement only — not a Mathlib sheaf/site;
+does not close `OpenGap.O3_noLedgerSheaf`; continuum locality is not
+derived.
 -/
 
 namespace Bridge.LedgerSheaf
@@ -109,7 +110,7 @@ theorem two_patch_cover_compatible
   | Or.inr hap, Or.inr hbq =>
     subst hap; subst hbq; rfl
 
-/-! ## Restriction maps (sheaf programme, next rung) -/
+/-! ## Restriction maps -/
 
 /-- Restrict a patch to a new locus tag, keeping the ledger data.
     Combinatorial stand-in for restriction along a branch inclusion. -/
@@ -251,9 +252,9 @@ theorem dynamicsSection_cover_compatible {X E S E' : Type}
 
 /-- **O-3 dynamics-section fragment.** Balanced local patches (= dynamics
     sections) restrict with preserved capacity/matter; glue on overlap at equal
-    locus; cover restriction stays overlap-compatible. Fence: Fin-combinatorial
+    locus; cover restriction stays overlap-compatible. Fin-combinatorial
     stalk agreement only — not a Mathlib sheaf/site; does not close
-    `OpenGap.O3_noLedgerSheaf`; no continuum locality. -/
+    `OpenGap.O3_noLedgerSheaf`; continuum locality is not derived. -/
 theorem o3_dynamics_section_fragment :
     (∀ {X E S E' : Type} (σ : DynamicsSection X E S E') ℓ,
       (σ.restrict ℓ).patch.alphabet.length = σ.patch.alphabet.length) ∧

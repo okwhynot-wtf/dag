@@ -9,7 +9,7 @@ import Certificate
 
 Frictionless limit (H = 0): two-channel labelling with swap involution,
 empty/silent record, fundamental on the two-channel reading.
-ODE envelope constancy is an exhibit (`exhibits/quintom/`).
+ODE envelope constancy is outside this module (`exhibits/quintom/`).
 -/
 
 namespace Dictionary.Quintom.Kernel

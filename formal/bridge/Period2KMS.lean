@@ -5,7 +5,7 @@ import Alphabet
 import Geom.Registration
 
 /-!
-# Period-2 / KMS↔involution toy (discrete caricature)
+# Period-2 / KMS↔involution caricature
 
 Packages existing pieces as a discrete equilibrium sketch:
 
@@ -14,9 +14,9 @@ Packages existing pieces as a discrete equilibrium sketch:
 * Bool swap flips observation (`not`)
 * combinatorial temperature is constant on any tick, and Clausius holds
 
-**Fence.** Not continuum KMS, not modular flow, not Unruh / boost
-temperature (O-2 remains structural), not Gibbs/Boltzmann. Equilibrium
-here means period-2 under the ℤ/2 swap with constant combinatorial `T_c`.
+Not continuum KMS, not modular flow, not Unruh / boost temperature
+(O-2 remains structural), not Gibbs/Boltzmann. Equilibrium here means
+period-2 under the ℤ/2 swap with constant combinatorial `T_c`.
 -/
 
 namespace Bridge.Period2KMS

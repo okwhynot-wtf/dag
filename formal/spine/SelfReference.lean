@@ -8,35 +8,20 @@ import TwoCycle
 /-!
 # SelfReference — corpus representing the corpus (Lawvere, not Gödel)
 
-Reflexive application of the seal at **one** junction: the corpus as
-mathematical object representing its own predicate structure.
-
-## Junction discipline (five candidates; one chosen)
-
-| Candidate | Status |
-|---|---|
-| World (if adopted) | refused — instantiation / dictionary, not spine |
-| Corpus as mathematical object | **chosen** — this module |
-| Symbolic law document | refused — prose enacting the ladder; observation only |
-| Lean repository (git tree) | refused — host artifact, not an object language |
-| Host logic under Lean | refused — Gödel's business; category error |
-
-Further refusal: arithmetised Gödel (syntax + provability predicate).
-The corpus refuses numbers-from-Bool as load-bearing metaphysics; the
-semantic route (predicates, self-readings) already yields incompleteness
-without a proof predicate. Meta-theory here is Lawvere throughout.
-
-## Content
+Reflexive application of the seal: the corpus as a mathematical object
+representing its own predicate structure. The junction is semantic
+(predicates and self-readings), not arithmetised Gödel syntax / provability.
+Other candidate junctions (world-instantiation, symbolic law document, git
+tree, host logic) lie outside the spine.
 
 * `SelfReading` — `L_k → (L_k → Bool)`
 * `seal_self` — dodge exists; no complete self-reading at any level
 * `deficit_count` / `deficit_vanishes` — Cantor measure: names ≪ predicates
-* `FairSchedule` — flagged enumeration **policy**; completeness-in-the-limit
+* `FairSchedule` — enumeration policy; completeness-in-the-limit
 * `lag_theorem` — finishing a self-portrait leaves a larger silence ahead
 * `dodge_gauge_covariant` — label-swap covariance
-* `corpus_not_universal` — □(sayable) ∧ ¬□(sayable now); colimit ≠ rung
-
-No declared axioms.
+* `corpus_not_universal` — sayable in the limit and not sayable at a finite
+  level; colimit ≠ rung
 -/
 namespace SelfReference
 
@@ -57,8 +42,8 @@ def unsayable (k : Nat) : Nat :=
 
 /-! ## Seal on self-readings -/
 
-/-- **seal_self.** Every self-reading misses its dodge. Banked on
-    `Interior.self_opacity` / Lawvere. -/
+/-- **seal_self.** Every self-reading misses its dodge
+    (`Interior.self_opacity` / Lawvere). -/
 theorem seal_self (k : Nat) (r : SelfReading k) :
     ¬ Interior.Articulates r (dodge r) :=
   Interior.self_opacity not TwoCycle.bool_fundamental.1 r
@@ -187,12 +172,11 @@ theorem deficit_vanishes (N : Nat) :
     ∃ K, ∀ k, K ≤ k → N * levelCard k < predicateCount k :=
   ⟨N, fun k hk => mul_level_lt_pred N k hk⟩
 
-/-! ## Fair naming schedule (policy, flagged) -/
+/-! ## Fair naming schedule (policy) -/
 
-/-- Enumeration **policy**: assign each predicate-index of level `k` a
-    stage at which it is named. Not a law of the spine — a schedule.
-    Completeness-in-the-limit is schedule-relative; incompleteness now
-    is not. -/
+/-- Enumeration policy: assign each predicate-index of level `k` a
+    stage at which it is named. Completeness-in-the-limit is
+    schedule-relative; incompleteness at each finite level is not. -/
 structure FairSchedule (k : Nat) where
   /-- Predicate-index ↦ naming stage. -/
   stageOf : Nat → Nat
@@ -221,8 +205,8 @@ theorem eventually_sayable (k : Nat) (σ : FairSchedule k) :
   intro i hi
   exact ⟨σ.stageOf i, rfl, σ.stage_ge i hi⟩
 
-/-- Asymmetry package: incompleteness now is unconditional; eventual
-    completeness is a policy. -/
+/-- Asymmetry package: incompleteness at each finite level is unconditional;
+    eventual completeness is a policy. -/
 theorem sayability_asymmetry (k : Nat) (r : SelfReading k) :
     (¬ PointSurjective r) ∧
     (∃ σ : FairSchedule k, ∀ i, i < predicateCount k → k ≤ σ.stageOf i) :=
@@ -389,10 +373,9 @@ theorem dodge_gauge_covariant {A : Type} (r : A → A → Bool) (x : A) :
 /-! ## Assembly: corpus_not_universal -/
 
 /-- **corpus_not_universal.** No level is a complete self-description.
-    Eventual sayability is policy-shaped; present incompleteness is not.
-    The only complete description of the system is the system; the
-    colimit is duration, not a rung — mirroring
-    `□(ascent) ∧ ¬□(direction)` as `□(sayable) ∧ ¬□(sayable now)`. -/
+    Eventual sayability is policy-shaped; incompleteness at each finite
+    level is not. The only complete description of the system is the
+    system; the colimit is duration, not a rung. -/
 theorem corpus_not_universal :
     (∀ k (r : SelfReading k), ¬ PointSurjective r) ∧
     (∀ k (r : SelfReading k), ¬ Interior.Articulates r (dodge r)) ∧

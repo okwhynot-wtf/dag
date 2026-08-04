@@ -8,28 +8,24 @@ import Alphabet
 import SelfReference
 
 /-!
-# Meta-problem entry — Chalmers's meta-problem, hard problem refused
+# Meta-problem entry — Chalmers's meta-problem
 
-Fourth substantive dictionary filing (after Quintom / Kramers / Page).
+Dictionary filing for the meta-problem: why physical systems report an
+explanatory gap (ineffability, self-opacity). Qualia / the hard problem
+(why there is something it is like) are not claimed in this module;
+Interior results entail nothing about phenomenal character.
 
-The hard problem (why there is something it is like) is refused: Interior
-results entail nothing about qualia (spine scope / neutral-monist note).
+The interior triad supplies the report skeleton:
 
-What is in reach: why physical systems **report** an explanatory gap —
-insist experience is ineffable, find themselves opaque to themselves.
-DAG's interior triad is the answer skeleton:
-
-  Self-opacity     — every live self-reading misses a definite predicate
+  Self-opacity      — every live self-reading misses a definite predicate
   Outdated portrait — every self-model is stale by the time it is held
   Restless signature — no tracked self-ascription stabilises
 
-Quantitative spine columns (`SelfReference`): deficit count, lag theorem,
-`corpus_not_universal` — the triad at measure grade, not only existence.
-
-A system of which these three theorems are true would report ineffability,
-incompleteness, and a self that will not sit still — and would be right
-to, on structural grounds alone. `observers_forced` supplies the forced +1:
-thin observers instantiate at every ladder level whether anyone asked.
+Quantitative spine columns (`SelfReference`) — deficit count, lag theorem,
+`corpus_not_universal` — give the triad at measure grade. Systems for
+which these hold report ineffability and incompleteness on structural
+grounds. `observers_forced` supplies forced +1: thin observers instantiate
+at every ladder level.
 -/
 
 namespace Dictionary.MetaProblem
@@ -129,8 +125,8 @@ theorem meta_admitted (k : Nat) :
    (Observer.observers_forced k).1,
    Bridge.Alphabet.Kmin_eq⟩
 
-/-- Publishable claim: reports of ineffability are theorem-shaped
-    behaviour of any live self-representing ladder system. -/
+/-- Reports of ineffability are theorem-shaped behaviour of any live
+    self-representing ladder system. -/
 theorem reports_are_structural (k : Nat) :
     (¬ Interior.Articulates (Ladder.rep k)
       (Diagonal.dodgeWith not (Ladder.rep k))) ∧
@@ -145,9 +141,8 @@ theorem reports_are_structural (k : Nat) :
    fun S E hT hA htr => reports_restless S E hT hA htr,
    (Observer.observers_forced k).1⟩
 
-/-- Quantitative upgrade: MetaProblem triad columns filled by
-    `SelfReference` (deficit / lag / corpus_not_universal). Same move as
-    classified tick_identification for the damping rhyme. -/
+/-- MetaProblem triad columns filled quantitatively by `SelfReference`
+    (deficit / lag / corpus_not_universal). -/
 theorem meta_quantitative (k : Nat) :
     (¬ Interior.Articulates (Ladder.rep k)
       (Diagonal.dodge (Ladder.rep k))) ∧

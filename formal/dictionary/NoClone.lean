@@ -10,8 +10,8 @@ Not an I-4 K-certificate: the Bell≠product support inequality is the
 measurement package's no-go component (entanglement witness), not a swap
 acting as ¬ on a kernel locus filing clauses (a)–(c).
 
-Refused with T-12: Born rule, probabilities, preferred basis, Hilbert
-space as Lean. This is the finite support caricature.
+Born rule, probabilities, preferred basis, and Hilbert space are not
+claimed in this module; the content is a finite support caricature.
 -/
 
 namespace Dictionary.NoClone

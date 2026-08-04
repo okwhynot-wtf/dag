@@ -13,9 +13,9 @@ aliveness is the record-demand / capacity inequality; saturation is
 equality; at saturation the realized record flux is fixed by the
 capacity schedule (unique step-growth solution).
 
-No curvature claimed; field equations refused. Packages existing
-`Geom.Profile.Alive`, `Obs.Budget` B1/B2, and
-`Obs.Dimension.capacity_unique_step_growth` — no new mathematics.
+No curvature is claimed; continuum field equations are not derived.
+Packages existing `Geom.Profile.Alive`, `Obs.Budget` B1/B2, and
+`Obs.Dimension.capacity_unique_step_growth`.
 -/
 
 namespace Bridge.Saturation

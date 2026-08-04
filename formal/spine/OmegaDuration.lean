@@ -6,14 +6,14 @@ import NonCommencement
 # OmegaDuration — magnitude flatlines, ancestry continues
 
 Below omega, level cardinality recovers the ladder index
-(NonCommencement.ladder_index_recoverable): magnitude tracks history.
+(`NonCommencement.ladder_index_recoverable`): magnitude tracks history.
 At omega the Option-extension of a countable carrier is equinumerous with
 the carrier (Hilbert hotel). Magnitude flatlines. Ancestry continues
-through Limit.appearsBy / stage tags. The namer at omega+1 remains outside
-the image of the prior stage (Limit.omega_plus_one_grows).
+through `Limit.appearsBy` / stage tags. The namer at omega+1 remains outside
+the image of the prior stage (`Limit.omega_plus_one_grows`).
 
-Quantitative duration (size-as-clock) ends. Ancestral duration
-(tagged history) continues. The arrow does not stop.
+Quantitative duration (size-as-clock) ends at omega; ancestral duration
+(tagged history) continues.
 -/
 namespace OmegaDuration
 
@@ -188,7 +188,7 @@ theorem omega_duration_package :
    appearsBy_recovers_stage,
    namer_new_at_omega⟩
 
-/-- Package plus the rung refusal: completeness-as-colimit is not a level. -/
+/-- Package plus the rung scope fact: completeness-as-colimit is not a level. -/
 theorem omega_duration_not_a_rung_package :
     (∀ j k, Density.levelCard j = Density.levelCard k → j = k) ∧
     (∃ b : Limit.LevelOmegaPlusOne,

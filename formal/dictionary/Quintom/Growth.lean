@@ -7,17 +7,16 @@ import Density
 /-!
 # RE-side growth law — mode-count ↔ capacity analogue
 
-Fills the §V dash
-  `pred growth 2^(k+2) ≅ c(t+1)=K·c(t), K=2 ≅ —`
-with a discrete Fin caricature on the quintom channel alphabet:
+Discrete Fin caricature on the quintom channel alphabet relating predicate
+growth, capacity doubling, and mode-count:
 
   modeCount(T) := |Channel|^(levelCard T) = 2^(T+2) = caps T
   modeCount(T+1) = Kmin · modeCount(T)
 
-**Fence.** Not DESI / `w(z)` forecast; not continuum Fourier-mode creation;
-not `H₀`-from-Bool; not quintom-as-world. ODE envelope numerics in
-`exhibits/quintom/integrate.py` are *not* evidence for this weld — they
-only illustrate H=0/H>0 damping. The growth law here is combinatorial
+DESI / `w(z)` forecasts, continuum Fourier-mode creation, and
+`H₀`-from-Bool are not claimed in this module. ODE envelope numerics in
+`exhibits/quintom/integrate.py` illustrate H=0/H>0 damping and are not
+evidence for this combinatorial identification. The growth law is
 dictionary arithmetic on `Channel` × ladder depth.
 -/
 
@@ -90,14 +89,15 @@ theorem growth_rate_weld (T : Nat) :
   · simp [Density.predicateCount_eq, Nat.pow_succ, Nat.mul_comm]
   · simp [Capacity.caps_eq, Nat.pow_succ, Nat.mul_comm]
 
-/-- Continuum / forecast refusals kept as markers (same pattern as LorentzianDict). -/
+/-- Scope markers: continuum forecast / mode-creation / H₀ claims are
+    outside this module (same pattern as LorentzianDict). -/
 def desi_forecast_refused : True := True.intro
 def continuum_mode_creation_refused : True := True.intro
 def H0_from_Bool_refused : True := True.intro
 
 /-- **RE-side growth law.** Quintom mode-count ↔ capacity-law analogue:
     `modeCount T = caps T = 2^(T+2)` and doubles each naming tick at `Kmin`.
-    Fills §V dash; DESI / continuum modes / `H₀` remain refused. -/
+    Continuum DESI / Fourier-mode / `H₀` claims are outside this module. -/
 theorem re_side_growth_law :
     (∀ T, modeCount T = Capacity.caps T) ∧
     (∀ T, modeCount T = Density.predicateCount T) ∧

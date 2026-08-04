@@ -34,12 +34,10 @@ abbrev ProductSupport {S E : Type} [DecidableEq S] [DecidableEq E]
 
 /-! ## The slice a step files
 
-Muteness is a predicate on a joint *step*; product freshness is a predicate on
-a *slice* of system–environment pairs. Separating them therefore needs the
-slice a given step actually files, so that both predicates can be evaluated on
-one and the same object. `archiveSlice` supplies it, and `oneTick` /
-`productFresh_oneTick` connect a bare slice back to the named predicate
-`ProductFreshAt`. -/
+`StreamMuteAt` is a predicate on a joint step; `ProductFreshAt` is a
+predicate on a slice of system–environment pairs. `archiveSlice` builds
+the slice a step files; `oneTick` / `productFresh_oneTick` relate a bare
+slice to `ProductFreshAt`. -/
 
 /-- The archive slice a step induces on a list of inputs: each input's system
 value paired with the buffer letter the step files for it. -/

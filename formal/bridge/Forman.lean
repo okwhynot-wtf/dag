@@ -8,7 +8,7 @@ import Obs.Dimension
 
 Measure-free combinatorial curvature (Forman): for an unweighted edge,
 `Ric_F = (4 + #faces) − deg(u) − deg(v)`. Continuum / measure-theoretic
-Ollivier–Ricci is refused; a finite counting trial lives in
+Ollivier–Ricci is not derived; a finite counting trial lives in
 `BranchMeasure.ollivier_trial_fragment`. Metric/Riemann curvature remains
 unstateable (needs space + signature — R-1), which is absence, not
 preclusion.
@@ -22,9 +22,8 @@ on the edges it touches and therefore strictly raises their Forman
 quantity toward zero. Recombination is the only combinatorial cure for
 tree-scale Forman negativity.
 
-Coupled research target (R-1): how many registered recombinations per
-node does near-flatness cost, and does the registration / aliveness
-budget permit them?
+R-1 concerns the cost in registered recombinations of near-flatness
+versus the registration / aliveness budget.
 -/
 
 namespace Bridge.Forman

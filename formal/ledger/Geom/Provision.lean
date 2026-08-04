@@ -136,12 +136,10 @@ theorem capacity_lt_pow {K : Nat} (hK : 2 ≤ K) (C : Nat) : C < K ^ C :=
 
 /-! ### The expanding conveyor
 
-The constructive witness of sufficiency. The environment splits as in
-`LedgerExhaustion`: a stream slot `Eout` and an internal buffer, here
-`List Eout` -- the archive as a growing tape. Each tick *adjoins* one
-slot of capacity `|A|` (blank adjunction: the tape grows by one cell)
-and files the tick's fresh unit into it; the stream slot ships the
-constant `blank`. The system marches under any injective `g`. -/
+Environment split as in `LedgerExhaustion`: stream slot `Eout` and
+internal buffer `List Eout`. Each tick adjoins one slot of capacity `|A|`
+(blank adjunction) and files the tick's fresh unit; the stream slot is
+constant `blank`. The system evolves under an injective `g`. -/
 
 variable {S Eout : Type}
 
@@ -215,20 +213,17 @@ theorem expand_capacity : ∀ T : Nat,
     (expandCaps (Eout := Eout) A T).length = A.length ^ T :=
   fun T => freshVecs_length_eq (fun _ => A) T (fun _ _ => rfl)
 
-/-- **The alive set is all of ℕ.** The exhaustion bound
-`K ^ T ≤ |caps T|` of the horizon clause holds at every horizon, with
-equality: the exhaustion tick `t*` of `LedgerExhaustion` does not
-exist for an expanding archive -- its Page time is at infinity. -/
+/-- **Aliveness at every horizon.** The bound `K ^ T ≤ |caps T|` holds
+for every `T`, with equality under blank adjunction. -/
 theorem alive_everywhere : ∀ T : Nat,
     A.length ^ T ≤ (expandCaps (Eout := Eout) A T).length :=
   fun T => Nat.le_of_eq (expand_capacity A T).symm
 
-/-- **Provision (sufficiency, packaged).** The expanding conveyor is
-an injective joint step whose schedule merges the full alphabet at
-every tick, keeps the stream mute at every tick, respects its own
-growing capacity at every tick, and whose capacity meets the ledger
-bound with equality at every horizon. Blank adjunction at rate
-`K = |A|` sustains freshness forever. -/
+/-- **Provision (sufficiency).** The expanding conveyor is an injective
+joint step whose schedule merges the full alphabet at every tick, keeps
+the stream mute at every tick, respects its own growing capacity at every
+tick, and whose capacity meets the ledger bound with equality at every
+horizon. Blank adjunction at rate `K = |A|` sustains freshness forever. -/
 theorem provision {g : S → S} (hg : ∀ a b : S, g a = g b → a = b)
     (blank : Eout) (s0 : S) (A : List Eout) :
     Inj (expandStep g blank)
@@ -262,10 +257,8 @@ theorem evolve_expand_append :
 
 /-- **The archive is the transcript.** From the blank tape, the archive
 after any run of the expanding conveyor is the run's fresh-choice
-vector, verbatim: the slot adjoined at tick `t` holds the tick-`t`
-unit, forever. Registration is total, address-ordered, and coincides
-with adjunction -- the fresh end of the archive is the birth of each
-slot, not a boundary in time. -/
+vector: the slot adjoined at tick `t` holds the tick-`t` unit.
+Registration is total, address-ordered, and coincides with adjunction. -/
 theorem archive_is_transcript (v : List Eout) :
     evolve (expandStep g blank) (gIter g s0) 0 [] v = v :=
   evolve_expand_append g blank s0 v 0 []
@@ -289,12 +282,10 @@ variable {Eout Eint : Type}
 variable (U : S × Eout × Eint → S × Eout × Eint)
 variable (σ : Nat → S) (es : Nat → List Eout) (caps : Nat → List Eint)
 
-/-- **Necessity (the headline).** A run that merges `K ≥ 2` scheduled
-fresh units at the marginal at every tick, with a mute stream and a
-confined buffer at every tick, has unbounded capacity: for every bound
-`C`, tick `C` already exceeds it. Perpetual freshness under perpetual
-merging *is* capacity production -- eternal aliveness requires an
-expanding archive. -/
+/-- **Necessity.** A run that merges `K ≥ 2` scheduled fresh units at
+every tick, with a mute stream and confined buffer at every tick, has
+unbounded capacity: for every bound `C`, tick `C` already exceeds it.
+Eternal aliveness under perpetual merging requires expanding capacity. -/
 theorem eternal_aliveness_needs_expansion [DecidableEq Eint]
     (hU : Inj U) {K : Nat} (hK : 2 ≤ K)
     (hm : ∀ t, MergesAt U σ es caps t)

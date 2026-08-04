@@ -5,7 +5,7 @@ import Geom.Registration
 /-!
 # I-4 Dictionary admission certificates
 
-Two routes (spec §5):
+Two admission routes:
 
 **K-certificate** — kernel / spine instantiations:
   (a) symmetry with `swap ∘ swap = square` (id or central negation);
@@ -16,8 +16,8 @@ Two routes (spec §5):
 **L-certificate** — ledger instantiations: see `LCertificate.lean`
   (Inj U, merge, record, capacity/aliveness, exhaustion + T-10).
 
-This module is the K-certificate schema. Between nonempty and empty modes,
-the dictionary exhausts the kernel's fixed-point story
+This module defines the K-certificate schema. Nonempty and empty modes
+of clause (c) together exhaust the kernel fixed-point story
 (`Orbit.void_is_excluded_fixed_point` ↔ empty mode).
 -/
 

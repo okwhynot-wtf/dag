@@ -1,5 +1,5 @@
 Diagonal Archive Geometry — symbolic law
-corpus hybrid/ DAG v0.1.27
+corpus hybrid/ DAG v0.1.28
 
 ═══════════════════════════════════════════════════════════════════════════════
 0. Layers  (downward imports only)
@@ -161,6 +161,7 @@ VII. Residue / refusal
 ═══════════════════════════════════════════════════════════════════════════════
 
   open (tractable): deeper `|S|>K` alphabet-UF lift (optional; Fin I-2 closed);
+          T-2 induction glue (straightening landed; classified ID open);
           O-3 Mathlib sheaf/site (stalk glue + restriction + dynamics
             sections landed; continuum locality refused);
           R-1 counting landed (tree faces ≤ caps; ultrametric≠space remains);

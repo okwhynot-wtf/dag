@@ -24,7 +24,10 @@ landed (`graded_terminality_of_UF`). I-2 Fin alphabet-UF closed
 `S = Bool` the letter type *is* the alphabet, so minimal bijection = UF;
 rigidity is relative to a base bijection (`|E₀| = 4`). Ladder-predicate
 addressing witness and `|S|>K` address-uniform idx fragment land below.
-Tick identification is packaged in `TickSimulation.tick_identification_licensed`.
+**Straightening** (`isoToFreeOnBase` / `straighten_fragment`): UF archives
+≅ append-only on frozen base; record gauge = base relabelling.
+Tick identification remains packaged in
+`TickSimulation.tick_identification_licensed` (not discharged here).
 -/
 
 namespace Bridge.Dil
@@ -1160,6 +1163,209 @@ theorem graded_terminality_of_base {S : Type} {u : S → S}
     (hb1 e0).trans (hb2 e0).symm
   exact hom_unique_of_UF h₁ h₂ h12 fa T e
 
+/-! ## Straightening — append-only normal form mod record gauge -/
+
+/-- Append-only archive on a frozen base: letters are `(base, word)`,
+    and each record prepends without reshuffling prior base labels.
+    This is the normal form targeted by the T-2 straightening plan. -/
+def freeOnBase (S : Type) (u : S → S) (Base : Type) (zBase : Base) :
+    Archive S u where
+  E := fun T => Base × Word S T
+  z0 := (zBase, Word.nil)
+  r := fun _ s p => (p.1, Word.cons s p.2)
+  joint_inj := by
+    intro T s₁ s₂ ⟨b₁, w₁⟩ ⟨b₂, w₂⟩ _ hr
+    have hb : b₁ = b₂ := congrArg Prod.fst hr
+    have hw : Word.cons s₁ w₁ = Word.cons s₂ w₂ := congrArg Prod.snd hr
+    cases hw
+    exact ⟨rfl, by cases hb; rfl⟩
+
+/-- Unique factorization for the append-only-on-base archive. -/
+def freeOnBaseUF (S : Type) (u : S → S) (Base : Type) (zBase : Base) :
+    UniqueFactorization (freeOnBase S u Base zBase) where
+  factor := fun _T p =>
+    match p with
+    | (b, Word.cons s t) => (s, (b, t))
+  reconstruct := by
+    intro T e'
+    cases e' with
+    | mk b w =>
+      cases w with
+      | cons s t => rfl
+  unique := by
+    intro T e' s e h
+    cases e' with
+    | mk b w =>
+      cases w with
+      | cons s' t =>
+        cases e with
+        | mk b' t' =>
+          cases h
+          rfl
+
+/-- Replay a free word from an arbitrary base letter (not just `z0`). -/
+def interpretFromBase {S : Type} {u : S → S} (A : Archive S u) :
+    (T : Nat) → A.E 0 → Word S T → A.E T
+  | 0, e0, _ => e0
+  | T + 1, e0, Word.cons s w =>
+      A.r T s (interpretFromBase A T e0 w)
+
+/-- Peel a UF letter to its base seed + append-only history word. -/
+def factorHistory {S : Type} {u : S → S} {A : Archive S u}
+    (fa : UniqueFactorization A) :
+    (T : Nat) → A.E T → A.E 0 × Word S T
+  | 0, e => (e, Word.nil)
+  | T + 1, e' =>
+      let s := (fa.factor T e').1
+      let e := (fa.factor T e').2
+      let p := factorHistory fa T e
+      (p.1, Word.cons s p.2)
+
+theorem factorHistory_step {S : Type} {u : S → S} {A : Archive S u}
+    (fa : UniqueFactorization A) (T : Nat) (s : S) (e : A.E T) :
+    factorHistory fa (T + 1) (A.r T s e) =
+      ((factorHistory fa T e).1, Word.cons s (factorHistory fa T e).2) := by
+  have hfac : fa.factor T (A.r T s e) = (s, e) :=
+    fa.unique T (A.r T s e) s e rfl
+  -- unfold factorHistory at successor
+  change
+      let s' := (fa.factor T (A.r T s e)).1
+      let e' := (fa.factor T (A.r T s e)).2
+      let p := factorHistory fa T e'
+      (p.1, Word.cons s' p.2) =
+    ((factorHistory fa T e).1, Word.cons s (factorHistory fa T e).2)
+  simp only [hfac]
+
+theorem factorHistory_section {S : Type} {u : S → S} {A : Archive S u}
+    (fa : UniqueFactorization A) :
+    ∀ T (e : A.E T),
+      interpretFromBase A T (factorHistory fa T e).1 (factorHistory fa T e).2 = e := by
+  intro T
+  induction T with
+  | zero =>
+    intro e
+    rfl
+  | succ T ih =>
+    intro e'
+    have hrec := fa.reconstruct T e'
+    have ih' := ih (fa.factor T e').2
+    -- interpretFromBase (cons s w) = A.r s (interpretFromBase w)
+    change A.r T (fa.factor T e').1
+        (interpretFromBase A T
+          (factorHistory fa T (fa.factor T e').2).1
+          (factorHistory fa T (fa.factor T e').2).2) = e'
+    rw [ih']
+    exact hrec.symm
+
+theorem factorHistory_retract {S : Type} {u : S → S} {A : Archive S u}
+    (fa : UniqueFactorization A) :
+    ∀ T (e0 : A.E 0) (w : Word S T),
+      factorHistory fa T (interpretFromBase A T e0 w) = (e0, w) := by
+  intro T e0 w
+  induction w with
+  | nil =>
+    rfl
+  | cons s tail ih =>
+    have hfac :
+        fa.factor _ (A.r _ s (interpretFromBase A _ e0 tail)) =
+          (s, interpretFromBase A _ e0 tail) :=
+      fa.unique _ _ s _ rfl
+    -- factorHistory (succ) (A.r s …) expands via factor then IH
+    change
+        let s' := (fa.factor _ (A.r _ s (interpretFromBase A _ e0 tail))).1
+        let e' := (fa.factor _ (A.r _ s (interpretFromBase A _ e0 tail))).2
+        let p := factorHistory fa _ e'
+        (p.1, Word.cons s' p.2) =
+      (e0, Word.cons s tail)
+    simp only [hfac]
+    exact congrArg (fun p => (p.1, Word.cons s p.2)) ih
+
+/-- **Straightening iso.** Every UF archive is isomorphic to the append-only
+    archive on its own base (`freeOnBase`). Record gauge = base relabelling;
+    uniqueness of Homs is exactly agreement on `E 0` (`hom_unique_of_UF`).
+
+    Fence: Fin/UF archives only. Not Registration→`NamingExtension` on carriers.
+    Does not discharge unconditional T-2; eternal `swapStep` remains obstructed. -/
+def isoToFreeOnBase {S : Type} {u : S → S} {A : Archive S u}
+    (fa : UniqueFactorization A) :
+    ArchiveIso A (freeOnBase S u (A.E 0) A.z0) where
+  toHom := {
+    map := fun T e => factorHistory fa T e
+    map_z0 := rfl
+    nat_r := fun T s e => factorHistory_step fa T s e
+  }
+  invHom := {
+    map := fun T p => interpretFromBase A T p.1 p.2
+    map_z0 := rfl
+    nat_r := by
+      intro T s p
+      -- interpretFromBase (cons s w) from base = A.r s (interpret …)
+      cases p with
+      | mk e0 w =>
+        rfl
+  }
+  left_inv := fun T e => factorHistory_section fa T e
+  right_inv := fun T p => by
+    cases p with
+    | mk e0 w =>
+      exact factorHistory_retract fa T e0 w
+
+/-- Existence form: UF archives straighten to append-only mod base. -/
+theorem uf_straightens_mod_base {S : Type} {u : S → S} {A : Archive S u}
+    (fa : UniqueFactorization A) :
+    ∃ _i : ArchiveIso A (freeOnBase S u (A.E 0) A.z0), True :=
+  ⟨isoToFreeOnBase fa, True.intro⟩
+
+/-- Pointed special case: UF + singleton base ≅ free (existing `isoToFree`).
+    Append-only normal form with trivial gauge. -/
+theorem uf_pointed_straightens_to_free {S : Type} {u : S → S}
+    {A : Archive S u}
+    (fa : UniqueFactorization A) (h0 : PointedSingleton A) :
+    ∃ _i : ArchiveIso A (free S u), True :=
+  ⟨isoToFree fa h0, True.intro⟩
+
+/-- Record gauge leftover = base bijection: Hom uniqueness among UF archives
+    is exactly agreement on all of `E 0` (rephrase of `hom_unique_of_UF`). -/
+theorem record_gauge_is_base_bijection {S : Type} {u : S → S}
+    {A B : Archive S u} (h₁ h₂ : Hom A B)
+    (hbase : ∀ e0 : A.E 0, h₁.map 0 e0 = h₂.map 0 e0)
+    (fa : UniqueFactorization A) :
+    h₁ = h₂ :=
+  Hom.ext h₁ h₂ (fun T e => hom_unique_of_UF h₁ h₂ hbase fa T e)
+
+/-- Bool caps (non-pointed `|E₀|=4`) straightens mod base to append-only. -/
+theorem boolCaps_straightens_mod_base (u : Bool → Bool) :
+    (∃ _i : ArchiveIso (boolCapsArchive u)
+      (freeOnBase Bool u (Fin (capCard 0)) (boolCapsArchive u).z0), True) ∧
+    (¬ PointedSingleton (boolCapsArchive u)) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨uf_straightens_mod_base (boolCapsUF u),
+   boolCaps_not_pointedSingleton u,
+   Bridge.Alphabet.Kmin_eq⟩
+
+/-- **Straightening fragment package.** UF⇒append-only-on-base; pointed⇒free;
+    gauge = base agreement; Bool caps instance. Fence: does not close T-2. -/
+theorem straighten_fragment :
+    (∀ {S : Type} {u : S → S} {A : Archive S u}
+      (_fa : UniqueFactorization A),
+      ∃ _i : ArchiveIso A (freeOnBase S u (A.E 0) A.z0), True) ∧
+    (∀ {S : Type} {u : S → S} {A : Archive S u}
+      (_fa : UniqueFactorization A) (_h0 : PointedSingleton A),
+      ∃ _i : ArchiveIso A (free S u), True) ∧
+    (∀ {S : Type} {u : S → S} {A B : Archive S u}
+      (h₁ h₂ : Hom A B)
+      (_hbase : ∀ e0, h₁.map 0 e0 = h₂.map 0 e0)
+      (_fa : UniqueFactorization A), h₁ = h₂) ∧
+    (∀ u : Bool → Bool,
+      ∃ _i : ArchiveIso (boolCapsArchive u)
+        (freeOnBase Bool u (Fin (capCard 0)) (boolCapsArchive u).z0), True) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨fun fa => uf_straightens_mod_base fa,
+   fun fa h0 => uf_pointed_straightens_to_free fa h0,
+   fun h₁ h₂ hbase fa => record_gauge_is_base_bijection h₁ h₂ hbase fa,
+   fun u => (boolCaps_straightens_mod_base u).1,
+   Bridge.Alphabet.Kmin_eq⟩
+
 /-- **I-2 Fin closed (alphabet-UF).** Bool caps archive is UF (minimal
     bijection at `K = 2`), schedule-correct, non-pointed, and rigid
     relative to the identity base bijection. -/
@@ -1288,6 +1494,13 @@ theorem keystone_dil_sprint :
 #print axioms graded_terminality_of_UF
 #print axioms hom_unique_of_UF
 #print axioms rigidity_iso_of_base
+#print axioms factorHistory_section
+#print axioms factorHistory_retract
+#print axioms uf_straightens_mod_base
+#print axioms uf_pointed_straightens_to_free
+#print axioms record_gauge_is_base_bijection
+#print axioms boolCaps_straightens_mod_base
+#print axioms straighten_fragment
 #print axioms i2_fin_closed
 #print axioms i2_caps_record_map_fragment
 #print axioms joint_inj_of_addressUniform

@@ -7,6 +7,7 @@ import Geom.Freshness
 import Capacity
 import Environment
 import RegistrationFactor
+import Dil
 
 /-!
 # T-2 Tick simulation
@@ -24,8 +25,11 @@ Full factorisation of Registration sequences as *ladder carrier*
 extensions is obstructed (`RegistrationFactor.registration_vs_naming_obstruction`):
 swap registers forever on fixed `E = Bool` while naming grows `levelCard`.
 Positive remnant: every injective 2-merge admits a namer-shaped label witness
-(`registers_admits_namer`). Naming-tick/microtick identification stays on the
-committed expand path plus that label fragment.
+(`registers_admits_namer`). Straightening (`Dil.straighten_fragment`) supplies
+append-only normal form mod base gauge for UF archives — a skeleton step
+toward classification (bounded-demand / Fund exempt; unbounded climb).
+Naming-tick/microtick identification stays licensed on the remnant; not
+discharged as a total functor on carriers.
 -/
 
 namespace Bridge.TickSimulation
@@ -194,11 +198,48 @@ theorem tick_identification_licensed :
      (Bridge.RegistrationFactor.registration_vs_naming_obstruction).2.2.2 T hT,
    Bridge.Alphabet.Kmin_eq⟩
 
+/-- **Proof-skeleton ingredients** toward a classified T-2 (not the theorem).
+    Straightening (UF ≅ append-only on base) + rate weld + namer shape +
+    obstruction (necessity: eternal hypothesis is tight) + Fund exempt.
+    Induction glue across ticks remains open — keep `_licensed`. -/
+theorem tick_identification_ingredients :
+    (∀ {S : Type} {u : S → S} {A : Bridge.Dil.Archive S u}
+      (fa : Bridge.Dil.UniqueFactorization A),
+      ∃ _i : Bridge.Dil.ArchiveIso A
+        (Bridge.Dil.freeOnBase S u (A.E 0) A.z0), True) ∧
+    (∀ T,
+      Geom.Profile.capacityOf 2 Geom.Profile.expand (T + 1) =
+        2 * Geom.Profile.capacityOf 2 Geom.Profile.expand T ∧
+      Bridge.Capacity.caps (T + 1) = 2 * Bridge.Capacity.caps T) ∧
+    (∀ {S E : Type} {U : S × E → S × E},
+      Inj U →
+        ∀ w : Bridge.Environment.TwoMerge S E U,
+          Bridge.RegistrationFactor.outsideSingleton
+            (Bridge.Environment.recordLabel w false)
+            (Bridge.Environment.recordLabel w true)) ∧
+    (Inj Geom.Registration.swapStep ∧
+      Merges Geom.Registration.swapStep ∧
+      Registers Geom.Registration.swapStep ∧
+      ∀ T, 1 ≤ T → Density.levelCard 0 < Density.levelCard T) ∧
+    (¬ Merges Geom.Registration.oscStep) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨fun fa => Bridge.Dil.uf_straightens_mod_base fa,
+   rate_weld,
+   fun hU w => (Bridge.RegistrationFactor.registers_admits_namer hU w).1,
+   ⟨Geom.Registration.swap_inj,
+     Geom.Registration.swap_registers.2.1,
+     Geom.Registration.swap_registers.2.2,
+     fun T hT =>
+       (Bridge.RegistrationFactor.registration_vs_naming_obstruction).2.2.2 T hT⟩,
+   oscillator_silent.1,
+   Bridge.Alphabet.Kmin_eq⟩
+
 #print axioms tick_simulation
 #print axioms committed_yields_mute
 #print axioms rate_weld
 #print axioms committed_roundtrip_depth
 #print axioms tick_simulation_fragment
 #print axioms tick_identification_licensed
+#print axioms tick_identification_ingredients
 
 end Bridge.TickSimulation

@@ -41,6 +41,8 @@
 | Ladder-predicate addressing witness | `Bridge.Dil.ladder_predicate_addressing_witness` | Bridge |
 | Address-uniform record factoring (`|S|>K` frag) | `Bridge.Dil.AddressUniform`, `joint_inj_of_addressUniform` | Bridge |
 | T-2 tick identification (licensed remnant) | `Bridge.TickSimulation.tick_identification_licensed` | Bridge |
+| T-2 straightening fragment (UF≅append-on-base) | `Bridge.Dil.straighten_fragment` | Bridge |
+| T-2 ID proof-skeleton ingredients | `Bridge.TickSimulation.tick_identification_ingredients` | Bridge |
 | Period-2 / KMS↔involution toy | `Bridge.Period2KMS.period2_kms_caricature` | Bridge |
 | Area-as-caps sharpening (Bekenstein-shaped) | `Bridge.Capacity.area_as_caps_sharpening` | Bridge |
 | Dil base-relative UF rigidity iso | `Bridge.Dil.rigidity_iso_of_base` | Bridge |
@@ -73,5 +75,6 @@
 | DM fundamental two elements | `Density.fundamental_two_elements` | Spine |
 
 Open work: see `docs/RESIDUE.md` (tractable vs structural vs philosophical).
-T-2 carrier-level Registration→naming is **obstructed** (documented);
-label-namer factor discharged.
+T-2 carrier-level Registration→naming is **obstructed** (documented;
+necessity half of classification); label-namer + straighten discharged;
+induction glue still open.

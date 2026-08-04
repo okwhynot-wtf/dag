@@ -6,6 +6,7 @@ import Geom.Provision
 import Geom.Freshness
 import Capacity
 import Environment
+import RegistrationFactor
 
 /-!
 # T-2 Tick simulation
@@ -161,10 +162,43 @@ theorem tick_simulation_fragment :
 /-- Obstruction discharged in `RegistrationFactor.lean`. -/
 def arbitraryRegistration_factor_open : False → True := fun h => h.elim
 
+/-- **T-2 tick identification (licensed remnant).** Committed-path
+    simulation + namer-shaped label factor are discharged; carrier-level
+    Registration→naming factorisation is obstructed (swap vs `levelCard`).
+    Naming-tick ↔ microtick identification is licensed exactly on that
+    remnant — not as a total functor on carriers. -/
+theorem tick_identification_licensed :
+    (∀ T, Bridge.Capacity.caps T = 2 ^ (T + 2)) ∧
+    (∀ T, Geom.Profile.Alive 2 Geom.Profile.expand T) ∧
+    (∀ k, Tower.NamingExtension
+      (Ladder.rep k) (Ladder.rep (k + 1)) some (Ladder.dodgeEscape k)) ∧
+    (∀ {S E : Type} {U : S × E → S × E},
+      Inj U →
+        ∀ w : Bridge.Environment.TwoMerge S E U,
+          Bridge.RegistrationFactor.outsideSingleton
+            (Bridge.Environment.recordLabel w false)
+            (Bridge.Environment.recordLabel w true)) ∧
+    (Inj Geom.Registration.swapStep ∧
+      Merges Geom.Registration.swapStep ∧
+      Registers Geom.Registration.swapStep) ∧
+    (∀ T, 1 ≤ T → Density.levelCard 0 < Density.levelCard T) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨tick_simulation.1,
+   tick_simulation.2.1,
+   tick_simulation.2.2.2.2.2.1,
+   fun hU w => (Bridge.RegistrationFactor.registers_admits_namer hU w).1,
+   ⟨Geom.Registration.swap_inj,
+     Geom.Registration.swap_registers.2.1,
+     Geom.Registration.swap_registers.2.2⟩,
+   fun T hT =>
+     (Bridge.RegistrationFactor.registration_vs_naming_obstruction).2.2.2 T hT,
+   Bridge.Alphabet.Kmin_eq⟩
+
 #print axioms tick_simulation
 #print axioms committed_yields_mute
 #print axioms rate_weld
 #print axioms committed_roundtrip_depth
 #print axioms tick_simulation_fragment
+#print axioms tick_identification_licensed
 
 end Bridge.TickSimulation

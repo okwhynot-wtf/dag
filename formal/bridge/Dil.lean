@@ -23,8 +23,8 @@ landed (`graded_terminality_of_UF`). I-2 Fin alphabet-UF closed
 (`boolCapsUF` / `i2_fin_closed` / `rigidity_iso_of_base`): at `K = 2` with
 `S = Bool` the letter type *is* the alphabet, so minimal bijection = UF;
 rigidity is relative to a base bijection (`|E₀| = 4`). Ladder-predicate
-`Level → Bool` addressing remains the interpretive witness. Tick ID remains
-T-2-licensed.
+addressing witness and `|S|>K` address-uniform idx fragment land below.
+Tick identification is packaged in `TickSimulation.tick_identification_licensed`.
 -/
 
 namespace Bridge.Dil
@@ -835,7 +835,36 @@ theorem free_terminal_among_UF {S : Type} {u : S → S}
   graded_terminality_of_UF fa (freeUniqueFactorization S u) ha
     (free_is_pointed_singleton S u)
 
-/-- Tick identification (naming ↔ microtick) remains T-2-licensed. -/
+/-! ## Address-uniform records (`|S| > K` fragment) -/
+
+/-- Record map factors through an address/alphabet index:
+    `r_T(s, e) = r̃_T(idx(s), e)`. When `|S| > K`, `idx` collapses the
+    system letter onto the blank alphabet; at `K = 2` with `S = Bool`,
+    `idx = id` recovers alphabet-UF. -/
+structure AddressUniform {S Alph : Type} {u : S → S}
+    (A : Archive S u) (idx : S → Alph) where
+  rTilt : (T : Nat) → Alph → A.E T → A.E (T + 1)
+  factor : ∀ T (s : S) (e : A.E T), A.r T s e = rTilt T (idx s) e
+
+/-- Joint injectivity descends along address factoring when `idx` separates
+    on `u`-fibers and `r̃` is jointly injective on the alphabet. -/
+theorem joint_inj_of_addressUniform {S Alph : Type} {u : S → S}
+    {A : Archive S u} {idx : S → Alph}
+    (au : AddressUniform A idx)
+    (hidx : ∀ s₁ s₂, u s₁ = u s₂ → idx s₁ = idx s₂ → s₁ = s₂)
+    (hrt : ∀ T (a₁ a₂ : Alph) (e₁ e₂ : A.E T),
+      au.rTilt T a₁ e₁ = au.rTilt T a₂ e₂ → a₁ = a₂ ∧ e₁ = e₂) :
+    ∀ T (s₁ s₂ : S) (e₁ e₂ : A.E T),
+      u s₁ = u s₂ → A.r T s₁ e₁ = A.r T s₂ e₂ → s₁ = s₂ ∧ e₁ = e₂ := by
+  intro T s₁ s₂ e₁ e₂ hu hr
+  have hr' : au.rTilt T (idx s₁) e₁ = au.rTilt T (idx s₂) e₂ := by
+    rw [← au.factor, ← au.factor]
+    exact hr
+  have ⟨ha, he⟩ := hrt T (idx s₁) (idx s₂) e₁ e₂ hr'
+  exact ⟨hidx s₁ s₂ hu ha, he⟩
+
+/-- Tick identification (naming ↔ microtick): see
+    `Bridge.TickSimulation.tick_identification_licensed`. -/
 def tick_identification_T2_licensed : True := True.intro
 
 /-! ## I-2 caps archive (Fin schedule, non-singleton base) -/
@@ -1166,6 +1195,46 @@ theorem i2_caps_record_map_fragment (u : Bool → Bool) :
    (i2_fin_closed u).2.2.2.2.1,
    Bridge.Alphabet.Kmin_eq⟩
 
+/-- Bool caps is address-uniform with trivial `idx = id` (letter = alphabet). -/
+def boolCaps_addressUniform (u : Bool → Bool) :
+    AddressUniform (boolCapsArchive u) id where
+  rTilt := fun _ a e => capRecord a e
+  factor := fun _ _ _ => rfl
+
+/-- Address-uniformity recovers the archive's joint injectivity at K = 2. -/
+theorem boolCaps_joint_inj_via_addressUniform (u : Bool → Bool) :
+    ∀ T (s₁ s₂ : Bool) (e₁ e₂ : Fin (capCard T)),
+      u s₁ = u s₂ →
+      (boolCapsArchive u).r T s₁ e₁ = (boolCapsArchive u).r T s₂ e₂ →
+      s₁ = s₂ ∧ e₁ = e₂ :=
+  joint_inj_of_addressUniform (boolCaps_addressUniform u)
+    (fun _ _ _ hidx => hidx)
+    (fun _ a₁ a₂ e₁ e₂ hr => capRecord_inj a₁ a₂ e₁ e₂ hr)
+
+/-- **Ladder-predicate addressing witness.** Combinatorial count of
+    `Ladder.Level T → Bool` (= `Branch.Predicate`) is `predicateCount` /
+    `caps`; the Fin `boolCapsArchive` realises that schedule under
+    alphabet-UF. Not a second `Archive` carrier on predicates. -/
+theorem ladder_predicate_addressing_witness :
+    (∀ T, Density.predicateCount T = 2 ^ Density.levelCard T) ∧
+    (∀ T, Density.predicateCount T = Bridge.Capacity.caps T) ∧
+    (∀ T, Density.levelCard T = T + 2) ∧
+    (∀ T, capCard T = Bridge.Capacity.caps T) ∧
+    MinimalSchedule 2 Density.predicateCount ∧
+    MinimalSchedule 2 capCard ∧
+    (∀ u : Bool → Bool, ∃ _fa : UniqueFactorization (boolCapsArchive u), True) ∧
+    (∀ u : Bool → Bool, ∃ _au : AddressUniform (boolCapsArchive u) id, True) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨fun T => rfl,
+   fun T => rfl,
+   Density.levelCard_eq,
+   fun T => by simp [capCard, Bridge.Capacity.caps_eq],
+   predicate_minimal_schedule.1,
+   fun T => capCard_succ T,
+   fun u => ⟨boolCapsUF u, True.intro⟩,
+   fun u => ⟨boolCaps_addressUniform u, True.intro⟩,
+   Bridge.Alphabet.Kmin_eq⟩
+
 /-! ## Keystone sprint package -/
 
 /-- **Keystone Dil sprint.** Free archive initial; capacity step law;
@@ -1221,6 +1290,8 @@ theorem keystone_dil_sprint :
 #print axioms rigidity_iso_of_base
 #print axioms i2_fin_closed
 #print axioms i2_caps_record_map_fragment
+#print axioms joint_inj_of_addressUniform
+#print axioms ladder_predicate_addressing_witness
 #print axioms predicate_minimal_schedule
 #print axioms caps_realise_minimal_schedule
 #print axioms keystone_dil_sprint

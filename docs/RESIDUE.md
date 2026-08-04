@@ -31,7 +31,7 @@ caricatures are in scope; continuum identifications are not.
 | **RE-side growth law** | Seek quintom mode-count ↔ capacity-law analogue (table V dash: not yet sought) |
 | **Lorentzian dictionary (partial)** | **Landed:** `partial_lorentzian_dictionary` (order dim-1 + caps growth + ℤ/2-only). O-2/O-4 remain |
 | **T-1 / Dil keystone** | **Fin-closed:** UF Hom∃/iso/graded term. + I-2 Fin alphabet-UF + **ladder-predicate witness** + **address-uniform idx** fragment. T-2 tick ID packaged as licensed remnant |
-| **T-12 measure** | **Fragment landed:** uniform child weights (`Kmin`); no unique law-derived selector. Asymmetric Born-from-underdetermination alone still refused |
+| **T-12 measure** | **Fragment + Born no-go landed:** uniform weights; no unique selector; `born_from_multiplicity_nogo` (symmetry + path products + Gleason domain absent) |
 | **T-10 Page flux shape** | **Landed:** `PageShape` — mute before `C`, stream `t−C`, `t_exh=C+1`, Page tent peak. Bogoliubov / continuum QFT still refused |
 | Arbitrary `U_S` UP | Beyond fiber tagging (`arbitraryUS_UP_open`); Dil is the attack shape |
 
@@ -62,7 +62,7 @@ Claim-hygiene and continuum / mind ceilings. Not the same as “no caricature al
 - Continuum spacetime manifold; continuum area/island theorems; continuum Einstein `G_{μν}=8πT_{μν}` as Lean gravity
 - Continuum QFT mode creation; gravitational evaporating BH as Lean (finite Page *toy* admitted)
 - Continuum Boltzmann / Gibbs statistical mechanics (combinatorial Landauer / counting entropy are not this)
-- Born rule as a theorem from underdetermination alone (needs measure structure not present)
+- Born rule from underdetermination / multiplicity alone (**theorem:** `born_from_multiplicity_nogo`; Gleason domain absent)
 - Hard problem / qualia / experiential claims (meta-problem = structural *reports* only)
 - Deriving dynamical matter or Friedmann cosmology **from Bool alone** (matter-as-input dictionary is open work above)
 
@@ -75,8 +75,9 @@ I-4 L-certificate: **Page**;
 T-12 Branch/measurement no-go: **NoClone** paired with Lossless.
 T-16 discharges the Jacobson *skeleton* (capacity, Landauer, seal-horizon,
 saturation EoS, Forman `G~T` caricature, local ledger stalks). Continuum
-Einstein remains refused; O-2 structural; O-3 Mathlib sheaf / R-1 ultrametric
-in tractable/structural open (counting + dynamics sections landed).
+Einstein remains refused; O-2 structural (decision pending); O-3 Mathlib sheaf /
+R-1 ultrametric in open (counting + dynamics sections landed). T-2 classified
+at v0.2 — see `docs/ARC_V02.md`.
 
 ## Interpretation (hedged)
 

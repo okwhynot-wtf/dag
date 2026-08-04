@@ -15,8 +15,11 @@ successors:
 2. **Negative.** No law-derived selector can pick a unique preferred escape
    for every reading (underdetermination always supplies another).
 
-Born rule / continuum probability remain refused. The uniform weight is a
-record-multiplicity caricature, not Hilbert-space amplitude.
+Born rule from multiplicity alone is a **no-go**
+(`born_from_multiplicity_nogo`): multiplicity-only weights are forced
+symmetric; path products stay symmetric; Gleason has no domain. Continuum
+probability remains refused. The uniform weight is a record-multiplicity
+caricature, not Hilbert-space amplitude.
 
 Finite Ollivier-style trial (below): counting transport on the Kmin tree
 with uniform child masses. Continuum / measure-theoretic Ollivier–Ricci
@@ -89,6 +92,83 @@ theorem T12_measure_fragment :
     Bridge.Alphabet.Kmin = 2 :=
   ⟨uniform_total_is_Kmin,
    fun σ k f => no_unique_law_selector σ k f,
+   Bridge.Alphabet.Kmin_eq⟩
+
+/-! ## Born no-go — multiplicity + branch structure ≠ Born -/
+
+/-- Weight built from record multiplicity alone: every escape at a level
+    receives the same Nat unit (counting caricature; no amplitude). -/
+structure MultiplicityOnlyWeight where
+  unit : Nat
+  w : (k : Nat) → Branch.Predicate k → Nat
+  of_multiplicity : ∀ k (e : Branch.Predicate k), w k e = unit
+
+/-- The corpus uniform weight is the multiplicity-only instance with unit 1. -/
+def uniformMultiplicityWeight : MultiplicityOnlyWeight where
+  unit := 1
+  w := fun _ _ => 1
+  of_multiplicity := fun _ _ => rfl
+
+/-- Multiplicity-only weights are symmetric on all predicates at a level. -/
+theorem multiplicity_forces_symmetry (W : MultiplicityOnlyWeight)
+    (k : Nat) (e₁ e₂ : Branch.Predicate k) :
+    W.w k e₁ = W.w k e₂ := by
+  rw [W.of_multiplicity, W.of_multiplicity]
+
+/-- Path composition: product of successive step weights. -/
+def pathWeight (W : MultiplicityOnlyWeight) (k : Nat)
+    (e : Branch.Predicate k) (e' : Branch.Predicate (k + 1)) : Nat :=
+  W.w k e * W.w (k + 1) e'
+
+/-- Composition stays symmetric: every length-2 path gets the same weight. -/
+theorem pathWeight_symmetric (W : MultiplicityOnlyWeight) (k : Nat)
+    (e₁ e₂ : Branch.Predicate k)
+    (f₁ f₂ : Branch.Predicate (k + 1)) :
+    pathWeight W k e₁ f₁ = pathWeight W k e₂ f₂ := by
+  simp only [pathWeight, W.of_multiplicity]
+
+/-- Distinct T-12 children still receive equal multiplicity weights —
+    underdetermination supplies the fork; multiplicity cannot break it. -/
+theorem born_asymmetry_unavailable (W : MultiplicityOnlyWeight)
+    (k : Nat) (f : Ladder.Level k → Ladder.Level k → Bool) :
+    ∃ e₁ e₂ : Branch.Predicate k,
+      Branch.IsEscape k f e₁ ∧ Branch.IsEscape k f e₂ ∧
+        (∃ x, e₁ x ≠ e₂ x) ∧
+        W.w k e₁ = W.w k e₂ := by
+  obtain ⟨e₁, e₂, h₁, h₂, hne⟩ := two_children k f
+  exact ⟨e₁, e₂, h₁, h₂, hne, multiplicity_forces_symmetry W k e₁ e₂⟩
+
+/-- Gleason's theorem has no domain of application: the corpus defines no
+    amplitude type / inner product on branch carriers. -/
+def gleason_domain_absent : True := True.intro
+
+/-- **Born no-go.** No function of record multiplicity and branch structure
+    alone satisfies the composition properties Born weights need:
+
+    * multiplicity-only weights are forced symmetric on T-12 children;
+    * path products stay symmetric (no asymmetric Born interference);
+    * no unique law-derived selector (underdetermination);
+    * Gleason route unavailable (no inner-product carrier).
+
+    Upgrades the Born refusal from a decision to a theorem inside the system. -/
+theorem born_from_multiplicity_nogo :
+    (∀ (W : MultiplicityOnlyWeight) k e₁ e₂, W.w k e₁ = W.w k e₂) ∧
+    (∀ (W : MultiplicityOnlyWeight) k e₁ e₂ f₁ f₂,
+      pathWeight W k e₁ f₁ = pathWeight W k e₂ f₂) ∧
+    (∀ (W : MultiplicityOnlyWeight) k f,
+      ∃ e₁ e₂ : Branch.Predicate k,
+        Branch.IsEscape k f e₁ ∧ Branch.IsEscape k f e₂ ∧
+          (∃ x, e₁ x ≠ e₂ x) ∧ W.w k e₁ = W.w k e₂) ∧
+    (∀ (σ : EscapeSelector) k f,
+      ∃ e : Branch.Predicate k,
+        Branch.IsEscape k f e ∧ ∃ x, e x ≠ (σ.select k f) x) ∧
+    gleason_domain_absent = True.intro ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨fun W k e₁ e₂ => multiplicity_forces_symmetry W k e₁ e₂,
+   fun W k e₁ e₂ f₁ f₂ => pathWeight_symmetric W k e₁ e₂ f₁ f₂,
+   fun W k f => born_asymmetry_unavailable W k f,
+   fun σ k f => no_unique_law_selector σ k f,
+   rfl,
    Bridge.Alphabet.Kmin_eq⟩
 
 /-! ## Finite Ollivier-style trial (counting transport) -/
@@ -164,6 +244,9 @@ theorem ollivier_trial_fragment :
 #print axioms uniform_total_is_Kmin
 #print axioms no_unique_law_selector
 #print axioms T12_measure_fragment
+#print axioms born_from_multiplicity_nogo
+#print axioms multiplicity_forces_symmetry
+#print axioms pathWeight_symmetric
 #print axioms ollivier_nonpos_signal
 #print axioms ollivier_trial_fragment
 

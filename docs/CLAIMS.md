@@ -31,6 +31,7 @@
 | O-3 restriction fragment | `Bridge.LedgerSheaf.o3_restriction_fragment` | Bridge |
 | O-3 dynamics-section fragment | `Bridge.LedgerSheaf.o3_dynamics_section_fragment` | Bridge |
 | T-12 measure fragment (uniform / no selector) | `Bridge.BranchMeasure.T12_measure_fragment` | Bridge |
+| Born no-go (multiplicity ≠ Born; Gleason absent) | `Bridge.BranchMeasure.born_from_multiplicity_nogo` | Bridge |
 | Finite Ollivier trial (counting transport) | `Bridge.BranchMeasure.ollivier_trial_fragment` | Bridge |
 | Partial Lorentzian dictionary (no Lorentz group) | `Bridge.LorentzianDict.partial_lorentzian_dictionary` | Bridge |
 | Dil Hom existence via unique factorization | `Bridge.Dil.hom_exists_of_UF` | Bridge |
@@ -80,5 +81,5 @@
 | DM fundamental two elements | `Density.fundamental_two_elements` | Spine |
 
 Open work: see `docs/RESIDUE.md` (tractable vs structural vs philosophical).
-T-2 classified at v0.2 (`tick_identification`); carrier-level total functor
-still refused (swap = necessity half). Next: Born no-go; O-2 decision.
+T-2 classified at v0.2 (`tick_identification`); Born refusal upgraded to
+`born_from_multiplicity_nogo`. Next: O-2 decision (KMS/modular vs feature).

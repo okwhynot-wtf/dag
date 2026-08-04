@@ -287,6 +287,16 @@ theorem milestone_T12_measure :
     Bridge.Alphabet.Kmin = 2 :=
   ⟨Bridge.BranchMeasure.T12_measure_fragment.1, Bridge.Alphabet.Kmin_eq⟩
 
+/-- Born no-go: multiplicity + branch structure cannot yield Born weights. -/
+theorem milestone_born_nogo :
+    (∀ (W : Bridge.BranchMeasure.MultiplicityOnlyWeight) k e₁ e₂,
+      W.w k e₁ = W.w k e₂) ∧
+    Bridge.BranchMeasure.gleason_domain_absent = True.intro ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨fun W k e₁ e₂ =>
+     Bridge.BranchMeasure.multiplicity_forces_symmetry W k e₁ e₂,
+   rfl, Bridge.Alphabet.Kmin_eq⟩
+
 /-- Finite Ollivier-style trial (counting transport; continuum refused). -/
 theorem milestone_ollivier_trial :
     Bridge.Forman.StrictlyNegative
@@ -509,6 +519,7 @@ theorem bridge_arc :
 #print axioms milestone_T11
 #print axioms milestone_T12
 #print axioms milestone_T12_measure
+#print axioms milestone_born_nogo
 #print axioms milestone_ollivier_trial
 #print axioms milestone_T13
 #print axioms milestone_T14

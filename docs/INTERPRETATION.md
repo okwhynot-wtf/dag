@@ -114,6 +114,13 @@ that remnant only — not a total functor on carriers.
 - **Area-as-caps** (`areaBits`): Bekenstein-shaped `log₂|caps|`. Not
   continuum area / island theorems.
 
+## Partial Lorentzian dictionary (fence)
+
+Order dim-1 + capacity growth + ℤ/2-only underdetermination
+(`partial_lorentzian_dictionary`). Not a Lorentz group; not Unruh;
+continuum O-4 refused. Separates the countable causal/capacity skeleton
+from the structural boost gap (O-2).
+
 ## Dictionary adapters (fence)
 
 - **QEC L-cert** (`formal/dictionary/QEC.lean`, `exhibits/qec/`): syndrome

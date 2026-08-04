@@ -65,5 +65,5 @@ companions BitFlip, NoClone (measurement).
 
 ## Version
 
-DAG hybrid **v0.1.25** — Finite Ollivier trial on branch measures;
-period-2/KMS + area-as-caps from v0.1.24.
+DAG hybrid **v0.1.26** — Partial Lorentzian dictionary (order dim-1 +
+caps growth); Ollivier/KMS/area packages from v0.1.24–0.1.25.

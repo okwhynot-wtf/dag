@@ -29,7 +29,7 @@ caricatures are in scope; continuum identifications are not.
 | **Finite measures on branches** | **Landed:** `ollivier_trial_fragment` (uniform child masses + sibling transport non-pos signal). Continuum Ollivier refused |
 | **Area-as-capacity sharpening** | **Landed:** `area_as_caps_sharpening` (`log₂|caps|=T+2`, demand ≤ area, +1 bit/tick). Continuum area refused |
 | **RE-side growth law** | Seek quintom mode-count ↔ capacity-law analogue (table V dash: not yet sought) |
-| **Lorentzian dictionary (partial)** | What can be said with order dim-1 + capacity growth without full Lorentz group? Separate from O-2 boost gap |
+| **Lorentzian dictionary (partial)** | **Landed:** `partial_lorentzian_dictionary` (order dim-1 + caps growth + ℤ/2-only). O-2/O-4 remain |
 | **T-1 / Dil keystone** | **Fin-closed:** UF Hom∃/iso/graded term. + I-2 Fin alphabet-UF + **ladder-predicate witness** + **address-uniform idx** fragment. T-2 tick ID packaged as licensed remnant |
 | **T-12 measure** | **Fragment landed:** uniform child weights (`Kmin`); no unique law-derived selector. Asymmetric Born-from-underdetermination alone still refused |
 | **T-10 Page flux shape** | **Landed:** `PageShape` — mute before `C`, stream `t−C`, `t_exh=C+1`, Page tent peak. Bogoliubov / continuum QFT still refused |

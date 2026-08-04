@@ -21,6 +21,7 @@ import LedgerSheaf
 import RecombinationBudget
 import PhaseEToys
 import Period2KMS
+import LorentzianDict
 import Geom.Registration
 import Geom.Profile
 import Density
@@ -375,6 +376,17 @@ theorem milestone_period2_kms :
    fun _ => rfl,
    Bridge.Alphabet.Kmin_eq⟩
 
+/-- Partial Lorentzian dictionary (order dim-1 + caps growth; no Lorentz group). -/
+theorem milestone_partial_lorentzian :
+    (∀ tTurn, Obs.Dimension.OrderDimEq tTurn
+      (Obs.CausalOrder.fwdPrecedes tTurn) 1) ∧
+    Bridge.Expansion.NumberEqualsVolume ∧
+    Bridge.LorentzianDict.continuum_lorentzian_refused = True.intro ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨Bridge.LorentzianDict.order_dim_one,
+   Bridge.Expansion.number_equals_volume_flagged,
+   rfl, Bridge.Alphabet.Kmin_eq⟩
+
 theorem milestone_phase_E :
     (∀ T, Bridge.PhaseEToys.deltaS T = 1) ∧
     (∀ T, Bridge.PhaseEToys.heatQuantum T =
@@ -460,6 +472,7 @@ theorem bridge_arc :
 #print axioms milestone_phase_E
 #print axioms milestone_area_as_caps
 #print axioms milestone_period2_kms
+#print axioms milestone_partial_lorentzian
 #print axioms bridge_arc
 
 end Bridge.Arc

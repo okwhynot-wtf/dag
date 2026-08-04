@@ -1,5 +1,5 @@
 Diagonal Archive Geometry — symbolic law
-corpus hybrid/ DAG v0.1.25
+corpus hybrid/ DAG v0.1.26
 
 ═══════════════════════════════════════════════════════════════════════════════
 0. Layers  (downward imports only)
@@ -168,7 +168,7 @@ VII. Residue / refusal
           T-10 Page flux shape landed (`PageShape`); Bogoliubov still out;
           period-2 / KMS toy landed; area-as-caps sharpening landed;
           finite Ollivier trial landed; matter-as-input host API optional;
-          RE-side growth law (not yet sought); partial Lorentzian dictionary
+          RE-side growth law (not yet sought); partial Lorentzian dictionary landed
   open (structural): **O-2** no boost / Unruh T (only ℤ/2; deepest Einstein gap);
           **R-1** ultrametric≠space (counting attack landed above);
           **O-4** continuum Lorentzian limit;

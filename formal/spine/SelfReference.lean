@@ -243,6 +243,77 @@ theorem minimal_reaches_bound (k : Nat) :
       exact Nat.succ_le_of_lt (Nat.pow_pos (by decide : 0 < 2))
     exact (Nat.add_sub_assoc hP k).symm
 
+/-! ## Articulation capacity (names behind the schedule)
+
+`eventually_sayable` alone is a scheduling claim. The theorems below
+ground it: one fresh name per tick means that by the completion bound
+the ladder's fresh stock exactly covers the predicate supply of level
+`k`, and an explicit injective allocation hands each predicate index a
+distinct fresh slot, available by one tick past its stage. This is
+capacity + assignment, not semantic interpretation; the policy flag on
+`FairSchedule` stands. -/
+
+/-- Fresh names accumulated between level `k` and level `m`. -/
+def freshNames (k m : Nat) : Nat :=
+  levelCard m - levelCard k
+
+/-- One fresh name per tick: the stock grows by exactly the tick count. -/
+theorem levelCard_add (k d : Nat) :
+    levelCard (k + d) = levelCard k + d := by
+  induction d with
+  | zero => rfl
+  | succ d ih =>
+    have hstep : levelCard (k + (d + 1)) = levelCard (k + d) + 1 := rfl
+    rw [hstep, ih]
+    rfl
+
+/-- **articulation_capacity.** At the completion bound
+    `m = k + predicateCount k`, fresh names exactly cover the predicate
+    supply of level `k`. -/
+theorem articulation_capacity (k : Nat) :
+    freshNames k (k + predicateCount k) = predicateCount k := by
+  dsimp [freshNames]
+  rw [levelCard_add]
+  exact Nat.add_sub_cancel_left _ _
+
+/-- Name-slot allocation: predicate index `i` of level `k` is assigned
+    the `i`-th fresh name. -/
+def nameSlot (k i : Nat) : Nat := levelCard k + i
+
+/-- Slots are fresh: they lie past every name present at level `k`. -/
+theorem nameSlot_fresh (k i : Nat) : levelCard k ≤ nameSlot k i :=
+  Nat.le_add_right _ _
+
+/-- Distinct predicate indices receive distinct slots. -/
+theorem nameSlot_inj (k : Nat) :
+    ∀ i j, nameSlot k i = nameSlot k j → i = j :=
+  fun _ _ h => Nat.add_left_cancel h
+
+/-- Every allocated slot exists within the level reached at the
+    completion bound. -/
+theorem nameSlot_in_range (k : Nat) :
+    ∀ i, i < predicateCount k →
+      nameSlot k i < levelCard (k + predicateCount k) := by
+  intro i hi
+  rw [levelCard_add]
+  exact Nat.add_lt_add_left hi _
+
+/-- **eventual_sayability_has_names.** The minimal fair schedule is
+    backed by actual name capacity: each predicate index of level `k`
+    owns a distinct fresh slot, in range at the completion bound and
+    available by one tick past its stage. -/
+theorem eventual_sayability_has_names (k : Nat) :
+    (∀ i, i < predicateCount k →
+      levelCard k ≤ nameSlot k i ∧
+      nameSlot k i < levelCard (k + predicateCount k) ∧
+      nameSlot k i < levelCard ((minimalSchedule k).stageOf i + 1)) ∧
+    (∀ i j, nameSlot k i = nameSlot k j → i = j) := by
+  refine ⟨fun i hi => ⟨nameSlot_fresh k i, nameSlot_in_range k i hi, ?_⟩,
+    nameSlot_inj k⟩
+  show levelCard k + i < levelCard (k + (i + 1))
+  rw [levelCard_add]
+  exact Nat.lt_succ_self _
+
 /-! ## Lag theorem -/
 
 /-- Lag arithmetic at the canonical completion lower bound
@@ -358,6 +429,8 @@ theorem meta_triad_quantitative (k : Nat) :
 #print axioms SelfReference.deficit_count
 #print axioms SelfReference.deficit_vanishes
 #print axioms SelfReference.completeness_in_limit_is_policy
+#print axioms SelfReference.articulation_capacity
+#print axioms SelfReference.eventual_sayability_has_names
 #print axioms SelfReference.lag_theorem
 #print axioms SelfReference.corpus_not_universal
 #print axioms SelfReference.meta_triad_quantitative

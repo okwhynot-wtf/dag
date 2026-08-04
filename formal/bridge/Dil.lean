@@ -26,8 +26,10 @@ rigidity is relative to a base bijection (`|E₀| = 4`). Ladder-predicate
 addressing witness and `|S|>K` address-uniform idx fragment land below.
 **Straightening** (`isoToFreeOnBase` / `straighten_fragment`): UF archives
 ≅ append-only on frozen base; record gauge = base relabelling.
-Tick identification remains packaged in
-`TickSimulation.tick_identification_licensed` (not discharged here).
+**T-2** classified identification:
+`TickSimulation.tick_identification` (append glue here via
+`freeOnBase_append_step`). Historical remnant:
+`tick_identification_licensed`.
 -/
 
 namespace Bridge.Dil
@@ -867,7 +869,8 @@ theorem joint_inj_of_addressUniform {S Alph : Type} {u : S → S}
   exact ⟨hidx s₁ s₂ hu ha, he⟩
 
 /-- Tick identification (naming ↔ microtick): see
-    `Bridge.TickSimulation.tick_identification_licensed`. -/
+    `Bridge.TickSimulation.tick_identification` (v0.2).
+    Historical licensed remnant kept as a pointer of humility. -/
 def tick_identification_T2_licensed : True := True.intro
 
 /-! ## I-2 caps archive (Fin schedule, non-singleton base) -/
@@ -1202,6 +1205,23 @@ def freeOnBaseUF (S : Type) (u : S → S) (Base : Type) (zBase : Base) :
         | mk b' t' =>
           cases h
           rfl
+
+/-- **Induction step (archive face).** On `freeOnBase`, one microtick is
+    exactly one append: freeze the base letter, `Word.cons` the system
+    letter. This is the operational content of T-2 induction glue on Dil
+    carriers — not a `Registration → Ladder.Level` functor. -/
+theorem freeOnBase_append_step (S : Type) (u : S → S) (Base : Type)
+    (zBase : Base) (T : Nat) (s : S) (e0 : Base) (w : Word S T) :
+    (freeOnBase S u Base zBase).r T s (e0, w) = (e0, Word.cons s w) :=
+  rfl
+
+/-- Peel after append: UF factor recovers the just-written letter and prior
+    archive letter (namer-shaped invertibility on history). -/
+theorem freeOnBase_factor_cons (S : Type) (u : S → S) (Base : Type)
+    (zBase : Base) (T : Nat) (s : S) (e0 : Base) (w : Word S T) :
+    (freeOnBaseUF S u Base zBase).factor T (e0, Word.cons s w) =
+      (s, (e0, w)) :=
+  rfl
 
 /-- Replay a free word from an arbitrary base letter (not just `z0`). -/
 def interpretFromBase {S : Type} {u : S → S} (A : Archive S u) :

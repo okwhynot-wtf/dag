@@ -1,5 +1,5 @@
 Diagonal Archive Geometry — symbolic law
-corpus hybrid/ DAG v0.1.28
+corpus hybrid/ DAG v0.2.0
 
 ═══════════════════════════════════════════════════════════════════════════════
 0. Layers  (downward imports only)
@@ -11,7 +11,7 @@ corpus hybrid/ DAG v0.1.28
 
   naming tick  =  ladder step Lₖ ↦ Lₖ₊₁
   microtick    =  one U : S×E → S×E
-  (identified only where T-2 licenses)
+  (identified by Bridge.TickSimulation.tick_identification)
 
 ═══════════════════════════════════════════════════════════════════════════════
 I. Spine  (DM arena)
@@ -59,7 +59,7 @@ II. Ledger  (AG over I-1 / I-2)
                                         minimal K=2 schedule = caps;
                                         UF Hom∃ · iso · graded term.;
                                         I-2 Fin alphabet-UF + ladder witness +
-                                        address-uniform idx; T-2 licensed))
+                                        address-uniform idx; T-2 tick_identification)
   |caps T| = 2^(T+2)                   predicateCount(T)
   committed prof = expand              prof(T)=T
   alive:  2^T ≤ 2^(T+2)                eternally, by arithmetic
@@ -127,8 +127,11 @@ IV. Dictionary  (I-4: K-certificate | L-certificate)
 
 ═══════════════════════════════════════════════════════════════════════════════
 V. Identifications  (three corpora, one object)
+    proved status under Bridge.TickSimulation.tick_identification
 ═══════════════════════════════════════════════════════════════════════════════
 
+  naming tick             ≅  microtick (UF archives, up to record gauge;
+                             Fund / period-2 exempt; swap = necessity half)
   Fund (live 2-cycle)     ≅  oscillator (Inj∧¬merge∧¬record)  ≅  H=0 quintom
   forgets count           ≅  archive silent                   ≅  envelope const
   involution / undirected ≅  undirected bounce                ≅  swap EOM
@@ -161,7 +164,8 @@ VII. Residue / refusal
 ═══════════════════════════════════════════════════════════════════════════════
 
   open (tractable): deeper `|S|>K` alphabet-UF lift (optional; Fin I-2 closed);
-          T-2 induction glue (straightening landed; classified ID open);
+          Born no-go (uniform T-12 weight ≠ Born; Gleason unavailable — upgrade
+            refusal to theorem); O-2 decision (KMS/modular attack vs feature);
           O-3 Mathlib sheaf/site (stalk glue + restriction + dynamics
             sections landed; continuum locality refused);
           R-1 counting landed (tree faces ≤ caps; ultrametric≠space remains);
@@ -176,8 +180,9 @@ VII. Residue / refusal
           **O-5** SM inventory underdetermined (emergent patterned flux A–E)
   open (philosophical): facticity of liveness; ℤ/2 + branch choice; arena
           adequacy; blank ontology; RE action inputs
-  obstructed: Registration↛ladder-carrier naming (swap: fixed |E|=2 forever;
-              naming grows levelCard) — label-namer factor still holds
+  obstructed: Registration↛ladder-carrier naming as *total functor*
+              (swap: fixed |E|=2 forever; naming grows levelCard) — classified
+              T-2 uses this as necessity half; label-namer factor holds
   refuse: H₀/number-from-Bool; quintom-as-world; premise-free Law of Time;
           continuum spacetime/Einstein/QFT/BH; continuum Boltzmann;
           Born from underdetermination alone (uniform T-12 weight ≠ Born);
@@ -186,11 +191,12 @@ VII. Residue / refusal
           (discrete T / Page / capacity-growth toys: Phase E, not continuum)
   coincidence (unpromoted): cosmology flatness puzzle ↔ DAG flatness budget
   not residue: ¬flat(prof); Kmin=2; |caps T|=2^(T+2); one ℤ/2;
-               recordLabel∶Bool↪E; committed tick simulation; registers_admits_namer;
-               T-10…T-16; E1; E2; meta reports structural; Forman sign;
-               seal-per-reading = local horizon (Jacobson quantifier discharged in
-                 skeleton: every self-reading has a dodge; observers_forced supplies
-                 the observers)
+               recordLabel∶Bool↪E; tick_identification (classified T-2);
+               straighten; registers_admits_namer; T-10…T-16; E1; E2;
+               meta reports structural; Forman sign;
+               **Jacobson quantifier discharged internally** — every
+               self-reading has a dodge; `observers_forced` supplies the
+               observers (horizon observer-dependence derived, not postulated)
 
   spine:   Canon · Orbit · Diagonal · Ladder · Density · NonCommencement · Branch · Interior · OmegaDuration
   ledger:  Geom.Registration · Profile · Gradient · Obs.Recovery · Obs.Dimension

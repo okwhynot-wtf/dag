@@ -159,13 +159,11 @@ the DM arena style; AG §I counting becomes a corollary. If it fails, document
 the obstruction as residue; the hybrid survives with E as posited structure,
 degraded to AG's current status.
 
-**T-2 Tick simulation.** Every AG microstep sequence satisfying Registration
-factors through DM naming extensions, and conversely the committed ladder
-yields a U with StreamMute at every tick. *Difficulty: medium-high.*
-Acceptance: a functor-like translation in both directions with identity
-round-trips on the committed path. Failure mode is informative: it locates
-where geometry outruns representation, and gets filed as residue, with the
-naming-tick/microtick identification then restricted to the proven fragment.
+**T-2 Tick simulation.** **Discharged (classified, v0.2):**
+`Bridge.TickSimulation.tick_identification` — eternal UF-archive dynamics
+factor through naming extensions up to record gauge; Fund/period-2 exempt;
+obstructed swap proves the dichotomy exhaustive. Not a total functor on
+carriers. Arc: `docs/ARC_V02.md`.
 
 **T-3 Alphabet grounding.** K = 2 is the least admissible merge rate, derived
 from `fundamental_two_elements`; K > 2 corresponds to non-minimal blank

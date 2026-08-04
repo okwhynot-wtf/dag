@@ -49,8 +49,8 @@ caricatures are in scope; continuum identifications are not.
 | Item | Discharged | Remains |
 |---|---|---|
 | **T-1** Environment UP | Fiber UP; Dil keystone; I-2 Fin closed; ladder witness; address-uniform idx | Optional deeper `|S|>K` UF-lift (not required for Fin I-2) |
-| **T-2** Tick simulation | Committed path (`tick_simulation`); **licensed remnant** (`tick_identification_licensed`); **straightening** (`straighten_fragment`: UF≅append-on-base) | Induction glue → classified ID (unbounded demand climbs; Fund/swap-bounded exempt) |
-| **T-2 factorisation** | Namer-shaped label factor (`registers_admits_namer`); **carrier-level factorisation obstructed** by eternal swap on fixed `Bool` vs growing `levelCard` (necessity half: eternal hyp is tight) | Naming↔microtick still licensed; skeleton in `tick_identification_ingredients` |
+| **T-2** Tick simulation | **Classified** (`tick_identification`, v0.2): Fund exempt + swap necessity + Dil straighten/append + namer + rate weld + ladder `NamingExtension`. Arc: `docs/ARC_V02.md` | Not a carrier functor; historical `_licensed` remnant retained |
+| **T-2 factorisation** | Namer-shaped label factor (`registers_admits_namer`); **carrier-level factorisation obstructed** by eternal swap (necessity half); per-tick Dil glue (`tick_identification_step`) | — |
 
 ## Refused (genuine — keep)
 

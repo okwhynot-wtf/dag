@@ -205,6 +205,25 @@ theorem milestone_T2_straighten :
    Bridge.TickSimulation.oscillator_silent.1,
    Bridge.Alphabet.Kmin_eq⟩
 
+/-- T-2 tick identification (classified): Fund exempt + swap necessity + UF append. -/
+theorem milestone_T2_tick_id :
+    Bridge.TickSimulation.FundExempt ∧
+    Bridge.TickSimulation.BoundedReuseRegisters ∧
+    Bridge.TickSimulation.NamingCarrierClimbs ∧
+    (∀ {S : Type} {u : S → S} {A : Bridge.Dil.Archive S u}
+      (_fa : Bridge.Dil.UniqueFactorization A),
+      ∃ _i : Bridge.Dil.ArchiveIso A
+        (Bridge.Dil.freeOnBase S u (A.E 0) A.z0), True) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨Bridge.TickSimulation.tick_identification.1,
+   Bridge.TickSimulation.tick_identification.2.1,
+   Bridge.TickSimulation.tick_identification.2.2.1,
+   fun fa => (Bridge.TickSimulation.tick_identification.2.2.2.1 fa).1,
+   Bridge.Alphabet.Kmin_eq⟩
+
+/-- Backward-compatible alias. -/
+def milestone_T2_tick_id_classified := milestone_T2_tick_id
+
 /-- T-2 factorisation: namer-shaped positive + carrier obstruction. -/
 theorem milestone_M4b :
     (∀ {S E : Type} {U : S × E → S × E},
@@ -482,6 +501,8 @@ theorem bridge_arc :
 #print axioms milestone_ladder_predicate_addressing
 #print axioms milestone_T2_tick_id_licensed
 #print axioms milestone_T2_straighten
+#print axioms milestone_T2_tick_id
+#print axioms milestone_T2_tick_id_classified
 #print axioms milestone_M4b
 #print axioms milestone_T10
 #print axioms milestone_T10_shape

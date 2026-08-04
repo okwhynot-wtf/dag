@@ -547,8 +547,9 @@ of $(\phi,\sigma)$ is not used.
 \draw[arr, densely dashed] (ux) -- node[right, font=\scriptsize]{inverse} (rev);
 \node[below=2.5mm of phix, align=center, font=\footnotesize\sffamily]
   {$U=\sigma\comp\phi$};
-\node[below=18mm of phix, align=center, font=\footnotesize\sffamily, text=muted]
-  {swap presents $U^{-1}=\phi\comp\sigma$};
+\path (y.south) -- (rev.south)
+  node[midway, below=3mm, align=center, font=\footnotesize\sffamily, text=muted]
+    {swap presents $U^{-1}=\phi\comp\sigma$};
 \end{tikzpicture}
 \caption{Two-bounce presentation and swap. Pair labels are conventional;
 exchange covers reversal (Theorem~\ref{thm:swap}).}
@@ -803,6 +804,27 @@ confined to marked layers and to Section~\ref{sec:status}.
 
 \section*{Formal companion}
 \label{sec:companion}
+
+The development compresses to one line, each clause keyed to its
+result:
+\begin{center}
+{\small
+\renewcommand{\arraystretch}{1.0}
+\begin{tabular}{@{}c@{\qquad}c@{\qquad}c@{}}
+$\Fund\cong\neg$ &
+$\act\comp\act=\mathrm{id}\ \Rightarrow\ \neg\,\mathrm{erase}$ &
+$\mathrm{merge}\ \Rightarrow\ \mathrm{record}$ \\
+{\scriptsize\color{muted} Thm.~\ref{thm:canon}} &
+{\scriptsize\color{muted} Prop.~\ref{prop:no-erase}} &
+{\scriptsize\color{muted} Thm.~\ref{thm:reg}} \\[5pt]
+$|\mathrm{caps}\,T|=2^{\,T+2}$ &
+naming $\cong$ $\mu$tick, up to gauge &
+$U=\sigma\comp\phi$;\ swap $=$ reversal;\ one $\Ztwo$ \\
+{\scriptsize\color{muted} Thm.~\ref{thm:caps}} &
+{\scriptsize\color{muted} Thm.~\ref{thm:arrow}} &
+{\scriptsize\color{muted} Thms.~\ref{thm:exists}, \ref{thm:swap}, \ref{thm:z2}} \\
+\end{tabular}}
+\end{center}
 
 Representative declarations (Lean~4; no Mathlib; no $\mathtt{sorry}$):
 \begin{center}

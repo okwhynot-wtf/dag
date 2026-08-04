@@ -86,9 +86,9 @@ theorem areaBits_succ (T : Nat) :
     areaBits (T + 1) = areaBits T + 1 := by
   simp [areaBits, Nat.add_assoc]
 
-/-- **Area-as-caps sharpening.** Bekenstein-shaped reading of `|caps T|`
-    as discrete area: `log₂ |caps| = T+2`, demand ≤ area, +1 bit/tick.
-    Continuum area / holographic island theorems remain refused. -/
+/-- Continuum area / holographic island theorems are not derived.
+    Bekenstein-shaped reading of `|caps T|` as discrete area:
+    `log₂ |caps| = T+2`, demand ≤ area, +1 bit/tick. -/
 theorem area_as_caps_sharpening :
     (∀ T, caps T = 2 ^ areaBits T) ∧
     (∀ T, 2 ^ T ≤ caps T) ∧

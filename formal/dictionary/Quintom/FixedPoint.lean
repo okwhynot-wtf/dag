@@ -8,7 +8,7 @@ import Quintom.Kernel
 The act excludes `a(x) = x` as a state. In certified dissipative models,
 the fixed set is attained only at measure-zero crossing instants and
 approached asymptotically without finite-time occupation away from those
-instants. ODE side is an exhibit.
+instants. ODE dynamics are outside this module (see `exhibits/quintom/`).
 -/
 
 namespace Dictionary.Quintom.FixedPoint

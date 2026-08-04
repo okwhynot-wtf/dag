@@ -9,18 +9,18 @@ import Obs.Budget
 import Obs.StochasticUnlock
 
 /-!
-# Effective matter — sprint A1–A3, B4, C2
+# Effective matter — A1–A3, B4, C2
 
 Hypothesis H: matter is an emergent effective description of record
 flux that a bounded lossless ledger is forced to emit at capacity
 saturation.
 
-This module makes H *testable*:
-- **A1** `effectiveMatter` = stress/flux proxy on a local patch
-- **A2** vacuum dynamics = Inj ∧ ¬Merges ∧ ¬Registers (oscillator witness)
-- **A3** matter-bearing tick = saturated with nonzero fiber
-- **B4** below saturation there is capacity slack
-- **C2** Kmin Forman unpaid flatness fits inside the expand/caps aliveness budget
+Testable consequences formalised here:
+- A1 `effectiveMatter` = stress/flux proxy on a local patch
+- A2 vacuum dynamics = Inj ∧ ¬Merges ∧ ¬Registers (oscillator witness)
+- A3 matter-bearing tick = saturated with nonzero fiber
+- B4 below saturation there is capacity slack
+- C2 Kmin Forman unpaid flatness fits inside the expand/caps aliveness budget
 
 No Standard Model, no continuum `T_{μν}`, no cosmological numbers.
 -/
@@ -133,7 +133,7 @@ theorem vacuum_vs_matter_channel_separable :
 /-! ## B4 — slack below saturation -/
 
 /-- **B4.** Below saturation, fiber length is strictly below alphabet
-    length: unused capacity slack. "Matter pressure" is optional until
+    length: unused capacity slack. Matter pressure need not appear until
     the bound. -/
 theorem slack_below_saturation
     {X E S E' : Type} [DecidableEq E']
@@ -207,11 +207,11 @@ theorem kmin_flatness_within_expand_budget
   rw [h2]
   exact Nat.pow_le_pow_right (by decide : 0 < 2) hT
 
-/-! ## Sprint package -/
+/-! ## Package -/
 
-/-- Sprint A1–A3 + B4 + C2: H is Lean-testable.
-    Vacuum ≠ matter-channel; saturation fixes effective matter;
-    slack exists below saturation; Kmin flatness fits aliveness budget. -/
+/-- A1–A3 + B4 + C2: vacuum ≠ matter-channel; saturation fixes effective
+    matter; slack exists below saturation; Kmin flatness fits aliveness
+    budget. -/
 theorem effective_matter_sprint :
     VacuumDynamics Geom.Registration.oscStep ∧
     Geom.Registration.Merges Geom.Registration.swapStep ∧

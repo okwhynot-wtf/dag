@@ -14,13 +14,13 @@ import Alphabet
 /-!
 # Expansion — E1 / E2 named; T-13 conditional (number = volume)
 
-Four meanings of "expansion" (spec):
+Four meanings of "expansion":
 
-  E1  monotone growth of structure — *theorem* (this file)
-  E2  exponential capacity at fixed rate — *theorem* (this file);
+  E1  monotone growth of structure — theorem (this file)
+  E2  exponential capacity at fixed rate — theorem (this file);
       liveness forces the growth (explanatory direction)
-  E3  growth of a spatial metric — *blocked* (R-1 ultrametric obstruction)
-  E4  Friedmann dynamics with matter — *refused*
+  E3  growth of a spatial metric — blocked (R-1 ultrametric obstruction)
+  E4  Friedmann dynamics with matter — not derived
 
 **T-13** (conditional). Causal-set pedigree: order + number = geometry
 (Malament: causal structure ⇒ metric up to conformal factor; counting
@@ -31,7 +31,8 @@ volume with the capacity schedule. Then volume grows as `K^t`; at
 liveness + one flagged postulate.
 
 Units caveat: ticks are naming steps; no seconds are derivable; no
-observable `H₀` is forecast. E4 refusal holds.
+observable `H₀` is forecast. Continuum Friedmann dynamics (E4) are not
+derived.
 -/
 
 namespace Bridge.Expansion
@@ -153,7 +154,7 @@ structure VolumeReading where
 /-- Canonical token that the flagged reading is in force. -/
 def numberEqualsVolume : VolumeReading := ⟨⟩
 
-/-- Backward-compatible name. -/
+/-- Alias for the volume-reading token type. -/
 abbrev NumberEqualsVolume : Prop := Nonempty VolumeReading
 
 theorem number_equals_volume_flagged : NumberEqualsVolume :=

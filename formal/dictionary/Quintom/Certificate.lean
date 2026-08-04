@@ -8,13 +8,14 @@ import Geom.Registration
 /-!
 # Quintom dictionary entry — certificate filing (T-5, T-8)
 
-RE / re-entrant engine: **nonempty-locus** mode of clause (c).
+RE / re-entrant engine: nonempty-locus mode of clause (c).
 The physical divide `w = −1` is the distinguished fixed locus (touched at
 crossings, approached under friction). Channel-label swap remains a strict
 involution with empty combinatorial Fixed on `Channel`; the locus mode is
 carried by `ReState` below and `fixedMode := nonempty`.
 
-Dynamical (ODE) facts live under `exhibits/quintom/` and are refused as Lean.
+Dynamical (ODE) content lives under `exhibits/quintom/` and is not claimed
+in this module.
 -/
 
 namespace Dictionary.Quintom.Certificate

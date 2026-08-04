@@ -5,15 +5,12 @@ import Alphabet
 /-!
 # QEC toy — ledger dictionary entry (quantum error correction)
 
-Second L-domain (after Page): syndrome extraction ≅ merge⇒record;
-stabilizer / codespace caricature ≅ Inj on the joint step.
+Syndrome extraction as merge⇒record; stabilizer / codespace caricature
+as injectivity of the joint step. A finite toy filling the L-certificate
+schema (Inj, merge, record, capacity/exhaustion). Hilbert-space codes,
+threshold theorems, and holographic code duality lie outside this module.
 
-Finite toy only — not a Hilbert-space code, not threshold theorems,
-not holographic code duality as Lean gravity. The point is that a
-genuinely different physical domain still fills the L-certificate
-schema (Inj, merge, record, capacity/exhaustion).
-
-Dictionary:
+Dictionary map:
   Syndrome extraction          ↔ Registration (merge ⇒ record)
   Stabilizer / codespace       ↔ Inj(U) on joint system×syndrome
   Error support collapse       ↔ system-side merge (U_S)
@@ -29,9 +26,9 @@ open Geom.Registration
 /-! ## Finite stabilizer caricature
 
 `S = Bool` = one data qubit (coarse); `E = Bool` = one syndrome bit.
-`swapStep` is again the Registration witness: injective joint dynamics,
-system merge, syndrome record. Same skeleton as Page, different gloss —
-that is the dictionary point.
+`swapStep` is the Registration witness: injective joint dynamics,
+system merge, syndrome record — the same skeleton as Page under a
+different physical reading.
 -/
 
 /-- Joint encode/extract step (Registration witness). -/

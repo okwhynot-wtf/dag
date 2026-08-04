@@ -19,12 +19,12 @@ import Branch
 /-!
 # T-16 Discrete Einstein / Jacobson skeleton
 
-**Attempt.** Jacobson derived continuum Einstein equations from horizon
-thermodynamics: entropy/area bound + Clausius at local Rindler horizons.
-This module asks how far that logical shape survives in DAG's discrete
-ledger, now that Forman curvature (T-14) and saturation EoS (T-15) exist.
+Jacobson derived continuum Einstein equations from horizon thermodynamics:
+entropy/area bound + Clausius at local Rindler horizons. This module
+records the discrete ledger analogues available once Forman curvature
+(T-14) and saturation EoS (T-15) are in place.
 
-**What falls out (proved below).**
+Proved below:
 1. Entropy/capacity bound (T-9).
 2. Clausius/Landauer: merge ⇒ record (T-4 / T-11).
 3. Local horizon: seal-per-reading + observers_forced (Jacobson quantifier).
@@ -39,16 +39,16 @@ ledger, now that Forman curvature (T-14) and saturation EoS (T-15) exist.
 7. Pointwise local ledger patches over branch loci (O-3 stalk); overlap
    compatibility of capacity lengths when loci agree.
 
-**What does not fall out.**
-- O-2 (structural): boosts / Unruh `T` — only ℤ/2. Deepest Einstein gap.
-- O-3 (tractable open work): sheaf of local ledgers — stalks exist; glue
-  programme open.
-- R-1 (structural obstruction + tractable budget): ultrametric ≠ space;
-  recombination counting is Lean-attackable.
-- O-4 / O-5: continuum Lorentzian limit; matter from the framework.
-- Continuum `G_{μν} = 8π T_{μν}`: refused. Skeleton occupies the EoS slot.
+Scope limits:
+- O-2: boosts / Unruh `T` — only ℤ/2.
+- O-3: stalks of local ledgers exist; sheaf glue is not completed.
+- R-1: ultrametric ≠ Archimedean space; recombination counting is separate.
+- O-4 / O-5: continuum Lorentzian limit and continuum matter dynamics are
+  not derived.
+- Continuum `G_{μν} = 8π T_{μν}` is not derived. The skeleton occupies the
+  equation-of-state slot only.
 
-No temperature, no Boltzmann, no continuum metric, no `sorry`.
+No temperature, no Boltzmann factors, no continuum metric.
 -/
 
 namespace Bridge.EinsteinSkeleton
@@ -164,7 +164,7 @@ theorem stress_eq_capacity_at_saturation
 /-! ## Local ledger patches (O-3 stalks) -/
 
 /-- A local ledger patch at a branch locus. Pointwise Jacobson needs one
-    balance law per locus; a sheaf would glue them (O-3, open). -/
+    balance law per locus; a sheaf would glue them (O-3). -/
 structure LocalLedgerPatch (X E S E' : Type) where
   locus : Nat
   G : X × E → S × E'
@@ -202,8 +202,8 @@ theorem patch_saturation_balance
   Bridge.Saturation.saturation_iff_tick_equality
     p.G hinj p.e0 p.s p.fiber hd hsys p.alphabet hEs halph
 
-/-- Every branch node has ≥2 children — the discrete "local frame" width
-    that would host independent local ledgers if O-3 were solved. -/
+/-- Every branch node has ≥2 children — the discrete local-frame width
+    that would host independent local ledgers under an O-3 sheaf. -/
 theorem local_frame_width (k : Nat)
     (f : Ladder.Level k → Ladder.Level k → Bool) :
     ∃ e₁ e₂ : Branch.Predicate k,
@@ -224,9 +224,9 @@ theorem local_horizon_seal (k : Nat) :
    (Observer.observers_forced k).1,
    Bridge.Alphabet.Kmin_eq⟩
 
-/-! ## Open gaps (enumerated; none discharged) -/
+/-! ## Gaps relative to continuum Einstein -/
 
-/-- Residues blocking continuum Einstein. Enumerated for the audit. -/
+/-- Gaps separating the discrete skeleton from continuum Einstein. -/
 inductive OpenGap where
   | O2_noBoostUnruh
   | O3_noLedgerSheaf
@@ -245,16 +245,17 @@ theorem openGaps_complete :
     OpenGap.O3_noLedgerSheaf ∈ openGaps := by
   decide
 
-/-! ## Jacobson input package (discharged skeletons) -/
+/-! ## Jacobson input package -/
 
-/-- **Flagged reading token.** Theorems that assemble Jacobson inputs into
-    an Einstein-skeleton conclusion take an explicit `JacobsonReading` so
-    the interpretive step lives in the type. Continuum `G=8πT` stays refused. -/
+/-- Explicit reading token. Theorems that assemble Jacobson inputs into
+    an Einstein-skeleton conclusion take a `JacobsonReading` so the
+    interpretive step lives in the type. Continuum `G = 8π T` is not
+    derived. -/
 structure JacobsonReading where
 
 def jacobsonReading : JacobsonReading := ⟨⟩
 
-/-- J1–J5: every Jacobson ingredient that DAG currently discharges. -/
+/-- J1–J5: Jacobson ingredients available in the discrete ledger. -/
 theorem jacobson_inputs_discharged (_jr : JacobsonReading) :
     -- J1 entropy/capacity bound
     (∀ T, Bridge.Capacity.caps T = 2 ^ (T + 2)) ∧
@@ -287,14 +288,13 @@ theorem jacobson_inputs_discharged (_jr : JacobsonReading) :
 
 /-- **T-16. Discrete Einstein / Jacobson skeleton.**
 
-Discharged: Jacobson inputs (capacity, Landauer, seal-horizon, saturation
-EoS, Forman accounting); discrete `G ~ T` caricature (unpaid flatness
-paid by registered faces; stress = capacity at saturation); local ledger
-stalks with overlap compatibility.
-
-Open: O-2…O-5, R-1 (see `openGaps`). Continuum field equations refused.
-The skeleton occupies the logical slot of Einstein-as-equation-of-state
-without deriving `G_{μν} = 8π T_{μν}`. -/
+Jacobson inputs (capacity, Landauer, seal-horizon, saturation EoS, Forman
+accounting); discrete `G ~ T` caricature (unpaid flatness paid by
+registered faces; stress = capacity at saturation); local ledger stalks
+with overlap compatibility. Gaps O-2…O-5 and R-1 are enumerated in
+`openGaps`. Continuum field equations are not derived; the skeleton
+occupies the logical slot of Einstein-as-equation-of-state without
+deriving `G_{μν} = 8π T_{μν}`. -/
 theorem T16_discrete_einstein_skeleton (_jr : JacobsonReading) :
     -- discrete G ~ T on Kmin internal edges
     (unpaidFlatness 3 3 0 = 2 ∧

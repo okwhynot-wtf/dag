@@ -15,8 +15,6 @@ values. Nothing about truth is axiomatised.
 * **Ladder correspondence** (`tick_is_revision_step`,
   `settled_values_persist`): each naming tick is a revision stage; lifts
   conserve prior readings.
-
-No declared axioms.
 -/
 namespace Revision
 

@@ -2,11 +2,12 @@ import Quintom.Kernel
 import Geom.Registration
 
 /-!
-# T-6 Damping = registration (semi-formal)
+# T-6 Damping = registration
 
 Kernel skeleton: contraction is a merge; merge ⇒ record by T-4 / AG.
 Identification of the register with Hubble friction `H` is a certificate
-clause — dynamical content is the exhibit `exhibits/quintom/integrate.py`.
+clause; dynamical content is outside this module
+(`exhibits/quintom/integrate.py`).
 -/
 
 namespace Dictionary.Quintom.Damping
@@ -27,7 +28,7 @@ theorem merge_registers {S E : Type} {U : S × E → S × E}
 
 /-- **T-6 kernel skeleton.** Silent archive at H = 0; registration law
     available for H > 0 models that merge. Full H ↔ register identification
-    remains an exhibit/certificate clause. -/
+    is a certificate / exhibit clause outside the combinatorial skeleton. -/
 theorem damping_registration_skeleton :
     (Geom.Registration.Inj Dictionary.Quintom.Kernel.frictionlessStep ∧
       ¬ Geom.Registration.Merges Dictionary.Quintom.Kernel.frictionlessStep ∧

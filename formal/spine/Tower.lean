@@ -23,8 +23,6 @@ self-articulation by naming extensions.
   concrete one-step naming extension at the fundamental; the default names
   `not` applied to the constant reading, and any fundamental escape yields a
   naming extension.
-
-No declared axioms.
 -/
 namespace Tower
 

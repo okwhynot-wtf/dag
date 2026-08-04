@@ -15,8 +15,6 @@ representational level.
   `restless_refuses_stable_flag`): an ascription tracking a live
   context-free witness flips under the act; constant ascriptions cannot
   track; no stable stored flag.
-
-No declared axioms.
 -/
 namespace Interior
 

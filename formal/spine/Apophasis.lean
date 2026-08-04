@@ -27,8 +27,6 @@ structure and inherits the spine conclusions.
   conjunction at any seed.
 * **Underdetermination** (`essence_exceeds_inventory`): restatement of
   `Tower.underdetermined_at_fundamental`.
-
-No declared axioms.
 -/
 namespace Apophasis
 

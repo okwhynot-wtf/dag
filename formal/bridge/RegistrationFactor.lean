@@ -5,13 +5,13 @@ import Geom.Registration
 import Environment
 
 /-!
-# T-2 Registration → naming factorisation (attack)
+# T-2 Registration → naming factorisation
 
-Positive fragment: every injective 2-merge admits a **namer-shaped**
+Positive fragment: every injective 2-merge admits a namer-shaped
 witness — one record lies outside the image of a singleton embedding into
 `E` (Tower `namer_is_new` shape on labels).
 
-Obstruction: iterated swap registers forever on a **fixed** carrier
+Obstruction: iterated swap registers forever on a fixed carrier
 `E = Bool`, while every naming sequence of length `T` strictly increases
 ladder cardinality. So Registration microticks do not in general factor
 as ladder naming extensions of carriers — only as label-namer witnesses

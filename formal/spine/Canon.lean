@@ -18,8 +18,6 @@ The Fundamental is characterized by a universal property over pointed
   by a unique constructive isomorphism-as-relation.
 * **Name** (`theFundamental`): Lean identifier for the initial object;
   prose name is the Fundamental.
-
-No declared axioms.
 -/
 namespace Canon
 

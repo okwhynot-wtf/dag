@@ -24,7 +24,7 @@ committed ladder this is the Lawvere dodge (`effectOf`).
   (`escapes_really_differ`, `escapes_differ_at`).
 
 Causation is stated within representational dynamics; no probabilistic or
-physical claims. No declared axioms.
+physical claims.
 -/
 namespace Cause
 

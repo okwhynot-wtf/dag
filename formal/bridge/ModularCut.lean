@@ -6,23 +6,21 @@ import Alphabet
 import Revision
 
 /-!
-# O-2 attempt — cut-shift as candidate modular flow
+# O-2 — cut-shift as candidate modular flow
 
-Attack shape: take the period-2 KMS toy, treat a shift of the
-system/archive cut at saturation as a boost analogue, and test whether
-toy correlators satisfy a KMS condition at inverse temperature set by
-the period.
+On the period-2 KMS caricature, a shift of the system/archive cut at
+saturation is treated as a boost analogue. Toy correlators satisfy a KMS
+condition at inverse temperature set by the period.
 
-**Finding (dead end / forced blindness).** Period-2 correlators do
-satisfy a β = 2 stationarity caricature, and cut-shift is well-defined
-at saturated capacity — but `T_c` is set by the *period* (global), so the
-cut cannot change it. One ℤ/2 ⇒ one modular flow ⇒ cut-dependent Unruh `T`
-was unavailable before the test. O-2 ≈ “no continuous 1-param subgroup,”
-the same missing object as O-4 (thermal vs geometric faces).
+Period-2 correlators satisfy a β = 2 stationarity caricature, and
+cut-shift is well-defined at saturated capacity, but `T_c` is set by the
+period (a global datum), so the cut cannot change it. With one ℤ/2 there
+is one modular flow; cut-dependent Unruh `T` is therefore unavailable.
+O-2 is the absence of a continuous 1-parameter subgroup, the same missing
+object as O-4 (thermal vs geometric faces).
 
-Fence: not continuum KMS; not a Lorentz boost; not Unruh temperature as
-physics. Reopen shape (low priority): discrete Tolman / scale-KMS over
-tick windows.
+Continuum KMS, Lorentz boosts, and Unruh temperature as continuum physics
+are not derived.
 -/
 
 namespace Bridge.ModularCut
@@ -31,8 +29,8 @@ open Bridge.PhaseEToys
 open Bridge.Period2KMS
 
 /-- Cut between system-side and archive-side slots at saturated capacity
-    (`|caps T|` slots partitioned). Candidate boost analogue = shift of
-    this cut. -/
+    (`|caps T|` slots partitioned). Shift of this cut is the boost
+    analogue under study. -/
 structure SaturatedCut (T : Nat) where
   systemSlots : Nat
   archiveSlots : Nat
@@ -144,12 +142,12 @@ theorem no_unruh_from_cut {T : Nat} (c₁ c₂ : SaturatedCut T) :
   ⟨cut_temp_independent c₁, cut_temp_independent c₂, area_blind_to_cut c₁,
    c₁.sum_eq_caps.trans c₂.sum_eq_caps.symm⟩
 
-/-- **Forced blindness.** In the period-2 toy, temperature is set by the
-    period — a global datum — and the cut only chooses where you stand.
-    Cut-dependent `T` would need a family of modular flows (a one-parameter
-    group). With exactly one ℤ/2 there is exactly one flow, so blindness
-    was forced before the Unruh test. O-2 ≈ “no continuous 1-param
-    subgroup”; same missing object as O-4 (thermal vs geometric faces). -/
+/-- In the period-2 caricature, temperature is set by the period — a global
+    datum — and the cut only chooses the partition. Cut-dependent `T` would
+    require a family of modular flows (a one-parameter group). With exactly
+    one ℤ/2 there is exactly one flow, so `T_c` and `areaBits` are
+    independent of cut position. O-2 is the absence of a continuous
+    1-parameter subgroup; same missing object as O-4. -/
 theorem o2_forced_blindness :
     (∀ T (_c : SaturatedCut T), combinatorialTemp T = 1) ∧
     (∀ T (_c : SaturatedCut T), Bridge.Capacity.areaBits T = T + 2) ∧
@@ -159,17 +157,13 @@ theorem o2_forced_blindness :
    fun _T c => area_blind_to_cut c,
    rfl, Bridge.Alphabet.Kmin_eq⟩
 
-/-- **O-2 cut-shift attempt — documented dead end.**
+/-- **O-2 cut-shift package.**
 
-    Landed: saturated cut + left/right shift; period-2 correlator KMS
-    caricature at `β = 2`; mid cut witness.
-
-    Failed Unruh test: `T_c` and `areaBits` are blind to cut position
-    (`o2_forced_blindness`). Converting the feature preference into an
-    attempted result: O-2 ≈ no continuous 1-param subgroup (linked to O-4).
-
-    Fence: not continuum Unruh; not a Lorentz boost. Reopen shape: discrete
-    Tolman / scale-KMS over tick windows (low priority). -/
+    Saturated cut with left/right shift; period-2 correlator KMS
+    caricature at `β = 2`; mid-cut witness. `T_c` and `areaBits` are
+    independent of cut position (`o2_forced_blindness`). Continuum Unruh
+    temperature and Lorentz boosts are not derived; O-2 is the absence of
+    a continuous 1-parameter subgroup (linked to O-4). -/
 theorem o2_cut_shift_dead_end :
     (∀ T, ∃ _c : SaturatedCut T, True) ∧
     (∀ s, Revision.LiarRevision s →

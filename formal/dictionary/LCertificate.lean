@@ -8,19 +8,19 @@ import Alphabet
 # L-certificate — ledger admission route
 
 I-4 / KernelCert admits kernel instantiations (involution, negation
-observable, fixed locus, forced +1). That schema was written off the
-quintom and misses ledger-layer physical instantiations.
+observable, fixed locus, forced +1). Ledger-layer physical instantiations
+use a separate admission schema.
 
-An **L-certificate** admits a model that exhibits, Lean-checked on a
-finite toy:
+An L-certificate admits a model that exhibits, on a finite toy:
   (a) a bijective / injective joint step `U`;
   (b) an identified system-side merge;
   (c) the compensating environment record;
   (d) a capacity schedule with its aliveness bound;
   (e) an exhaustion tick with the mute-failure corollary (T-10).
 
-The black hole / Page toy files all five. Gravitational BH / QFT remain
-refused; the toy is finite-dimensional and constructive.
+The Page toy files all five. Continuum gravitational / QFT black-hole
+physics lies outside this module; the toy is finite-dimensional and
+constructive.
 -/
 
 namespace Dictionary.LCertificate

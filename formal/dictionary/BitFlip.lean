@@ -5,10 +5,10 @@ import Canon
 import Geom.Registration
 
 /-!
-# BitFlip — second dictionary entry (information / Szilard caricature)
+# BitFlip — information / Szilard caricature
 
 Non-cosmological I-4 instance: two-state memory with bit-flip involution.
-**Empty** fixed-set mode (live). Forced +1: single-cell no-go.
+Empty fixed-set mode (live). Forced +1: single-cell no-go.
 -/
 
 namespace Dictionary.BitFlip

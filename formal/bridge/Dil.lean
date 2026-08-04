@@ -6,30 +6,28 @@ import Geom.Exhaustion
 import Geom.Registration
 
 /-!
-# Dil — environment as universal completion (keystone)
+# Dil — environment as universal completion
 
 Targets I-2 / T-1 beyond fiber-tagging: the environment is the minimal
 archive restoring injectivity to a merging system map `u : S → S`.
 
-This module lands the afternoon propositions of the keystone sketch:
+Main results:
 1. Free archive is initial in `Dil(u)`
 2. Capacity law `|E_{T+1}| ≥ K · |E_T|` from a K-fold fiber
 3. Registration as corollary (merge forces record separation)
 4. Minimal = saturated schedule; ladder predicate count realises `|E_T| = 2^{T+2}`
 
-Rigidity partition fragment landed (cover at equality). Packaged UF↔UF
-iso landed (`rigidity_iso`). Graded terminality among UF + pointed archives
-landed (`graded_terminality_of_UF`). I-2 Fin alphabet-UF closed
-(`boolCapsUF` / `i2_fin_closed` / `rigidity_iso_of_base`): at `K = 2` with
-`S = Bool` the letter type *is* the alphabet, so minimal bijection = UF;
+Also: rigidity partition (cover at equality); UF↔UF iso (`rigidity_iso`);
+graded terminality among UF + pointed archives
+(`graded_terminality_of_UF`); I-2 Fin alphabet-UF
+(`boolCapsUF` / `i2_fin_closed` / `rigidity_iso_of_base`); at `K = 2` with
+`S = Bool` the letter type is the alphabet, so minimal bijection = UF;
 rigidity is relative to a base bijection (`|E₀| = 4`). Ladder-predicate
-addressing witness and `|S|>K` address-uniform idx fragment land below.
-**Straightening** (`isoToFreeOnBase` / `straighten_fragment`): UF archives
+addressing witness and `|S|>K` address-uniform idx fragment.
+Straightening (`isoToFreeOnBase` / `straighten_fragment`): UF archives
 ≅ append-only on frozen base; record gauge = base relabelling.
-**T-2** classified identification:
-`TickSimulation.tick_identification` (append glue here via
-`freeOnBase_append_step`). Historical remnant:
-`tick_identification_licensed`.
+T-2 identification: `TickSimulation.tick_identification` (append glue via
+`freeOnBase_append_step`); fragment `tick_identification_licensed`.
 -/
 
 namespace Bridge.Dil
@@ -869,8 +867,7 @@ theorem joint_inj_of_addressUniform {S Alph : Type} {u : S → S}
   exact ⟨hidx s₁ s₂ hu ha, he⟩
 
 /-- Tick identification (naming ↔ microtick): see
-    `Bridge.TickSimulation.tick_identification` (v0.2).
-    Historical licensed remnant kept as a pointer of humility. -/
+    `Bridge.TickSimulation.tick_identification`. -/
 def tick_identification_T2_licensed : True := True.intro
 
 /-! ## I-2 caps archive (Fin schedule, non-singleton base) -/
@@ -1303,9 +1300,9 @@ theorem factorHistory_retract {S : Type} {u : S → S} {A : Archive S u}
 /-- **Straightening iso.** Every UF archive is isomorphic to the append-only
     archive on its own base (`freeOnBase`). Record gauge = base relabelling;
     uniqueness of Homs is exactly agreement on `E 0` (`hom_unique_of_UF`).
-
-    Fence: Fin/UF archives only. Not Registration→`NamingExtension` on carriers.
-    Does not discharge unconditional T-2; eternal `swapStep` remains obstructed. -/
+    Scope: Fin/UF archives only. Not Registration→`NamingExtension` on
+    carriers. Does not imply unconditional T-2; eternal `swapStep` remains
+    obstructed. -/
 def isoToFreeOnBase {S : Type} {u : S → S} {A : Archive S u}
     (fa : UniqueFactorization A) :
     ArchiveIso A (freeOnBase S u (A.E 0) A.z0) where
@@ -1363,8 +1360,8 @@ theorem boolCaps_straightens_mod_base (u : Bool → Bool) :
    boolCaps_not_pointedSingleton u,
    Bridge.Alphabet.Kmin_eq⟩
 
-/-- **Straightening fragment package.** UF⇒append-only-on-base; pointed⇒free;
-    gauge = base agreement; Bool caps instance. Fence: does not close T-2. -/
+/-- **Straightening fragment.** UF⇒append-only-on-base; pointed⇒free;
+    gauge = base agreement; Bool caps instance. Does not close T-2. -/
 theorem straighten_fragment :
     (∀ {S : Type} {u : S → S} {A : Archive S u}
       (_fa : UniqueFactorization A),
@@ -1406,7 +1403,7 @@ theorem i2_fin_closed (u : Bool → Bool) :
       id id (fun _ => rfl) (fun _ => rfl) rfl, True.intro⟩,
    Bridge.Alphabet.Kmin_eq⟩
 
-/-- Backward-compatible fragment name. -/
+/-- Alias for a subset of the I-2 Fin alphabet-UF package. -/
 theorem i2_caps_record_map_fragment (u : Bool → Bool) :
     (∃ _A : Archive Bool u, True) ∧
     (¬ PointedSingleton (boolCapsArchive u)) ∧
@@ -1461,12 +1458,12 @@ theorem ladder_predicate_addressing_witness :
    fun u => ⟨boolCaps_addressUniform u, True.intro⟩,
    Bridge.Alphabet.Kmin_eq⟩
 
-/-! ## Keystone sprint package -/
+/-! ## Dil package -/
 
-/-- **Keystone Dil sprint.** Free archive initial; capacity step law;
-    registration corollary; ladder/caps realise minimal K=2 schedule;
-    rigidity partition; UF rigidity iso; graded terminality among UF +
-    pointed archives. I-2 Fin alphabet-UF closed (`i2_fin_closed`). -/
+/-- Free archive initial; capacity step law; registration corollary;
+    ladder/caps realise minimal K=2 schedule; rigidity partition; UF
+    rigidity iso; graded terminality among UF + pointed archives.
+    I-2 Fin alphabet-UF (`i2_fin_closed`). -/
 theorem keystone_dil_sprint :
     (∀ {S : Type} {u : S → S} (A : Archive S u),
       (∃ _h : Hom (free S u) A, True) ∧

@@ -22,7 +22,7 @@ successor `Option` construction yields level ω+1.
 * **No settling** (`no_ordinal_settling`): every finite stage of the
   ω-tail still ascends.
 
-No declared axioms; no `Quot`.
+Colimit represented without `Quot`.
 -/
 namespace Limit
 

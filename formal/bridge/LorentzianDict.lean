@@ -12,13 +12,13 @@ import Density
 What the corpus can say with order dimension 1 + capacity growth,
 without boosts / Unruh temperature / continuum Lorentzian metric.
 
-Landed ingredients:
+Ingredients:
 * causal ascent order has combinatorial dimension 1
 * capacity / counted volume grows as `K^t` under `NumberEqualsVolume`
 * only ℤ/2 underdetermination (T-7) — no continuous boost orbit (O-2)
 
-**Fence.** Not a Lorentzian metric, not Malament reconstruction, not
-Unruh `T`, not continuum O-4. Separate from the structural O-2 gap.
+Not a Lorentzian metric, not Malament reconstruction, not Unruh `T`,
+not continuum O-4. Separate from the structural O-2 gap.
 -/
 
 namespace Bridge.LorentzianDict
@@ -43,10 +43,10 @@ theorem only_Z2_underdetermination :
     Bridge.Alphabet.Kmin = 2 :=
   ⟨project_involution, Bridge.Alphabet.Kmin_eq⟩
 
-/-- Continuum Lorentzian limit remains refused (O-4 marker). -/
+/-- Continuum Lorentzian limit is not derived (O-4 marker). -/
 def continuum_lorentzian_refused : True := True.intro
 
-/-- Boost / Unruh temperature remains structurally open (O-2 marker). -/
+/-- Boost / Unruh temperature is not derived (O-2 marker). -/
 def boost_Unruh_open : True := True.intro
 
 /-- ω-shaped capacity clock: caps and levelCard keep growing. -/

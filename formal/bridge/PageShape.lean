@@ -14,7 +14,7 @@ on a bounded archive of capacity `C`:
   t_exh        = C + 1   (first tick with positive stream)
 
 The classical Page tent `min(t, n − t)` is a companion shape on a finite
-window. Continuum QFT / Bogoliubov stay refused.
+window. Continuum QFT / Bogoliubov are not derived.
 -/
 
 namespace Bridge.PageShape

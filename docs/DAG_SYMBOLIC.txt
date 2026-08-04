@@ -1,5 +1,5 @@
 Diagonal Archive Geometry — symbolic law
-corpus hybrid/ DAG v0.1.20
+corpus hybrid/ DAG v0.1.21
 
 ═══════════════════════════════════════════════════════════════════════════════
 0. Layers  (downward imports only)
@@ -47,6 +47,8 @@ II. Ledger  (AG over I-1 / I-2)
   merges live in U_S above base; compensated in U_E
 
   Inj(U) ∧ ∃merge(U)  ⟹  ∃record(U)    Registration
+                                       (derived: joint-inj / Dil capacity;
+                                        mechanised `Bridge.Dil.registration`)
 
   K ≥ 2 = |A|                          merge / blank alphabet
   Kmin = 2                             derived: |Fund| = 2  (T-3)
@@ -68,7 +70,8 @@ II. Ledger  (AG over I-1 / I-2)
   E1: structure↑ forever · E2: caps = K^t, liveness ⇒ expand
   T-13: number=volume (flagged) ⇒ counted V = K^t · 1 bit/tick at K=2
   E3 blocked (R-1 ultrametric / Forman −∞) · E4 refused (Friedmann+matter)
-  T-14: tree Forman < 0; recombination ↑ Forman; live ⇒ ¬flat(prof)
+  T-14: tree Forman < 0; recombination ↑ Forman (flatness paid by faces);
+        live ⇒ ¬flat(prof)
   T-15: alive ⇔ records ≤ caps growth; saturation := equality;
         at saturation, record flux is determined by the capacity schedule
   T-16: discrete Einstein skeleton — Jacobson inputs + Forman unpaid
@@ -138,12 +141,12 @@ VI. Compression
 ═══════════════════════════════════════════════════════════════════════════════
 
   (Fund ≅ ¬ ∧ seal ∧ ladder +1)
-    +  (Inj + merge ⇒ record)  ·  (mute ⇒ K^T ≤ cap)  ·  (eternal ⇒ nonflat)
+    +  (Inj + merge ⇒ record) [derived Dil] · (mute ⇒ K^T ≤ cap) · (eternal ⇒ nonflat)
     +  (bounded ⇒ archive speaks)                      T-10
     +  (Landauer ∧ ¬retract)                           T-11
     +  (□ascent ∧ ¬□direction)                         T-12
     +  (liveness ⇒ caps↑ · number=volume ⇒ V=K^t)      T-13
-    +  (tree Forman < 0 · recomb ↑ Forman · ¬flat)     T-14
+    +  (tree Forman < 0 · recomb ↑ Forman · flatness paid by faces · ¬flat)  T-14
     +  (saturation: ledger balance fixes flux)               T-15
     +  (Jacobson skeleton · Forman G~T · stalks; continuum refused)  T-16
     +  (E = L_• ,  |caps T| = 2^(T+2) ,  Kmin = 2)

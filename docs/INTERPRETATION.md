@@ -60,7 +60,7 @@ tick at `K = 2`. **Not** a forecast of `H₀`.
 - Precluded only on the 1-d line (trivial).
 - Forced non-flat on the ledger (`¬flat(prof)`); de Sitter–shaped under T-13.
 - Maximal negative coarse curvature on branches (ultrametric / 0-hyperbolic).
-- T-14: Forman sign proved; recombination is the cure toward zero.
+- T-14: Forman sign proved; recombination ↑ Forman (flatness paid by faces).
 
 Research question inverted: not “can DAG have curvature?” but “can it buy
 near-flatness from Forman −∞ within the registration budget?”

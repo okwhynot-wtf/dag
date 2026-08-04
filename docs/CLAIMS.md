@@ -18,7 +18,7 @@
 | Phase E continuum toys (optional) | `Bridge.PhaseEToys.phase_E_continuum_toys` | Bridge |
 | E1 monotone structure | `Bridge.Expansion.E1_monotone_structure` | Bridge |
 | E2 exponential capacity | `Bridge.Expansion.E2_exponential_capacity` | Bridge |
-| T-4 registration on spine | `Bridge.RegistrationSpine.registration_on_spine` | Bridge |
+| T-4 registration on spine (derived Dil corollary) | `Bridge.RegistrationSpine.registration_on_spine`, `Bridge.Dil.registration` | Bridge |
 | T-2 tick simulation (committed path) | `Bridge.TickSimulation.tick_simulation` | Bridge |
 | T-1 environment UP (fiber tagging) | `Bridge.Environment.environment_universality` | Bridge |
 | T-1 Dil keystone sprint (partial I-2) | `Bridge.Dil.keystone_dil_sprint` | Bridge |

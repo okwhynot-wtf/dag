@@ -179,8 +179,9 @@ theorem curvature_precluded_only_on_the_line (tTurn : Nat) :
     Obs.Dimension.OrderDimEq tTurn (Obs.CausalOrder.fwdPrecedes tTurn) 1 :=
   Obs.Dimension.ascent_order_dim_eq_one tTurn
 
-/-- **T-14.** Tree Forman negative; recombination raises quantity;
-    live ⇒ ¬flat(prof); preclusion only on the 1-d line. -/
+/-- **T-14.** Tree Forman negative; recombination raises quantity
+    (flatness paid by faces); live ⇒ ¬flat(prof); preclusion only on
+    the 1-d line. -/
 theorem T14_forman_tree_curvature :
     StrictlyNegative (internalDeg 2) (internalDeg 2) ∧
     (∀ faces, quantity faces < quantity (faces + 1)) ∧

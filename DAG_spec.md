@@ -173,10 +173,11 @@ alphabets and inherits no uniqueness claim. *Difficulty: low.*
 
 **T-4 Registration on the spine.** A merging reading strictly above the
 lossless base forces named compensation at the next level (the
-Landauer-shaped theorem: what merges must register). *Difficulty: medium, one
-honest day.* Acceptance: stated and proved as a naming-extension fact, with
-the erasure lemmas (`erasing_forever`, `erasure_breaks_transmission`) as
-ingredients.
+Landauer-shaped theorem: what merges must register). *Status: discharged*
+on the spine (`RegistrationSpine`) and as a **derived corollary** of
+joint-injectivity / Dil capacity (`Bridge.Dil.registration`) — no longer a
+primitive-shaped ledger line. Acceptance: naming-extension fact plus the
+Dil fibre separation corollary; erasure lemmas as ingredients.
 
 **T-5 Oscillator triangle.** The H = 0 limit of the RE model realises an
 arena object whose act is the swap, whose record is empty, and which is
@@ -240,9 +241,11 @@ E4 (Friedmann + matter) stays refused. E3 (spatial metric) blocked by R-1.
 curvature: unweighted Forman `Ric_F = (4+#faces) − deg(u) − deg(v)`. On the
 `K=2` tree, internal edges are strictly Forman-negative; attaching a
 registered 2-cell (recombination) strictly raises Forman quantity on touched
-edges. Internal edges need ≥2 faces to leave negativity. Companion: eternal
-aliveness ⇒ ¬flat(prof) (anti-precludes counted flatness). Ollivier refused
-(measures). Riemann unstateable until space+signature (absence ≠ preclusion).
+edges — flatness paid by faces (same clause as T-16's discrete `G ~ T`
+caricature). Internal edges need ≥2 faces to leave negativity. Companion:
+eternal aliveness ⇒ ¬flat(prof) (anti-precludes counted flatness). Ollivier
+refused (measures). Riemann unstateable until space+signature (absence ≠
+preclusion).
 
 **T-15 Saturation / equation-of-state form.** Alive ⇔ records ≤ caps growth;
 saturation := equality; at saturation, record flux is determined by the
@@ -286,7 +289,7 @@ shape. See `docs/INTERPRETATION.md`.
 | Committed ladder (order dim 1) | **Precluded trivially** — Riemann vacuous on a line (a wire) |
 | Capacity profile / counted geometry | **Forced non-flat** — eternal aliveness ⇒ ¬flat(prof); under T-13 number=volume, committed `V=K^T` is de Sitter–shaped (constant relative growth ⇒ constant positive spacetime curvature in FRW reading) |
 | Branch tree (coarse) | **Maximal negative** — 0-hyperbolic / ultrametric = curvature → −∞; restates R-1 |
-| Branch tree (Forman, T-14) | **Proved sign** — internal edges Forman-negative; recombination raises Forman toward zero |
+| Branch tree (Forman, T-14) | **Proved sign** — internal edges Forman-negative; recombination ↑ Forman (flatness paid by faces) |
 
 **Inversion.** DAG does not struggle to have curvature; it struggles to
 manufacture flatness. R-1 sharpens to: can the framework buy its way from

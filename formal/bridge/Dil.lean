@@ -238,8 +238,9 @@ theorem capacity_law {S : Type} {u : S → S}
     (A.enum (T + 1)) (A.enum_distinct (T + 1))
     (A.enum_complete (T + 1))
 
-/-- **Registration corollary.** On a ≥2 fiber, distinct system states
-    receive distinct records (merge ⇒ record separation). -/
+/-- **Registration (derived).** On a ≥2 fiber, distinct system states
+    receive distinct records (merge ⇒ record separation). Corollary of
+    joint injectivity / capacity counting — not a primitive ledger axiom. -/
 theorem registration {S E E' : Type}
     (u : S → S) (r : S → E → E')
     (hjoint : ∀ s₁ e₁ s₂ e₂,

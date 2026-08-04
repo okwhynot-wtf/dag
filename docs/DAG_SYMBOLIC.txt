@@ -1,5 +1,4 @@
 Diagonal Archive Geometry — symbolic law
-corpus hybrid/ DAG v0.2.6
 
 ═══════════════════════════════════════════════════════════════════════════════
 0. Layers  (downward imports only)
@@ -173,74 +172,6 @@ VI. Compression
     +  (undamped ⇒ no naming ticks; arrow iff registration)  [formal cols]
     +  (interior triad ⇒ ineffability reports; hard problem refused)
 
-═══════════════════════════════════════════════════════════════════════════════
-VII. Residue / refusal
-═══════════════════════════════════════════════════════════════════════════════
-
-  open (tractable): deeper `|S|>K` alphabet-UF lift (optional; Fin I-2 closed);
-          O-3 Mathlib sheaf/site (stalk glue + restriction + dynamics
-            sections landed; continuum locality refused);
-          R-1 counting landed (tree faces ≤ caps; ultrametric≠space remains);
-          T-12 measure fragment landed (uniform weight; no unique selector);
-          T-10 Page flux shape landed (`PageShape`); Bogoliubov still out;
-          period-2 / KMS toy landed; area-as-caps sharpening landed;
-          finite Ollivier trial landed; matter-as-input host API optional;
-          RE-side growth law landed (`re_side_growth_law`); partial Lorentzian dictionary landed;
-          discrete Tolman / scale-KMS (low priority: T vs tick-window size;
-            shape of any O-2 reopen; not scheduled)
-  open (structural): **O-2** no boost / Unruh T — cut-shift dead-ended
-          (`o2_cut_shift_dead_end`); blindness forced (period global; one ℤ/2
-          ⇒ one flow); O-2 ≈ no continuous 1-param subgroup;
-          **O-4** continuum Lorentzian — geometric face of the *same* missing
-          object (attack on either bears on both);
-          **R-1** ultrametric≠space (counting attack landed above);
-          **O-5** SM inventory underdetermined (emergent patterned flux A–E)
-  open (philosophical): facticity of liveness; ℤ/2 + branch choice; arena
-          adequacy; blank ontology; RE action inputs
-  obstructed: Registration↛ladder-carrier naming as *total functor*
-              (swap: fixed |E|=2 forever; naming grows levelCard) — classified
-              T-2 uses this as necessity half; label-namer factor holds
-  refuse: H₀/number-from-Bool; quintom-as-world; premise-free Law of Time;
-          host-logic incompleteness / Gödel arithmetisation of corpus;
-          continuum spacetime/Einstein/QFT/BH; continuum Boltzmann;
-          Born from multiplicity alone (`born_from_multiplicity_nogo` theorem);
-
-          hard problem / qualia;
-          matter/Friedmann derived from Bool alone
-          (discrete T / Page / capacity-growth toys: Phase E, not continuum)
-  coincidence (unpromoted): cosmology flatness puzzle ↔ DAG flatness budget
-  gauge demarcation: content = exported statement mentions the choice;
-               packaging = quotiented before downstream consumption
-  gauge inventory:
-               label/pole swap @ Fund     — content  (T-7 / two_readings)
-               address fwd/rev            — content  (T-7)
-               channel swap               — content  (channel_swap_is_reversal;
-                                                     labels conventional)
-               record gauge per tick      — packaging (Dil/T-2; “up to gauge”)
-               factorisation gauge / step — packaging (I-1; ledger consumes U)
-  not residue: ¬flat(prof); Kmin=2; |caps T|=2^(T+2); one ℤ/2;
-               recordLabel∶Bool↪E; tick_identification (classified T-2);
-               straighten; registers_admits_namer; born_from_multiplicity_nogo;
-               **canonicity_fails** (proved negative; packaging gauge);
-               **channel_swap_is_reversal** (T-7 channel column proved);
-               T-10…T-16; E1; E2;
-               meta reports structural; Forman sign;
-               **corpus_not_universal** — seal_self · deficit · lag ·
-               ω≠rung; □(sayable) ∧ ¬□(sayable now); incompleteness now
-               unconditional, completeness-in-limit = FairSchedule policy;
-               **Jacobson quantifier discharged internally** — every
-               self-reading has a dodge; `observers_forced` supplies the
-               observers (horizon observer-dependence derived, not postulated)
-
-  spine:   Canon · Orbit · Diagonal · Ladder · Density · NonCommencement · Branch · Interior · OmegaDuration · SelfReference
-  ledger:  Geom.Registration · Profile · Gradient · Obs.Recovery · Obs.Dimension
-  bridge:  Alphabet · Capacity · OneZ2 · RegistrationSpine · Environment ·
-           TickSimulation · RegistrationFactor · ArchiveMustSpeak · SecondLaw ·
-           Measurement · Expansion · Forman · Saturation · EinsteinSkeleton ·
-           EffectiveMatter · FluxPattern · LedgerSheaf · RecombinationBudget ·
-           PhaseEToys · Dil · PageShape · BranchMeasure · ModularCut · TwoBounce
-  dict:    Certificate (K) · LCertificate · Quintom.* (incl. Growth) · BitFlip ·
-           Kramers · Page · QEC · NoClone (measurement) · MetaProblem
 
 ═══════════════════════════════════════════════════════════════════════════════
   Fund ≅ ¬  ·  a∘a=id ⇒ ¬erase  ·  merge ⇒ record  ·  |caps T| = 2^(T+2)

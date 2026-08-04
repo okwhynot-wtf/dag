@@ -1,5 +1,5 @@
 Diagonal Archive Geometry — symbolic law
-corpus hybrid/ DAG v0.2.4
+corpus hybrid/ DAG v0.2.5
 
 ═══════════════════════════════════════════════════════════════════════════════
 0. Layers  (downward imports only)
@@ -27,6 +27,8 @@ I. Spine  (DM arena)
 
   Fund(a)  ⇔  a ≅ ¬      (Bool,¬,true) initial; unique ≤ label swap
   ∄ x. a(x)=x            void excluded
+  a∘a=id  ⇒  ¬ERASE      (involutivity; theorem in-arena — not a second creed)
+               ¬ARROW at Fund   (same equation banishes time+loss at base)
 
   dodge(f) := λx. ¬(f x x)
   ∀f.  f misses dodge(f)               seal (never point-surjective)
@@ -43,7 +45,10 @@ II. Ledger  (AG over I-1 / I-2)
 ═══════════════════════════════════════════════════════════════════════════════
 
   U : S×E → S×E = (U_S, U_E)           joint microstep
-  global U bijective                   DM losslessness on the product
+  global Inj(U)                        I-1 transfer of spine losslessness
+                                       (stipulation → TwoBounce discharge:
+                                        U=σ∘φ; converse+toys landed;
+                                        Fin n existence + canonicity open)
   merges live in U_S above base; compensated in U_E
 
   Inj(U) ∧ ∃merge(U)  ⟹  ∃record(U)    Registration
@@ -216,11 +221,12 @@ VII. Residue / refusal
            TickSimulation · RegistrationFactor · ArchiveMustSpeak · SecondLaw ·
            Measurement · Expansion · Forman · Saturation · EinsteinSkeleton ·
            EffectiveMatter · FluxPattern · LedgerSheaf · RecombinationBudget ·
-           PhaseEToys · Dil · PageShape · BranchMeasure · ModularCut
+           PhaseEToys · Dil · PageShape · BranchMeasure · ModularCut · TwoBounce
   dict:    Certificate (K) · LCertificate · Quintom.* (incl. Growth) · BitFlip ·
            Kramers · Page · QEC · NoClone (measurement) · MetaProblem
 
 ═══════════════════════════════════════════════════════════════════════════════
-  Fund ≅ ¬  ·  merge ⇒ record  ·  |caps T| = 2^(T+2)  ·  naming ≅ μtick / gauge
+  Fund ≅ ¬  ·  a∘a=id ⇒ ¬erase  ·  merge ⇒ record  ·  |caps T| = 2^(T+2)
+  ·  naming ≅ μtick / gauge  ·  (I-1: U = σ∘φ · Fin n open)
 ═══════════════════════════════════════════════════════════════════════════════
 

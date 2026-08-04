@@ -35,6 +35,7 @@ caricatures are in scope; continuum identifications are not.
 | **T-12 measure** | **Fragment + Born no-go landed:** uniform weights; no unique selector; `born_from_multiplicity_nogo` (symmetry + path products + Gleason domain absent) |
 | **T-10 Page flux shape** | **Landed:** `PageShape` — mute before `C`, stream `t−C`, `t_exh=C+1`, Page tent peak. Bogoliubov / continuum QFT still refused |
 | Arbitrary `U_S` UP | Beyond fiber tagging (`arbitraryUS_UP_open`); Dil is the attack shape |
+| **I-1 two-bounce (Fin n)** | Converse + Bool/swapStep/involution existence landed (`TwoBounce.i1_two_bounce_fragment`). General `Inj` on `Fin n` via cycle-wise reflect/rotate∘reflect still open; canonicity of `(φ,σ)` open; channel rhyme suggestive |
 
 ## Structural open (hard walls; not “just write the proof”)
 

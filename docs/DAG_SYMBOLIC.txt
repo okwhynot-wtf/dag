@@ -1,5 +1,5 @@
 Diagonal Archive Geometry — symbolic law
-corpus hybrid/ DAG v0.2.2
+corpus hybrid/ DAG v0.2.3
 
 ═══════════════════════════════════════════════════════════════════════════════
 0. Layers  (downward imports only)
@@ -116,6 +116,7 @@ IV. Dictionary  (I-4: K-certificate | L-certificate)
     H = 0:  undamped · silent archive · Fund     oscillator triangle (T-5)
     H > 0:  contraction ⇒ merge ⇒ record         damping = registration (T-6)
     a(x)=x excluded; divide only at crossings / limit   (T-8)
+    modeCount T = |Channel|^(T+2) = caps T · doubles @ Kmin   (Growth)
 
   Page:
     Hawking 1976 = eternal mute merge; Registration+T-10 = unitarist reply
@@ -139,7 +140,8 @@ V. Identifications  (three corpora, one object)
   pole / two_readings     ≅  address                          ≅  φ↔σ
   dodge / +1              ≅  blank adjunction                 ≅  second channel
   excluded fixed point    ≅  —                                ≅  w=−1 divide
-  pred growth 2^(k+2)     ≅  c(t+1)=K·c(t), K=2               ≅  —
+  pred growth 2^(k+2)     ≅  c(t+1)=K·c(t), K=2               ≅  modeCount=|Channel|^(T+2)
+                                                                   (=caps; doubles @ Kmin)
   erasure priced out      ≅  merge ⇒ record                   ≅  H → expansion
   (corollary, formal cols) undamped ⇒ no naming ticks; arrow iff registration
                              (`time_dissipation_one_property`)
@@ -158,6 +160,7 @@ VI. Compression
     +  (saturation: ledger balance fixes flux)               T-15
     +  (Jacobson skeleton · Forman G~T · stalks; continuum refused)  T-16
     +  (E = L_• ,  |caps T| = 2^(T+2) ,  Kmin = 2)
+    +  (modeCount = |Channel|^(T+2) = caps · doubles @ Kmin)  [RE growth]
     +  (arrow = address = pole = channel    :  one ℤ/2)
     +  (H=0 ⇒ oscillator triangle;  H>0 ⇒ dissipation registers)
     +  (undamped ⇒ no naming ticks; arrow iff registration)  [formal cols]
@@ -175,7 +178,7 @@ VII. Residue / refusal
           T-10 Page flux shape landed (`PageShape`); Bogoliubov still out;
           period-2 / KMS toy landed; area-as-caps sharpening landed;
           finite Ollivier trial landed; matter-as-input host API optional;
-          RE-side growth law (not yet sought); partial Lorentzian dictionary landed
+          RE-side growth law landed (`re_side_growth_law`); partial Lorentzian dictionary landed
   open (structural): **O-2** no boost / Unruh T — cut-shift attempt dead-ended
           (`o2_cut_shift_dead_end`: T_c blind to cut; feature as finding);
 
@@ -211,6 +214,6 @@ VII. Residue / refusal
            Measurement · Expansion · Forman · Saturation · EinsteinSkeleton ·
            EffectiveMatter · FluxPattern · LedgerSheaf · RecombinationBudget ·
            PhaseEToys · Dil · PageShape · BranchMeasure · ModularCut
-  dict:    Certificate (K) · LCertificate · Quintom.* · BitFlip · Kramers · Page ·
-           QEC · NoClone (measurement) · MetaProblem
+  dict:    Certificate (K) · LCertificate · Quintom.* (incl. Growth) · BitFlip ·
+           Kramers · Page · QEC · NoClone (measurement) · MetaProblem
 

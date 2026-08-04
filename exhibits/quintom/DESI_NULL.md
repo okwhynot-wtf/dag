@@ -16,3 +16,8 @@ of `w(z)` from spine/ledger structure alone, the quintom entry stays a
 **certificate** (existence of a kernel realisation), not a **prediction**.
 Observational liveness of the model class is noted; DESI is not a DAG
 forecast.
+
+**Growth-law note.** The combinatorial RE-side growth weld
+(`Dictionary.Quintom.Growth.re_side_growth_law`: mode-count = caps) is
+independent of this exhibit. Envelope numerics here do **not** support
+mode-count growth, DESI forecasts, or `H₀`-from-Bool.

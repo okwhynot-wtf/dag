@@ -68,6 +68,7 @@
 | T-2 Registration→naming factorisation | `Bridge.RegistrationFactor.registration_naming_factorisation` | Bridge |
 | T-2 carrier obstruction (swap vs levelCard) | `Bridge.RegistrationFactor.registration_vs_naming_obstruction` | Bridge |
 | Quintom filed | `Dictionary.Quintom.Certificate.quintom_filed` | Dictionary |
+| RE-side growth law (mode-count ↔ caps) | `Dictionary.Quintom.Growth.re_side_growth_law` | Dictionary |
 | Kramers I-4 (empty locus / T²=−1) | `Dictionary.Kramers.kramers_admitted` | Dictionary |
 | Kramers forced doublet = Kmin | `Dictionary.Kramers.degeneracy_eq_Kmin` | Dictionary |
 | Clause (c) dual modes | `Dictionary.Certificate.FixedMode` + Kramers/Quintom | Dictionary |
@@ -84,4 +85,5 @@
 
 Open work: see `docs/RESIDUE.md` (tractable vs structural vs philosophical).
 T-2 classified at v0.2 (`tick_identification`); Born no-go landed; O-2
-cut-shift attempted (`o2_cut_shift_dead_end` — feature as finding).
+cut-shift attempted (`o2_cut_shift_dead_end` — feature as finding);
+RE-side growth law landed (`re_side_growth_law`, v0.2.3).

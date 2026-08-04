@@ -91,7 +91,7 @@ Theorem T-2 licenses it.
 | dodge / forced +1 | blank adjunction (conveyor) | second channel required to cross w = −1 |
 | excluded fixed point (void) | (no analogue) | w = −1, the divide |
 | `lift_conservative`, stage tags | archive recoverable on ascent | (no analogue) |
-| predicate growth 2^(k+2) | c(t+1) = K·c(t), K = 2 | (no analogue) |
+| predicate growth 2^(k+2) | c(t+1) = K·c(t), K = 2 | modeCount = \|Channel\|^(T+2) (= caps; doubles @ Kmin) |
 | ω flatline vs ancestry | capacity clock vs record | late-time relaxation, envelope → 0 while phase history remains |
 | erasure priced out of the base | Registration: merge ⇒ record | Hubble friction registers into expansion |
 
@@ -332,7 +332,8 @@ Canonical detail: `docs/RESIDUE.md`. Summary:
   not Unruh);
 - finite-mode Page–Bogoliubov toy; matter-as-input dictionary;
 - finite branch measures (Ollivier trial); area-as-`|caps|` sharpening;
-- RE-side growth law; partial Lorentzian dictionary; arbitrary-`U_S` UP.
+- RE-side growth law (**landed** `re_side_growth_law`); partial Lorentzian
+  dictionary; arbitrary-`U_S` UP.
 
 **Structural open (hard walls):**
 - **O-2** no boost / Unruh `T` (only ℤ/2) — deepest Einstein gap;
@@ -364,7 +365,7 @@ formal/
   dictionary/
     certificate.lean                               I-4 K-certificate schema
     LCertificate.lean                              I-4 L-certificate schema
-    quintom/    RE kernel-side lemmas (T-5, T-8)   new
+    quintom/    RE kernel (T-5,T-6,T-8) + Growth   new
     Page.lean   Page / BH-info L-certificate       new
 exhibits/
   quintom/      ODE integration, figures           refused as Lean

@@ -28,7 +28,7 @@ caricatures are in scope; continuum identifications are not.
 | **Matter = saturated record flux (A–E green)** | Effective matter = forced flux at saturation; patterned (`FluxPattern`); Phase E toys name T / radiation / capacity growth. Host-API optional. SM/Friedmann-from-Bool stays refused |
 | **Finite measures on branches** | **Landed:** `ollivier_trial_fragment` (uniform child masses + sibling transport non-pos signal). Continuum Ollivier refused |
 | **Area-as-capacity sharpening** | **Landed:** `area_as_caps_sharpening` (`log₂|caps|=T+2`, demand ≤ area, +1 bit/tick). Continuum area refused |
-| **RE-side growth law** | Seek quintom mode-count ↔ capacity-law analogue (table V dash: not yet sought) |
+| **RE-side growth law** | **Landed:** `Dictionary.Quintom.Growth.re_side_growth_law` — `modeCount T = \|Channel\|^(T+2) = caps T`, doubles at `Kmin`. DESI / continuum modes / `H₀` refused; ODE exhibit not cited |
 | **Lorentzian dictionary (partial)** | **Landed:** `partial_lorentzian_dictionary` (order dim-1 + caps growth + ℤ/2-only). O-2/O-4 remain |
 | **T-1 / Dil keystone** | **Fin-closed:** UF Hom∃/iso/graded term. + I-2 Fin alphabet-UF + **ladder-predicate witness** + **address-uniform idx** fragment. T-2 tick ID packaged as licensed remnant |
 | **T-12 measure** | **Fragment + Born no-go landed:** uniform weights; no unique selector; `born_from_multiplicity_nogo` (symmetry + path products + Gleason domain absent) |

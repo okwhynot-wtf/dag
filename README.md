@@ -65,5 +65,5 @@ companions BitFlip, NoClone (measurement).
 
 ## Version
 
-DAG hybrid **v0.2.2** — O-2 cut-shift dead end (feature as finding);
-time–dissipation corollary; §V rescope; Born no-go + T-2 arc prior.
+DAG hybrid **v0.2.3** — RE-side growth law (quintom mode-count ↔ caps);
+O-2 cut-shift finding; time–dissipation corollary; Born no-go + T-2 arc.

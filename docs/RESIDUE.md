@@ -30,7 +30,8 @@ caricatures are in scope; continuum identifications are not.
 | **Area-as-capacity sharpening** | Tighten Bekenstein-shaped reading of `‖caps T‖` (already present); not continuum area theorems |
 | **RE-side growth law** | Seek quintom mode-count ↔ capacity-law analogue (table V dash: not yet sought) |
 | **Lorentzian dictionary (partial)** | What can be said with order dim-1 + capacity growth without full Lorentz group? Separate from O-2 boost gap |
-| **T-1 / Dil keystone** | **Partial:** free/capacity/schedule/partition + **Hom uniqueness on reachable**. **Open:** minimal-carrier iso; graded terminality; predicate record-map |
+| **T-1 / Dil keystone** | **Partial:** partition + Hom uniqueness + **carrier reachability** from `RecordGenerated`. **Open:** Hom *existence* between two minimal archives (`rigidity_iso_open`); graded terminality |
+| **T-12 measure** | **Fragment landed:** uniform child weights (`Kmin`); no unique law-derived selector. Asymmetric Born-from-underdetermination alone still refused |
 | **T-10 Page flux shape** | **Landed:** `PageShape` — mute before `C`, stream `t−C`, `t_exh=C+1`, Page tent peak. Bogoliubov / continuum QFT still refused |
 | Arbitrary `U_S` UP | Beyond fiber tagging (`arbitraryUS_UP_open`); Dil is the attack shape |
 

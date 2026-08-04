@@ -1,5 +1,5 @@
 Diagonal Archive Geometry — symbolic law
-corpus hybrid/ DAG v0.1.16
+corpus hybrid/ DAG v0.1.17
 
 ═══════════════════════════════════════════════════════════════════════════════
 0. Layers  (downward imports only)
@@ -155,11 +155,12 @@ VI. Compression
 VII. Residue / refusal
 ═══════════════════════════════════════════════════════════════════════════════
 
-  open (tractable): **T-1 Dil keystone** (partition + Hom-uniqueness on
-            reachable; minimal-carrier iso / graded terminality open);
+  open (tractable): **T-1 Dil keystone** (reachability + Hom-uniqueness;
+            Hom-existence between minimal archives / graded terminality open);
           O-3 full sheaf dynamics (stalk glue + restriction landed;
             dynamics sections open);
           R-1 counting landed (tree faces ≤ caps; ultrametric≠space remains);
+          T-12 measure fragment landed (uniform weight; no unique selector);
           T-10 Page flux shape landed (`PageShape`); Bogoliubov still out;
           period-2 / KMS↔involution toys; matter-as-input host API optional;
           finite branch measures (Ollivier trial); area-as-caps sharpening;
@@ -174,7 +175,8 @@ VII. Residue / refusal
               naming grows levelCard) — label-namer factor still holds
   refuse: H₀/number-from-Bool; quintom-as-world; premise-free Law of Time;
           continuum spacetime/Einstein/QFT/BH; continuum Boltzmann;
-          Born from underdetermination alone; hard problem / qualia;
+          Born from underdetermination alone (uniform T-12 weight ≠ Born);
+          hard problem / qualia;
           matter/Friedmann derived from Bool alone
           (discrete T / Page / capacity-growth toys: Phase E, not continuum)
   coincidence (unpromoted): cosmology flatness puzzle ↔ DAG flatness budget

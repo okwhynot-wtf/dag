@@ -10,6 +10,7 @@ import ArchiveMustSpeak
 import PageShape
 import SecondLaw
 import Measurement
+import BranchMeasure
 import Expansion
 import Forman
 import Saturation
@@ -157,6 +158,16 @@ theorem milestone_T12 :
           ∃ x, e₁ x ≠ e₂ x) ∧
     Bridge.Alphabet.Kmin = 2 :=
   ⟨Bridge.Measurement.two_children, Bridge.Alphabet.Kmin_eq⟩
+
+theorem milestone_T12_measure :
+    (∀ k f, ∃ e₁ e₂ : Branch.Predicate k,
+      Branch.IsEscape k f e₁ ∧ Branch.IsEscape k f e₂ ∧
+        (∃ x, e₁ x ≠ e₂ x) ∧
+        Bridge.BranchMeasure.escapeWeight e₁ +
+          Bridge.BranchMeasure.escapeWeight e₂ =
+            Bridge.Alphabet.Kmin) ∧
+    Bridge.Alphabet.Kmin = 2 :=
+  ⟨Bridge.BranchMeasure.T12_measure_fragment.1, Bridge.Alphabet.Kmin_eq⟩
 
 theorem milestone_T13 :
     (∀ T, Bridge.Expansion.countedVolume 2 (T + 1) =
@@ -311,6 +322,7 @@ theorem bridge_arc :
 #print axioms milestone_T10_shape
 #print axioms milestone_T11
 #print axioms milestone_T12
+#print axioms milestone_T12_measure
 #print axioms milestone_T13
 #print axioms milestone_T14
 #print axioms milestone_T15

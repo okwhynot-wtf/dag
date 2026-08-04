@@ -65,5 +65,6 @@ companions BitFlip, NoClone (measurement).
 
 ## Version
 
-DAG hybrid **v0.1.16** — Dil Hom-uniqueness on reachable; R-1 face budget
-≤ caps; O-3 restriction maps. Next: minimal-carrier iso, T-12 measure ±.
+DAG hybrid **v0.1.17** — Dil carrier reachability; T-12 uniform measure
+fragment (no unique selector). Next: Hom-existence between minimal archives;
+dictionary QEC / DESI null-or-shape.

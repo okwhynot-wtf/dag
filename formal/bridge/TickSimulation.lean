@@ -27,7 +27,7 @@ swap registers forever on fixed `E = Bool` while naming grows `levelCard`.
 Positive remnant: every injective 2-merge admits a namer-shaped label witness
 (`registers_admits_namer`). Straightening (`Dil.straighten_fragment`) supplies
 append-only normal form mod base gauge for UF archives. Classified kernel:
-`tick_identification_classified` (Fund exempt; swap necessity; Dil append
+`tick_identification` (Fund exempt; swap necessity; Dil append
 step; namer + rate weld + ladder `NamingExtension`). Keep `_licensed` until
 v0.2 rename to `tick_identification`. Not a total functor on carriers.
 -/
@@ -271,11 +271,9 @@ ladder `NamingExtension`).
 Would overclaim: a total functor `Registers U ↦ NamingExtension` on
 carriers; or that `swapStep` factors as carrier naming.
 
-Keep `_licensed` until a future rename to `tick_identification` when
-docs freeze **v0.2** (section 0 cites the theorem; section V inherits
-proved status). The statement below is the VERIFY-safe classification
-kernel — strongest remnant that retires the modelling choice without
-the overclaim.
+v0.2 freezes this as `tick_identification` (section 0 cites the theorem;
+section V inherits proved status). The `_licensed` package remains as the
+historical remnant conjunction. Fence: not a carrier functor.
 -/
 
 /-- Fund / period-2 pole: no merge ⇒ no namer demand. -/
@@ -294,7 +292,7 @@ def NamingCarrierClimbs : Prop :=
 /-- **Per-tick induction step on Dil.** UF ⇒ straighten; microtick on the
     normal form is append (`Word.cons`); factor peels the letter back. -/
 theorem tick_identification_step {S : Type} {u : S → S}
-    {A : Bridge.Dil.Archive S u} (fa : Bridge.Dil.UniqueFactorization A) :
+    {A : Bridge.Dil.Archive S u} (_fa : Bridge.Dil.UniqueFactorization A) :
     (∃ _i : Bridge.Dil.ArchiveIso A
       (Bridge.Dil.freeOnBase S u (A.E 0) A.z0), True) ∧
     (∀ (T : Nat) (s : S) (e0 : A.E 0) (w : Bridge.Dil.Word S T),
@@ -325,7 +323,7 @@ theorem tick_identification_dichotomy :
    Bridge.RegistrationFactor.naming_carrier_card,
    Density.levelCard_eq 0⟩
 
-/-- **Classified T-2 remnant (VERIFY kernel).**
+/-- **T-2 tick identification (classified).**
 
     Eternal UF-archive dynamics straighten to append-only on a frozen base
     (record gauge = base relabel); each microtick is `Word.cons`; labels
@@ -334,9 +332,8 @@ theorem tick_identification_dichotomy :
     dichotomy's necessity half (unbounded/UF hyp cannot be dropped).
 
     Fence: not `Registers U → NamingExtension` on arbitrary carriers.
-    Rename to `tick_identification` and drop `_licensed` when docs freeze
-    v0.2 citing this classification. -/
-theorem tick_identification_classified :
+    Cited by `docs/DAG_SYMBOLIC.txt` §0 / §V at v0.2. -/
+theorem tick_identification :
     FundExempt ∧
     BoundedReuseRegisters ∧
     NamingCarrierClimbs ∧
@@ -372,6 +369,9 @@ theorem tick_identification_classified :
    expand_eternally_alive,
    Bridge.Alphabet.Kmin_eq⟩
 
+/-- Backward-compatible alias (pre-v0.2 name). -/
+def tick_identification_classified := tick_identification
+
 #print axioms tick_simulation
 #print axioms committed_yields_mute
 #print axioms rate_weld
@@ -381,6 +381,7 @@ theorem tick_identification_classified :
 #print axioms tick_identification_ingredients
 #print axioms tick_identification_step
 #print axioms tick_identification_dichotomy
+#print axioms tick_identification
 #print axioms tick_identification_classified
 
 end Bridge.TickSimulation

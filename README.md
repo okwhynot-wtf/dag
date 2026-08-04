@@ -57,7 +57,7 @@ python exhibits/quintom/integrate.py
 | T-5 | Oscillator triangle (kernel) | Discharged; ODE exhibit |
 | T-8 | Fixed-point discipline (kernel) | Discharged; ODE exhibit |
 | T-6 | Damping = registration | Kernel skeleton; H-id exhibit |
-| T-2 | Tick simulation | Licensed remnant packaged (`tick_identification_licensed`); carrier obstructed |
+| T-2 | Tick simulation | **Classified** (`tick_identification`, v0.2); Fund exempt; swap = necessity |
 | T-1 | Environment universality | Dil keystone + I-2 Fin closed; ladder witness + address-uniform idx landed |
 
 Dictionary (substantive order): Quintom → Kramers → Page → QEC → **MetaProblem**;
@@ -65,5 +65,6 @@ companions BitFlip, NoClone (measurement).
 
 ## Version
 
-DAG hybrid **v0.1.28** — T-2 straightening fragment (UF ≅ append-on-base);
-O-3 dynamics sections from v0.1.27; Lorentzian/Ollivier/KMS/area prior.
+DAG hybrid **v0.2.0** — Classified T-2 (`tick_identification`); Dil →
+Registration-as-derived → straighten → classified ID arc
+(`docs/ARC_V02.md`). Modelling license retired.

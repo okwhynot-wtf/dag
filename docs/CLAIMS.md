@@ -40,11 +40,14 @@
 | I-2 Fin alphabet-UF closed (base-relative) | `Bridge.Dil.i2_fin_closed` | Bridge |
 | Ladder-predicate addressing witness | `Bridge.Dil.ladder_predicate_addressing_witness` | Bridge |
 | Address-uniform record factoring (`|S|>K` frag) | `Bridge.Dil.AddressUniform`, `joint_inj_of_addressUniform` | Bridge |
-| T-2 tick identification (licensed remnant) | `Bridge.TickSimulation.tick_identification_licensed` | Bridge |
+| T-2 tick identification (classified, v0.2) | `Bridge.TickSimulation.tick_identification` | Bridge |
+| T-2 tick identification (licensed remnant, historical) | `Bridge.TickSimulation.tick_identification_licensed` | Bridge |
 | T-2 straightening fragment (UF≅append-on-base) | `Bridge.Dil.straighten_fragment` | Bridge |
 | T-2 ID proof-skeleton ingredients | `Bridge.TickSimulation.tick_identification_ingredients` | Bridge |
-| T-2 classified remnant (dichotomy + append glue) | `Bridge.TickSimulation.tick_identification_classified` | Bridge |
 | T-2 per-tick Dil induction step | `Bridge.TickSimulation.tick_identification_step` | Bridge |
+| T-2 dichotomy (Fund exempt + swap necessity) | `Bridge.TickSimulation.tick_identification_dichotomy` | Bridge |
+| Jacobson quantifier / observers forced | `Observer.observers_forced`, `Bridge.EinsteinSkeleton.local_horizon_seal` | Spine/Bridge |
+| Arc write-up (Dil→T-2, v0.2) | `docs/ARC_V02.md` | Docs |
 | Period-2 / KMS↔involution toy | `Bridge.Period2KMS.period2_kms_caricature` | Bridge |
 | Area-as-caps sharpening (Bekenstein-shaped) | `Bridge.Capacity.area_as_caps_sharpening` | Bridge |
 | Dil base-relative UF rigidity iso | `Bridge.Dil.rigidity_iso_of_base` | Bridge |
@@ -77,7 +80,5 @@
 | DM fundamental two elements | `Density.fundamental_two_elements` | Spine |
 
 Open work: see `docs/RESIDUE.md` (tractable vs structural vs philosophical).
-T-2 carrier-level Registration→naming is **obstructed** (documented;
-necessity half of classification); label-namer + straighten + per-tick
-Dil append glue discharged (`tick_identification_classified`); rename to
-`tick_identification` / drop `_licensed` reserved for v0.2 freeze.
+T-2 classified at v0.2 (`tick_identification`); carrier-level total functor
+still refused (swap = necessity half). Next: Born no-go; O-2 decision.

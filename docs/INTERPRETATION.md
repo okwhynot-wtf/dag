@@ -27,7 +27,7 @@ Jacobson derived Einstein equations from (i) entropy bound on horizons and
 | Entropy / area bound | Capacity bound; Page entry reads `|caps T|` as Bekenstein-shaped |
 | Clausius (heat → entropy) | T-4 Landauer: what merges must register |
 | Local balance / EoS | T-15 saturation: alive ⇔ records ≤ caps; equality fixes flux |
-| Horizon through every point | seal-per-reading = local horizon (not-residue) |
+| Horizon through every point | seal-per-reading = local horizon; `observers_forced` supplies observers (derived, not postulated) |
 | Curvature accounting | T-14 Forman; unpaid flatness paid by registered faces (T-16) |
 | Discrete `G ~ T` | T-16: unpaid Forman = faces short of threshold; stress = capacity at saturation |
 
@@ -100,25 +100,23 @@ minimal end. Ladder-predicate addressing is witnessed
 Address-uniform `idx` fragment lands for `|S| > K` (`AddressUniform`);
 Bool is the trivial `idx = id` case.
 
-## T-2 tick identification (licensed remnant → classification plan)
+## T-2 tick identification (classified — v0.2)
 
-Committed expand path + namer-shaped label factor are discharged
-(`tick_identification_licensed`). Carrier-level Registration→naming is
-obstructed (swap vs `levelCard`) — the obstruction is the **necessity**
-half of a future classification: bounded-demand / Fund 2-cycles don't
-climb; they were never supposed to. **Straightening** landed
-(`straighten_fragment`): every UF archive ≅ append-only on its frozen
-base; record gauge = base relabelling (the torsor rigidity couldn't kill).
-Skeleton package: `tick_identification_ingredients`.
+`Bridge.TickSimulation.tick_identification` retires the modelling license.
+Eternal UF-archive dynamics factor through naming extensions up to record
+gauge; periodic Fund is exempt; obstructed swap proves the dichotomy
+exhaustive. Ingredients: straighten (`isoToFreeOnBase`) → append step
+(`tick_identification_step`) → namer shape → rate weld → ladder
+`NamingExtension`. Fence: not a total functor on carriers. Arc write-up:
+`docs/ARC_V02.md`. Historical remnant: `tick_identification_licensed`.
 
-**Classified remnant (VERIFY kernel):** `tick_identification_classified`
-— Fund exempt; swap proves dichotomy necessity; UF archives straighten
-and each microtick is `Word.cons` on `freeOnBase` (`tick_identification_step`);
-namer labels + rate weld + ladder `NamingExtension`. Slogan: *eternal
-registering dynamics factor through naming extensions up to record gauge;
-periodic dynamics exempt at Fund; obstructed swap proves dichotomy
-exhaustive.* Fence: not a total functor on carriers. Keep `_licensed`
-until rename to `tick_identification` + docs freeze **v0.2**.
+## Jacobson quantifier (surfaced)
+
+T-16 discharges the Jacobson *skeleton*, including the quantifier: every
+self-reading has a dodge (local horizon / seal-per-reading), and
+`Observer.observers_forced` supplies the observers. Horizon
+observer-dependence is **derived**, not postulated — easy to miss under
+“not residue” in `DAG_SYMBOLIC.txt` §VII.
 
 ## Period-2 / KMS and area-as-caps (fence)
 

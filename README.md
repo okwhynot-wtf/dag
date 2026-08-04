@@ -67,4 +67,4 @@ companions BitFlip, NoClone (measurement).
 
 DAG hybrid **v0.2.6** — `corpus_not_universal` (Lawvere self-reference) +
 I-1 two-bounce fragment (`TwoBounce`: ¬erase in-arena; `Inj(U)` transfer;
-Fin n existence landed; canonicity open). Prior: O-2/O-4; RE growth; Born no-go; T-2.
+I-1 discharged with packaging gauge; `channel_swap_is_reversal`). Prior: O-2/O-4; RE growth; Born no-go; T-2.

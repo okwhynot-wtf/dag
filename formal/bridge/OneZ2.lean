@@ -1,11 +1,17 @@
 import TwoCycle
 import Obs.Recovery
+import TwoBounce
 
 /-!
 # T-7 One ℤ/2, three faces
 
 Pole swap ≅ address reversal ≅ channel relabelling: a single
 underdetermination with three named projections.
+
+Channel *labels* stay conventional (canonicity fails). Channel *swap*
+is proved content: exchanging the two factors of any two-bounce
+presentation of `U` yields a presentation of `U⁻¹`
+(`TwoBounce.channel_swap_is_reversal`).
 -/
 
 namespace Bridge.OneZ2
@@ -118,8 +124,20 @@ theorem one_Z2_three_faces :
   ⟨project_involution, address_two, channel_swap_involution,
     address_swap_involution, pole_swap_involution⟩
 
+/-- **T-7 channel column (proved).** Channel-swap of a two-bounce
+    presentation covers step reversal — same involution on presentation
+    space as reading the step backwards. Labels remain conventional. -/
+theorem channel_swap_is_reversal {α : Type} (U : α → α)
+    (f : Bridge.TwoBounce.TwoBounceFactor U) :
+    (∀ x, Bridge.TwoBounce.reverseOf f (U x) = x) ∧
+    (∀ x, U (Bridge.TwoBounce.reverseOf f x) = x) ∧
+    Nonempty (Bridge.TwoBounce.TwoBounceFactor
+      (Bridge.TwoBounce.reverseOf f)) :=
+  Bridge.TwoBounce.channel_swap_is_reversal U f
+
 #print axioms one_Z2_three_faces
 #print axioms addressBit_roundtrip
 #print axioms dm_two_readings
+#print axioms channel_swap_is_reversal
 
 end Bridge.OneZ2

@@ -17,9 +17,12 @@ Landed here:
 * existence for ledger `swapStep`
 * existence for every injection on `Fin n` (cycle-wise reflect)
 
-Open:
-* gauge-covariant / natural choice of `(φ, σ)` per step (canonicity)
-* channel identification of the two factors with dictionary `φ`, `σ`
+Settled:
+* canonicity fails (essential non-uniqueness of `(φ, σ)`)
+* involutive reordering is T-7-shaped; Fin-3 axis choice is a larger
+  factorization gauge, not a second dictionary ℤ/2 face
+* factor-swap covers step reversal (`channel_swap_is_reversal`): labels
+  conventional, exchange real
 
 No Mathlib; no `sorry`; no declared axioms.
 -/
@@ -93,6 +96,15 @@ def factor_involution {α : Type} (U : α → α) (h : IsInvolution U) :
   σ := U
   φ_inv := fun _ => rfl
   σ_inv := h
+  factor := fun _ => rfl
+
+/-- Reverse packing of an involution (`U = id ∘ U`). -/
+def factor_involution_rev {α : Type} (U : α → α) (h : IsInvolution U) :
+    TwoBounceFactor U where
+  φ := U
+  σ := id
+  φ_inv := h
+  σ_inv := fun _ => rfl
   factor := fun _ => rfl
 
 /-! ## `Bool` and ledger toys -/
@@ -617,15 +629,217 @@ noncomputable def factor_fin {n : Nat} (U : Fin n → Fin n) (h : EndoInj U) :
     dsimp [bounceσ]
     rw [bounceφ_involution U h x]
 
-/-- Canonicity of `(φ, σ)` open. Channel rhyme suggestive only. -/
-def canonicity_open : True := trivial
+/-! ## Canonicity fails (essential non-uniqueness)
+
+Two factorisations of the same `U` need not share `φ` (or `σ`). The
+involutive Bool case already kills uniqueness; its binary reordering is
+T-7-shaped (ordered bounce pair), not a new dictionary face. On `Fin 3`
+distinct reflection axes give factorisations unrelated by mere swap,
+so the I-1 discharge gauge properly exceeds ℤ/2 while T-7 stays one ℤ/2. -/
+
+theorem not_involution : IsInvolution (not : Bool → Bool) := by
+  intro b; cases b <;> rfl
+
+theorem not_endoInj : EndoInj (not : Bool → Bool) := by
+  intro a b h
+  cases a <;> cases b <;> first | rfl | cases h
+
+/-- Pointwise inequality of first factors. -/
+def FactorsDisagree {α : Type} {U : α → α}
+    (f g : TwoBounceFactor U) : Prop :=
+  (∃ x, f.φ x ≠ g.φ x) ∨ (∃ x, f.σ x ≠ g.σ x)
+
+/-- Involutive reordering: `(id, U)` and `(U, id)` both factor `U`. -/
+theorem involutive_factor_reorder {α : Type} (U : α → α)
+    (h : IsInvolution U) :
+    FactorsDisagree (factor_involution U h) (factor_involution_rev U h) ↔
+      ∃ x, U x ≠ x := by
+  constructor
+  · intro hd
+    cases hd with
+    | inl hφ =>
+      obtain ⟨x, hx⟩ := hφ
+      exact ⟨x, fun heq => hx (Eq.symm heq)⟩
+    | inr hσ =>
+      obtain ⟨x, hx⟩ := hσ
+      exact ⟨x, fun heq => hx heq⟩
+  · intro ⟨x, hx⟩
+    exact Or.inl ⟨x, fun heq => hx (Eq.symm heq)⟩
+
+/-- **Canonicity fails.** `not` admits two disagreeing two-bounce
+    factorisations (`not∘id` and `id∘not`). -/
+theorem canonicity_fails :
+    ∃ (U : Bool → Bool) (f g : TwoBounceFactor U),
+      EndoInj U ∧ FactorsDisagree f g :=
+  ⟨not,
+   factor_involution not not_involution,
+   factor_involution_rev not not_involution,
+   not_endoInj,
+   Or.inl ⟨false, by decide⟩⟩
+
+/-- Bounce-swap of an ordered factor pair: `(φ,σ) ↦ (σ,φ)`. -/
+def IsBounceSwap {α : Type} {U : α → α}
+    (f g : TwoBounceFactor U) : Prop :=
+  (∀ x, f.φ x = g.σ x) ∧ (∀ x, f.σ x = g.φ x)
+
+/-! ## Factor-swap covers step reversal
+
+If `U = σ ∘ φ` with involutions, then `φ ∘ σ` is the two-sided inverse of
+`U`, and `(σ, φ)` is a two-bounce presentation of that reverse step.
+Channel labels stay conventional; the *exchange* is the real content
+(T-7 channel column at proved grade). -/
+
+/-- Left inverse of `U` from any two-bounce factorisation. -/
+theorem left_inv_of_factor {α : Type} (U : α → α) (f : TwoBounceFactor U) :
+    ∀ x, f.φ (f.σ (U x)) = x := by
+  intro x
+  rw [f.factor x, f.σ_inv, f.φ_inv]
+
+/-- Right inverse of `U` from any two-bounce factorisation. -/
+theorem right_inv_of_factor {α : Type} (U : α → α) (f : TwoBounceFactor U) :
+    ∀ x, U (f.φ (f.σ x)) = x := by
+  intro x
+  rw [f.factor, f.φ_inv, f.σ_inv]
+
+/-- Reverse step recovered as `φ ∘ σ`. -/
+def reverseOf {α : Type} {U : α → α} (f : TwoBounceFactor U) : α → α :=
+  fun x => f.φ (f.σ x)
+
+/-- Swap the bounce order: presentation of the reverse step. -/
+def swapFactor {α : Type} {U : α → α} (f : TwoBounceFactor U) :
+    TwoBounceFactor (reverseOf f) where
+  φ := f.σ
+  σ := f.φ
+  φ_inv := f.σ_inv
+  σ_inv := f.φ_inv
+  factor := fun _ => rfl
+
+/-- **Channel-swap is reversal.** Exchanging the two factors of any
+    two-bounce presentation of `U` yields a two-bounce presentation of
+    `U⁻¹` (`φ∘σ`), independently of which factorisation was chosen. -/
+theorem channel_swap_is_reversal {α : Type} (U : α → α)
+    (f : TwoBounceFactor U) :
+    (∀ x, reverseOf f (U x) = x) ∧
+    (∀ x, U (reverseOf f x) = x) ∧
+    Nonempty (TwoBounceFactor (reverseOf f)) :=
+  ⟨left_inv_of_factor U f, right_inv_of_factor U f, ⟨swapFactor f⟩⟩
+
+/-- On an involution the reverse step equals `U`, so factor-swap
+    re-presents the same step (T-7-shaped reorder). -/
+theorem reverseOf_eq_of_involution {α : Type} (U : α → α)
+    (h : IsInvolution U) (f : TwoBounceFactor U) :
+    ∀ x, reverseOf f x = U x := by
+  intro x
+  have hinv : U (reverseOf f x) = x := right_inv_of_factor U f x
+  calc
+    reverseOf f x = U (U (reverseOf f x)) := (h _).symm
+    _ = U x := by rw [hinv]
+
+/-! ### Fin 3: axis choice exceeds bounce-swap -/
+
+/-- The 3-cycle `(0 1 2)`. -/
+def cycle3 : Fin 3 → Fin 3
+  | ⟨0, _⟩ => ⟨1, by decide⟩
+  | ⟨1, _⟩ => ⟨2, by decide⟩
+  | ⟨2, _⟩ => ⟨0, by decide⟩
+
+theorem cycle3_inj : EndoInj cycle3 := by
+  intro a b h
+  match a, b with
+  | ⟨0, _⟩, ⟨0, _⟩ => rfl
+  | ⟨0, _⟩, ⟨1, _⟩ => cases h
+  | ⟨0, _⟩, ⟨2, _⟩ => cases h
+  | ⟨1, _⟩, ⟨0, _⟩ => cases h
+  | ⟨1, _⟩, ⟨1, _⟩ => rfl
+  | ⟨1, _⟩, ⟨2, _⟩ => cases h
+  | ⟨2, _⟩, ⟨0, _⟩ => cases h
+  | ⟨2, _⟩, ⟨1, _⟩ => cases h
+  | ⟨2, _⟩, ⟨2, _⟩ => rfl
+
+/-- Reflect through `0` (fix 0, swap 1↔2). -/
+def reflect0 : Fin 3 → Fin 3
+  | ⟨0, _⟩ => ⟨0, by decide⟩
+  | ⟨1, _⟩ => ⟨2, by decide⟩
+  | ⟨2, _⟩ => ⟨1, by decide⟩
+
+/-- Reflect through `1` (fix 1, swap 0↔2). -/
+def reflect1 : Fin 3 → Fin 3
+  | ⟨0, _⟩ => ⟨2, by decide⟩
+  | ⟨1, _⟩ => ⟨1, by decide⟩
+  | ⟨2, _⟩ => ⟨0, by decide⟩
+
+theorem reflect0_involution : IsInvolution reflect0 := by
+  intro x; exact (by decide : ∀ y : Fin 3, reflect0 (reflect0 y) = y) x
+
+theorem reflect1_involution : IsInvolution reflect1 := by
+  intro x; exact (by decide : ∀ y : Fin 3, reflect1 (reflect1 y) = y) x
+
+theorem cycle3_reflect0_involution :
+    IsInvolution (fun x => cycle3 (reflect0 x)) := by
+  intro x
+  exact (by decide : ∀ y : Fin 3,
+    cycle3 (reflect0 (cycle3 (reflect0 y))) = y) x
+
+theorem cycle3_reflect1_involution :
+    IsInvolution (fun x => cycle3 (reflect1 x)) := by
+  intro x
+  exact (by decide : ∀ y : Fin 3,
+    cycle3 (reflect1 (cycle3 (reflect1 y))) = y) x
+
+def factor_cycle3_axis0 : TwoBounceFactor cycle3 where
+  φ := reflect0
+  σ := fun x => cycle3 (reflect0 x)
+  φ_inv := reflect0_involution
+  σ_inv := cycle3_reflect0_involution
+  factor := fun x => by rw [reflect0_involution x]
+
+def factor_cycle3_axis1 : TwoBounceFactor cycle3 where
+  φ := reflect1
+  σ := fun x => cycle3 (reflect1 x)
+  φ_inv := reflect1_involution
+  σ_inv := cycle3_reflect1_involution
+  factor := fun x => by rw [reflect1_involution x]
+
+/-- Axis choice: two Fin-3 factorisations disagree, and one is not the
+    bounce-swap of the other. (I-1 discharge gauge > ℤ/2 reorder.) -/
+theorem factorization_gauge_exceeds_swap :
+    FactorsDisagree factor_cycle3_axis0 factor_cycle3_axis1 ∧
+    ¬ IsBounceSwap factor_cycle3_axis0 factor_cycle3_axis1 := by
+  constructor
+  · refine Or.inl ⟨⟨0, by decide⟩, ?_⟩
+    decide
+  · intro h
+    have hx := h.2 ⟨0, by decide⟩
+    -- σ₀ 0 = 1, φ₁ 0 = 2
+    revert hx
+    decide
+
+/-- **I-1 canonicity package.** Uniqueness fails; involutive reorder is
+    available whenever `U` moves a point; Fin-3 axis choice exceeds
+    bounce-swap; factor-swap covers step reversal. -/
+theorem i1_canonicity_package :
+    (∃ (U : Bool → Bool) (f g : TwoBounceFactor U),
+      EndoInj U ∧ FactorsDisagree f g) ∧
+    (∀ {α : Type} (U : α → α) (h : IsInvolution U),
+      (∃ x, U x ≠ x) →
+        FactorsDisagree (factor_involution U h) (factor_involution_rev U h)) ∧
+    (FactorsDisagree factor_cycle3_axis0 factor_cycle3_axis1 ∧
+      ¬ IsBounceSwap factor_cycle3_axis0 factor_cycle3_axis1) ∧
+    (∀ {α : Type} (U : α → α) (f : TwoBounceFactor U),
+      (∀ x, reverseOf f (U x) = x) ∧
+      (∀ x, U (reverseOf f x) = x) ∧
+      Nonempty (TwoBounceFactor (reverseOf f))) :=
+  ⟨canonicity_fails,
+   fun U h hx => (involutive_factor_reorder U h).mpr hx,
+   factorization_gauge_exceeds_swap,
+   fun U f => channel_swap_is_reversal U f⟩
 
 /-- **I-1 two-bounce fragment.** Converse + spine ¬erase + existence on
-    involutions / Bool / swapStep / every injection on `Fin n`.
-    Canonicity of `(φ, σ)` remains open (`canonicity_open`). -/
+    involutions / Bool / swapStep / every injection on `Fin n` +
+    canonicity failure + channel-swap-is-reversal. -/
 theorem i1_two_bounce_fragment :
-    (∀ {α : Type} (U : α → α) (f : TwoBounceFactor U), Lossless U) ∧
-    (∀ {S E : Type} (U : S × E → S × E) (f : TwoBounceFactor U),
+    (∀ {α : Type} (U : α → α) (_f : TwoBounceFactor U), Lossless U) ∧
+    (∀ {S E : Type} (U : S × E → S × E) (_f : TwoBounceFactor U),
       Geom.Registration.Inj U) ∧
     (∀ {α : Type} (U : α → α), IsInvolution U →
       Nonempty (TwoBounceFactor U)) ∧
@@ -633,20 +847,31 @@ theorem i1_two_bounce_fragment :
     Nonempty (TwoBounceFactor Geom.Registration.swapStep) ∧
     (∀ {α : Type} (act : α → α), SymmetricStep act → ¬ Erasing act) ∧
     (∀ {n : Nat} (U : Fin n → Fin n), EndoInj U →
-      Nonempty (TwoBounceFactor U)) :=
+      Nonempty (TwoBounceFactor U)) ∧
+    (∃ (U : Bool → Bool) (f g : TwoBounceFactor U),
+      EndoInj U ∧ FactorsDisagree f g) ∧
+    (∀ {α : Type} (U : α → α) (f : TwoBounceFactor U),
+      (∀ x, reverseOf f (U x) = x) ∧
+      (∀ x, U (reverseOf f x) = x) ∧
+      Nonempty (TwoBounceFactor (reverseOf f))) :=
   ⟨fun _U => lossless_of_two_bounce _,
    fun _U => inj_of_two_bounce _,
    fun _U h => ⟨factor_involution _ h⟩,
    fun U h => ⟨factor_bool U h⟩,
    ⟨factor_swapStep⟩,
    fun act hs => symmetric_excludes_erase act hs,
-   fun U h => ⟨factor_fin U h⟩⟩
+   fun U h => ⟨factor_fin U h⟩,
+   canonicity_fails,
+   fun U f => channel_swap_is_reversal U f⟩
 
 #print axioms Bridge.TwoBounce.symmetric_excludes_erase
 #print axioms Bridge.TwoBounce.lossless_of_two_bounce
 #print axioms Bridge.TwoBounce.inj_of_two_bounce
 #print axioms Bridge.TwoBounce.factor_bool
 #print axioms Bridge.TwoBounce.factor_fin
+#print axioms Bridge.TwoBounce.canonicity_fails
+#print axioms Bridge.TwoBounce.channel_swap_is_reversal
+#print axioms Bridge.TwoBounce.i1_canonicity_package
 #print axioms Bridge.TwoBounce.i1_two_bounce_fragment
 
 end Bridge.TwoBounce

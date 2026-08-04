@@ -66,7 +66,7 @@ from a higher one.
 | (α, a, z), a∘a = id | DM | pointed unoriented act | primitive (arena) |
 | Bool, ¬ | DM | the Fundamental, unique survivor | theorem |
 | Lₖ, Lₖ₊₁ = Option(Lₖ) | DM | ladder | theorem |
-| U : S×E → S×E | AG | joint microstep | **I-1 transfer:** global `Inj(U)` stipulated as spine losslessness on the product; discharge shape `TwoBounce` (U = σ∘φ, Fin n existence landed, canonicity open) |
+| U : S×E → S×E | AG | joint microstep | **I-1 transfer:** global `Inj(U)` as spine losslessness on the product; `TwoBounce` discharged with packaging gauge (existence + `canonicity_fails` + `channel_swap_is_reversal`) |
 | K ≥ 2 | AG | merge rate / blank alphabet | K = 2 minimal, **derived** via `fundamental_two_elements`; K > 2 admissible as alphabet generalisation, flagged non-minimal |
 | caps T | AG | capacity at tick T | **identified** with the level-T predicate space, |caps T| = 2^(T+2) |
 | prof | AG | capacity profile | committed ladder realises the `expand` constructor |
@@ -108,12 +108,15 @@ modality, stage tags. Ledger may not re-postulate any of these.
 **Losslessness transfer:** in-arena, `a∘a=id` ⇒ ¬`Erasing` (theorem:
 `TwoBounce.symmetric_excludes_erase`). Global `Inj(U)` on `S×E` is the
 interface import of that losslessness onto forward-composing microsteps —
-same status I-2 had before Dil. Discharge shape: `U` admissible iff
+same status I-2 had before Dil. **Discharged with packaging gauge:** `U` admissible iff
 `U = σ ∘ φ` with involutions `φ, σ` (`Bridge.TwoBounce`); converse,
-toy existence, and every injection on `Fin n` landed
-(`i1_two_bounce_fragment`, `factor_fin`); canonicity of `(φ, σ)` open.
-Channel rhyme with dictionary `φ`, `σ` suggestive until canonicity lands
-or fails.
+toy existence, every injection on `Fin n`, canonicity failure, and
+channel-swap-is-reversal landed (`i1_two_bounce_fragment`, `factor_fin`,
+`canonicity_fails`, `channel_swap_is_reversal`). Non-uniqueness is
+essential packaging: Fin-3 axis choice is spent inside I-1 discharge;
+the ledger consumes `U`, never the pair. Channel *labels* stay
+conventional; channel *swap* is proved content (covers `U ↦ U⁻¹`,
+T-7 channel column).
 
 **I-2 Environment implementation.** AG's E at horizon T is the DM ladder
 carrier at level T, with cap slots the `none`-namers and |caps T| the
@@ -199,8 +202,10 @@ skeleton (contraction is a merge, merge ⇒ record by T-4) is Lean; the
 identification of the register with H is a certificate clause, so an exhibit.
 
 **T-7 One ℤ/2, three faces.** Pole swap ≅ address reversal ≅ channel
-relabelling, as a single underdetermination theorem with three named
-projections. *Difficulty: near-mechanical.*
+swap, as a single underdetermination with three named projections.
+Channel *labels* conventional (`canonicity_fails`); channel *swap*
+proved as step reversal (`channel_swap_is_reversal`). *Near-mechanical
+plus proved channel column.*
 
 **T-8 Fixed-point discipline.** The kernel excludes a(x) = x as a state of
 the act. In any certified model with dissipation, the fixed set is attained
@@ -315,8 +320,8 @@ from the opposite direction. File as coincidence until a theorem promotes it.
 1. **Lossless spine vs lossy ledger.** Resolution: stratification + corrected
    obligations. The base act is undirected (`a∘a=id`); no-erasure is a
    theorem *inside* the arena, not a separate creed. Global `Inj(U)` is the
-   I-1 transfer of that losslessness onto the product (two-bounce: Fin n
-   existence landed; canonicity open). Merges live strictly in `U_S` above the base and are
+   I-1 transfer of that losslessness onto the product (two-bounce discharged
+   with packaging gauge; `canonicity_fails`; swap covers reversal). Merges live strictly in `U_S` above the base and are
 
    compensated in `U_E` (T-4). Involutivity banishes ARROW and ERASE together
    at the base; `time_dissipation_one_property` returns them together upstairs
@@ -355,8 +360,24 @@ Canonical detail: `docs/RESIDUE.md`. Summary:
 - **R-1** ultrametric ≠ space — attack via recombination budget above;
 - **O-4 / O-5** continuum Lorentzian limit; matter from the framework.
 
-**Philosophical residue:** facticity of liveness; ℤ/2 + branch choice;
+**Philosophical residue:** facticity of liveness; ℤ/2 + branch choice
+(*which* face is free; the underdetermination itself is proved);
 arena adequacy; blank ontology; RE action inputs.
+
+**Gauge demarcation (content vs packaging).** A gauge is *content* when
+some exported statement mentions the choice; *packaging* when the choice
+is quotiented before anything downstream consumes it.
+| Gauge | Locus | Class | Note |
+|---|---|---|---|
+| Label / pole swap at Fund | T-7 / `two_readings` | **content** | Survives into §4 and the arrow line |
+| Address fwd/rev | T-7 / Obs.Recovery | **content** | Same ℤ/2 face |
+| Channel swap | T-7 / `channel_swap_is_reversal` | **content** | Exchange real; labels conventional |
+| Record gauge per tick | Dil / T-2 straighten | **packaging** | Exported only inside “up to record gauge” |
+| Factorisation gauge per step | I-1 / `canonicity_fails` | **packaging** | Ledger consumes `U`, never `(φ,σ)` |
+
+**Not-residue (proved negatives / positives):** `born_from_multiplicity_nogo`;
+NoClone; `canonicity_fails`; `channel_swap_is_reversal`; one ℤ/2 (T-7);
+`corpus_not_universal`; …
 
 **Refused (genuine — continuum / mind / overclaim):**
 - number or observable `H₀` identified from Bool / naming ticks;

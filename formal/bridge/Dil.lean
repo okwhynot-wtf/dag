@@ -26,8 +26,10 @@ rigidity is relative to a base bijection (`|E₀| = 4`). Ladder-predicate
 addressing witness and `|S|>K` address-uniform idx fragment land below.
 **Straightening** (`isoToFreeOnBase` / `straighten_fragment`): UF archives
 ≅ append-only on frozen base; record gauge = base relabelling.
-Tick identification remains packaged in
-`TickSimulation.tick_identification_licensed` (not discharged here).
+Tick identification: licensed remnant in
+`TickSimulation.tick_identification_licensed`; classified kernel in
+`TickSimulation.tick_identification_classified` (append glue here via
+`freeOnBase_append_step`). Rename to `tick_identification` reserved for v0.2.
 -/
 
 namespace Bridge.Dil

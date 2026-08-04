@@ -26,10 +26,10 @@ extensions is obstructed (`RegistrationFactor.registration_vs_naming_obstruction
 swap registers forever on fixed `E = Bool` while naming grows `levelCard`.
 Positive remnant: every injective 2-merge admits a namer-shaped label witness
 (`registers_admits_namer`). Straightening (`Dil.straighten_fragment`) supplies
-append-only normal form mod base gauge for UF archives — a skeleton step
-toward classification (bounded-demand / Fund exempt; unbounded climb).
-Naming-tick/microtick identification stays licensed on the remnant; not
-discharged as a total functor on carriers.
+append-only normal form mod base gauge for UF archives. Classified kernel:
+`tick_identification_classified` (Fund exempt; swap necessity; Dil append
+step; namer + rate weld + ladder `NamingExtension`). Keep `_licensed` until
+v0.2 rename to `tick_identification`. Not a total functor on carriers.
 -/
 
 namespace Bridge.TickSimulation

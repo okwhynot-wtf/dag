@@ -4,8 +4,6 @@ A plain-English reading of the spine: what the theory claims before the formal m
 
 > **In one sentence.** Reality is the unique minimal self-distinguishing process; self-reference forces endless expansion; preserved distinctions become archives; archives generate the appearance of time; and the true subject is the act of distinction itself rather than anything distinguished.
 
-Related formal docs: [SPINE](SPINE.md) · [DAG](DAG.md) · [AXIOMS](AXIOMS.md) · [CLAIMS](CLAIMS.md) · [INTERPRETATION](INTERPRETATION.md)
-
 ---
 
 ## Contents

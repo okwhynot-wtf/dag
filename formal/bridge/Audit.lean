@@ -35,7 +35,7 @@ Generated. Do not edit by hand:
 python3 formal/tools/gen_audit.py
 ```
 
-27 modules, 434 results. Source for `formal/AXIOMS.md`.
+27 modules, 435 results. Source for `formal/AXIOMS.md`.
 -/
 
 -- Alphabet (7)
@@ -62,7 +62,7 @@ python3 formal/tools/gen_audit.py
 #print axioms Bridge.Capacity.areaBits_succ
 #print axioms Bridge.Capacity.area_as_caps_sharpening
 
--- OneZ2 (11)
+-- OneZ2 (12)
 #print axioms Bridge.OneZ2.addressBit_roundtrip
 #print axioms Bridge.OneZ2.bitAddress_roundtrip
 #print axioms Bridge.OneZ2.address_two
@@ -74,6 +74,7 @@ python3 formal/tools/gen_audit.py
 #print axioms Bridge.OneZ2.dm_two_readings
 #print axioms Bridge.OneZ2.one_Z2_three_faces
 #print axioms Bridge.OneZ2.channel_swap_is_reversal
+#print axioms Bridge.OneZ2.face_choice_is_packaging
 
 -- RegistrationSpine (8)
 #print axioms Bridge.RegistrationSpine.ag_merge_registers

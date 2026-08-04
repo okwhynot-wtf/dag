@@ -19,9 +19,9 @@ ROOT = pathlib.Path(__file__).resolve().parents[2]
 FORMAL = ROOT / "formal"
 
 PACKAGES = {
-    "spine": ["Orbit", "TwoCycle", "Diagonal", "Tower", "Ladder",
-              "Cause", "Branch", "Limit", "Revision", "SEM",
-              "Interior", "Monism", "Apophasis", "Canon",
+    "spine": ["Orbit", "TwoCycle", "Facticity", "Ambient", "Diagonal",
+              "Tower", "Ladder", "Cause", "Branch", "Limit", "Revision",
+              "SEM", "Interior", "Monism", "Apophasis", "Canon",
               "Information", "Observer", "Faces", "Density",
               "NonCommencement", "OmegaDuration", "SelfReference"],
     "ledger": ["Geom.Core", "Geom.Registration", "Geom.Ledger",

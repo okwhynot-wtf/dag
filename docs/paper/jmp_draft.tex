@@ -206,7 +206,9 @@ suggests, marked as such.
 identifications, admitted only by certificate.
 \end{enumerate}
 Claims are tagged by status: proved, corollary, interpretation, open,
-refused, or philosophical residue. The companion Lean~4 corpus~\cite{lean4}
+refused, or philosophical residue. Residue is reduced by relocation---into
+theorems, audited axioms, or certificate data
+(Section~\ref{sec:status}). The companion Lean~4 corpus~\cite{lean4}
 (no Mathlib~\cite{mathlib}, no $\mathtt{sorry}$) supplies declaration
 names; this paper is
 self-contained at the level of statements.
@@ -331,12 +333,37 @@ Corollary of Definition~\ref{def:arena} (involution $\Rightarrow$
 injectivity). Not an independent creed.
 \end{remark}
 
+\begin{theorem}[Ambient uniqueness, equational fragment]
+\label{thm:ambient-unique}
+Relative to the arena signature of Definition~\ref{def:arena} (one type,
+one endomap), every single-equation ambient has the form
+$a^{m}=a^{n}$. Among those equations:
+\begin{enumerate}[label=(\roman*)]
+\item $a^{m}=a^{n}$ with $n\ge 1$ need not force injectivity
+($a^{2}=a$ admits erasure);
+\item $a^{m}=\mathrm{id}$ forces losslessness; $m=1$ is rest; for every
+$m\ge 3$ an $m$-cycle is a countermodel with an asymmetric point;
+\item hence $a^{2}=\mathrm{id}$ is the unique nontrivial single equation
+that excludes both smuggled arrow and smuggled loss.
+\end{enumerate}
+Ambients beyond the equational fragment are refused by parsimony of the
+arena language (Section~\ref{sec:status}).
+\end{theorem}
+
+\begin{remark}[Status]
+Proved by exhaustive classification relative to the signature, with
+finite countermodels. Interpretation~\ref{int:ambient} records only the
+residual choice of signature itself.
+\end{remark}
+
 \begin{interpretation}
 \label{int:ambient}
-The choice of symmetric step as ambient is a modelling decision: it
-bans smuggled time (asymmetric step) and smuggled loss (erasure) by one
-equation. Whether that ambient is the ``right'' one for fundamentality
-is philosophical residue (Section~\ref{sec:status}), not a theorem.
+Symmetric step is not an arbitrary modelling confession: by
+Theorem~\ref{thm:ambient-unique} it is the unique nontrivial
+single-equation ambient in the arena signature that bans smuggled time
+and smuggled loss. What remains is the signature declaration of
+Definition~\ref{def:arena}---one type, one endomap---stated in daylight,
+not residue.
 \end{interpretation}
 
 
@@ -349,10 +376,24 @@ Objects are triples $(\alpha,a,z)$ with $a$ a symmetric step and
 $z:\alpha$ a seed. Morphisms are pointed equivariant maps.
 \end{definition}
 
-Rest is incompatible with liveness. Asymmetric step is incompatible with
+\begin{theorem}[Orbit liveness as non-degeneracy]
+\label{thm:live-orbit}
+Let $a$ be a symmetric step and $z$ a seed. The orbit of $z$ is either
+the singleton $\{z\}$ or the pair $\{z,a(z)\}$. Liveness on that orbit
+holds if and only if the orbit is non-degenerate ($a(z)\neq z$).
+\end{theorem}
+
+\begin{remark}[Status]
+Proved. Quantified liveness on the orbit therefore collapses to one bit
+of facticity---existence of a second orbit element---which
+Section~\ref{sec:status} carries as an audited axiom. Discharging that
+axiom as a world-derivation from $\Bool$ alone remains refused.
+\end{remark}
+
+Rest is incompatible with non-degeneracy. Asymmetric step is incompatible with
 symmetric step. Erasure is incompatible with Proposition~\ref{prop:no-erase}.
-Relative to Definition~\ref{def:ambient} and liveness, the only remaining
-pointwise shape is the live two-cycle.
+Relative to Definition~\ref{def:ambient} and Theorem~\ref{thm:live-orbit},
+the only remaining pointwise shape is the live two-cycle.
 
 \begin{theorem}[Canon / initiality]
 \label{thm:canon}
@@ -665,6 +706,8 @@ Gauge & Locus & Class \\
 Label / pole swap & Theorem~\ref{thm:canon} & content \\
 Address fwd/rev & Theorem~\ref{thm:arrow} & content \\
 Channel swap & Theorem~\ref{thm:swap} & content \\
+Face representative (equivariant certs)
+  & Theorem~\ref{thm:face-eq} & packaging \\
 Record gauge per tick & Theorem~\ref{thm:arrow} & packaging \\
 Factorisation gauge per step & Theorems~\ref{thm:exists}--\ref{thm:canonfail}
   & packaging \\
@@ -672,15 +715,27 @@ Factorisation gauge per step & Theorems~\ref{thm:exists}--\ref{thm:canonfail}
 \end{tabular}}
 \end{center}
 
+\begin{theorem}[Face-swap equivariance]
+\label{thm:face-eq}
+Kernel certificate validity is stable under the $\Ztwo$ face/pole swap:
+any Bool kernel certificate that is admitted remains admitted after
+conjugation by the face involution. Consequently, choice of face is
+packaging in the sense of Definition~\ref{def:gauge} and belongs in
+Table~\ref{tab:gauges}. If a certificate breaks equivariance by fixing an
+orientation, that orientation is certificate-supplied data and is audited
+there; kernel exports remain swap-equivariant either way.
+\end{theorem}
+
 \begin{remark}[Status]
-Theorem~\ref{thm:z2} and Definition~\ref{def:gauge} keep one dictionary
-$\Ztwo$: factorisation non-uniqueness (Theorem~\ref{thm:canonfail}) is
-packaging; channel \emph{labels} are conventional; channel \emph{swap}
-is content. The content/packaging demarcation is a formal analogue of
-the question which symmetries carry representational
-significance~\cite{bradingcastellani,dewar}; underdetermination by label
-swap is the formal shadow of permutation-style underdetermination of
-reference~\cite{quine,putnam}.
+Theorem~\ref{thm:z2}, Definition~\ref{def:gauge}, and
+Theorem~\ref{thm:face-eq} keep one dictionary $\Ztwo$: factorisation
+non-uniqueness (Theorem~\ref{thm:canonfail}) is packaging; channel
+\emph{labels} are conventional; channel \emph{swap} is content; face
+choice is packaging or certificate data. The content/packaging
+demarcation is a formal analogue of the question which symmetries carry
+representational significance~\cite{bradingcastellani,dewar};
+underdetermination by label swap is the formal shadow of
+permutation-style underdetermination of reference~\cite{quine,putnam}.
 \end{remark}
 
 
@@ -716,13 +771,33 @@ alphabet-lift beyond the Fin interfaces closed here.
 Premise-free global laws of time; continuum Einstein equations as
 theorems of this corpus; host-logic incompleteness; G\"odel
 arithmetisation of the formal text; experiential or qualia claims;
-derivation of the world from $\Bool$ alone.
+derivation of the world from $\Bool$ alone (including any discharge of
+the audited existential below); ambients beyond the equational fragment
+of the arena signature, refused by parsimony of the arena language.
 \end{statusrefused}
 
 \begin{statusphil}
-Facticity of liveness; adequacy of the pointed unoriented ambient
-(Interpretation~\ref{int:ambient}); which face of the $\Ztwo$ is treated
-as free in applications.
+Relocated residue, with the prior items replaced by theorem citations.
+\begin{enumerate}[label=(\roman*)]
+\item \textbf{Audited axiom.} A non-degenerate pointed act exists.
+Orbit liveness is Theorem~\ref{thm:live-orbit}; the residue is the one
+existential bit, carried explicitly in the axiom footprint. It is not
+discharged.
+\item \textbf{Signature declaration.} Arena data as given
+(Definition~\ref{def:arena}: one type, one endomap). Adequacy of
+$a\comp a=\mathrm{id}$ is Theorem~\ref{thm:ambient-unique}; the signature
+choice is opening definition, not residue.
+\item \textbf{Equivariance discipline.} Dictionary face choice is
+packaging or certificate-supplied data
+(Theorem~\ref{thm:face-eq}; Table~\ref{tab:gauges}).
+\end{enumerate}
+\noindent
+The pattern across all three is the same: residue is reduced by
+\emph{relocating} it---upward into a theorem via an exhaustively
+specified search space, downward into an audited axiom, or outward into
+certificate-supplied data. The irreducible core is the existence of one
+distinction: the sole audited axiom and the sole underdetermination are
+the same $\Ztwo$.
 \end{statusphil}
 
 
@@ -799,8 +874,10 @@ that survivor: the unique object is $(\Bool,\neg)$ up to label swap.
 Seal, ladder, registration (via two-bounce), archive capacity, and arrow
 as address follow in dependency order. One $\Ztwo$ is stated once; content
 and packaging gauges prevent factorisation non-uniqueness from counting
-as a second underdetermination. Philosophical and dictionary claims are
-confined to marked layers and to Section~\ref{sec:status}.
+as a second underdetermination. Philosophical residue is relocated---into theorems, one audited
+existential, or certificate data---as inventoried in
+Section~\ref{sec:status}; dictionary claims remain confined to the marked
+layer.
 
 \section*{Formal companion}
 \label{sec:companion}
@@ -830,11 +907,14 @@ Representative declarations (Lean~4; no Mathlib; no $\mathtt{sorry}$):
 \begin{center}
 {\small\ttfamily\raggedright
 classification\_at \textperiodcentered\
+liveOnOrbit\_iff\_nondegenerate \textperiodcentered\
+ambient\_uniqueness\_equational \textperiodcentered\
 canon\_initial \textperiodcentered\
 symmetric\_excludes\_erase \textperiodcentered\
 seal\_on\_fundamental \textperiodcentered\
 corpus\_not\_universal \textperiodcentered\
 one\_Z2\_three\_faces \textperiodcentered\
+bool\_cert\_face\_equivariant \textperiodcentered\
 factor\_fin \textperiodcentered\
 canonicity\_fails \textperiodcentered\
 channel\_swap\_is\_reversal \textperiodcentered\

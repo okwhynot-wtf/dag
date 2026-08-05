@@ -18,5 +18,7 @@ roots = [
   "Frequencies",
   "WaveEquation",
   "CantorBoundary",
+  "Dispersion",
+  "Recurrence",
   "Audit",
 ]

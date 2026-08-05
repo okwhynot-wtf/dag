@@ -8,8 +8,9 @@ Probe: what object at the edge of the ladder outruns every
 enumeration without any new axiom? Answer: the space of complete
 gauge histories, one pole choice at every level forever, which is
 `Nat → Bool` (Cantor space); no cardinality claim beyond the seal is
-made or needed. Facts proved here; every statement is pointwise, so no
-function extensionality is used anywhere, and every theorem below
+made or needed. Facts proved here; no proof uses function
+extensionality — function-equality hypotheses are consumed via
+`congrFun` or hold definitionally — and every theorem below
 (including the rung embedding, whose base cases close by
 `Bool.noConfusion` rather than `simp`) has an empty `#print axioms`
 footprint, as the audit block at the file bottom verifies:
@@ -37,7 +38,20 @@ footprint, as the audit block at the file bottom verifies:
   (`tail_erasing`, with a definitional witness) — the boundary
   poverty extends to dynamics, and that poverty remains part of the
   record. Still, `tail` has a section per pole (`tail_cons`): the
-  blank-adjunction shape reappears at the boundary.
+  blank-adjunction shape reappears at the boundary;
+* the ladder step is carried at the boundary: the blank rung encodes
+  as the all-true history (`encode_succ_none`), climbing one rung is
+  `cons false` coordinatewise (`encode_succ_some`), and climbing then
+  dropping the first coordinate is the identity (`tail_encode_some`)
+  — the `(+1)/some` step of the ladder is carried by `cons/tail` on
+  histories as a section/retraction pair (the blank-adjunction
+  shape), definitionally per coordinate case;
+* injectivity is effective: depth-`(k+1)` cylinders separate rung
+  `k`. Distinct inhabitants of `Ladder.Level k` differ at some
+  coordinate `m ≤ k` of their encodings (`encode_separates`), the
+  finite-approximation (profinite) structure of the boundary with an
+  explicit bound; `encode_inj_pointwise` is its contrapositive
+  restated (`encode_inj_of_separates`).
 
 What the boundary lacks is everything physics would need
 (metric, order, group action); its poverty is part of the record.
@@ -196,6 +210,76 @@ theorem tail_cons (b : Bool) (x : GaugeHistory) (n : Nat) :
     tail (cons b x) n = x n :=
   rfl
 
+/-! ## The ladder step at the boundary (section/retraction) -/
+
+/-- The blank rung encodes as the all-true history. Definitional. -/
+theorem encode_succ_none (k : Nat) (n : Nat) :
+    encode (k + 1) none n = true :=
+  rfl
+
+/-- Climbing one rung is `cons false` coordinatewise: the encoding of
+    `some a` at level `k + 1` agrees at every coordinate with `false`
+    prepended to the encoding of `a` at level `k`. Both sides match on
+    `n` identically, so each case closes by `rfl`. -/
+theorem encode_succ_some (k : Nat) (a : Ladder.Level k) (n : Nat) :
+    encode (k + 1) (some a) n = cons false (encode k a) n := by
+  cases n with
+  | zero => rfl
+  | succ m => rfl
+
+/-- Climbing one rung and then dropping the first coordinate is the
+    identity: the section/retraction half of the ladder's
+    blank-adjunction shape, carried at the boundary by `cons/tail`.
+    Definitional. -/
+theorem tail_encode_some (k : Nat) (a : Ladder.Level k) (n : Nat) :
+    tail (encode (k + 1) (some a)) n = encode k a n :=
+  rfl
+
+/-! ## Finite approximation: cylinders separate rungs -/
+
+/-- Effective injectivity of the encoding: distinct inhabitants of
+    rung `k` differ at some coordinate `m ≤ k` of their encodings, so
+    depth-`(k + 1)` cylinders separate rung `k`. Induction on `k`: at
+    level `0` the coordinate is `0`; at a successor, a `none/some`
+    disagreement shows at coordinate `0`, and a `some/some`
+    disagreement lifts the inductive witness `m` to `m + 1`. This is
+    the finite-approximation (profinite) structure of the boundary,
+    with an explicit bound. -/
+theorem encode_separates :
+    ∀ (k : Nat) (x y : Ladder.Level k), x ≠ y →
+      ∃ m, m ≤ k ∧ encode k x m ≠ encode k y m := by
+  intro k
+  induction k with
+  | zero =>
+    intro x y hxy
+    exact ⟨0, Nat.le_refl 0, fun h => hxy h⟩
+  | succ k ih =>
+    intro x y hxy
+    cases x with
+    | none =>
+      cases y with
+      | none => exact absurd rfl hxy
+      | some b =>
+        exact ⟨0, Nat.zero_le _, fun h => Bool.noConfusion h⟩
+    | some a =>
+      cases y with
+      | none =>
+        exact ⟨0, Nat.zero_le _, fun h => Bool.noConfusion h⟩
+      | some b =>
+        have hab : a ≠ b := fun h => hxy (congrArg some h)
+        obtain ⟨m, hm, hne⟩ := ih a b hab
+        exact ⟨m + 1, Nat.succ_le_succ hm, hne⟩
+
+/-- Pointwise injectivity restated as the contrapositive of
+    `encode_separates`: histories that agree at every coordinate came
+    from the same rung inhabitant. -/
+theorem encode_inj_of_separates (k : Nat) (x y : Ladder.Level k)
+    (h : ∀ n, encode k x n = encode k y n) : x = y := by
+  by_cases hxy : x = y
+  · exact hxy
+  · obtain ⟨m, _, hne⟩ := encode_separates k x y hxy
+    exact absurd (h m) hne
+
 #print axioms Experimental.CantorBoundary.boundary_unenumerable
 #print axioms Experimental.CantorBoundary.encode_inj_pointwise
 #print axioms Experimental.CantorBoundary.rungs_embed
@@ -207,5 +291,10 @@ theorem tail_cons (b : Bool) (x : GaugeHistory) (n : Nat) :
 #print axioms Experimental.CantorBoundary.mask_top_eq_flip
 #print axioms Experimental.CantorBoundary.tail_erasing
 #print axioms Experimental.CantorBoundary.tail_cons
+#print axioms Experimental.CantorBoundary.encode_succ_none
+#print axioms Experimental.CantorBoundary.encode_succ_some
+#print axioms Experimental.CantorBoundary.tail_encode_some
+#print axioms Experimental.CantorBoundary.encode_separates
+#print axioms Experimental.CantorBoundary.encode_inj_of_separates
 
 end Experimental.CantorBoundary

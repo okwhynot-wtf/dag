@@ -2,6 +2,8 @@ import Overtones
 import Frequencies
 import WaveEquation
 import CantorBoundary
+import Dispersion
+import Recurrence
 
 /-!
 # Audit — axiom footprint for `formal/experimental/`
@@ -12,7 +14,7 @@ Generated. Do not edit by hand:
 python3 formal/tools/gen_audit.py
 ```
 
-4 modules, 75 results. Source for `formal/AXIOMS.md`.
+6 modules, 106 results. Source for `formal/AXIOMS.md`.
 -/
 
 -- Overtones (17)
@@ -85,7 +87,7 @@ python3 formal/tools/gen_audit.py
 #print axioms Experimental.Wave.dirichlet3_period_eight
 #print axioms Experimental.Wave.dirichlet5_period_twelve
 
--- CantorBoundary (11)
+-- CantorBoundary (16)
 #print axioms Experimental.CantorBoundary.boundary_unenumerable
 #print axioms Experimental.CantorBoundary.encode_inj_pointwise
 #print axioms Experimental.CantorBoundary.rungs_embed
@@ -97,3 +99,38 @@ python3 formal/tools/gen_audit.py
 #print axioms Experimental.CantorBoundary.mask_top_eq_flip
 #print axioms Experimental.CantorBoundary.tail_erasing
 #print axioms Experimental.CantorBoundary.tail_cons
+#print axioms Experimental.CantorBoundary.encode_succ_none
+#print axioms Experimental.CantorBoundary.encode_succ_some
+#print axioms Experimental.CantorBoundary.tail_encode_some
+#print axioms Experimental.CantorBoundary.encode_separates
+#print axioms Experimental.CantorBoundary.encode_inj_of_separates
+
+-- Dispersion (12)
+#print axioms Experimental.Dispersion.sub_one_eq_shift
+#print axioms Experimental.Dispersion.rotF_eq_shift
+#print axioms Experimental.Dispersion.iterN_rotF_eq_iterN_shift
+#print axioms Experimental.Dispersion.gcd_succ_self
+#print axioms Experimental.Dispersion.predicted_order
+#print axioms Experimental.Dispersion.rotF_order_returns
+#print axioms Experimental.Dispersion.rotF_order_minimal
+#print axioms Experimental.Dispersion.iterN_rotS_components
+#print axioms Experimental.Dispersion.rotS_order_returns
+#print axioms Experimental.Dispersion.rotS_order_minimal
+#print axioms Experimental.Dispersion.returns_iff_rot_pow_returns
+#print axioms Experimental.Dispersion.symmetry_order_is_frequency_law
+
+-- Recurrence (14)
+#print axioms Experimental.Recurrence.encodeAux_succ
+#print axioms Experimental.Recurrence.encodeAux_lt
+#print axioms Experimental.Recurrence.encodeAux_inj
+#print axioms Experimental.Recurrence.encodeF_lt
+#print axioms Experimental.Recurrence.encodeF_inj
+#print axioms Experimental.Recurrence.encodeS_lt
+#print axioms Experimental.Recurrence.encodeS_inj
+#print axioms Experimental.Recurrence.iterN_add
+#print axioms Experimental.Recurrence.iterN_inj
+#print axioms Experimental.Recurrence.exists_collision
+#print axioms Experimental.Recurrence.wave_recurrence_bounded
+#print axioms Experimental.Recurrence.wave_recurrence
+#print axioms Experimental.Recurrence.capacity_eq
+#print axioms Experimental.Recurrence.wave_recurrence_pow

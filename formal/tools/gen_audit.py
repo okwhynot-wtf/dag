@@ -48,7 +48,7 @@ PACKAGES = {
                    "Quintom.Damping", "Quintom.Growth", "BitFlip",
                    "Kramers", "Page", "QEC", "NoClone", "MetaProblem"],
     "experimental": ["Overtones", "Frequencies", "WaveEquation",
-                     "CantorBoundary"],
+                     "CantorBoundary", "Dispersion", "Recurrence"],
 }
 
 # Lean identifiers admit `'`, `!`, `?` and unicode letters/subscripts after the

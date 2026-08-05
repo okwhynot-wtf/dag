@@ -142,7 +142,9 @@ Experimental (quarantined): exploratory results, not part of the audited spine/l
 | `Overtones` | 17 | 1 | 10 | 6 |  |
 | `Frequencies` | 16 | 4 | 3 | 9 |  |
 | `WaveEquation` | 31 | 7 | 2 | 20 |  |
-| `CantorBoundary` | 11 | 11 |  |  |  |
+| `CantorBoundary` | 16 | 16 |  |  |  |
+| `Dispersion` | 12 |  | 1 | 11 |  |
+| `Recurrence` | 14 | 2 | 1 | 7 |  |
 
-Totals: 1453 audited results; 1236 clean.
+Totals: 1484 audited results; 1243 clean.
 

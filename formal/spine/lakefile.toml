@@ -25,6 +25,7 @@ roots = [
   "Canon",
   "Information",
   "Observer",
+  "NoExterior",
   "Faces",
   "Density",
   "NonCommencement",

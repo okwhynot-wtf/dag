@@ -31,4 +31,6 @@ roots = [
   "NonCommencement",
   "OmegaDuration",
   "SelfReference",
+  "SelfArticulation",
+]
 ]

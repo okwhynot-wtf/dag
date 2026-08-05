@@ -69,7 +69,7 @@ theorem capacity_schedule_unique {K tTurn : Nat} :
 
 /-- **T-15.** Alive ⇔ records ≤ caps; saturation := equality; at
     saturation, record flux is determined by the capacity schedule. -/
-theorem T15_saturation_equation_of_state :
+theorem T15_saturation_balance :
     (∀ (K : Nat) (prof : Geom.Profile.DepthProfile) (T : Nat),
       Geom.Profile.Alive K prof T ↔
         K ^ T ≤ Geom.Profile.capacityOf K prof T) ∧
@@ -97,6 +97,6 @@ theorem T15_saturation_equation_of_state :
 #print axioms saturation_iff_tick_equality
 #print axioms saturated_flux_fixed_by_capacity
 #print axioms capacity_schedule_unique
-#print axioms T15_saturation_equation_of_state
+#print axioms T15_saturation_balance
 
 end Bridge.Saturation

@@ -1,5 +1,5 @@
-import EinsteinSkeleton
-import EffectiveMatter
+import FlatnessDebt
+import FiberFlux
 import Alphabet
 
 /-!
@@ -20,10 +20,10 @@ does not close `OpenGap.O3_noLedgerSheaf`; continuum locality is not
 derived.
 -/
 
-namespace Bridge.LedgerSheaf
+namespace Bridge.LedgerPatchGlue
 
-open Bridge.EinsteinSkeleton
-open Bridge.EffectiveMatter
+open Bridge.FlatnessDebt
+open Bridge.FiberFlux
 
 /-- A cover by local ledger patches. -/
 structure LedgerCover (X E S E' : Type) where
@@ -72,16 +72,16 @@ theorem cover_glue_capacity
 
 /-- If two patches share a locus and both realize fiber length = capacity
     length, their effective matter readings agree. -/
-theorem glue_effectiveMatter_at_saturation_length
+theorem glue_fiberFlux_at_saturation_length
     {X E S E' : Type}
     {p q : LocalLedgerPatch X E S E'}
     (h : OverlapCompatible p q)
     (hlocus : p.locus = q.locus)
     (hp : p.fiber.length = p.alphabet.length)
     (hq : q.fiber.length = q.alphabet.length) :
-    effectiveMatter p = effectiveMatter q := by
+    fiberFlux p = fiberFlux q := by
   have hcap := glue_capacity_on_locus h hlocus
-  simp only [effectiveMatter, stressProxy]
+  simp only [fiberFlux, fluxProxy]
   rw [hp, hq, hcap]
 
 /-- Two-patch cover at one locus with matching alphabets is compatible. -/
@@ -136,7 +136,7 @@ theorem restrict_preserves_fiber {X E S E' : Type}
 
 theorem restrict_preserves_effectiveMatter {X E S E' : Type}
     (p : LocalLedgerPatch X E S E') (locus' : Nat) :
-    effectiveMatter (restrictTo p locus') = effectiveMatter p :=
+    fiberFlux (restrictTo p locus') = fiberFlux p :=
   rfl
 
 /-- Restriction is idempotent on ledger data: re-tagging twice = once. -/
@@ -173,10 +173,10 @@ theorem o3_stalk_glue_fragment :
       OverlapCompatible p q → p.locus = q.locus →
       p.fiber.length = p.alphabet.length →
       q.fiber.length = q.alphabet.length →
-        effectiveMatter p = effectiveMatter q) ∧
+        fiberFlux p = fiberFlux q) ∧
     Bridge.Alphabet.Kmin = 2 :=
   ⟨glue_capacity_on_locus,
-   glue_effectiveMatter_at_saturation_length,
+   glue_fiberFlux_at_saturation_length,
    Bridge.Alphabet.Kmin_eq⟩
 
 /-- **O-3 restriction fragment.** Restriction maps preserve capacity,
@@ -186,7 +186,7 @@ theorem o3_restriction_fragment :
     (∀ {X E S E' : Type} (p : LocalLedgerPatch X E S E') ℓ,
       (restrictTo p ℓ).alphabet.length = p.alphabet.length) ∧
     (∀ {X E S E' : Type} (p : LocalLedgerPatch X E S E') ℓ,
-      effectiveMatter (restrictTo p ℓ) = effectiveMatter p) ∧
+      fiberFlux (restrictTo p ℓ) = fiberFlux p) ∧
     (∀ {X E S E' : Type} (p q : LocalLedgerPatch X E S E')
       (hcap : p.alphabet.length = q.alphabet.length) ℓ,
       OverlapCompatible (restrictTo p ℓ) (restrictTo q ℓ)) ∧
@@ -220,8 +220,8 @@ theorem dynamicsSection_restrict_capacity {X E S E' : Type}
 
 theorem dynamicsSection_restrict_matter {X E S E' : Type}
     (σ : DynamicsSection X E S E') (locus' : Nat) :
-    effectiveMatter (σ.restrict locus').patch =
-      effectiveMatter σ.patch :=
+    fiberFlux (σ.restrict locus').patch =
+      fiberFlux σ.patch :=
   restrict_preserves_effectiveMatter σ.patch locus'
 
 /-- Overlap-compatible dynamics sections at equal locus agree on capacity
@@ -237,8 +237,8 @@ theorem dynamicsSection_glue_matter {X E S E' : Type}
     (σ τ : DynamicsSection X E S E')
     (hov : OverlapCompatible σ.patch τ.patch)
     (hlocus : σ.patch.locus = τ.patch.locus) :
-    effectiveMatter σ.patch = effectiveMatter τ.patch :=
-  glue_effectiveMatter_at_saturation_length
+    fiberFlux σ.patch = fiberFlux τ.patch :=
+  glue_fiberFlux_at_saturation_length
     hov hlocus σ.balanced τ.balanced
 
 /-- Two dynamics sections with equal capacity restrict to an overlap-compatible
@@ -259,7 +259,7 @@ theorem o3_dynamics_section_fragment :
     (∀ {X E S E' : Type} (σ : DynamicsSection X E S E') ℓ,
       (σ.restrict ℓ).patch.alphabet.length = σ.patch.alphabet.length) ∧
     (∀ {X E S E' : Type} (σ : DynamicsSection X E S E') ℓ,
-      effectiveMatter (σ.restrict ℓ).patch = effectiveMatter σ.patch) ∧
+      fiberFlux (σ.restrict ℓ).patch = fiberFlux σ.patch) ∧
     (∀ {X E S E' : Type} (σ τ : DynamicsSection X E S E'),
       OverlapCompatible σ.patch τ.patch →
       σ.patch.locus = τ.patch.locus →
@@ -267,7 +267,7 @@ theorem o3_dynamics_section_fragment :
     (∀ {X E S E' : Type} (σ τ : DynamicsSection X E S E'),
       OverlapCompatible σ.patch τ.patch →
       σ.patch.locus = τ.patch.locus →
-        effectiveMatter σ.patch = effectiveMatter τ.patch) ∧
+        fiberFlux σ.patch = fiberFlux τ.patch) ∧
     (∀ {X E S E' : Type} (σ τ : DynamicsSection X E S E')
       (hcap : σ.patch.alphabet.length = τ.patch.alphabet.length) ℓ,
       OverlapCompatible (σ.restrict ℓ).patch (τ.restrict ℓ).patch) ∧
@@ -281,7 +281,7 @@ theorem o3_dynamics_section_fragment :
 
 #print axioms glue_capacity_on_locus
 #print axioms cover_glue_capacity
-#print axioms glue_effectiveMatter_at_saturation_length
+#print axioms glue_fiberFlux_at_saturation_length
 #print axioms two_patch_cover_compatible
 #print axioms o3_stalk_glue_fragment
 #print axioms o3_restriction_fragment
@@ -289,4 +289,4 @@ theorem o3_dynamics_section_fragment :
 #print axioms o3_dynamics_section_fragment
 #print axioms dynamicsSection_glue_matter
 
-end Bridge.LedgerSheaf
+end Bridge.LedgerPatchGlue

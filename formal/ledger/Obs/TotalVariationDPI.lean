@@ -1,7 +1,7 @@
 import Obs.StochasticUnlock
 
 /-!
-# Obs.StochasticThermo
+# Obs.TotalVariationDPI
 
 Total-variation data processing and Lyapunov forms for stochastic unlock.
 -/
@@ -132,7 +132,7 @@ theorem dtv_zero_of_eqOn (D : AbsData Q) (l : List R) {p q : R → Q}
 /-- **The total-variation data-processing inequality (Theorem S7').**
 Any stochastic channel -- nonnegative entries, rows summing to one on the
 declared probe values -- contracts the total-variation distance between laws:
-`||p g - q g|| <= ||p - q||`. This is the quantitative core of the second law
+`||p g - q g|| <= ||p - q||`. This is a second-law-shaped contraction
 at zero axioms: an f-divergence DPI with `f(x) = |x - 1|`, no logarithm. -/
 theorem tv_data_processing (D : AbsData Q) (RLs : List RL) (RUs : List RU)
     (g : RL → RU → Q)
@@ -219,7 +219,7 @@ theorem tv_arrow (D : AbsData Q) (RLs : List RL) (g : RL → RL → Q)
 
 /-- **Lyapunov / free-energy arrow (Theorem S9).** Distance to any
 stationary law `π` of the autonomous kernel never increases (TV form of
-non-increasing free energy). A stationary law is a fixed point of its own
+a contraction toward the stationary law). A stationary law is a fixed point of its own
 garbling. -/
 theorem lyapunov_arrow (D : AbsData Q) (RLs : List RL) (g : RL → RL → Q)
     (hpos : ∀ r r', r ∈ RLs → r' ∈ RLs → (0 : Q) ≤ g r r')
@@ -244,7 +244,7 @@ theorem merged_at_distance_zero (D : AbsData Q) (RLs : List RL)
     (merged_forever RLs g hstep₁ hstep₂ h0 t)
 
 /-!
-# Obs.StochasticThermo
+# Obs.TotalVariationDPI
 
 Total-variation data processing and Lyapunov forms for stochastic unlock.
 -/

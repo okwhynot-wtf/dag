@@ -6,9 +6,9 @@ import RegistrationSpine
 import Alphabet
 
 /-!
-# T-11 The combinatorial second law
+# T-11 Archive monotonicity (combinatorial second-law shape)
 
-Named corollary, not a construction. T-4 is Landauer in kernel dress:
+Named corollary, not a construction. T-4 is Landauer-shaped:
 what merges must register; erasure has a price. The ladder already proves
 record monotonicity: `lift_injective` plus `no_retraction` mean the
 archive never shrinks. Together: dissipation writes records, records
@@ -19,10 +19,10 @@ Temperature, Boltzmann factors, and statistical mechanics proper are
 not derived.
 -/
 
-namespace Bridge.SecondLaw
+namespace Bridge.ArchiveMonotone
 
-/-- Landauer face: injective merge forces a distinguishing record. -/
-theorem landauer {S E : Type} {U : S × E → S × E}
+/-- Merge-registers face (Landauer-shaped): injective merge forces a distinguishing record. -/
+theorem merge_must_register {S E : Type} {U : S × E → S × E}
     (hU : Geom.Registration.Inj U)
     (hm : Geom.Registration.Merges U) :
     Geom.Registration.Registers U :=
@@ -51,7 +51,7 @@ theorem erasure_priced {α : Type} (act : α → α) (h : Orbit.Erasing act) :
     (ii) records embed up the ladder;
     (iii) no retraction (archive irreversible);
     (iv) Kmin = 2. -/
-theorem T11_combinatorial_second_law :
+theorem T11_archive_monotonicity :
     (∀ {S E : Type} {U : S × E → S × E},
       Geom.Registration.Inj U →
       Geom.Registration.Merges U →
@@ -61,14 +61,14 @@ theorem T11_combinatorial_second_law :
     (∀ k : Nat, ¬ ∃ (f : Ladder.Level (k + 1) → Ladder.Level k),
       ∀ x y, f x = f y → x = y) ∧
     Bridge.Alphabet.Kmin = 2 :=
-  ⟨fun hU hm => landauer hU hm,
+  ⟨fun hU hm => merge_must_register hU hm,
    records_embed,
    archive_irreversible,
    Bridge.Alphabet.Kmin_eq⟩
 
-#print axioms landauer
+#print axioms merge_must_register
 #print axioms records_embed
 #print axioms archive_irreversible
-#print axioms T11_combinatorial_second_law
+#print axioms T11_archive_monotonicity
 
-end Bridge.SecondLaw
+end Bridge.ArchiveMonotone

@@ -1,8 +1,8 @@
 import Alphabet
 import Capacity
 import ArchiveMustSpeak
-import EffectiveMatter
-import Expansion
+import FiberFlux
+import LadderGrowth
 import Forman
 import Geom.Profile
 
@@ -22,8 +22,8 @@ These caricatures are independent of hypothesis H.
 
 namespace Bridge.PhaseEToys
 
-open Bridge.EffectiveMatter
-open Bridge.Expansion
+open Bridge.FiberFlux
+open Bridge.LadderGrowth
 open Bridge.ArchiveMustSpeak
 
 /-! ## E1 — Combinatorial temperature / Clausius -/
@@ -83,12 +83,12 @@ theorem page_radiation_thermal_then_speech (r : PageRadiation) :
     Geom.Profile.IsExhaustionTick r.K (Geom.Profile.bounce r.tTurn) r.tTurn :=
   thermal_window_then_speech r.hK r.tTurn
 
-/-- **E2c.** Post-exhaustion flux is the matter channel (Landauer), not vacuum. -/
+/-- **E2c.** Post-exhaustion flux reads as the record-flux channel (Landauer), not vacuum. -/
 theorem radiation_is_matter_channel :
-    VacuumDynamics Geom.Registration.oscStep ∧
+    SilentDynamics Geom.Registration.oscStep ∧
     Geom.Registration.Merges Geom.Registration.swapStep ∧
     Geom.Registration.Registers Geom.Registration.swapStep :=
-  ⟨osc_is_vacuum,
+  ⟨osc_is_silent,
    Geom.Registration.swap_registers.2.1,
    Geom.Registration.swap_registers.2.2⟩
 
@@ -96,11 +96,11 @@ theorem radiation_is_matter_channel :
 theorem finite_page_radiation :
     (∀ {K : Nat}, 2 ≤ K → ∀ tTurn,
       Geom.Profile.IsExhaustionTick K (Geom.Profile.bounce tTurn) tTurn) ∧
-    VacuumDynamics Geom.Registration.oscStep ∧
+    SilentDynamics Geom.Registration.oscStep ∧
     Geom.Registration.Registers Geom.Registration.swapStep ∧
     Bridge.Alphabet.Kmin = 2 :=
   ⟨fun hK tTurn => page_time_is_exhaustion hK tTurn,
-   osc_is_vacuum,
+   osc_is_silent,
    Geom.Registration.swap_registers.2.2,
    Bridge.Alphabet.Kmin_eq⟩
 
@@ -130,7 +130,7 @@ theorem caps_double (T : Nat) :
 /-- Counted volume doubles (T-13 discrete Hubble), same shape. -/
 theorem volume_double (T : Nat) :
     countedVolume 2 (T + 1) = 2 * countedVolume 2 T :=
-  discrete_Hubble_one_bit_per_tick Bridge.Expansion.numberEqualsVolume T
+  doubling_per_tick_at_Kmin Bridge.LadderGrowth.numberEqualsVolume T
 
 /-- At Kmin the Forman growth cost is bounded by capacity (C2),
     so the Friedmann-shaped update stays ledger-paid. -/

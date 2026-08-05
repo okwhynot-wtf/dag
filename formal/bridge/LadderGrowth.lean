@@ -27,15 +27,15 @@ Four meanings of "expansion":
 fixes the factor). DAG owns order (dim = 1) and number (capacity
 schedule). Flag the postulate `NumberEqualsVolume`: identify counted
 volume with the capacity schedule. Then volume grows as `K^t`; at
-`K = 2`, one bit per naming tick. de Sitter's volume law from
-liveness + one flagged postulate.
+`K = 2`, one bit per naming tick. Capacity doubling from
+liveness under the counted-volume reading.
 
 Units caveat: ticks are naming steps; no seconds are derivable; no
 observable `H₀` is forecast. Continuum Friedmann dynamics (E4) are not
 derived.
 -/
 
-namespace Bridge.Expansion
+namespace Bridge.LadderGrowth
 
 /-! ## E1 — monotone growth of structure -/
 
@@ -116,7 +116,7 @@ theorem E2_exponential_capacity :
 /-! ## Order input (time, no transversal width) -/
 
 /-- Causal ascent has order dimension exactly one. -/
-theorem ascent_is_time (tTurn : Nat) :
+theorem ascent_order_dim_one (tTurn : Nat) :
     Obs.Dimension.OrderDimEq tTurn (Obs.CausalOrder.fwdPrecedes tTurn) 1 :=
   Obs.Dimension.ascent_order_dim_eq_one tTurn
 
@@ -160,14 +160,14 @@ abbrev NumberEqualsVolume : Prop := Nonempty VolumeReading
 theorem number_equals_volume_flagged : NumberEqualsVolume :=
   ⟨numberEqualsVolume⟩
 
-/-- Discrete Hubble under the volume reading: doubles per naming tick at `K = 2`.
+/-- Doubling per naming tick under the volume reading: doubles per naming tick at `K = 2`.
     Units: naming ticks, not seconds — no `H₀` forecast. -/
-theorem discrete_Hubble_one_bit_per_tick (_vr : VolumeReading) (T : Nat) :
+theorem doubling_per_tick_at_Kmin (_vr : VolumeReading) (T : Nat) :
     countedVolume 2 (T + 1) = 2 * countedVolume 2 T :=
   E2_rate_law T
 
-/-- Counted de Sitter volume law on expand at `Kmin` (under volume reading). -/
-theorem counted_deSitter_volume (_vr : VolumeReading) (T : Nat) :
+/-- Counted capacity law on expand at `Kmin` (under volume reading). -/
+theorem counted_capacity_at_Kmin (_vr : VolumeReading) (T : Nat) :
     countedVolume Bridge.Alphabet.Kmin T = 2 ^ T := by
   rw [Bridge.Alphabet.Kmin_eq]
   exact Bridge.Capacity.expand_capacity_two T
@@ -175,7 +175,7 @@ theorem counted_deSitter_volume (_vr : VolumeReading) (T : Nat) :
 /-- **T-13.** Expansion as the price of liveness (conditional form).
     Requires an explicit `VolumeReading` so the number=volume flag cannot
     be dropped by a reader of the compression table. Units: ticks ≠ seconds. -/
-theorem T13_expansion_conditional (_vr : VolumeReading) :
+theorem T13_counted_growth (_vr : VolumeReading) :
     (∀ k, ¬ ∃ (f : Ladder.Level (k + 1) → Ladder.Level k),
       ∀ x y, f x = f y → x = y) ∧
     (∀ T, Geom.Profile.Alive 2 Geom.Profile.expand T) ∧
@@ -186,17 +186,17 @@ theorem T13_expansion_conditional (_vr : VolumeReading) :
       ∀ a : Limit.LevelOmega, (some a : Limit.LevelOmegaPlusOne) ≠ b) ∧
     Bridge.Alphabet.Kmin = 2 :=
   ⟨E1_no_retraction, E2_expand_eternally_alive,
-   discrete_Hubble_one_bit_per_tick _vr,
-   counted_deSitter_volume _vr,
+   doubling_per_tick_at_Kmin _vr,
+   counted_capacity_at_Kmin _vr,
    OmegaDuration.omega_duration_package.1,
    OmegaDuration.namer_new_at_omega,
    Bridge.Alphabet.Kmin_eq⟩
 
 #print axioms E1_monotone_structure
 #print axioms E2_exponential_capacity
-#print axioms discrete_Hubble_one_bit_per_tick
-#print axioms T13_expansion_conditional
-#print axioms ascent_is_time
+#print axioms doubling_per_tick_at_Kmin
+#print axioms T13_counted_growth
+#print axioms ascent_order_dim_one
 #print axioms omega_flatline_ancestry_continues
 
-end Bridge.Expansion
+end Bridge.LadderGrowth

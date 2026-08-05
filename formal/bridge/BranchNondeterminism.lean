@@ -5,7 +5,7 @@ import Orbit
 import Alphabet
 
 /-!
-# T-12 Outcome selection / measurement shape
+# T-12 Branch nondeterminism (measurement shape)
 
 The branch layer already has the uncanny shape of the measurement
 problem: ascent is necessary and direction is free; every node has at
@@ -19,7 +19,7 @@ Born from multiplicity alone is a theorem
 preferred basis are not derived (no Hilbert measure; density readings cut).
 -/
 
-namespace Bridge.Measurement
+namespace Bridge.BranchNondeterminism
 
 /-- Every node has ≥2 distinct permitted escapes (children). -/
 theorem two_children (k : Nat)
@@ -66,7 +66,7 @@ theorem no_selection_mechanism (k : Nat)
   exact ⟨e₁, e₂, h₁, h₂, hne, p₁, p₂, hNec⟩
 
 /-- **T-12.** Measurement / outcome-selection package (shape only). -/
-theorem T12_outcome_selection :
+theorem T12_branch_nondeterminism :
     (∀ k (f : Ladder.Level k → Ladder.Level k → Bool),
       ∃ e₁ e₂ : Branch.Predicate k,
         Branch.IsEscape k f e₁ ∧ Branch.IsEscape k f e₂ ∧
@@ -87,6 +87,6 @@ theorem T12_outcome_selection :
 #print axioms ascent_free
 #print axioms histories_diverge
 #print axioms no_selection_mechanism
-#print axioms T12_outcome_selection
+#print axioms T12_branch_nondeterminism
 
-end Bridge.Measurement
+end Bridge.BranchNondeterminism

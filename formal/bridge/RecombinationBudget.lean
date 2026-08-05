@@ -1,8 +1,8 @@
 import Alphabet
 import Capacity
 import Forman
-import EinsteinSkeleton
-import EffectiveMatter
+import FlatnessDebt
+import FiberFlux
 import Geom.Profile
 
 /-!
@@ -24,8 +24,8 @@ Forman zero does not manufacture a spatial metric.
 namespace Bridge.RecombinationBudget
 
 open Bridge.Forman
-open Bridge.EinsteinSkeleton
-open Bridge.EffectiveMatter
+open Bridge.FlatnessDebt
+open Bridge.FiberFlux
 
 /-- Edges in a full binary tree of depth `d` (nodes `2^(d+1)-1`). -/
 def treeEdges (d : Nat) : Nat := 2 ^ (d + 1) - 2

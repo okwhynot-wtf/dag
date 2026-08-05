@@ -9,7 +9,7 @@ import Obs.Dimension
 Measure-free combinatorial curvature (Forman): for an unweighted edge,
 `Ric_F = (4 + #faces) − deg(u) − deg(v)`. Continuum / measure-theoretic
 Ollivier–Ricci is not derived; a finite counting trial lives in
-`BranchMeasure.ollivier_trial_fragment`. Metric/Riemann curvature remains
+`BranchMeasure.transport_trial_fragment`. Metric/Riemann curvature remains
 unstateable (needs space + signature — R-1), which is absence, not
 preclusion.
 

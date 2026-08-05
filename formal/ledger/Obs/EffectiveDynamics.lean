@@ -1,5 +1,5 @@
 import Obs.AbstractMemory
-import Obs.AbstractThermo
+import Obs.MergeMonotone
 
 /-!
 # Obs.EffectiveDynamics
@@ -10,7 +10,7 @@ Effective dynamics: ReadClosed, iterate, historical stability.
 namespace Obs.EffectiveDynamics
 
 open Obs.AbstractMemory
-open Obs.AbstractThermo
+open Obs.MergeMonotone
 
 /-- Read-closedness: equal readable views stay equal after one step. -/
 def ReadClosed {X Readout : Type}

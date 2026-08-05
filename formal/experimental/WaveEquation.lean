@@ -35,7 +35,7 @@ completely general. Results:
   (`return_iff_rot_return`): a state returns to itself at time `T`
   exactly when its rotation does (converse inverted via rotation by
   `+1`). The boundary-selected spectrum is invariant under the ring
-  symmetry — the discrete seed of a dispersion relation.
+  symmetry — a rotation-orbit invariance of the return spectrum.
 * **Boundary conditions select the spectrum**: with the same rule and
   a single-pulse initial state, the kernel decides the full period
   table for ring sizes 2–6 (periods 2, 6, 4, 10, 6) and Dirichlet
@@ -290,7 +290,7 @@ Iterating the ring step commutes with rotation at every time `T`
 (pointwise induction, no extensionality), so a state returns to
 itself at time `T` exactly when its rotation does. The
 boundary-selected spectrum is invariant under the ring symmetry —
-the discrete seed of a dispersion relation. -/
+a rotation-orbit invariance of the return spectrum. -/
 
 /-- The ring step sends pointwise-equal states to pointwise-equal
     states (the coupling reads only three sites). -/

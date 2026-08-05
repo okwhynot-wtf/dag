@@ -2,7 +2,7 @@ import Overtones
 import Frequencies
 import WaveEquation
 import CantorBoundary
-import Dispersion
+import SpectrumSymmetry
 import Recurrence
 
 /-!
@@ -105,19 +105,19 @@ python3 formal/tools/gen_audit.py
 #print axioms Experimental.CantorBoundary.encode_separates
 #print axioms Experimental.CantorBoundary.encode_inj_of_separates
 
--- Dispersion (12)
-#print axioms Experimental.Dispersion.sub_one_eq_shift
-#print axioms Experimental.Dispersion.rotF_eq_shift
-#print axioms Experimental.Dispersion.iterN_rotF_eq_iterN_shift
-#print axioms Experimental.Dispersion.gcd_succ_self
-#print axioms Experimental.Dispersion.predicted_order
-#print axioms Experimental.Dispersion.rotF_order_returns
-#print axioms Experimental.Dispersion.rotF_order_minimal
-#print axioms Experimental.Dispersion.iterN_rotS_components
-#print axioms Experimental.Dispersion.rotS_order_returns
-#print axioms Experimental.Dispersion.rotS_order_minimal
-#print axioms Experimental.Dispersion.returns_iff_rot_pow_returns
-#print axioms Experimental.Dispersion.symmetry_order_is_frequency_law
+-- SpectrumSymmetry (12)
+#print axioms Experimental.SpectrumSymmetry.sub_one_eq_shift
+#print axioms Experimental.SpectrumSymmetry.rotF_eq_shift
+#print axioms Experimental.SpectrumSymmetry.iterN_rotF_eq_iterN_shift
+#print axioms Experimental.SpectrumSymmetry.gcd_succ_self
+#print axioms Experimental.SpectrumSymmetry.predicted_order
+#print axioms Experimental.SpectrumSymmetry.rotF_order_returns
+#print axioms Experimental.SpectrumSymmetry.rotF_order_minimal
+#print axioms Experimental.SpectrumSymmetry.iterN_rotS_components
+#print axioms Experimental.SpectrumSymmetry.rotS_order_returns
+#print axioms Experimental.SpectrumSymmetry.rotS_order_minimal
+#print axioms Experimental.SpectrumSymmetry.returns_iff_rot_pow_returns
+#print axioms Experimental.SpectrumSymmetry.symmetry_order_is_gcd_law
 
 -- Recurrence (14)
 #print axioms Experimental.Recurrence.encodeAux_succ

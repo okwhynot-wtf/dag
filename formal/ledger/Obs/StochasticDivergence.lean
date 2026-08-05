@@ -1,5 +1,5 @@
 import Obs.StochasticUnlock
-import Obs.StochasticThermo
+import Obs.TotalVariationDPI
 
 /-!
 # Obs.StochasticDivergence

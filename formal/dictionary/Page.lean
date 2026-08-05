@@ -22,7 +22,7 @@ Dictionary map:
   Hayden–Preskill decoding     ↔ archive recoverable on ascent
 
 Hawking 1976 corresponds to eternal mute merging; Registration together
-with T-10 supplies the unitarist reply on the ledger. Admission is by
+with T-10 is the ledger-level analogue of the unitarist reply. Admission is by
 L-certificate (not the I-4 K-certificate schema). A kernel-side reading
 of Hawking pairs as an involution with horizon zero-mode locus is not
 claimed in this module.
@@ -68,7 +68,7 @@ theorem page_exhaustion (tTurn : Nat) :
     Geom.Profile.IsExhaustionTick 2 (Geom.Profile.bounce tTurn) tTurn :=
   Bridge.ArchiveMustSpeak.page_time_is_exhaustion (by decide : 2 ≤ 2) tTurn
 
-/-- Qualitative Page curve on the schedule: thermal window, then speech. -/
+/-- Page-shaped schedule: thermal window, then speech. -/
 theorem page_curve (tTurn : Nat) :
     (∀ T, T ≤ tTurn → Geom.Profile.Alive 2 (Geom.Profile.bounce tTurn) T) ∧
     Geom.Profile.IsExhaustionTick 2 (Geom.Profile.bounce tTurn) tTurn :=

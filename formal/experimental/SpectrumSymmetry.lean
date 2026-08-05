@@ -2,7 +2,7 @@ import Frequencies
 import WaveEquation
 
 /-!
-# Dispersion (EXPERIMENTAL — quarantined; exports nothing to the paper)
+# SpectrumSymmetry (EXPERIMENTAL — quarantined; exports nothing to the paper)
 
 Probe: the marriage of `Frequencies` and `WaveEquation`. The ring
 wave's translation symmetry — rotation by one site — is itself a
@@ -25,18 +25,18 @@ boundary-selected spectrum is constant on rotation orbits: a state
 returns at time `T` exactly when any rotation power of it does
 (`returns_iff_rot_pow_returns`, by induction from the single-step
 invariance `Wave.return_iff_rot_return`). The headline bundle is
-`symmetry_order_is_frequency_law`: the cyclic symmetry of the ring
+`symmetry_order_is_gcd_law`: the cyclic symmetry of the ring
 wave has order exactly `m + 1 = (m + 1) / gcd (m + 1) m`, and
 temporal periods are functions of the rotation orbit alone.
 
 All statements are pointwise on sites and layers; no function
-extensionality is used in this module. Stated honestly: this is the
-discrete seed of a dispersion relation and no more — the order of
+extensionality is used in this module. Stated honestly: this is a rotation-orbit
+invariance of the return spectrum and no more — the order of
 the spatial symmetry group and the orbit-invariance of the return
 spectrum. There are no real frequencies, no dispersion relation over
 the reals, and no continuum limit.
 -/
-namespace Experimental.Dispersion
+namespace Experimental.SpectrumSymmetry
 
 /-! ## The rotation is a shift -/
 
@@ -205,13 +205,13 @@ theorem returns_iff_rot_pow_returns {m : Nat} (T j : Nat)
 
 /-! ## Headline -/
 
-/-- **The symmetry order is the frequency law.** The gcd law of
+/-- **The symmetry order is the gcd law.** The gcd law of
     `Frequencies` predicts order `(m + 1) / gcd (m + 1) m = m + 1`
     for the ring rotation, and the ring wave realises it exactly:
     `m + 1` rotations restore every field, every smaller positive
     count moves some field, and temporal periods are functions of
     the rotation orbit alone. -/
-theorem symmetry_order_is_frequency_law {m : Nat} :
+theorem symmetry_order_is_gcd_law {m : Nat} :
     (m + 1) / Nat.gcd (m + 1) m = m + 1 ∧
     (∀ (c : Wave.Field (m + 1)) (i : Fin (m + 1)),
       Wave.iterN Wave.rotF (m + 1) c i = c i) ∧
@@ -224,17 +224,17 @@ theorem symmetry_order_is_frequency_law {m : Nat} :
     fun _j hj hlt => rotF_order_minimal hj hlt,
     fun T j s => returns_iff_rot_pow_returns T j s⟩
 
-#print axioms Experimental.Dispersion.sub_one_eq_shift
-#print axioms Experimental.Dispersion.rotF_eq_shift
-#print axioms Experimental.Dispersion.iterN_rotF_eq_iterN_shift
-#print axioms Experimental.Dispersion.gcd_succ_self
-#print axioms Experimental.Dispersion.predicted_order
-#print axioms Experimental.Dispersion.rotF_order_returns
-#print axioms Experimental.Dispersion.rotF_order_minimal
-#print axioms Experimental.Dispersion.iterN_rotS_components
-#print axioms Experimental.Dispersion.rotS_order_returns
-#print axioms Experimental.Dispersion.rotS_order_minimal
-#print axioms Experimental.Dispersion.returns_iff_rot_pow_returns
-#print axioms Experimental.Dispersion.symmetry_order_is_frequency_law
+#print axioms Experimental.SpectrumSymmetry.sub_one_eq_shift
+#print axioms Experimental.SpectrumSymmetry.rotF_eq_shift
+#print axioms Experimental.SpectrumSymmetry.iterN_rotF_eq_iterN_shift
+#print axioms Experimental.SpectrumSymmetry.gcd_succ_self
+#print axioms Experimental.SpectrumSymmetry.predicted_order
+#print axioms Experimental.SpectrumSymmetry.rotF_order_returns
+#print axioms Experimental.SpectrumSymmetry.rotF_order_minimal
+#print axioms Experimental.SpectrumSymmetry.iterN_rotS_components
+#print axioms Experimental.SpectrumSymmetry.rotS_order_returns
+#print axioms Experimental.SpectrumSymmetry.rotS_order_minimal
+#print axioms Experimental.SpectrumSymmetry.returns_iff_rot_pow_returns
+#print axioms Experimental.SpectrumSymmetry.symmetry_order_is_gcd_law
 
-end Experimental.Dispersion
+end Experimental.SpectrumSymmetry

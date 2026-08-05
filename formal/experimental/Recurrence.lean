@@ -5,7 +5,7 @@ import Density
 /-!
 # Recurrence (EXPERIMENTAL — quarantined; exports nothing to the paper)
 
-Probe: Poincaré recurrence for the Z/2 wave. The wave step is
+Probe: finite-orbit return for the Z/2 wave. The wave step is
 lossless for every coupling (`Wave.step_lossless`) and the carrier
 is finite, so no orbit can leak: every state returns exactly, for
 every coupling `X` and every carrier size `n`, within the
@@ -231,7 +231,7 @@ theorem exists_collision (C : Nat) (f : Nat → Nat)
       · exact absurd ⟨j, i, hji, Nat.le_of_lt_succ hi, he.symm⟩ hno
       · omega
 
-/-! ## Poincaré recurrence at Z/2 -/
+/-! ## Finite-orbit return at Z/2 -/
 
 /-- **Recurrence within capacity.** Every wave state on every finite
     carrier returns exactly, for every coupling `X`, at some
@@ -270,9 +270,9 @@ theorem wave_recurrence_bounded {n : Nat}
   · exact fun i => congrArg (fun w : WState n => w.1 i) hcancel
   · exact fun i => congrArg (fun w : WState n => w.2 i) hcancel
 
-/-- **Poincaré recurrence at Z/2.** Every wave state on every finite
+/-- **Finite-orbit return at Z/2.** Every wave state on every finite
     carrier returns, for every coupling `X`: losslessness plus
-    finite capacity forces eternal return — the wave cannot leak.
+    finite capacity forces a bounded return — the wave cannot leak.
     The bound-free form of `wave_recurrence_bounded`. -/
 theorem wave_recurrence {n : Nat}
     (X : Field n → Fin n → Bool) (s : WState n) :

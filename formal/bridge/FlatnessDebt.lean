@@ -2,8 +2,8 @@ import Alphabet
 import Capacity
 import Forman
 import Saturation
-import SecondLaw
-import Measurement
+import ArchiveMonotone
+import BranchNondeterminism
 import RegistrationSpine
 import Obs.Budget
 import Obs.StochasticUnlock
@@ -51,7 +51,7 @@ Scope limits:
 No temperature, no Boltzmann factors, no continuum metric.
 -/
 
-namespace Bridge.EinsteinSkeleton
+namespace Bridge.FlatnessDebt
 
 open Obs.StochasticUnlock
 open Obs.Budget (Saturated)
@@ -140,14 +140,14 @@ theorem Kmin_flatness_threshold :
 /-! ## Stress-energy proxy = record flux -/
 
 /-- Local stress-energy proxy: realized merge multiplicity (fiber size). -/
-def stressProxy (fiberLen : Nat) : Nat := fiberLen
+def fluxProxy (fiberLen : Nat) : Nat := fiberLen
 
 /-- Capacity / "area" proxy consumed this tick. -/
 def capacityProxy (alphLen : Nat) : Nat := alphLen
 
 /-- At saturation, stress-energy proxy equals capacity consumed
-    (local energy balance / Einstein EoS face). -/
-theorem stress_eq_capacity_at_saturation
+    (local balance face). -/
+theorem flux_eq_capacity_at_saturation
     {X E S E' : Type} [DecidableEq E']
     (G : X × E → S × E')
     (hinj : ∀ a b : X × E, G a = G b → a = b)
@@ -156,7 +156,7 @@ theorem stress_eq_capacity_at_saturation
     (Es : List E') (hEs : Distinct Es)
     (halph : ∀ x, x ∈ xs → (G (x, e0)).2 ∈ Es)
     (hsat : Saturated G e0 xs Es) :
-    stressProxy xs.length = capacityProxy Es.length := by
+    fluxProxy xs.length = capacityProxy Es.length := by
   change xs.length = Es.length
   exact (Bridge.Saturation.saturation_iff_tick_equality
     G hinj e0 s xs hd hsys Es hEs halph).mpr hsat
@@ -188,7 +188,7 @@ theorem overlap_symm {X E S E' : Type}
   intro heq
   exact (h heq.symm).symm
 
-/-- Pointwise saturation balance on a patch (local Einstein EoS stalk). -/
+/-- Pointwise saturation balance on a patch (local balance stalk). -/
 theorem patch_saturation_balance
     {X E S E' : Type} [DecidableEq E']
     (p : LocalLedgerPatch X E S E')
@@ -209,13 +209,13 @@ theorem local_frame_width (k : Nat)
     ∃ e₁ e₂ : Branch.Predicate k,
       Branch.IsEscape k f e₁ ∧ Branch.IsEscape k f e₂ ∧
         ∃ x, e₁ x ≠ e₂ x :=
-  Bridge.Measurement.two_children k f
+  Bridge.BranchNondeterminism.two_children k f
 
-/-! ## Seal = local horizon (Jacobson quantifier) -/
+/-! ## Seal read locally (Jacobson-shaped quantifier) -/
 
 /-- Seal-per-reading: every self-reading misses its dodge; observers are
     forced at every ladder level. Local horizon through every reading. -/
-theorem local_horizon_seal (k : Nat) :
+theorem local_seal (k : Nat) :
     (¬ Diagonal.PointSurjective (Ladder.rep k)) ∧
     (∀ a : Ladder.Level k,
       Ladder.rep (k + 1) none (some a) = !(Ladder.rep k a a)) ∧
@@ -248,15 +248,15 @@ theorem openGaps_complete :
 /-! ## Jacobson input package -/
 
 /-- Explicit reading token. Theorems that assemble Jacobson inputs into
-    an Einstein-skeleton conclusion take a `JacobsonReading` so the
+    an Einstein-skeleton conclusion take a `BalanceReading` so the
     interpretive step lives in the type. Continuum `G = 8π T` is not
     derived. -/
-structure JacobsonReading where
+structure BalanceReading where
 
-def jacobsonReading : JacobsonReading := ⟨⟩
+def balanceReading : BalanceReading := ⟨⟩
 
 /-- J1–J5: Jacobson ingredients available in the discrete ledger. -/
-theorem jacobson_inputs_discharged (_jr : JacobsonReading) :
+theorem balance_inputs_discharged (_jr : BalanceReading) :
     -- J1 entropy/capacity bound
     (∀ T, Bridge.Capacity.caps T = 2 ^ (T + 2)) ∧
     (∀ T, 2 ^ T ≤ Bridge.Capacity.caps T) ∧
@@ -277,7 +277,7 @@ theorem jacobson_inputs_discharged (_jr : JacobsonReading) :
     Bridge.Alphabet.Kmin = 2 :=
   ⟨Bridge.Capacity.caps_eq,
    Bridge.Capacity.alive_arith,
-   fun hU hm => Bridge.SecondLaw.landauer hU hm,
+   fun hU hm => Bridge.ArchiveMonotone.merge_must_register hU hm,
    fun k => (Observer.observers_forced k).2.1,
    Bridge.Saturation.alive_iff_records_le_caps,
    Bridge.Forman.internal_edge_forman_neg,
@@ -295,7 +295,7 @@ with overlap compatibility. Gaps O-2…O-5 and R-1 are enumerated in
 `openGaps`. Continuum field equations are not derived; the skeleton
 occupies the logical slot of Einstein-as-equation-of-state without
 deriving `G_{μν} = 8π T_{μν}`. -/
-theorem T16_discrete_einstein_skeleton (_jr : JacobsonReading) :
+theorem T16_flatness_debt_package (_jr : BalanceReading) :
     -- discrete G ~ T on Kmin internal edges
     (unpaidFlatness 3 3 0 = 2 ∧
       unpaidFlatness 3 3 2 = 0 ∧
@@ -318,7 +318,7 @@ theorem T16_discrete_einstein_skeleton (_jr : JacobsonReading) :
     Bridge.Alphabet.Kmin = 2 :=
   ⟨⟨rfl, rfl, Bridge.Forman.internal_not_neg_at_two_faces⟩,
    Bridge.Capacity.caps_eq,
-   fun hU hm => Bridge.SecondLaw.landauer hU hm,
+   fun hU hm => Bridge.ArchiveMonotone.merge_must_register hU hm,
    fun k => (Observer.observers_forced k).2.1,
    Bridge.Saturation.alive_iff_records_le_caps,
    Bridge.Forman.curvature_precluded_only_on_the_line,
@@ -329,10 +329,10 @@ theorem T16_discrete_einstein_skeleton (_jr : JacobsonReading) :
 #print axioms face_pays_one
 #print axioms curvature_relief_costs_records
 #print axioms Kmin_flatness_threshold
-#print axioms stress_eq_capacity_at_saturation
-#print axioms local_horizon_seal
-#print axioms jacobson_inputs_discharged
-#print axioms T16_discrete_einstein_skeleton
+#print axioms flux_eq_capacity_at_saturation
+#print axioms local_seal
+#print axioms balance_inputs_discharged
+#print axioms T16_flatness_debt_package
 #print axioms openGaps_complete
 
-end Bridge.EinsteinSkeleton
+end Bridge.FlatnessDebt

@@ -10,7 +10,7 @@ import Alphabet
 Named corollary of AG necessity: bounded confinement + Inj + sustained
 merging ⇒ stream muteness fails at a finite tick.
 
-This is the qualitative Page curve. A finite black hole (bounded
+This is the Page-curve-shaped schedule. A finite black hole (bounded
 `|caps|`) cannot keep radiation informationless forever; past the
 exhaustion tick the archive must speak into the stream.
 
@@ -24,7 +24,7 @@ Physics reading (dictionary, not Lean gravity):
   archive on ascent   ↔ Hayden–Preskill decoding
 
 Hawking 1976 asserts eternal mute merging; Registration + T-10 is the
-unitarist reply. Contrapositive of
+ledger-level analogue of the unitarist reply. Contrapositive of
 `Geom.Provision.eternal_aliveness_needs_expansion`.
 -/
 

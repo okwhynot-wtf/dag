@@ -8,7 +8,7 @@ import Capacity
 import Environment
 import RegistrationFactor
 import Dil
-import EffectiveMatter
+import FiberFlux
 
 /-!
 # T-2 Tick simulation
@@ -366,14 +366,14 @@ def tick_identification_classified := tick_identification
     rhyme remains K-certificate (T-5/T-6) by I-4 discipline. -/
 theorem time_dissipation_one_property :
     FundExempt ∧
-    Bridge.EffectiveMatter.VacuumDynamics Geom.Registration.oscStep ∧
+    Bridge.FiberFlux.SilentDynamics Geom.Registration.oscStep ∧
     (Merges Geom.Registration.swapStep ∧
       Registers Geom.Registration.swapStep) ∧
     (∀ {S E : Type} {U : S × E → S × E},
       Inj U → Merges U → Registers U) ∧
     Bridge.Alphabet.Kmin = 2 :=
   ⟨tick_identification.1,
-   Bridge.EffectiveMatter.osc_is_vacuum,
+   Bridge.FiberFlux.osc_is_silent,
    ⟨Geom.Registration.swap_registers.2.1,
      Geom.Registration.swap_registers.2.2⟩,
    fun hU hm => Geom.Registration.merge_registers hU hm,

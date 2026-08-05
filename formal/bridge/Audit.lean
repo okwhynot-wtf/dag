@@ -9,21 +9,21 @@ import Dil
 import RegistrationFactor
 import ArchiveMustSpeak
 import PageShape
-import SecondLaw
-import Measurement
+import ArchiveMonotone
+import BranchNondeterminism
 import BranchMeasure
-import Expansion
+import LadderGrowth
 import Forman
 import Saturation
-import EinsteinSkeleton
-import EffectiveMatter
+import FlatnessDebt
+import FiberFlux
 import FluxPattern
-import LedgerSheaf
+import LedgerPatchGlue
 import RecombinationBudget
 import PhaseEToys
-import Period2KMS
-import ModularCut
-import LorentzianDict
+import PeriodTwoOrbits
+import CutShift
+import OrderDimGrowth
 import TwoBounce
 import BridgeArc
 
@@ -244,19 +244,19 @@ python3 formal/tools/gen_audit.py
 #print axioms Bridge.PageShape.bounce_page_time
 #print axioms Bridge.PageShape.T10_page_flux_shape
 
--- SecondLaw (5)
-#print axioms Bridge.SecondLaw.landauer
-#print axioms Bridge.SecondLaw.records_embed
-#print axioms Bridge.SecondLaw.archive_irreversible
-#print axioms Bridge.SecondLaw.erasure_priced
-#print axioms Bridge.SecondLaw.T11_combinatorial_second_law
+-- ArchiveMonotone (5)
+#print axioms Bridge.ArchiveMonotone.merge_must_register
+#print axioms Bridge.ArchiveMonotone.records_embed
+#print axioms Bridge.ArchiveMonotone.archive_irreversible
+#print axioms Bridge.ArchiveMonotone.erasure_priced
+#print axioms Bridge.ArchiveMonotone.T11_archive_monotonicity
 
--- Measurement (5)
-#print axioms Bridge.Measurement.two_children
-#print axioms Bridge.Measurement.ascent_free
-#print axioms Bridge.Measurement.histories_diverge
-#print axioms Bridge.Measurement.no_selection_mechanism
-#print axioms Bridge.Measurement.T12_outcome_selection
+-- BranchNondeterminism (5)
+#print axioms Bridge.BranchNondeterminism.two_children
+#print axioms Bridge.BranchNondeterminism.ascent_free
+#print axioms Bridge.BranchNondeterminism.histories_diverge
+#print axioms Bridge.BranchNondeterminism.no_selection_mechanism
+#print axioms Bridge.BranchNondeterminism.T12_branch_nondeterminism
 
 -- BranchMeasure (14)
 #print axioms Bridge.BranchMeasure.uniform_total_is_Kmin
@@ -269,26 +269,26 @@ python3 formal/tools/gen_audit.py
 #print axioms Bridge.BranchMeasure.born_asymmetry_unavailable
 #print axioms Bridge.BranchMeasure.born_from_multiplicity_nogo
 #print axioms Bridge.BranchMeasure.sibling_transport_cost_pos
-#print axioms Bridge.BranchMeasure.ollivier_nonpos_signal
+#print axioms Bridge.BranchMeasure.sibling_transport_ge_edge
 #print axioms Bridge.BranchMeasure.uniform_mass_preserves_forman_neg
-#print axioms Bridge.BranchMeasure.ollivier_children
-#print axioms Bridge.BranchMeasure.ollivier_trial_fragment
+#print axioms Bridge.BranchMeasure.transport_children
+#print axioms Bridge.BranchMeasure.transport_trial_fragment
 
--- Expansion (14)
-#print axioms Bridge.Expansion.E1_namer_always_new
-#print axioms Bridge.Expansion.E1_no_retraction
-#print axioms Bridge.Expansion.E1_lift_injective
-#print axioms Bridge.Expansion.E1_monotone_structure
-#print axioms Bridge.Expansion.E2_rate_law
-#print axioms Bridge.Expansion.E2_liveness_forces_expansion
-#print axioms Bridge.Expansion.E2_expand_eternally_alive
-#print axioms Bridge.Expansion.E2_exponential_capacity
-#print axioms Bridge.Expansion.ascent_is_time
-#print axioms Bridge.Expansion.omega_flatline_ancestry_continues
-#print axioms Bridge.Expansion.number_equals_volume_flagged
-#print axioms Bridge.Expansion.discrete_Hubble_one_bit_per_tick
-#print axioms Bridge.Expansion.counted_deSitter_volume
-#print axioms Bridge.Expansion.T13_expansion_conditional
+-- LadderGrowth (14)
+#print axioms Bridge.LadderGrowth.E1_namer_always_new
+#print axioms Bridge.LadderGrowth.E1_no_retraction
+#print axioms Bridge.LadderGrowth.E1_lift_injective
+#print axioms Bridge.LadderGrowth.E1_monotone_structure
+#print axioms Bridge.LadderGrowth.E2_rate_law
+#print axioms Bridge.LadderGrowth.E2_liveness_forces_expansion
+#print axioms Bridge.LadderGrowth.E2_expand_eternally_alive
+#print axioms Bridge.LadderGrowth.E2_exponential_capacity
+#print axioms Bridge.LadderGrowth.ascent_order_dim_one
+#print axioms Bridge.LadderGrowth.omega_flatline_ancestry_continues
+#print axioms Bridge.LadderGrowth.number_equals_volume_flagged
+#print axioms Bridge.LadderGrowth.doubling_per_tick_at_Kmin
+#print axioms Bridge.LadderGrowth.counted_capacity_at_Kmin
+#print axioms Bridge.LadderGrowth.T13_counted_growth
 
 -- Forman (21)
 #print axioms Bridge.Forman.Kmin_internal_deg
@@ -318,40 +318,40 @@ python3 formal/tools/gen_audit.py
 #print axioms Bridge.Saturation.saturation_iff_tick_equality
 #print axioms Bridge.Saturation.saturated_flux_fixed_by_capacity
 #print axioms Bridge.Saturation.capacity_schedule_unique
-#print axioms Bridge.Saturation.T15_saturation_equation_of_state
+#print axioms Bridge.Saturation.T15_saturation_balance
 
--- EinsteinSkeleton (14)
-#print axioms Bridge.EinsteinSkeleton.unpaid_of_neg
-#print axioms Bridge.EinsteinSkeleton.unpaid_zero_iff_not_neg
-#print axioms Bridge.EinsteinSkeleton.face_pays_one
-#print axioms Bridge.EinsteinSkeleton.curvature_relief_costs_records
-#print axioms Bridge.EinsteinSkeleton.Kmin_flatness_threshold
-#print axioms Bridge.EinsteinSkeleton.stress_eq_capacity_at_saturation
-#print axioms Bridge.EinsteinSkeleton.overlap_refl
-#print axioms Bridge.EinsteinSkeleton.overlap_symm
-#print axioms Bridge.EinsteinSkeleton.patch_saturation_balance
-#print axioms Bridge.EinsteinSkeleton.local_frame_width
-#print axioms Bridge.EinsteinSkeleton.local_horizon_seal
-#print axioms Bridge.EinsteinSkeleton.openGaps_complete
-#print axioms Bridge.EinsteinSkeleton.jacobson_inputs_discharged
-#print axioms Bridge.EinsteinSkeleton.T16_discrete_einstein_skeleton
+-- FlatnessDebt (14)
+#print axioms Bridge.FlatnessDebt.unpaid_of_neg
+#print axioms Bridge.FlatnessDebt.unpaid_zero_iff_not_neg
+#print axioms Bridge.FlatnessDebt.face_pays_one
+#print axioms Bridge.FlatnessDebt.curvature_relief_costs_records
+#print axioms Bridge.FlatnessDebt.Kmin_flatness_threshold
+#print axioms Bridge.FlatnessDebt.flux_eq_capacity_at_saturation
+#print axioms Bridge.FlatnessDebt.overlap_refl
+#print axioms Bridge.FlatnessDebt.overlap_symm
+#print axioms Bridge.FlatnessDebt.patch_saturation_balance
+#print axioms Bridge.FlatnessDebt.local_frame_width
+#print axioms Bridge.FlatnessDebt.local_seal
+#print axioms Bridge.FlatnessDebt.openGaps_complete
+#print axioms Bridge.FlatnessDebt.balance_inputs_discharged
+#print axioms Bridge.FlatnessDebt.T16_flatness_debt_package
 
--- EffectiveMatter (15)
-#print axioms Bridge.EffectiveMatter.effectiveMatter_eq_fiber
-#print axioms Bridge.EffectiveMatter.effectiveMatter_eq_capacity_at_saturation
-#print axioms Bridge.EffectiveMatter.osc_is_vacuum
-#print axioms Bridge.EffectiveMatter.vacuum_no_merges
-#print axioms Bridge.EffectiveMatter.vacuum_no_registers
-#print axioms Bridge.EffectiveMatter.vacuum_silent
-#print axioms Bridge.EffectiveMatter.matterBearing_has_flux
-#print axioms Bridge.EffectiveMatter.matterBearing_eq_capacity
-#print axioms Bridge.EffectiveMatter.swap_admits_matter_channel
-#print axioms Bridge.EffectiveMatter.vacuum_vs_matter_channel_separable
-#print axioms Bridge.EffectiveMatter.slack_below_saturation
-#print axioms Bridge.EffectiveMatter.recombinationsNeeded_kmin_internal
-#print axioms Bridge.EffectiveMatter.kmin_flatness_within_caps_budget
-#print axioms Bridge.EffectiveMatter.kmin_flatness_within_expand_budget
-#print axioms Bridge.EffectiveMatter.effective_matter_sprint
+-- FiberFlux (15)
+#print axioms Bridge.FiberFlux.fiberFlux_eq_fiber
+#print axioms Bridge.FiberFlux.fiberFlux_eq_capacity_at_saturation
+#print axioms Bridge.FiberFlux.osc_is_silent
+#print axioms Bridge.FiberFlux.silent_no_merges
+#print axioms Bridge.FiberFlux.silent_no_registers
+#print axioms Bridge.FiberFlux.silent_mute
+#print axioms Bridge.FiberFlux.fluxBearing_has_flux
+#print axioms Bridge.FiberFlux.fluxBearing_eq_capacity
+#print axioms Bridge.FiberFlux.swap_admits_flux_channel
+#print axioms Bridge.FiberFlux.silent_vs_flux_channel_separable
+#print axioms Bridge.FiberFlux.slack_below_saturation
+#print axioms Bridge.FiberFlux.recombinationsNeeded_kmin_internal
+#print axioms Bridge.FiberFlux.kmin_flatness_within_caps_budget
+#print axioms Bridge.FiberFlux.kmin_flatness_within_expand_budget
+#print axioms Bridge.FiberFlux.fiber_flux_sprint
 
 -- FluxPattern (10)
 #print axioms Bridge.FluxPattern.bool_components_nondegenerate
@@ -359,32 +359,32 @@ python3 formal/tools/gen_audit.py
 #print axioms Bridge.FluxPattern.channels_index_distinct_components
 #print axioms Bridge.FluxPattern.channel_multiplicity
 #print axioms Bridge.FluxPattern.branch_species_width
-#print axioms Bridge.FluxPattern.species_multiplicity_from_underdetermination
-#print axioms Bridge.FluxPattern.vacuum_onset_H0_skeleton
-#print axioms Bridge.FluxPattern.matter_onset_registration
-#print axioms Bridge.FluxPattern.vacuum_vs_matter_onset
+#print axioms Bridge.FluxPattern.component_multiplicity_from_underdetermination
+#print axioms Bridge.FluxPattern.silent_onset_skeleton
+#print axioms Bridge.FluxPattern.flux_onset_registration
+#print axioms Bridge.FluxPattern.silent_vs_flux_onset
 #print axioms Bridge.FluxPattern.phase_D_flux_patterns
 
--- LedgerSheaf (19)
-#print axioms Bridge.LedgerSheaf.cover_compatible_refl
-#print axioms Bridge.LedgerSheaf.glue_capacity_on_locus
-#print axioms Bridge.LedgerSheaf.cover_glue_capacity
-#print axioms Bridge.LedgerSheaf.glue_effectiveMatter_at_saturation_length
-#print axioms Bridge.LedgerSheaf.two_patch_cover_compatible
-#print axioms Bridge.LedgerSheaf.restrict_preserves_capacity
-#print axioms Bridge.LedgerSheaf.restrict_preserves_fiber
-#print axioms Bridge.LedgerSheaf.restrict_preserves_effectiveMatter
-#print axioms Bridge.LedgerSheaf.restrict_idempotent_data
-#print axioms Bridge.LedgerSheaf.restrict_overlap_of_cap
-#print axioms Bridge.LedgerSheaf.restrict_preserves_balance
-#print axioms Bridge.LedgerSheaf.o3_stalk_glue_fragment
-#print axioms Bridge.LedgerSheaf.o3_restriction_fragment
-#print axioms Bridge.LedgerSheaf.dynamicsSection_restrict_capacity
-#print axioms Bridge.LedgerSheaf.dynamicsSection_restrict_matter
-#print axioms Bridge.LedgerSheaf.dynamicsSection_glue_capacity
-#print axioms Bridge.LedgerSheaf.dynamicsSection_glue_matter
-#print axioms Bridge.LedgerSheaf.dynamicsSection_cover_compatible
-#print axioms Bridge.LedgerSheaf.o3_dynamics_section_fragment
+-- LedgerPatchGlue (19)
+#print axioms Bridge.LedgerPatchGlue.cover_compatible_refl
+#print axioms Bridge.LedgerPatchGlue.glue_capacity_on_locus
+#print axioms Bridge.LedgerPatchGlue.cover_glue_capacity
+#print axioms Bridge.LedgerPatchGlue.glue_fiberFlux_at_saturation_length
+#print axioms Bridge.LedgerPatchGlue.two_patch_cover_compatible
+#print axioms Bridge.LedgerPatchGlue.restrict_preserves_capacity
+#print axioms Bridge.LedgerPatchGlue.restrict_preserves_fiber
+#print axioms Bridge.LedgerPatchGlue.restrict_preserves_effectiveMatter
+#print axioms Bridge.LedgerPatchGlue.restrict_idempotent_data
+#print axioms Bridge.LedgerPatchGlue.restrict_overlap_of_cap
+#print axioms Bridge.LedgerPatchGlue.restrict_preserves_balance
+#print axioms Bridge.LedgerPatchGlue.o3_stalk_glue_fragment
+#print axioms Bridge.LedgerPatchGlue.o3_restriction_fragment
+#print axioms Bridge.LedgerPatchGlue.dynamicsSection_restrict_capacity
+#print axioms Bridge.LedgerPatchGlue.dynamicsSection_restrict_matter
+#print axioms Bridge.LedgerPatchGlue.dynamicsSection_glue_capacity
+#print axioms Bridge.LedgerPatchGlue.dynamicsSection_glue_matter
+#print axioms Bridge.LedgerPatchGlue.dynamicsSection_cover_compatible
+#print axioms Bridge.LedgerPatchGlue.o3_dynamics_section_fragment
 
 -- RecombinationBudget (7)
 #print axioms Bridge.RecombinationBudget.perEdgeCost_eq_two
@@ -411,31 +411,31 @@ python3 formal/tools/gen_audit.py
 #print axioms Bridge.PhaseEToys.friedmann_shaped_capacity_update
 #print axioms Bridge.PhaseEToys.phase_E_continuum_toys
 
--- Period2KMS (7)
-#print axioms Bridge.Period2KMS.period2_orbit_under_swap
-#print axioms Bridge.Period2KMS.face_project_is_involution
-#print axioms Bridge.Period2KMS.observe_flips_under_involution
-#print axioms Bridge.Period2KMS.swapStep_involution
-#print axioms Bridge.Period2KMS.equilibrium_temp_constant
-#print axioms Bridge.Period2KMS.equilibrium_clausius
-#print axioms Bridge.Period2KMS.period2_kms_caricature
+-- PeriodTwoOrbits (7)
+#print axioms Bridge.PeriodTwoOrbits.period2_orbit_under_swap
+#print axioms Bridge.PeriodTwoOrbits.face_project_is_involution
+#print axioms Bridge.PeriodTwoOrbits.observe_flips_under_involution
+#print axioms Bridge.PeriodTwoOrbits.swapStep_involution
+#print axioms Bridge.PeriodTwoOrbits.temp_constant_by_definition
+#print axioms Bridge.PeriodTwoOrbits.heat_balance_by_definition
+#print axioms Bridge.PeriodTwoOrbits.period_two_package
 
--- ModularCut (8)
-#print axioms Bridge.ModularCut.correlator_period2_stationary
-#print axioms Bridge.ModularCut.kms_caricature_at_period
-#print axioms Bridge.ModularCut.cut_temp_independent
-#print axioms Bridge.ModularCut.cut_shift_temp_independent
-#print axioms Bridge.ModularCut.area_blind_to_cut
-#print axioms Bridge.ModularCut.no_unruh_from_cut
-#print axioms Bridge.ModularCut.o2_forced_blindness
-#print axioms Bridge.ModularCut.o2_cut_shift_dead_end
+-- CutShift (8)
+#print axioms Bridge.CutShift.correlator_period2_stationary
+#print axioms Bridge.CutShift.cut_period_stationarity
+#print axioms Bridge.CutShift.cut_temp_independent
+#print axioms Bridge.CutShift.cut_shift_temp_independent
+#print axioms Bridge.CutShift.area_blind_to_cut
+#print axioms Bridge.CutShift.no_unruh_from_cut
+#print axioms Bridge.CutShift.o2_forced_blindness
+#print axioms Bridge.CutShift.o2_cut_shift_dead_end
 
--- LorentzianDict (5)
-#print axioms Bridge.LorentzianDict.order_dim_one
-#print axioms Bridge.LorentzianDict.counted_volume_growth
-#print axioms Bridge.LorentzianDict.only_Z2_underdetermination
-#print axioms Bridge.LorentzianDict.omega_shape_echo
-#print axioms Bridge.LorentzianDict.partial_lorentzian_dictionary
+-- OrderDimGrowth (5)
+#print axioms Bridge.OrderDimGrowth.order_dim_one
+#print axioms Bridge.OrderDimGrowth.counted_volume_growth
+#print axioms Bridge.OrderDimGrowth.only_Z2_underdetermination
+#print axioms Bridge.OrderDimGrowth.omega_shape_echo
+#print axioms Bridge.OrderDimGrowth.order_dim_growth_package
 
 -- TwoBounce (77)
 #print axioms Bridge.TwoBounce.involution_of_symmetric
@@ -538,23 +538,23 @@ python3 formal/tools/gen_audit.py
 #print axioms Bridge.Arc.milestone_T12
 #print axioms Bridge.Arc.milestone_T12_measure
 #print axioms Bridge.Arc.milestone_born_nogo
-#print axioms Bridge.Arc.milestone_ollivier_trial
+#print axioms Bridge.Arc.milestone_transport_trial
 #print axioms Bridge.Arc.milestone_T13
 #print axioms Bridge.Arc.milestone_T14
 #print axioms Bridge.Arc.milestone_T15
 #print axioms Bridge.Arc.milestone_T16
-#print axioms Bridge.Arc.milestone_effective_matter_sprint
+#print axioms Bridge.Arc.milestone_fiber_flux_sprint
 #print axioms Bridge.Arc.milestone_phase_D
 #print axioms Bridge.Arc.milestone_o3_glue
 #print axioms Bridge.Arc.milestone_o3_restrict
 #print axioms Bridge.Arc.milestone_o3_dynamics
 #print axioms Bridge.Arc.milestone_r1_budget
 #print axioms Bridge.Arc.milestone_area_as_caps
-#print axioms Bridge.Arc.milestone_period2_kms
+#print axioms Bridge.Arc.milestone_period_two
 #print axioms Bridge.Arc.milestone_time_dissipation
 #print axioms Bridge.Arc.milestone_o2_cut_shift
 #print axioms Bridge.Arc.milestone_o2_forced_blindness
-#print axioms Bridge.Arc.milestone_partial_lorentzian
+#print axioms Bridge.Arc.milestone_order_dim_growth
 #print axioms Bridge.Arc.milestone_phase_E
 #print axioms Bridge.Arc.bridge_arc
 #print axioms Bridge.Arc.milestone_i1_two_bounce

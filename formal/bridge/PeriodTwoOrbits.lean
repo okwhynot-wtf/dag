@@ -5,7 +5,7 @@ import Alphabet
 import Geom.Registration
 
 /-!
-# Period-2 / KMS↔involution caricature
+# Period-two orbits (KMS-shaped caricature)
 
 Packages existing pieces as a discrete equilibrium sketch:
 
@@ -19,7 +19,7 @@ Not continuum KMS, not modular flow, not Unruh / boost temperature
 period-2 under the ℤ/2 swap with constant combinatorial `T_c`.
 -/
 
-namespace Bridge.Period2KMS
+namespace Bridge.PeriodTwoOrbits
 
 open Bridge.PhaseEToys
 open Bridge.OneZ2
@@ -47,21 +47,21 @@ theorem swapStep_involution (p : Bool × Bool) :
   rfl
 
 /-- Combinatorial temperature is constant along any period-2 orbit. -/
-theorem equilibrium_temp_constant (s : Nat → Bool)
+theorem temp_constant_by_definition (s : Nat → Bool)
     (_hs : Revision.LiarRevision s) (n m : Nat) :
     combinatorialTemp n = combinatorialTemp m :=
   rfl
 
 /-- Clausius caricature holds at every tick of a period-2 orbit. -/
-theorem equilibrium_clausius (s : Nat → Bool)
+theorem heat_balance_by_definition (s : Nat → Bool)
     (_hs : Revision.LiarRevision s) (n : Nat) :
     heatQuantum n = combinatorialTemp n * deltaS n :=
   clausius_form n
 
-/-- **Period-2 / KMS caricature package.** Discrete equilibrium ↔
+/-- **Period-two package.** Discrete equilibrium ↔
     period-2 under ℤ/2 + constant combinatorial `T_c` + Clausius toy.
     Not continuum KMS; not Unruh. -/
-theorem period2_kms_caricature :
+theorem period_two_package :
     (∀ s, Revision.LiarRevision s → ∀ n, s (n + 2) = s n) ∧
     (∀ f b, project f (project f b) = b) ∧
     (∀ p, Geom.Registration.swapStep
@@ -74,12 +74,12 @@ theorem period2_kms_caricature :
   ⟨period2_orbit_under_swap, face_project_is_involution,
    swapStep_involution,
    fun _ => rfl, clausius_form,
-   fun s hs n m => equilibrium_temp_constant s hs n m,
+   fun s hs n m => temp_constant_by_definition s hs n m,
    Bridge.Alphabet.Kmin_eq⟩
 
 #print axioms period2_orbit_under_swap
 #print axioms face_project_is_involution
 #print axioms swapStep_involution
-#print axioms period2_kms_caricature
+#print axioms period_two_package
 
-end Bridge.Period2KMS
+end Bridge.PeriodTwoOrbits

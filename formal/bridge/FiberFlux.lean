@@ -1,6 +1,6 @@
 import Alphabet
 import Capacity
-import EinsteinSkeleton
+import FlatnessDebt
 import Forman
 import Saturation
 import Geom.Registration
@@ -11,12 +11,12 @@ import Obs.StochasticUnlock
 /-!
 # Effective matter — A1–A3, B4, C2
 
-Hypothesis H: matter is an emergent effective description of record
+Hypothesis H (reading, not theorem): matter as an emergent effective description of record
 flux that a bounded lossless ledger is forced to emit at capacity
 saturation.
 
 Testable consequences formalised here:
-- A1 `effectiveMatter` = stress/flux proxy on a local patch
+- A1 `fiberFlux` = stress/flux proxy on a local patch
 - A2 vacuum dynamics = Inj ∧ ¬Merges ∧ ¬Registers (oscillator witness)
 - A3 matter-bearing tick = saturated with nonzero fiber
 - B4 below saturation there is capacity slack
@@ -25,28 +25,28 @@ Testable consequences formalised here:
 No Standard Model, no continuum `T_{μν}`, no cosmological numbers.
 -/
 
-namespace Bridge.EffectiveMatter
+namespace Bridge.FiberFlux
 
 open Obs.StochasticUnlock
 open Obs.Budget (Saturated)
-open Bridge.EinsteinSkeleton
+open Bridge.FlatnessDebt
 open Bridge.Forman
 
 /-! ## A1 — effective matter as flux -/
 
 /-- **A1.** Effective matter reading: record flux (merge-fiber size) on a
     local ledger patch. At saturation this equals consumed capacity (T-16). -/
-def effectiveMatter {X E S E' : Type}
+def fiberFlux {X E S E' : Type}
     (p : LocalLedgerPatch X E S E') : Nat :=
-  stressProxy p.fiber.length
+  fluxProxy p.fiber.length
 
-theorem effectiveMatter_eq_fiber
+theorem fiberFlux_eq_fiber
     {X E S E' : Type} (p : LocalLedgerPatch X E S E') :
-    effectiveMatter p = p.fiber.length :=
+    fiberFlux p = p.fiber.length :=
   rfl
 
 /-- At saturation, effective matter equals capacity consumed. -/
-theorem effectiveMatter_eq_capacity_at_saturation
+theorem fiberFlux_eq_capacity_at_saturation
     {X E S E' : Type} [DecidableEq E']
     (p : LocalLedgerPatch X E S E')
     (hinj : ∀ a b : X × E, p.G a = p.G b → a = b)
@@ -55,34 +55,34 @@ theorem effectiveMatter_eq_capacity_at_saturation
     (hEs : Distinct p.alphabet)
     (halph : ∀ x, x ∈ p.fiber → (p.G (x, p.e0)).2 ∈ p.alphabet)
     (hsat : Saturated p.G p.e0 p.fiber p.alphabet) :
-    effectiveMatter p = capacityProxy p.alphabet.length :=
-  stress_eq_capacity_at_saturation
+    fiberFlux p = capacityProxy p.alphabet.length :=
+  flux_eq_capacity_at_saturation
     p.G hinj p.e0 p.s p.fiber hd hsys p.alphabet hEs halph hsat
 
 /-! ## A2 — vacuum class -/
 
 /-- **A2.** Vacuum dynamics: injective, never merges, never registers.
     The frictionless / H=0 / oscillator class. -/
-def VacuumDynamics {S E : Type} (U : S × E → S × E) : Prop :=
+def SilentDynamics {S E : Type} (U : S × E → S × E) : Prop :=
   Geom.Registration.Inj U ∧
     ¬ Geom.Registration.Merges U ∧
     ¬ Geom.Registration.Registers U
 
-theorem osc_is_vacuum :
-    VacuumDynamics Geom.Registration.oscStep :=
+theorem osc_is_silent :
+    SilentDynamics Geom.Registration.oscStep :=
   Geom.Registration.osc_never_registers
 
-theorem vacuum_no_merges {S E : Type} {U : S × E → S × E}
-    (h : VacuumDynamics U) : ¬ Geom.Registration.Merges U :=
+theorem silent_no_merges {S E : Type} {U : S × E → S × E}
+    (h : SilentDynamics U) : ¬ Geom.Registration.Merges U :=
   h.2.1
 
-theorem vacuum_no_registers {S E : Type} {U : S × E → S × E}
-    (h : VacuumDynamics U) : ¬ Geom.Registration.Registers U :=
+theorem silent_no_registers {S E : Type} {U : S × E → S × E}
+    (h : SilentDynamics U) : ¬ Geom.Registration.Registers U :=
   h.2.2
 
 /-- Vacuum has no merge ⇒ no Landauer registration channel. -/
-theorem vacuum_silent {S E : Type} {U : S × E → S × E}
-    (h : VacuumDynamics U) :
+theorem silent_mute {S E : Type} {U : S × E → S × E}
+    (h : SilentDynamics U) :
     ¬ Geom.Registration.Merges U ∧ ¬ Geom.Registration.Registers U :=
   ⟨h.2.1, h.2.2⟩
 
@@ -90,18 +90,18 @@ theorem vacuum_silent {S E : Type} {U : S × E → S × E}
 
 /-- **A3.** Matter-bearing tick: saturated with nonzero fiber.
     Nonzero saturated flux = effective matter on that tick. -/
-def MatterBearingTick {X E S E' : Type}
+def FluxBearingTick {X E S E' : Type}
     (G : X × E → S × E') (e0 : E) (xs : List X) (Es : List E') : Prop :=
   Saturated G e0 xs Es ∧ 0 < xs.length
 
-theorem matterBearing_has_flux
+theorem fluxBearing_has_flux
     {X E S E' : Type}
     {G : X × E → S × E'} {e0 : E} {xs : List X} {Es : List E'}
-    (h : MatterBearingTick G e0 xs Es) :
-    0 < stressProxy xs.length :=
+    (h : FluxBearingTick G e0 xs Es) :
+    0 < fluxProxy xs.length :=
   h.2
 
-theorem matterBearing_eq_capacity
+theorem fluxBearing_eq_capacity
     {X E S E' : Type} [DecidableEq E']
     (G : X × E → S × E')
     (hinj : ∀ a b : X × E, G a = G b → a = b)
@@ -109,25 +109,25 @@ theorem matterBearing_eq_capacity
     (hsys : ∀ x, x ∈ xs → (G (x, e0)).1 = s)
     (Es : List E') (hEs : Distinct Es)
     (halph : ∀ x, x ∈ xs → (G (x, e0)).2 ∈ Es)
-    (h : MatterBearingTick G e0 xs Es) :
-    stressProxy xs.length = capacityProxy Es.length :=
-  stress_eq_capacity_at_saturation
+    (h : FluxBearingTick G e0 xs Es) :
+    fluxProxy xs.length = capacityProxy Es.length :=
+  flux_eq_capacity_at_saturation
     G hinj e0 s xs hd hsys Es hEs halph h.1
 
 /-- Swap dynamics admits merges/registers — the matter-channel witness
     opposite the vacuum oscillator (registration independence). -/
-theorem swap_admits_matter_channel :
+theorem swap_admits_flux_channel :
     Geom.Registration.Inj Geom.Registration.swapStep ∧
     Geom.Registration.Merges Geom.Registration.swapStep ∧
     Geom.Registration.Registers Geom.Registration.swapStep :=
   Geom.Registration.swap_registers
 
 /-- A1–A3 separability: vacuum and matter-channel witnesses both exist. -/
-theorem vacuum_vs_matter_channel_separable :
-    VacuumDynamics Geom.Registration.oscStep ∧
+theorem silent_vs_flux_channel_separable :
+    SilentDynamics Geom.Registration.oscStep ∧
     (Geom.Registration.Merges Geom.Registration.swapStep ∧
       Geom.Registration.Registers Geom.Registration.swapStep) :=
-  ⟨osc_is_vacuum, ⟨Geom.Registration.swap_registers.2.1,
+  ⟨osc_is_silent, ⟨Geom.Registration.swap_registers.2.1,
     Geom.Registration.swap_registers.2.2⟩⟩
 
 /-! ## B4 — slack below saturation -/
@@ -212,23 +212,23 @@ theorem kmin_flatness_within_expand_budget
 /-- A1–A3 + B4 + C2: vacuum ≠ matter-channel; saturation fixes effective
     matter; slack exists below saturation; Kmin flatness fits aliveness
     budget. -/
-theorem effective_matter_sprint :
-    VacuumDynamics Geom.Registration.oscStep ∧
+theorem fiber_flux_sprint :
+    SilentDynamics Geom.Registration.oscStep ∧
     Geom.Registration.Merges Geom.Registration.swapStep ∧
     (∀ T, recombinationsNeeded
       (internalDeg Bridge.Alphabet.Kmin)
       (internalDeg Bridge.Alphabet.Kmin) ≤ alivenessBudget T) ∧
     Bridge.Alphabet.Kmin = 2 :=
-  ⟨osc_is_vacuum,
+  ⟨osc_is_silent,
    Geom.Registration.swap_registers.2.1,
    kmin_flatness_within_caps_budget,
    Bridge.Alphabet.Kmin_eq⟩
 
-#print axioms osc_is_vacuum
-#print axioms vacuum_vs_matter_channel_separable
+#print axioms osc_is_silent
+#print axioms silent_vs_flux_channel_separable
 #print axioms slack_below_saturation
 #print axioms kmin_flatness_within_caps_budget
 #print axioms kmin_flatness_within_expand_budget
-#print axioms effective_matter_sprint
+#print axioms fiber_flux_sprint
 
-end Bridge.EffectiveMatter
+end Bridge.FiberFlux

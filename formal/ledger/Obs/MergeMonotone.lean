@@ -1,12 +1,12 @@
 import Obs.AbstractMemory
 
 /-!
-# Obs.AbstractThermo
+# Obs.MergeMonotone
 
 Booking + SelfBlindness implies a non-injective step.
 -/
 
-namespace Obs.AbstractThermo
+namespace Obs.MergeMonotone
 
 open Obs.AbstractMemory
 
@@ -74,7 +74,7 @@ theorem no_demon_of_causal_record
   no_demon_of_selfblind C.system C.booking C.selfBlind
 
 /-!
-# Obs.AbstractThermo
+# Obs.MergeMonotone
 
 Booking + SelfBlindness implies a non-injective step.
 -/
@@ -124,11 +124,11 @@ theorem causal_record_image_monotone {X Content Readout : Type} [BEq X]
 /- Logical merge cost is counted in ring/abstract_thermo.py; physical
    Landauer cost requires an erasure implementation (ring/blotter_bath.py). -/
 
-end Obs.AbstractThermo
+end Obs.MergeMonotone
 
 /- axiom footprint -/
-#print axioms Obs.AbstractThermo.noninjective_of_booking_selfblind
-#print axioms Obs.AbstractThermo.noninjective_of_causal_record
-#print axioms Obs.AbstractThermo.no_demon_of_causal_record
-#print axioms Obs.AbstractThermo.causal_record_image_monotone
-#print axioms Obs.AbstractThermo.image_size_monotone_step
+#print axioms Obs.MergeMonotone.noninjective_of_booking_selfblind
+#print axioms Obs.MergeMonotone.noninjective_of_causal_record
+#print axioms Obs.MergeMonotone.no_demon_of_causal_record
+#print axioms Obs.MergeMonotone.causal_record_image_monotone
+#print axioms Obs.MergeMonotone.image_size_monotone_step

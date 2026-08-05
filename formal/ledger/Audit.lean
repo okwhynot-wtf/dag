@@ -10,7 +10,7 @@ import Geom.Totality
 import Geom.Freshness
 import Geom.Arc
 import Obs.AbstractMemory
-import Obs.AbstractThermo
+import Obs.MergeMonotone
 import Obs.EffectiveDynamics
 import Obs.Unlock
 import Obs.UnlockCompleteness
@@ -20,7 +20,7 @@ import Obs.CausalOrder
 import Obs.Dimension
 import Obs.Selection
 import Obs.StochasticUnlock
-import Obs.StochasticThermo
+import Obs.TotalVariationDPI
 import Obs.StochasticDivergence
 import Obs.Budget
 import Obs.ContinuumUnlock
@@ -237,17 +237,17 @@ python3 formal/tools/gen_audit.py
 -- Obs.AbstractMemory (1)
 #print axioms Obs.AbstractMemory.book_ne_of_ne
 
--- Obs.AbstractThermo (10)
-#print axioms Obs.AbstractThermo.noninjective_of_booking_selfblind
-#print axioms Obs.AbstractThermo.noninjective_of_causal_record
-#print axioms Obs.AbstractThermo.read_step_congruence
-#print axioms Obs.AbstractThermo.reference_support_nonempty
-#print axioms Obs.AbstractThermo.no_demon_of_selfblind
-#print axioms Obs.AbstractThermo.no_demon_of_causal_record
-#print axioms Obs.AbstractThermo.length_eraseDups_le
-#print axioms Obs.AbstractThermo.listImage_length_le
-#print axioms Obs.AbstractThermo.image_size_monotone_step
-#print axioms Obs.AbstractThermo.causal_record_image_monotone
+-- Obs.MergeMonotone (10)
+#print axioms Obs.MergeMonotone.noninjective_of_booking_selfblind
+#print axioms Obs.MergeMonotone.noninjective_of_causal_record
+#print axioms Obs.MergeMonotone.read_step_congruence
+#print axioms Obs.MergeMonotone.reference_support_nonempty
+#print axioms Obs.MergeMonotone.no_demon_of_selfblind
+#print axioms Obs.MergeMonotone.no_demon_of_causal_record
+#print axioms Obs.MergeMonotone.length_eraseDups_le
+#print axioms Obs.MergeMonotone.listImage_length_le
+#print axioms Obs.MergeMonotone.image_size_monotone_step
+#print axioms Obs.MergeMonotone.causal_record_image_monotone
 
 -- Obs.EffectiveDynamics (15)
 #print axioms Obs.EffectiveDynamics.readClosed_of_readClosure
@@ -490,7 +490,7 @@ python3 formal/tools/gen_audit.py
 #print axioms Obs.StochasticUnlock.nat_amgm2_of_le
 #print axioms Obs.StochasticUnlock.natEOR
 
--- Obs.StochasticThermo (14)
+-- Obs.TotalVariationDPI (14)
 #print axioms Obs.StochasticUnlock.lsum_zero
 #print axioms Obs.StochasticUnlock.add_add_add_comm
 #print axioms Obs.StochasticUnlock.lsum_add

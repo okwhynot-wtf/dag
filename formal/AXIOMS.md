@@ -66,7 +66,7 @@ refuses discharge as world-from-Bool; it does not declare a kernel axiom.
 | `Geom.Freshness` | 19 | 19 |  |  |  |
 | `Geom.Arc` | 8 | 8 |  |  |  |
 | `Obs.AbstractMemory` | 1 | 1 |  |  |  |
-| `Obs.AbstractThermo` | 10 | 6 |  | 4 |  |
+| `Obs.MergeMonotone` | 10 | 6 |  | 4 |  |
 | `Obs.EffectiveDynamics` | 15 | 13 | 1 | 1 |  |
 | `Obs.Unlock` | 6 | 6 |  |  |  |
 | `Obs.UnlockCompleteness` | 13 | 13 |  |  |  |
@@ -76,7 +76,7 @@ refuses discharge as world-from-Bool; it does not declare a kernel axiom.
 | `Obs.Dimension` | 15 | 13 | 2 |  |  |
 | `Obs.Selection` | 69 | 69 |  |  |  |
 | `Obs.StochasticUnlock` | 54 | 54 |  |  |  |
-| `Obs.StochasticThermo` | 14 | 14 |  |  |  |
+| `Obs.TotalVariationDPI` | 14 | 14 |  |  |  |
 | `Obs.StochasticDivergence` | 8 | 8 |  |  |  |
 | `Obs.Budget` | 10 | 10 |  |  |  |
 | `Obs.ContinuumUnlock` | 5 | 5 |  |  |  |
@@ -97,21 +97,21 @@ refuses discharge as world-from-Bool; it does not declare a kernel axiom.
 | `RegistrationFactor` | 11 | 11 |  |  |  |
 | `ArchiveMustSpeak` | 5 | 5 |  |  |  |
 | `PageShape` | 11 | 5 | 6 |  |  |
-| `SecondLaw` | 5 | 5 |  |  |  |
-| `Measurement` | 5 | 5 |  |  |  |
+| `ArchiveMonotone` | 5 | 5 |  |  |  |
+| `BranchNondeterminism` | 5 | 5 |  |  |  |
 | `BranchMeasure` | 14 | 6 | 8 |  |  |
-| `Expansion` | 14 | 14 |  |  |  |
+| `LadderGrowth` | 14 | 14 |  |  |  |
 | `Forman` | 21 | 21 |  |  |  |
 | `Saturation` | 5 | 5 |  |  |  |
-| `EinsteinSkeleton` | 14 | 10 | 4 |  |  |
-| `EffectiveMatter` | 15 | 15 |  |  |  |
+| `FlatnessDebt` | 14 | 10 | 4 |  |  |
+| `FiberFlux` | 15 | 15 |  |  |  |
 | `FluxPattern` | 10 | 10 |  |  |  |
-| `LedgerSheaf` | 19 | 19 |  |  |  |
+| `LedgerPatchGlue` | 19 | 19 |  |  |  |
 | `RecombinationBudget` | 7 | 2 | 5 |  |  |
 | `PhaseEToys` | 14 | 5 | 9 |  |  |
-| `Period2KMS` | 7 | 5 | 2 |  |  |
-| `ModularCut` | 8 | 5 | 3 |  |  |
-| `LorentzianDict` | 5 | 5 |  |  |  |
+| `PeriodTwoOrbits` | 7 | 5 | 2 |  |  |
+| `CutShift` | 8 | 5 | 3 |  |  |
+| `OrderDimGrowth` | 5 | 5 |  |  |  |
 | `TwoBounce` | 77 | 69 | 8 |  |  |
 | `BridgeArc` | 41 | 25 | 14 | 2 |  |
 
@@ -143,7 +143,7 @@ Experimental (quarantined): exploratory results, not part of the audited spine/l
 | `Frequencies` | 16 | 4 | 3 | 9 |  |
 | `WaveEquation` | 31 | 7 | 2 | 20 |  |
 | `CantorBoundary` | 16 | 16 |  |  |  |
-| `Dispersion` | 12 |  | 1 | 11 |  |
+| `SpectrumSymmetry` | 12 |  | 1 | 11 |  |
 | `Recurrence` | 14 | 2 | 1 | 7 |  |
 
 Totals: 1484 audited results; 1243 clean.

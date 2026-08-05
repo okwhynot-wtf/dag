@@ -1,6 +1,6 @@
 import Alphabet
 import Capacity
-import Measurement
+import BranchNondeterminism
 import Branch
 import Forman
 
@@ -27,7 +27,7 @@ not derived (cf. Forman).
 
 namespace Bridge.BranchMeasure
 
-open Bridge.Measurement
+open Bridge.BranchNondeterminism
 
 /-- Uniform escape weight from capacity counting (one unit per child). -/
 def escapeWeight {k : Nat} (_e : Branch.Predicate k) : Nat := 1
@@ -137,19 +137,15 @@ theorem born_asymmetry_unavailable (W : MultiplicityOnlyWeight)
   obtain ⟨e₁, e₂, h₁, h₂, hne⟩ := two_children k f
   exact ⟨e₁, e₂, h₁, h₂, hne, multiplicity_forces_symmetry W k e₁ e₂⟩
 
-/-- Gleason's theorem has no domain of application: the corpus defines no
-    amplitude type / inner product on branch carriers. -/
-def gleason_domain_absent : True := True.intro
-
 /-- **Born no-go.** No function of record multiplicity and branch structure
     alone satisfies the composition properties Born weights need:
 
     * multiplicity-only weights are forced symmetric on T-12 children;
     * path products stay symmetric (no asymmetric Born interference);
     * no unique law-derived selector (underdetermination);
-    * Gleason route unavailable (no inner-product carrier).
 
-    Upgrades the Born refusal from a decision to a theorem inside the system. -/
+    States the refusal as a theorem about multiplicity-only weight
+    structures; no claim beyond that class is made. -/
 theorem born_from_multiplicity_nogo :
     (∀ (W : MultiplicityOnlyWeight) k e₁ e₂, W.w k e₁ = W.w k e₂) ∧
     (∀ (W : MultiplicityOnlyWeight) k e₁ e₂ f₁ f₂,
@@ -161,13 +157,11 @@ theorem born_from_multiplicity_nogo :
     (∀ (σ : EscapeSelector) k f,
       ∃ e : Branch.Predicate k,
         Branch.IsEscape k f e ∧ ∃ x, e x ≠ (σ.select k f) x) ∧
-    gleason_domain_absent = True.intro ∧
     Bridge.Alphabet.Kmin = 2 :=
   ⟨fun W k e₁ e₂ => multiplicity_forces_symmetry W k e₁ e₂,
    fun W k e₁ e₂ f₁ f₂ => pathWeight_symmetric W k e₁ e₂ f₁ f₂,
    fun W k f => born_asymmetry_unavailable W k f,
    fun σ k f => no_unique_law_selector σ k f,
-   rfl,
    Bridge.Alphabet.Kmin_eq⟩
 
 /-! ## Finite Ollivier-style trial (counting transport) -/
@@ -194,7 +188,7 @@ theorem sibling_transport_cost_pos {k : Nat}
     lower bound when comparing uniform child masses. With `W ≥ 2` and
     `d = 1` the Nat difference `d - W` underflows toward negativity —
     recorded as `W ≥ d` (non-positive curvature signal). -/
-theorem ollivier_nonpos_signal {k : Nat}
+theorem sibling_transport_ge_edge {k : Nat}
     (e₁ e₂ : Branch.Predicate k) (hne : ∃ x, e₁ x ≠ e₂ x) :
     parentChildDist ≤ siblingTransportCost e₁ e₂ hne := by
   simp [parentChildDist, siblingTransportCost, escapeWeight, siblingDist]
@@ -206,11 +200,8 @@ theorem uniform_mass_preserves_forman_neg :
       (Bridge.Forman.internalDeg Bridge.Alphabet.Kmin) :=
   Bridge.Forman.internal_edge_forman_neg
 
-/-- Continuum / measure-theoretic Ollivier is not derived. -/
-def continuum_ollivier_refused : True := True.intro
-
 /-- Two T-12 children with uniform mass and non-positive Ollivier signal. -/
-theorem ollivier_children (k : Nat)
+theorem transport_children (k : Nat)
     (f : Ladder.Level k → Ladder.Level k → Bool) :
     ∃ e₁ e₂ : Branch.Predicate k,
       Branch.IsEscape k f e₁ ∧ Branch.IsEscape k f e₂ ∧
@@ -226,7 +217,7 @@ theorem ollivier_children (k : Nat)
     sibling transport give a non-positive curvature signal on the Kmin
     tree; Forman negativity is unchanged without faces. Continuum
     Ollivier is not derived. -/
-theorem ollivier_trial_fragment :
+theorem transport_trial_fragment :
     (∀ k f, ∃ e₁ e₂ : Branch.Predicate k,
       Branch.IsEscape k f e₁ ∧ Branch.IsEscape k f e₂ ∧
         (∃ x, e₁ x ≠ e₂ x) ∧
@@ -235,10 +226,9 @@ theorem ollivier_trial_fragment :
     Bridge.Forman.StrictlyNegative
       (Bridge.Forman.internalDeg Bridge.Alphabet.Kmin)
       (Bridge.Forman.internalDeg Bridge.Alphabet.Kmin) ∧
-    continuum_ollivier_refused = True.intro ∧
     Bridge.Alphabet.Kmin = 2 :=
-  ⟨ollivier_children, uniform_mass_preserves_forman_neg,
-   rfl, Bridge.Alphabet.Kmin_eq⟩
+  ⟨transport_children, uniform_mass_preserves_forman_neg,
+   Bridge.Alphabet.Kmin_eq⟩
 
 #print axioms uniform_total_is_Kmin
 #print axioms no_unique_law_selector
@@ -246,8 +236,8 @@ theorem ollivier_trial_fragment :
 #print axioms born_from_multiplicity_nogo
 #print axioms multiplicity_forces_symmetry
 #print axioms pathWeight_symmetric
-#print axioms ollivier_nonpos_signal
-#print axioms ollivier_trial_fragment
+#print axioms sibling_transport_ge_edge
+#print axioms transport_trial_fragment
 
 end Bridge.BranchMeasure
 

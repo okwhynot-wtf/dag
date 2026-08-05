@@ -5,7 +5,7 @@ import Alphabet
 /-!
 # QEC toy — ledger dictionary entry (quantum error correction)
 
-Syndrome extraction as merge⇒record; stabilizer / codespace caricature
+Syndrome extraction reads as merge⇒record; stabilizer / codespace caricature
 as injectivity of the joint step. A finite toy filling the L-certificate
 schema (Inj, merge, record, capacity/exhaustion). Hilbert-space codes,
 threshold theorems, and holographic code duality lie outside this module.
@@ -45,7 +45,7 @@ theorem syndrome_alphabet :
     Bridge.Alphabet.Kmin = 2 ∧ Registers U :=
   ⟨Bridge.Alphabet.Kmin_eq, qec_syndrome_record⟩
 
-/-- Registration reading: syndrome extraction is merge⇒record. -/
+/-- Registration reading: syndrome extraction reads as merge⇒record. -/
 theorem syndrome_is_registration :
     Inj U ∧ Merges U ∧ Registers U :=
   ⟨qec_inj, qec_syndrome_merge, qec_syndrome_record⟩

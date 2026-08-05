@@ -49,7 +49,7 @@ footprint, as the audit block at the file bottom verifies:
 * injectivity is effective: depth-`(k+1)` cylinders separate rung
   `k`. Distinct inhabitants of `Ladder.Level k` differ at some
   coordinate `m ≤ k` of their encodings (`encode_separates`), the
-  finite-approximation (profinite) structure of the boundary with an
+  finite-approximation structure of the boundary with an
   explicit bound; `encode_inj_pointwise` is its contrapositive
   restated (`encode_inj_of_separates`).
 
@@ -243,7 +243,7 @@ theorem tail_encode_some (k : Nat) (a : Ladder.Level k) (n : Nat) :
     level `0` the coordinate is `0`; at a successor, a `none/some`
     disagreement shows at coordinate `0`, and a `some/some`
     disagreement lifts the inductive witness `m` to `m + 1`. This is
-    the finite-approximation (profinite) structure of the boundary,
+    the finite-approximation structure of the boundary,
     with an explicit bound. -/
 theorem encode_separates :
     ∀ (k : Nat) (x y : Ladder.Level k), x ≠ y →

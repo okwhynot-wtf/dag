@@ -56,7 +56,7 @@ theorem modeCount_eq_predicateCount (T : Nat) :
     modeCount T = Density.predicateCount T := by
   rw [modeCount_eq, Density.predicateCount_eq]
 
-/-- One-tick doubling: the RE face of `c(t+1) = K · c(t)` at `K = 2`. -/
+/-- One-tick doubling: the analogue of `c(t+1) = K · c(t)` at `K = 2`. -/
 theorem modeCount_doubles (T : Nat) :
     modeCount (T + 1) = 2 * modeCount T := by
   simp [modeCount_eq, Nat.pow_succ, Nat.mul_comm]
@@ -89,12 +89,6 @@ theorem growth_rate_weld (T : Nat) :
   · simp [Density.predicateCount_eq, Nat.pow_succ, Nat.mul_comm]
   · simp [Capacity.caps_eq, Nat.pow_succ, Nat.mul_comm]
 
-/-- Scope markers: continuum forecast / mode-creation / H₀ claims are
-    outside this module (same pattern as LorentzianDict). -/
-def desi_forecast_refused : True := True.intro
-def continuum_mode_creation_refused : True := True.intro
-def H0_from_Bool_refused : True := True.intro
-
 /-- **RE-side growth law.** Quintom mode-count ↔ capacity-law analogue:
     `modeCount T = caps T = 2^(T+2)` and doubles each naming tick at `Kmin`.
     Continuum DESI / Fourier-mode / `H₀` claims are outside this module. -/
@@ -104,12 +98,9 @@ theorem re_side_growth_law :
     (∀ T, modeCount (T + 1) = Alphabet.Kmin * modeCount T) ∧
     Dil.MinimalSchedule Alphabet.Kmin modeCount ∧
     channelCard = Alphabet.Kmin ∧
-    desi_forecast_refused = True.intro ∧
-    continuum_mode_creation_refused = True.intro ∧
-    H0_from_Bool_refused = True.intro ∧
     Alphabet.Kmin = 2 :=
   ⟨modeCount_eq_caps, modeCount_eq_predicateCount, modeCount_doubles_Kmin,
-   modeCount_minimal_schedule.1, channelCard_eq_Kmin, rfl, rfl, rfl,
+   modeCount_minimal_schedule.1, channelCard_eq_Kmin,
    Alphabet.Kmin_eq⟩
 
 #print axioms channel_is_two

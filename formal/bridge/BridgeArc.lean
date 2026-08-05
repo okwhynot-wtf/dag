@@ -8,21 +8,21 @@ import Dil
 import RegistrationFactor
 import ArchiveMustSpeak
 import PageShape
-import SecondLaw
-import Measurement
+import ArchiveMonotone
+import BranchNondeterminism
 import BranchMeasure
-import Expansion
+import LadderGrowth
 import Forman
 import Saturation
-import EinsteinSkeleton
-import EffectiveMatter
+import FlatnessDebt
+import FiberFlux
 import FluxPattern
-import LedgerSheaf
+import LedgerPatchGlue
 import RecombinationBudget
 import PhaseEToys
-import Period2KMS
-import ModularCut
-import LorentzianDict
+import PeriodTwoOrbits
+import CutShift
+import OrderDimGrowth
 import TwoBounce
 import Geom.Registration
 import Geom.Profile
@@ -271,8 +271,8 @@ theorem milestone_T11 :
     (∀ k : Nat, ¬ ∃ (f : Ladder.Level (k + 1) → Ladder.Level k),
       ∀ x y, f x = f y → x = y) ∧
     Bridge.Alphabet.Kmin = 2 :=
-  ⟨fun hU hm => Bridge.SecondLaw.landauer hU hm,
-   Bridge.SecondLaw.archive_irreversible,
+  ⟨fun hU hm => Bridge.ArchiveMonotone.merge_must_register hU hm,
+   Bridge.ArchiveMonotone.archive_irreversible,
    Bridge.Alphabet.Kmin_eq⟩
 
 theorem milestone_T12 :
@@ -281,7 +281,7 @@ theorem milestone_T12 :
         Branch.IsEscape k f e₁ ∧ Branch.IsEscape k f e₂ ∧
           ∃ x, e₁ x ≠ e₂ x) ∧
     Bridge.Alphabet.Kmin = 2 :=
-  ⟨Bridge.Measurement.two_children, Bridge.Alphabet.Kmin_eq⟩
+  ⟨Bridge.BranchNondeterminism.two_children, Bridge.Alphabet.Kmin_eq⟩
 
 theorem milestone_T12_measure :
     (∀ k f, ∃ e₁ e₂ : Branch.Predicate k,
@@ -297,33 +297,31 @@ theorem milestone_T12_measure :
 theorem milestone_born_nogo :
     (∀ (W : Bridge.BranchMeasure.MultiplicityOnlyWeight) k e₁ e₂,
       W.w k e₁ = W.w k e₂) ∧
-    Bridge.BranchMeasure.gleason_domain_absent = True.intro ∧
     Bridge.Alphabet.Kmin = 2 :=
   ⟨fun W k e₁ e₂ =>
      Bridge.BranchMeasure.multiplicity_forces_symmetry W k e₁ e₂,
-   rfl, Bridge.Alphabet.Kmin_eq⟩
+   Bridge.Alphabet.Kmin_eq⟩
 
 /-- Finite Ollivier-style trial (counting transport; continuum form not derived). -/
-theorem milestone_ollivier_trial :
+theorem milestone_transport_trial :
     Bridge.Forman.StrictlyNegative
       (Bridge.Forman.internalDeg Bridge.Alphabet.Kmin)
       (Bridge.Forman.internalDeg Bridge.Alphabet.Kmin) ∧
-    Bridge.BranchMeasure.continuum_ollivier_refused = True.intro ∧
     Bridge.Alphabet.Kmin = 2 :=
   ⟨Bridge.BranchMeasure.uniform_mass_preserves_forman_neg,
-   rfl, Bridge.Alphabet.Kmin_eq⟩
+   Bridge.Alphabet.Kmin_eq⟩
 
 theorem milestone_T13 :
-    (∀ T, Bridge.Expansion.countedVolume 2 (T + 1) =
-      2 * Bridge.Expansion.countedVolume 2 T) ∧
-    (∀ T, Bridge.Expansion.countedVolume Bridge.Alphabet.Kmin T = 2 ^ T) ∧
-    Bridge.Expansion.NumberEqualsVolume ∧
+    (∀ T, Bridge.LadderGrowth.countedVolume 2 (T + 1) =
+      2 * Bridge.LadderGrowth.countedVolume 2 T) ∧
+    (∀ T, Bridge.LadderGrowth.countedVolume Bridge.Alphabet.Kmin T = 2 ^ T) ∧
+    Bridge.LadderGrowth.NumberEqualsVolume ∧
     Bridge.Alphabet.Kmin = 2 :=
-  ⟨Bridge.Expansion.discrete_Hubble_one_bit_per_tick
-      Bridge.Expansion.numberEqualsVolume,
-   Bridge.Expansion.counted_deSitter_volume
-      Bridge.Expansion.numberEqualsVolume,
-   Bridge.Expansion.number_equals_volume_flagged,
+  ⟨Bridge.LadderGrowth.doubling_per_tick_at_Kmin
+      Bridge.LadderGrowth.numberEqualsVolume,
+   Bridge.LadderGrowth.counted_capacity_at_Kmin
+      Bridge.LadderGrowth.numberEqualsVolume,
+   Bridge.LadderGrowth.number_equals_volume_flagged,
    Bridge.Alphabet.Kmin_eq⟩
 
 theorem milestone_T14 :
@@ -346,65 +344,65 @@ theorem milestone_T15 :
   ⟨Bridge.Saturation.alive_iff_records_le_caps, Bridge.Alphabet.Kmin_eq⟩
 
 theorem milestone_T16 :
-    (Bridge.EinsteinSkeleton.unpaidFlatness 3 3 0 = 2) ∧
-    (Bridge.EinsteinSkeleton.unpaidFlatness 3 3 2 = 0) ∧
-    Bridge.EinsteinSkeleton.openGaps.length = 5 ∧
+    (Bridge.FlatnessDebt.unpaidFlatness 3 3 0 = 2) ∧
+    (Bridge.FlatnessDebt.unpaidFlatness 3 3 2 = 0) ∧
+    Bridge.FlatnessDebt.openGaps.length = 5 ∧
     Bridge.Alphabet.Kmin = 2 :=
   ⟨rfl, rfl, rfl, Bridge.Alphabet.Kmin_eq⟩
 
-theorem milestone_effective_matter_sprint :
-    Bridge.EffectiveMatter.VacuumDynamics Geom.Registration.oscStep ∧
-    (∀ T, Bridge.EffectiveMatter.recombinationsNeeded
+theorem milestone_fiber_flux_sprint :
+    Bridge.FiberFlux.SilentDynamics Geom.Registration.oscStep ∧
+    (∀ T, Bridge.FiberFlux.recombinationsNeeded
       (Bridge.Forman.internalDeg Bridge.Alphabet.Kmin)
       (Bridge.Forman.internalDeg Bridge.Alphabet.Kmin) ≤
-        Bridge.EffectiveMatter.alivenessBudget T) ∧
+        Bridge.FiberFlux.alivenessBudget T) ∧
     Bridge.Alphabet.Kmin = 2 :=
-  ⟨Bridge.EffectiveMatter.osc_is_vacuum,
-   Bridge.EffectiveMatter.kmin_flatness_within_caps_budget,
+  ⟨Bridge.FiberFlux.osc_is_silent,
+   Bridge.FiberFlux.kmin_flatness_within_caps_budget,
    Bridge.Alphabet.Kmin_eq⟩
 
 theorem milestone_phase_D :
     (∃ c₀ c₁ : Bridge.FluxPattern.FluxComponent Bool,
       c₀.witness ≠ c₁.witness) ∧
     Bridge.Alphabet.Kmin = 2 ∧
-    Bridge.EffectiveMatter.VacuumDynamics Geom.Registration.oscStep :=
+    Bridge.FiberFlux.SilentDynamics Geom.Registration.oscStep :=
   ⟨⟨Bridge.FluxPattern.boolComponentFalse,
     Bridge.FluxPattern.boolComponentTrue,
     Bridge.FluxPattern.bool_components_nondegenerate⟩,
    Bridge.Alphabet.Kmin_eq,
-   Bridge.EffectiveMatter.osc_is_vacuum⟩
+   Bridge.FiberFlux.osc_is_silent⟩
 
 theorem milestone_o3_glue :
     (∀ {X E S E' : Type}
-      {p q : Bridge.EinsteinSkeleton.LocalLedgerPatch X E S E'},
-      Bridge.EinsteinSkeleton.OverlapCompatible p q →
+      {p q : Bridge.FlatnessDebt.LocalLedgerPatch X E S E'},
+      Bridge.FlatnessDebt.OverlapCompatible p q →
       p.locus = q.locus → p.alphabet.length = q.alphabet.length) ∧
     Bridge.Alphabet.Kmin = 2 :=
-  ⟨Bridge.LedgerSheaf.glue_capacity_on_locus, Bridge.Alphabet.Kmin_eq⟩
+  ⟨Bridge.LedgerPatchGlue.glue_capacity_on_locus, Bridge.Alphabet.Kmin_eq⟩
 
 theorem milestone_o3_restrict :
     (∀ {X E S E' : Type}
-      (p : Bridge.EinsteinSkeleton.LocalLedgerPatch X E S E') ℓ,
-      (Bridge.LedgerSheaf.restrictTo p ℓ).alphabet.length =
+      (p : Bridge.FlatnessDebt.LocalLedgerPatch X E S E') ℓ,
+      (Bridge.LedgerPatchGlue.restrictTo p ℓ).alphabet.length =
         p.alphabet.length) ∧
     Bridge.Alphabet.Kmin = 2 :=
-  ⟨fun p ℓ => Bridge.LedgerSheaf.restrict_preserves_capacity p ℓ,
+  ⟨fun p ℓ => Bridge.LedgerPatchGlue.restrict_preserves_capacity p ℓ,
    Bridge.Alphabet.Kmin_eq⟩
 
 /-- O-3 dynamics-section fragment: balanced patches restrict/glue Fin-combinatorially. -/
 theorem milestone_o3_dynamics :
     (∀ {X E S E' : Type}
-      (σ : Bridge.LedgerSheaf.DynamicsSection X E S E') ℓ,
+      (σ : Bridge.LedgerPatchGlue.DynamicsSection X E S E') ℓ,
       (σ.restrict ℓ).patch.alphabet.length = σ.patch.alphabet.length) ∧
     (∀ {X E S E' : Type}
-      (σ τ : Bridge.LedgerSheaf.DynamicsSection X E S E'),
-      Bridge.EinsteinSkeleton.OverlapCompatible σ.patch τ.patch →
+      (σ τ : Bridge.LedgerPatchGlue.DynamicsSection X E S E'),
+      Bridge.FlatnessDebt.OverlapCompatible σ.patch τ.patch →
       σ.patch.locus = τ.patch.locus →
-        Bridge.EffectiveMatter.effectiveMatter σ.patch =
-          Bridge.EffectiveMatter.effectiveMatter τ.patch) ∧
+        Bridge.FiberFlux.fiberFlux σ.patch =
+          Bridge.FiberFlux.fiberFlux τ.patch) ∧
     Bridge.Alphabet.Kmin = 2 :=
-  ⟨fun σ ℓ => Bridge.LedgerSheaf.dynamicsSection_restrict_capacity σ ℓ,
-   fun σ τ hov hl => Bridge.LedgerSheaf.dynamicsSection_glue_matter σ τ hov hl,
+  ⟨fun σ ℓ => Bridge.LedgerPatchGlue.dynamicsSection_restrict_capacity σ ℓ,
+   fun σ τ hov hl => Bridge.LedgerPatchGlue.dynamicsSection_glue_matter σ τ hov hl,
    Bridge.Alphabet.Kmin_eq⟩
 
 theorem milestone_r1_budget :
@@ -429,20 +427,20 @@ theorem milestone_area_as_caps :
    Bridge.Capacity.areaBits_succ, Bridge.Alphabet.Kmin_eq⟩
 
 /-- Period-2 / KMS↔involution discrete caricature (not Unruh / continuum KMS). -/
-theorem milestone_period2_kms :
+theorem milestone_period_two :
     (∀ s, Revision.LiarRevision s → ∀ n, s (n + 2) = s n) ∧
     (∀ f b, Bridge.OneZ2.project f (Bridge.OneZ2.project f b) = b) ∧
     (∀ T, Bridge.PhaseEToys.combinatorialTemp T = 1) ∧
     Bridge.Alphabet.Kmin = 2 :=
-  ⟨Bridge.Period2KMS.period2_orbit_under_swap,
-   Bridge.Period2KMS.face_project_is_involution,
+  ⟨Bridge.PeriodTwoOrbits.period2_orbit_under_swap,
+   Bridge.PeriodTwoOrbits.face_project_is_involution,
    fun _ => rfl,
    Bridge.Alphabet.Kmin_eq⟩
 
 /-- Time–dissipation: Fund exempt ⇒ no naming ticks; arrow iff registration. -/
 theorem milestone_time_dissipation :
     Bridge.TickSimulation.FundExempt ∧
-    Bridge.EffectiveMatter.VacuumDynamics Geom.Registration.oscStep ∧
+    Bridge.FiberFlux.SilentDynamics Geom.Registration.oscStep ∧
     Bridge.Alphabet.Kmin = 2 :=
   ⟨Bridge.TickSimulation.time_dissipation_one_property.1,
    Bridge.TickSimulation.time_dissipation_one_property.2.1,
@@ -450,34 +448,33 @@ theorem milestone_time_dissipation :
 
 /-- O-2 cut-shift: `T_c` independent of cut position. -/
 theorem milestone_o2_cut_shift :
-    (∀ T, ∃ _c : Bridge.ModularCut.SaturatedCut T, True) ∧
-    (∀ T (_c : Bridge.ModularCut.SaturatedCut T),
+    (∀ T, ∃ _c : Bridge.CutShift.SaturatedCut T, True) ∧
+    (∀ T (_c : Bridge.CutShift.SaturatedCut T),
       Bridge.PhaseEToys.combinatorialTemp T = 1) ∧
     Bridge.Alphabet.Kmin = 2 :=
-  ⟨Bridge.ModularCut.o2_cut_shift_dead_end.1,
-   Bridge.ModularCut.o2_cut_shift_dead_end.2.2.1,
+  ⟨Bridge.CutShift.o2_cut_shift_dead_end.1,
+   Bridge.CutShift.o2_cut_shift_dead_end.2.2.1,
    Bridge.Alphabet.Kmin_eq⟩
 
 /-- O-2 forced blindness: period global; one ℤ/2 ⇒ one flow; T_c cut-blind. -/
 theorem milestone_o2_forced_blindness :
-    (∀ T (_c : Bridge.ModularCut.SaturatedCut T),
+    (∀ T (_c : Bridge.CutShift.SaturatedCut T),
       Bridge.PhaseEToys.combinatorialTemp T = 1) ∧
-    Bridge.ModularCut.betaPeriod = 2 ∧
+    Bridge.CutShift.betaPeriod = 2 ∧
     Bridge.Alphabet.Kmin = 2 :=
-  ⟨Bridge.ModularCut.o2_forced_blindness.1,
-   Bridge.ModularCut.o2_forced_blindness.2.2.1,
+  ⟨Bridge.CutShift.o2_forced_blindness.1,
+   Bridge.CutShift.o2_forced_blindness.2.2.1,
    Bridge.Alphabet.Kmin_eq⟩
 
 /-- Partial Lorentzian dictionary (order dim-1 + caps growth; no Lorentz group). -/
-theorem milestone_partial_lorentzian :
+theorem milestone_order_dim_growth :
     (∀ tTurn, Obs.Dimension.OrderDimEq tTurn
       (Obs.CausalOrder.fwdPrecedes tTurn) 1) ∧
-    Bridge.Expansion.NumberEqualsVolume ∧
-    Bridge.LorentzianDict.continuum_lorentzian_refused = True.intro ∧
+    Bridge.LadderGrowth.NumberEqualsVolume ∧
     Bridge.Alphabet.Kmin = 2 :=
-  ⟨Bridge.LorentzianDict.order_dim_one,
-   Bridge.Expansion.number_equals_volume_flagged,
-   rfl, Bridge.Alphabet.Kmin_eq⟩
+  ⟨Bridge.OrderDimGrowth.order_dim_one,
+   Bridge.LadderGrowth.number_equals_volume_flagged,
+   Bridge.Alphabet.Kmin_eq⟩
 
 theorem milestone_phase_E :
     (∀ T, Bridge.PhaseEToys.deltaS T = 1) ∧
@@ -517,8 +514,8 @@ theorem bridge_arc :
       ∃ e₁ e₂ : Branch.Predicate k,
         Branch.IsEscape k f e₁ ∧ Branch.IsEscape k f e₂ ∧
           ∃ x, e₁ x ≠ e₂ x) ∧
-    (∀ T, Bridge.Expansion.countedVolume 2 (T + 1) =
-      2 * Bridge.Expansion.countedVolume 2 T) ∧
+    (∀ T, Bridge.LadderGrowth.countedVolume 2 (T + 1) =
+      2 * Bridge.LadderGrowth.countedVolume 2 T) ∧
     Bridge.Forman.StrictlyNegative
       (Bridge.Forman.internalDeg 2) (Bridge.Forman.internalDeg 2) :=
   ⟨Bridge.Alphabet.Kmin_eq,
@@ -529,10 +526,10 @@ theorem bridge_arc :
    fun T hT =>
      (Bridge.RegistrationFactor.registration_vs_naming_obstruction).2.2.2 T hT,
    fun hK tTurn => Bridge.ArchiveMustSpeak.page_time_is_exhaustion hK tTurn,
-   Bridge.SecondLaw.archive_irreversible,
-   Bridge.Measurement.two_children,
-   Bridge.Expansion.discrete_Hubble_one_bit_per_tick
-     Bridge.Expansion.numberEqualsVolume,
+   Bridge.ArchiveMonotone.archive_irreversible,
+   Bridge.BranchNondeterminism.two_children,
+   Bridge.LadderGrowth.doubling_per_tick_at_Kmin
+     Bridge.LadderGrowth.numberEqualsVolume,
    Bridge.Forman.internal_edge_forman_neg⟩
 
 #print axioms milestone_M1
@@ -555,12 +552,12 @@ theorem bridge_arc :
 #print axioms milestone_T12
 #print axioms milestone_T12_measure
 #print axioms milestone_born_nogo
-#print axioms milestone_ollivier_trial
+#print axioms milestone_transport_trial
 #print axioms milestone_T13
 #print axioms milestone_T14
 #print axioms milestone_T15
 #print axioms milestone_T16
-#print axioms milestone_effective_matter_sprint
+#print axioms milestone_fiber_flux_sprint
 #print axioms milestone_phase_D
 #print axioms milestone_o3_glue
 #print axioms milestone_o3_restrict
@@ -568,7 +565,7 @@ theorem bridge_arc :
 #print axioms milestone_r1_budget
 #print axioms milestone_phase_E
 #print axioms milestone_area_as_caps
-#print axioms milestone_period2_kms
+#print axioms milestone_period_two
 #print axioms milestone_time_dissipation
 #print axioms milestone_o2_cut_shift
 #print axioms milestone_o2_forced_blindness
@@ -595,7 +592,7 @@ theorem milestone_i1_two_bounce :
       Nonempty (Bridge.TwoBounce.TwoBounceFactor
         (Bridge.TwoBounce.reverseOf f))) :=
   Bridge.TwoBounce.i1_two_bounce_fragment
-#print axioms milestone_partial_lorentzian
+#print axioms milestone_order_dim_growth
 #print axioms milestone_i1_two_bounce
 #print axioms bridge_arc
 

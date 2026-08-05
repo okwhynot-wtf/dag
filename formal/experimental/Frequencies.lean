@@ -3,8 +3,8 @@
 
 Probe: frequency and ratio without a continuum. On a finite carrier the
 honest surrogate for frequency is *order*: the k-th harmonic is the
-shift by k, its frequency is the least period, and the ratio of two
-harmonics is the ratio of their shifts. On the twelve-carrier
+shift by k, its frequency is the least period, and order ratios stand in
+for frequency ratios. On the twelve-carrier
 (the chromatic circle) the classical facts become decidable:
 composition of intervals adds shifts, the whole-tone has order 6, the
 major third order 3, the tritone order 2, and the fifth generates the
@@ -44,7 +44,7 @@ def semitone : Fin 12 → Fin 12 := shift 1
 /-- The fifth. -/
 def fifth : Fin 12 → Fin 12 := shift 7
 
-/-- Interval composition adds shifts: frequency ratio arithmetic on the
+/-- Interval composition adds shifts: shift arithmetic on the
     twelve-carrier, decidably. -/
 theorem interval_addition :
     ∀ (j k : Fin 12) (i : Fin 12),
@@ -73,8 +73,8 @@ theorem orders_twelve :
   decide
 
 /-- The circle of fifths closes after twelve steps and at no positive
-    step before: the fifth is a generator, so its frequency against the
-    fundamental is 12:12 in period and 7:1 in shift. -/
+    step before: the fifth is a generator, so its order is twelve and its shift is
+    seven. -/
 theorem circle_of_fifths :
     (∀ i, iterN fifth 12 i = i) ∧
     (∀ k : Fin 12, k.val ≠ 0 → ∃ i, iterN fifth k.val i ≠ i) := by

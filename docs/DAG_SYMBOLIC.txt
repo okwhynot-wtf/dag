@@ -81,8 +81,8 @@ II. Ledger  (AG over I-1 / I-2)
         live ⇒ ¬flat(prof)
   T-15: alive ⇔ records ≤ caps growth; saturation := equality;
         at saturation, record flux fixed by the capacity schedule
-  T-16: discrete Einstein skeleton — Jacobson inputs; Forman unpaid
-        flatness paid by faces; stress = caps at saturation; local stalks;
+  T-16: flatness-debt balance — locality inputs; Forman unpaid
+        flatness paid by faces; flux = caps at saturation; local stalks;
         continuum G_{μν}=8πT_{μν} not derived
   curvature precluded only on the 1-d line (trivial)
   arrow = (address, archive↑)
@@ -159,12 +159,12 @@ VI. Compression
   (Fund ≅ ¬ ∧ seal ∧ ladder +1)
     +  (Inj + merge ⇒ record) · (mute ⇒ K^T ≤ cap) · (eternal ⇒ nonflat)
     +  (bounded ⇒ archive speaks)                      T-10
-    +  (Landauer ∧ ¬retract)                           T-11
+    +  (merge⇒register ∧ ¬retract)                           T-11
     +  (□ascent ∧ ¬□direction)                         T-12
     +  (liveness ⇒ caps↑ · number=volume ⇒ V=K^t)      T-13
     +  (tree Forman < 0 · recomb ↑ Forman · ¬flat)     T-14
     +  (saturation: ledger balance fixes flux)         T-15
-    +  (Jacobson skeleton · Forman G~T · stalks)       T-16
+    +  (flatness debt · Forman balance · stalks)       T-16
     +  (E = L_• ,  |caps T| = 2^(T+2) ,  Kmin = 2)
     +  (modeCount = |Channel|^(T+2) = caps · doubles at Kmin)
     +  (arrow = address = pole = channel    :  one ℤ/2)
@@ -215,10 +215,10 @@ VII. Scope
            Branch · Interior · OmegaDuration · SelfReference
   ledger:  Geom.Registration · Profile · Gradient · Obs.Recovery · Obs.Dimension
   bridge:  Alphabet · Capacity · OneZ2 · RegistrationSpine · Environment ·
-           TickSimulation · RegistrationFactor · ArchiveMustSpeak · SecondLaw ·
-           Measurement · Expansion · Forman · Saturation · EinsteinSkeleton ·
-           EffectiveMatter · FluxPattern · LedgerSheaf · RecombinationBudget ·
-           PhaseEToys · Dil · PageShape · BranchMeasure · ModularCut · TwoBounce
+           TickSimulation · RegistrationFactor · ArchiveMustSpeak · ArchiveMonotone ·
+           BranchNondeterminism · LadderGrowth · Forman · Saturation · FlatnessDebt ·
+           FiberFlux · FluxPattern · LedgerPatchGlue · RecombinationBudget ·
+           PhaseEToys · Dil · PageShape · BranchMeasure · CutShift · TwoBounce
   dict:    Certificate (K) · LCertificate · Quintom.* (incl. Growth) · BitFlip ·
            Kramers · Page · QEC · NoClone · MetaProblem
 
@@ -236,10 +236,10 @@ VIII. Experimental annex  (quarantined; no paper-cited module imports it)
   wave step  =  swap ∘ shear             definitional two-bounce (I-1)
   reverse    =  shear ∘ swap             swap = reversal at field level
   sym order(ring wave) = n / gcd n (n-1) = n
-                                         frequency law computes the
+                                         gcd law computes the
                                          symmetry order; spectrum
                                          constant on rotation orbits
-  ∀X ∀s ∃p ≤ 2^(2n): U_X^p(s) = s        eternal return within capacity
+  ∀X ∀s ∃p ≤ 2^(2n): U_X^p(s) = s        bounded return within capacity
   boundary = Nat → Bool                  rungs embed; depth-(k+1)
                                          cylinders separate rung k;
                                          flip Live ⇒ seal at boundary

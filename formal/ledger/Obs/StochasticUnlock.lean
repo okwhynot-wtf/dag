@@ -626,7 +626,7 @@ theorem env_alphabet_ge_indegree {X E S E' : Type} [DecidableEq E']
 /-! ## Second law (quantitative form)
 
 Collision probability (purity) `Σ_r p(r)²` contracts under every doubly
-stochastic kernel, so Tsallis-2 entropy `1 - Σp²` never decreases. The only
+stochastic kernel, so the Tsallis-2-shaped counting functional `1 - Σp²` never decreases. The only
 inequality input is two-point convexity of squares, `(a-b)² ≥ 0`. The
 algebraic interface is the ordered bundle `EOR`. -/
 
@@ -907,7 +907,7 @@ theorem antitone_of_step_le {u : Nat → Q} (hstep : ∀ n, u (n+1) ≤ u n) :
 
 /-- **The second law, quantitative clause.** Under an autonomous doubly
 stochastic law, purity is antitone over all horizons: the exact-arithmetic
-H-theorem, sharing its step hypothesis with the counting arrow. -/
+H-theorem-shaped monotonicity, sharing its step hypothesis with the counting arrow. -/
 theorem second_law_purity (S : List RL) (law : Nat → RL → Q)
     (g : RL → RL → Q)
     (hstep : ∀ n, ∀ r, r ∈ S → law (n+1) r = garble S (law n) g r)
@@ -921,7 +921,7 @@ theorem second_law_purity (S : List RL) (law : Nat → RL → Q)
     rw [he]
     exact purity_garble_le S (law n) g hpos hrow hcol)
 
-/-- Tsallis-2 (linear) entropy `1 - Σp²` never decreases: the second law
+/-- Tsallis-2-shaped counting functional `1 - Σp²` never decreases: the second law
 read through any order-reversing subtraction (the hypothesis `hsub`,
 trivially true at rationals). -/
 theorem second_law_tsallis [Sub Q] (S : List RL) (law : Nat → RL → Q)

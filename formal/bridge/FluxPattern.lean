@@ -1,8 +1,8 @@
 import Alphabet
 import OneZ2
-import Measurement
-import EffectiveMatter
-import SecondLaw
+import BranchNondeterminism
+import FiberFlux
+import ArchiveMonotone
 import Geom.Registration
 import Branch
 import Ladder
@@ -25,7 +25,7 @@ linked to channels.
 
 namespace Bridge.FluxPattern
 
-open Bridge.EffectiveMatter
+open Bridge.FiberFlux
 open Bridge.OneZ2
 
 /-! ## D1 — flux components from alphabet partitions -/
@@ -71,7 +71,7 @@ theorem channels_index_distinct_components :
       (channelComponent Channel.sigma).witness := by
   decide
 
-/-! ## D2 — branch width / ℤ/2 as species-like multiplicity -/
+/-! ## D2 — branch width / ℤ/2 as two-fold multiplicity -/
 
 /-- Channels are exactly two (RE face of one ℤ/2). -/
 theorem channel_multiplicity :
@@ -84,12 +84,12 @@ theorem branch_species_width (k : Nat)
     ∃ e₁ e₂ : Branch.Predicate k,
       Branch.IsEscape k f e₁ ∧ Branch.IsEscape k f e₂ ∧
         ∃ x, e₁ x ≠ e₂ x :=
-  Bridge.Measurement.two_children k f
+  Bridge.BranchNondeterminism.two_children k f
 
 /-- **D2.** Species-like multiplicity from structure already present:
     `Kmin = 2` channels, ≥2 branch children, channels index distinct
     flux components. Not a forced unique pattern. -/
-theorem species_multiplicity_from_underdetermination :
+theorem component_multiplicity_from_underdetermination :
     Bridge.Alphabet.Kmin = 2 ∧
     (∃ c d : Channel, c ≠ d) ∧
     ((channelComponent Channel.phi).witness ≠
@@ -106,32 +106,32 @@ theorem species_multiplicity_from_underdetermination :
 /-! ## D3 — vacuum / matter onset (H=0 / registration) -/
 
 /-- **D3a.** Vacuum onset = oscillator class (frictionless / H=0 skeleton). -/
-theorem vacuum_onset_H0_skeleton :
-    VacuumDynamics Geom.Registration.oscStep :=
-  osc_is_vacuum
+theorem silent_onset_skeleton :
+    SilentDynamics Geom.Registration.oscStep :=
+  osc_is_silent
 
 /-- **D3b.** Matter onset = Landauer registration (merge ⇒ record).
     The H>0 / damping face in kernel dress. -/
-theorem matter_onset_registration
+theorem flux_onset_registration
     {S E : Type} {U : S × E → S × E}
     (hU : Geom.Registration.Inj U)
     (hm : Geom.Registration.Merges U) :
     Geom.Registration.Registers U :=
-  Bridge.SecondLaw.landauer hU hm
+  Bridge.ArchiveMonotone.merge_must_register hU hm
 
 /-- Swap is a matter-onset witness; oscillator is vacuum. -/
-theorem vacuum_vs_matter_onset :
-    VacuumDynamics Geom.Registration.oscStep ∧
+theorem silent_vs_flux_onset :
+    SilentDynamics Geom.Registration.oscStep ∧
     Geom.Registration.Merges Geom.Registration.swapStep ∧
     Geom.Registration.Registers Geom.Registration.swapStep ∧
     (∀ {S E : Type} {U : S × E → S × E},
       Geom.Registration.Inj U →
       Geom.Registration.Merges U →
       Geom.Registration.Registers U) :=
-  ⟨vacuum_onset_H0_skeleton,
+  ⟨silent_onset_skeleton,
    Geom.Registration.swap_registers.2.1,
    Geom.Registration.swap_registers.2.2,
-   fun hU hm => matter_onset_registration hU hm⟩
+   fun hU hm => flux_onset_registration hU hm⟩
 
 /-! ## Phase D package -/
 
@@ -143,7 +143,7 @@ theorem phase_D_flux_patterns :
     Bridge.Alphabet.Kmin = 2 ∧
     ((channelComponent Channel.phi).witness ≠
       (channelComponent Channel.sigma).witness) ∧
-    VacuumDynamics Geom.Registration.oscStep ∧
+    SilentDynamics Geom.Registration.oscStep ∧
     (∀ {S E : Type} {U : S × E → S × E},
       Geom.Registration.Inj U →
       Geom.Registration.Merges U →
@@ -151,12 +151,12 @@ theorem phase_D_flux_patterns :
   ⟨⟨boolComponentFalse, boolComponentTrue, bool_components_nondegenerate⟩,
    Bridge.Alphabet.Kmin_eq,
    channels_index_distinct_components,
-   vacuum_onset_H0_skeleton,
-   fun hU hm => matter_onset_registration hU hm⟩
+   silent_onset_skeleton,
+   fun hU hm => flux_onset_registration hU hm⟩
 
 #print axioms two_nondegenerate_flux_components
-#print axioms species_multiplicity_from_underdetermination
-#print axioms vacuum_vs_matter_onset
+#print axioms component_multiplicity_from_underdetermination
+#print axioms silent_vs_flux_onset
 #print axioms phase_D_flux_patterns
 
 end Bridge.FluxPattern

@@ -1250,13 +1250,13 @@ left general) has step exactly $\mathrm{swap}\comp\mathrm{shear}$
 \texttt{waveFactor}), with time reversal the bounce swap; boundary
 conditions select the spectrum, kernel-decided for ring sizes $2$--$6$
 and fixed ends $3$--$5$.
-\item \emph{The symmetry order is the frequency law.} The ring wave's
+\item \emph{The symmetry order is the gcd law.} The ring wave's
 rotation symmetry has order exactly
 $n/\gcd(n,n{-}1)=n$ as the gcd law predicts, and the return spectrum
 is constant on rotation orbits
-(\texttt{Experimental.Dispersion.symmetry\_order\_is\_frequency\_law})
---- the discrete seed of a dispersion relation, and no more.
-\item \emph{Eternal return within capacity.} For every coupling and
+(\texttt{Experimental.SpectrumSymmetry.symmetry\_order\_is\_frequency\_law})
+--- a rotation-orbit invariance of the return spectrum, and no more.
+\item \emph{Return within capacity.} For every coupling and
 every state on $n$ sites, the wave returns within $2^{2n}$ steps
 (\texttt{Experimental.Recurrence.wave\_recurrence\_bounded}):
 losslessness plus finite capacity forces recurrence.

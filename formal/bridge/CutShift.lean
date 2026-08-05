@@ -1,4 +1,4 @@
-import Period2KMS
+import PeriodTwoOrbits
 import PhaseEToys
 import Capacity
 import Saturation
@@ -23,10 +23,10 @@ Continuum KMS, Lorentz boosts, and Unruh temperature as continuum physics
 are not derived.
 -/
 
-namespace Bridge.ModularCut
+namespace Bridge.CutShift
 
 open Bridge.PhaseEToys
-open Bridge.Period2KMS
+open Bridge.PeriodTwoOrbits
 
 /-- Cut between system-side and archive-side slots at saturated capacity
     (`|caps T|` slots partitioned). Shift of this cut is the boost
@@ -109,7 +109,7 @@ theorem correlator_period2_stationary (s : Nat → Bool)
 
 /-- KMS caricature at β = period: stationarity of the two-point function
     under the period-2 modular shift. (Toy — not continuum KMS.) -/
-theorem kms_caricature_at_period (s : Nat → Bool)
+theorem cut_period_stationarity (s : Nat → Bool)
     (hs : Revision.LiarRevision s) :
     ∀ t, correlator s t = correlator s (t + betaPeriod) :=
   fun t => correlator_period2_stationary s hs t
@@ -173,17 +173,17 @@ theorem o2_cut_shift_dead_end :
     (∀ _T, combinatorialTemp _T = 1) ∧
     Bridge.Alphabet.Kmin = 2 :=
   ⟨fun T => ⟨midCut T, True.intro⟩,
-   kms_caricature_at_period,
+   cut_period_stationarity,
    fun _T c => cut_temp_independent c,
    fun _T c => area_blind_to_cut c,
    fun _ => rfl,
    Bridge.Alphabet.Kmin_eq⟩
 
 #print axioms correlator_period2_stationary
-#print axioms kms_caricature_at_period
+#print axioms cut_period_stationarity
 #print axioms cut_shift_temp_independent
 #print axioms no_unruh_from_cut
 #print axioms o2_forced_blindness
 #print axioms o2_cut_shift_dead_end
 
-end Bridge.ModularCut
+end Bridge.CutShift

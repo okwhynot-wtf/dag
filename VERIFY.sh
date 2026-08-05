@@ -24,4 +24,7 @@ echo "-- experimental (quarantined) --"
 echo "-- quintom exhibit --"
 python3 exhibits/quintom/integrate.py
 
+echo "-- wave period exhibit (experimental) --"
+python3 exhibits/wave/periods.py
+
 echo "== DAG VERIFY OK =="

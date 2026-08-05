@@ -22,4 +22,7 @@ Invoke-LakeBuild "formal\experimental"
 python exhibits\quintom\integrate.py
 if ($LASTEXITCODE -ne 0) { throw "quintom exhibit failed" }
 
+python exhibits\wave\periods.py
+if ($LASTEXITCODE -ne 0) { throw "wave period exhibit failed" }
+
 Write-Host "== DAG VERIFY OK =="

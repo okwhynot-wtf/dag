@@ -223,6 +223,43 @@ VII. Scope
            Kramers · Page · QEC · NoClone · MetaProblem
 
 ═══════════════════════════════════════════════════════════════════════════════
+VIII. Experimental annex  (quarantined; no paper-cited module imports it)
+═══════════════════════════════════════════════════════════════════════════════
+
+  Path:  Fund (period 2) → all finite periods → frequency as order
+         → field equation → infinite-history edge
+
+  rot k  =  reflAt k ∘ reflZero          dihedral closed form on Fin n
+                                         (computable pair; contrast
+                                          factor_fin's bounded search)
+  order(shift k on Fin n) = n / gcd n k  gcd law, return + minimality
+  wave step  =  swap ∘ shear             definitional two-bounce (I-1)
+  reverse    =  shear ∘ swap             swap = reversal at field level
+  sym order(ring wave) = n / gcd n (n-1) = n
+                                         frequency law computes the
+                                         symmetry order; spectrum
+                                         constant on rotation orbits
+  ∀X ∀s ∃p ≤ 2^(2n): U_X^p(s) = s        eternal return within capacity
+  boundary = Nat → Bool                  rungs embed; depth-(k+1)
+                                         cylinders separate rung k;
+                                         flip Live ⇒ seal at boundary
+                                         carrier; tail erases (in-arena
+                                         ¬erase fails at the boundary);
+                                         cons/tail carries the +1 step
+  periods: ring 2..6 ↦ 2,6,4,10,6        kernel-decided; laws
+           Dirichlet 3..5 ↦ 8,10,12      (even↦n, odd↦2n, 2n+2)
+                                         conjectural beyond (needs
+                                         F₂[x]/(xⁿ−1); not in corpus)
+
+  Not derived: continuum, real frequencies, dispersion over ℝ,
+               closed-form period law in general n
+  Footprints:  propext / Quot.sound; Classical.choice only in the
+               recurrence pigeonhole. Excluded from the paper's axiom
+               accounting; audited per declaration in formal/AXIOMS.md
+  Modules:     experimental:  Overtones · Frequencies · WaveEquation ·
+               CantorBoundary · Dispersion · Recurrence
+
+═══════════════════════════════════════════════════════════════════════════════
   Fund ≅ ¬  ·  a∘a=id ⇒ ¬erase  ·  merge ⇒ record  ·  |caps T| = 2^(T+2)
   ·  naming ≅ μtick / gauge  ·  (I-1 · swap=reversal · T-7)
 ═══════════════════════════════════════════════════════════════════════════════

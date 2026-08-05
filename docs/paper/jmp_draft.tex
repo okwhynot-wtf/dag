@@ -1212,8 +1212,72 @@ declaration: every cited declaration is axiom-free or depends on
 \texttt{Bridge.TwoBounce.factor\_fin} is itself axiom-free, its
 construction computable by bounded search (Remark following
 Theorem~\ref{thm:exists}). \texttt{Classical.choice} is not used
-anywhere in the corpus, \texttt{Quot.sound} occurs in no cited
-footprint, and no axiom is declared by the corpus itself.
+anywhere in the paper-cited packages, \texttt{Quot.sound} occurs in no
+cited footprint, and no axiom is declared by the corpus itself. The
+quarantined experimental annex below sits outside this accounting and
+is audited separately, per declaration, in the same ledger.
+
+\section*{Experimental annex}
+\label{sec:annex}
+
+The repository carries a fifth package, \texttt{formal/experimental},
+quarantined by construction: no module cited above imports it, and its
+contents are claims of the probe files alone, not of the corpus. The
+annex develops one arc away from the base --- from the period-two
+fundamental to higher periods, frequency as order, a field equation,
+and the infinite-history edge --- probing how far the corpus's own
+vocabulary carries before new mathematics is needed. Machine-checked
+there, in the same discipline (Lean~4, no Mathlib, no
+$\mathtt{sorry}$, per-declaration audit):
+
+\begin{itemize}
+\item \emph{Dihedral closed form.} Every rotation on $\mathrm{Fin}\,n$
+factors as two explicit arithmetic mirrors, packaged as a computable
+two-bounce pair
+(\texttt{Experimental.Overtones.rotFactor}); where
+\texttt{Bridge.TwoBounce.factor\_fin} extracts a pair by bounded
+search, here the pair is given in closed form.
+\item \emph{Frequency as order.} On $\mathrm{Fin}\,n$ the order of the
+$k$-th harmonic shift is $n/\gcd(n,k)$, return and minimality halves
+both proved
+(\texttt{Experimental.Frequencies.order\_eq\_div\_gcd}); the
+twelve-carrier exhibits, including generation by the fifth, become
+instances.
+\item \emph{The wave step is two bounces, definitionally.} The
+discrete d'Alembert equation over $\Bool$ (xor as addition, coupling
+left general) has step exactly $\mathrm{swap}\comp\mathrm{shear}$
+(\texttt{Experimental.Wave.step\_eq\_two\_bounce},
+\texttt{waveFactor}), with time reversal the bounce swap; boundary
+conditions select the spectrum, kernel-decided for ring sizes $2$--$6$
+and fixed ends $3$--$5$.
+\item \emph{The symmetry order is the frequency law.} The ring wave's
+rotation symmetry has order exactly
+$n/\gcd(n,n{-}1)=n$ as the gcd law predicts, and the return spectrum
+is constant on rotation orbits
+(\texttt{Experimental.Dispersion.symmetry\_order\_is\_frequency\_law})
+--- the discrete seed of a dispersion relation, and no more.
+\item \emph{Eternal return within capacity.} For every coupling and
+every state on $n$ sites, the wave returns within $2^{2n}$ steps
+(\texttt{Experimental.Recurrence.wave\_recurrence\_bounded}):
+losslessness plus finite capacity forces recurrence.
+\item \emph{The boundary.} Complete gauge histories
+$\mathbb{N}\to\Bool$ receive every rung by an encoding with effective
+separation --- depth-$(k{+}1)$ cylinders separate rung $k$
+(\texttt{Experimental.CantorBoundary.encode\_separates}); the pole
+swap lifts and is live, so the boundary seals at its own carrier
+(\texttt{boundary\_seals\_itself}); and the tail step erases
+(\texttt{tail\_erasing}): the in-arena exclusion of erasure fails at
+the boundary, a poverty recorded rather than repaired.
+\end{itemize}
+
+\noindent
+Not claimed there: no continuum, no real frequencies, no closed-form
+period law in general $n$ --- the recorded obstruction is the absence
+of $\mathbb{F}_2[x]/(x^n{-}1)$ and transfer-matrix algebra from a
+Lean-core-only corpus. Annex footprints stay within
+\texttt{propext}/\texttt{Quot.sound}, with \texttt{Classical.choice}
+entering exactly once, in the recurrence pigeonhole; the full
+per-declaration record is in \texttt{formal/AXIOMS.md}.
 
 \begin{thebibliography}{99}
 

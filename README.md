@@ -29,7 +29,7 @@ toolchain installs on first build) and Python 3. No Mathlib; no `sorry`.
 bash VERIFY.sh      # or .\VERIFY.ps1 on Windows
 ```
 
-Builds all five packages and runs the quintom exhibit.
+Builds all five packages and runs the quintom and wave exhibits.
 
 ## Axiom audit
 

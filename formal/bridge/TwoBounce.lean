@@ -23,6 +23,12 @@ Also:
   factorization gauge, not a second dictionary ℤ/2 face
 * factor-swap covers step reversal (`channel_swap_is_reversal`): labels
   conventional, exchange real
+* the `Fin n` construction is computable: collisions, periods, basepoints,
+  and indices are extracted by bounded structural search; `factor_fin` and
+  `i1_two_bounce_fragment` are axiom-free (no `Classical.choice`, no
+  `propext`, no `Quot.sound`); the only remaining `propext` in this file
+  sits in the `Fin 3` gauge exhibits (literal-pattern matcher) and the
+  leaf lemma `iter_mod_period`
 -/
 namespace Bridge.TwoBounce
 
@@ -120,10 +126,16 @@ theorem bool_inj_involution (U : Bool → Bool) (h : EndoInj U) :
     | false =>
       have : false = true := h false true (hf.trans ht.symm)
       cases this
-    | true => cases x <;> simp [hf, ht]
+    | true =>
+      cases x with
+      | false => rw [hf, hf]
+      | true => rw [ht, ht]
   | true =>
     cases ht : U true with
-    | false => cases x <;> simp [hf, ht]
+    | false =>
+      cases x with
+      | false => rw [hf, ht]
+      | true => rw [ht, hf]
     | true =>
       have : false = true := h false true (hf.trans ht.symm)
       cases this
@@ -141,68 +153,349 @@ def factor_swapStep : TwoBounceFactor Geom.Registration.swapStep :=
 
 /-! ## `Fin n`: cycle-wise reflect -/
 
-/-- On a finite carrier every orbit collides (pigeon on iterates `0..n`). -/
+/-! ### Axiom-free `Nat` subtraction toolkit
+
+The current core toolchain proves several subtraction and modulus lemmas
+by automation that deposits `propext` in their footprint. The variants
+below are proved from `rfl`-grade primitives (`Nat.le.dest`,
+`Nat.succ_sub_succ`, `Nat.sub_succ`, `Nat.add_assoc`), so every
+downstream declaration in this file can stay axiom-free. -/
+
+theorem nat_sub_self_add (n m : Nat) : (n + m) - m = n := by
+  induction m with
+  | zero => rfl
+  | succ m ih =>
+    rw [Nat.add_succ, Nat.succ_sub_succ]
+    exact ih
+
+theorem nat_add_sub_cancel_left (n m : Nat) : (n + m) - n = m := by
+  rw [Nat.add_comm]
+  exact nat_sub_self_add m n
+
+theorem nat_add_one_right (n m : Nat) : n + (m + 1) = (n + m) + 1 :=
+  Nat.add_succ n m
+
+theorem nat_sub_one_right (n m : Nat) : n - (m + 1) = n - m - 1 :=
+  Nat.sub_succ n m
+
+theorem nat_sub_add_cancel {a b : Nat} (h : a ≤ b) : b - a + a = b := by
+  obtain ⟨k, hk⟩ := Nat.le.dest h
+  subst hk
+  rw [nat_add_sub_cancel_left]
+  exact Nat.add_comm k a
+
+theorem nat_add_sub_of_le {a b : Nat} (h : a ≤ b) : a + (b - a) = b := by
+  obtain ⟨k, hk⟩ := Nat.le.dest h
+  subst hk
+  rw [nat_add_sub_cancel_left]
+
+theorem nat_sub_pos_of_lt {a b : Nat} (h : a < b) : 0 < b - a := by
+  obtain ⟨k, hk⟩ := Nat.le.dest h
+  subst hk
+  rw [Nat.succ_add, ← Nat.add_succ, nat_add_sub_cancel_left]
+  exact Nat.succ_pos k
+
+theorem nat_sub_sub (a b : Nat) : ∀ c, a - b - c = a - (b + c)
+  | 0 => rfl
+  | c + 1 => by
+    have h1 : a - b - (c + 1) = (a - b - c) - 1 := Nat.sub_succ (a - b) c
+    have h2 : b + (c + 1) = (b + c) + 1 := Nat.add_succ b c
+    have h3 : a - ((b + c) + 1) = (a - (b + c)) - 1 := Nat.sub_succ a (b + c)
+    rw [h1, h2, h3, nat_sub_sub a b c]
+
+theorem nat_sub_sub_self {a b : Nat} (h : a ≤ b) : b - (b - a) = a := by
+  obtain ⟨k, hk⟩ := Nat.le.dest h
+  subst hk
+  rw [nat_add_sub_cancel_left]
+  exact nat_sub_self_add a k
+
+theorem nat_sub_le_sub_left {a b : Nat} (h : a ≤ b) (c : Nat) :
+    c - b ≤ c - a := by
+  obtain ⟨k, hk⟩ := Nat.le.dest h
+  subst hk
+  rw [← nat_sub_sub]
+  exact Nat.sub_le (c - a) k
+
+theorem nat_sub_add_comm {a b c : Nat} (h : c ≤ a) :
+    a + b - c = a - c + b := by
+  obtain ⟨k, hk⟩ := Nat.le.dest h
+  subst hk
+  rw [nat_add_sub_cancel_left c k, Nat.add_assoc,
+    nat_add_sub_cancel_left c (k + b)]
+
+/-! ### Bounded search toolkit (computable witness extraction)
+
+`firstBelow p bound` returns the least `k < bound` with `p k = true`;
+`pairFind test bound` returns the least pair `i < j < bound` with
+`test i j = true` (least `j`, then least `i`). Both are structural
+recursions with soundness and completeness lemmas, so every witness
+below is computed rather than chosen. -/
+
+/-- Least `k < bound` with `p k = true`, if any. -/
+def firstBelow (p : Nat → Bool) : Nat → Option Nat
+  | 0 => none
+  | bound + 1 =>
+    match firstBelow p bound with
+    | some k => some k
+    | none =>
+      match p bound with
+      | true => some bound
+      | false => none
+
+theorem firstBelow_some (p : Nat → Bool) :
+    ∀ (bound k : Nat), firstBelow p bound = some k → k < bound ∧ p k = true
+  | 0, _, h => nomatch h
+  | bound + 1, k, h => by
+    simp only [firstBelow] at h
+    split at h
+    · rename_i k' heq
+      injection h with h'
+      subst h'
+      obtain ⟨hlt, hp⟩ := firstBelow_some p bound k' heq
+      exact ⟨Nat.lt_succ_of_lt hlt, hp⟩
+    · rename_i heq₁
+      split at h
+      · rename_i hpb
+        injection h with h'
+        subst h'
+        exact ⟨Nat.lt_succ_self bound, hpb⟩
+      · exact nomatch h
+
+theorem firstBelow_none (p : Nat → Bool) :
+    ∀ (bound : Nat), firstBelow p bound = none →
+      ∀ k, k < bound → p k = false
+  | 0, _, k, hk => absurd hk (Nat.not_lt_zero k)
+  | bound + 1, h, k, hk => by
+    simp only [firstBelow] at h
+    split at h
+    · exact nomatch h
+    · rename_i heq₁
+      split at h
+      · exact nomatch h
+      · rename_i hpb
+        cases Nat.lt_succ_iff_lt_or_eq.mp hk with
+        | inl hkb => exact firstBelow_none p bound heq₁ k hkb
+        | inr hkb => subst hkb; exact hpb
+
+theorem firstBelow_least (p : Nat → Bool) :
+    ∀ (bound k : Nat), firstBelow p bound = some k →
+      ∀ i, i < k → p i = false
+  | 0, _, h => nomatch h
+  | bound + 1, k, h => by
+    simp only [firstBelow] at h
+    split at h
+    · rename_i k' heq
+      injection h with h'
+      subst h'
+      exact firstBelow_least p bound k' heq
+    · rename_i heq₁
+      split at h
+      · rename_i hpb
+        injection h with h'
+        subst h'
+        exact fun i hi => firstBelow_none p bound heq₁ i hi
+      · exact nomatch h
+
+/-- Least colliding pair below `bound`: least `j`, then least `i < j`. -/
+def pairFind (test : Nat → Nat → Bool) : Nat → Option (Nat × Nat)
+  | 0 => none
+  | bound + 1 =>
+    match pairFind test bound with
+    | some ij => some ij
+    | none =>
+      match firstBelow (fun i => test i bound) bound with
+      | some i => some (i, bound)
+      | none => none
+
+theorem pairFind_some (test : Nat → Nat → Bool) :
+    ∀ (bound i j : Nat), pairFind test bound = some (i, j) →
+      i < j ∧ j < bound ∧ test i j = true
+  | 0, _, _, h => nomatch h
+  | bound + 1, i, j, h => by
+    simp only [pairFind] at h
+    split at h
+    · rename_i ij heq
+      cases ij with
+      | mk i' j' =>
+        injection h with h'
+        injection h' with hi hj
+        subst hi
+        subst hj
+        obtain ⟨hij, hjb, ht⟩ := pairFind_some test bound i' j' heq
+        exact ⟨hij, Nat.lt_succ_of_lt hjb, ht⟩
+    · rename_i heq₁
+      split at h
+      · rename_i i' heq₂
+        injection h with h'
+        injection h' with hi hj
+        subst hi
+        subst hj
+        obtain ⟨hilt, hp⟩ :=
+          firstBelow_some (fun t => test t bound) bound i' heq₂
+        exact ⟨hilt, Nat.lt_succ_self bound, hp⟩
+      · exact nomatch h
+
+theorem pairFind_none (test : Nat → Nat → Bool) :
+    ∀ (bound : Nat), pairFind test bound = none →
+      ∀ i j, i < j → j < bound → test i j = false
+  | 0, _, _, j, _, hj => absurd hj (Nat.not_lt_zero j)
+  | bound + 1, h, i, j, hij, hj => by
+    simp only [pairFind] at h
+    split at h
+    · exact nomatch h
+    · rename_i heq₁
+      split at h
+      · exact nomatch h
+      · rename_i heq₂
+        cases Nat.lt_succ_iff_lt_or_eq.mp hj with
+        | inl hjb => exact pairFind_none test bound heq₁ i j hij hjb
+        | inr hjb =>
+          subst hjb
+          exact firstBelow_none (fun t => test t j) j heq₂ i hij
+
+/-- Constructive pigeonhole: an explicit collision with `j ≤ n`, found by
+    bounded search. -/
+theorem fin_collides_bounded {n : Nat} (U : Fin n → Fin n) (z : Fin n) :
+    ∃ i j, i < j ∧ j ≤ n ∧ iter U i z = iter U j z := by
+  cases hpf : pairFind (fun i j => decide (iter U i z = iter U j z)) (n + 1) with
+  | some ij =>
+    cases ij with
+    | mk i j =>
+      obtain ⟨hij, hjb, ht⟩ :=
+        pairFind_some (fun i j => decide (iter U i z = iter U j z))
+          (n + 1) i j hpf
+      exact ⟨i, j, hij, Nat.le_of_lt_succ hjb, of_decide_eq_true ht⟩
+  | none =>
+    exfalso
+    have hcomp :=
+      pairFind_none (fun i j => decide (iter U i z = iter U j z)) (n + 1) hpf
+    let f : Nat → Nat := fun i => (iter U i z).val
+    have hb : ∀ i, i < n + 1 → f i < n := fun i _ => (iter U i z).isLt
+    have hinj : ∀ i j, i < n + 1 → j < n + 1 → f i = f j → i = j := by
+      intro i j hi hj heq
+      have he : iter U i z = iter U j z := Fin.eq_of_val_eq heq
+      cases Nat.lt_trichotomy i j with
+      | inl hlt =>
+        have hfalse := hcomp i j hlt hj
+        exact Bool.noConfusion (hfalse.symm.trans (decide_eq_true he))
+      | inr hrest =>
+        cases hrest with
+        | inl heqij => exact heqij
+        | inr hgt =>
+          have hfalse := hcomp j i hgt hi
+          exact Bool.noConfusion (hfalse.symm.trans (decide_eq_true he.symm))
+    exact Density.no_distinct_large n f hb hinj
+
+/-- On a finite carrier every orbit collides. -/
 theorem fin_collides {n : Nat} (U : Fin n → Fin n) (z : Fin n) :
     Collides U z := by
-  let f : Nat → Nat := fun i => (iter U i z).val
-  have hb : ∀ i, i < n + 1 → f i < n := fun i _ => (iter U i z).isLt
-  refine Classical.byContradiction fun hnc => ?_
-  have hinj : ∀ i j, i < n + 1 → j < n + 1 → f i = f j → i = j := by
-    intro i j _hi _hj heq
-    have he : iter U i z = iter U j z := Fin.eq_of_val_eq heq
-    cases Nat.lt_trichotomy i j with
-    | inl hlt => exact absurd ⟨i, j, hlt, he⟩ hnc
-    | inr hrest =>
-      cases hrest with
-      | inl heqij => exact heqij
-      | inr hgt => exact absurd ⟨j, i, hgt, he.symm⟩ hnc
-  exact Density.no_distinct_large n f hb hinj
+  obtain ⟨i, j, hij, _hjn, he⟩ := fin_collides_bounded U z
+  exact ⟨i, j, hij, he⟩
 
 /-- Injectivity + finitude ⇒ every seed returns. -/
 theorem fin_returns {n : Nat} (U : Fin n → Fin n) (h : EndoInj U) (z : Fin n) :
     ∃ p : Nat, 0 < p ∧ iter U p z = z :=
   collision_returns U h z (fin_collides U z)
 
-/-- Among return times, a least positive period exists. -/
-theorem exists_min_period {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
+/-- Return within the carrier bound: some `0 < q ≤ n` with `iter U q z = z`. -/
+theorem fin_returns_le {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
     (z : Fin n) :
-    ∃ p : Nat, 0 < p ∧ iter U p z = z ∧
-      ∀ k, 0 < k → k < p → iter U k z ≠ z := by
-  obtain ⟨p0, hp0, hret0⟩ := fin_returns U h z
-  have go : ∀ p : Nat, 0 < p → iter U p z = z →
-      ∃ q, 0 < q ∧ q ≤ p ∧ iter U q z = z ∧
-        ∀ k, 0 < k → k < q → iter U k z ≠ z := by
-    intro p
-    refine Nat.strongRecOn p ?_
-    intro p ih hp hret
-    if hmin : ∀ k, 0 < k → k < p → iter U k z ≠ z then
-      exact ⟨p, hp, Nat.le_refl p, hret, hmin⟩
-    else
-      have hex : ∃ k, 0 < k ∧ k < p ∧ iter U k z = z := by
-        refine Classical.byContradiction fun hx => ?_
-        exact hmin (fun k hk0 hkp heq => hx ⟨k, hk0, hkp, heq⟩)
-      obtain ⟨k, hk0, hkp, hkret⟩ := hex
-      obtain ⟨q, hq0, hqp, hqret, hqmin⟩ := ih k hkp hk0 hkret
-      exact ⟨q, hq0, Nat.le_trans hqp (Nat.le_of_lt hkp), hqret, hqmin⟩
-  obtain ⟨q, hq0, _, hqret, hqmin⟩ := go p0 hp0 hret0
-  exact ⟨q, hq0, hqret, hqmin⟩
+    ∃ q : Nat, 0 < q ∧ q ≤ n ∧ iter U q z = z := by
+  obtain ⟨i, j, hij, hjn, he⟩ := fin_collides_bounded U z
+  refine ⟨j - i, nat_sub_pos_of_lt hij,
+    Nat.le_trans (Nat.sub_le j i) hjn, ?_⟩
+  have hsum : i + (j - i) = j := nat_add_sub_of_le (Nat.le_of_lt hij)
+  have hstep : iter U i (iter U (j - i) z) = iter U i z := by
+    rw [← iter_add, hsum]
+    exact he.symm
+  exact iter_lossless U h i _ _ hstep
 
-/-- Least positive return time at `z`. -/
-noncomputable def minPeriod {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
+/-- Least positive return time at `z`, computed by bounded search. -/
+def minPeriod {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
     (z : Fin n) : Nat :=
-  Classical.choose (exists_min_period U h z)
+  match firstBelow (fun k => decide (iter U (k + 1) z = z)) n with
+  | some k => k + 1
+  | none => 1
+
+theorem minPeriod_spec {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
+    (z : Fin n) :
+    0 < minPeriod U h z ∧ iter U (minPeriod U h z) z = z ∧
+      ∀ k, 0 < k → k < minPeriod U h z → iter U k z ≠ z := by
+  cases hfb : firstBelow (fun k => decide (iter U (k + 1) z = z)) n with
+  | none =>
+    exfalso
+    obtain ⟨q, hq0, hqn, hqret⟩ := fin_returns_le U h z
+    have hqlt : q - 1 < n :=
+      Nat.lt_of_lt_of_le (Nat.sub_lt hq0 Nat.zero_lt_one) hqn
+    have hq1 : (q - 1) + 1 = q := nat_sub_add_cancel (Nat.succ_le_of_lt hq0)
+    have hfalse := firstBelow_none _ n hfb (q - 1) hqlt
+    have htrue : decide (iter U ((q - 1) + 1) z = z) = true :=
+      decide_eq_true (by rw [hq1]; exact hqret)
+    exact Bool.noConfusion (hfalse.symm.trans htrue)
+  | some k =>
+    have hmp : minPeriod U h z = k + 1 := by
+      unfold minPeriod
+      rw [hfb]
+    obtain ⟨_hkn, hpk⟩ := firstBelow_some _ n k hfb
+    refine ⟨?_, ?_, ?_⟩
+    · rw [hmp]; exact Nat.succ_pos k
+    · rw [hmp]; exact of_decide_eq_true hpk
+    · intro m hm0 hmlt heq
+      rw [hmp] at hmlt
+      have hmk : m ≤ k := Nat.le_of_lt_succ hmlt
+      have hm1lt : m - 1 < k :=
+        Nat.lt_of_lt_of_le (Nat.sub_lt hm0 Nat.zero_lt_one) hmk
+      have hm1 : (m - 1) + 1 = m := nat_sub_add_cancel (Nat.succ_le_of_lt hm0)
+      have hfalse := firstBelow_least _ n k hfb (m - 1) hm1lt
+      have htrue : decide (iter U ((m - 1) + 1) z = z) = true :=
+        decide_eq_true (by rw [hm1]; exact heq)
+      exact Bool.noConfusion (hfalse.symm.trans htrue)
 
 theorem minPeriod_pos {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
     (z : Fin n) : 0 < minPeriod U h z :=
-  (Classical.choose_spec (exists_min_period U h z)).1
+  (minPeriod_spec U h z).1
 
 theorem minPeriod_return {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
     (z : Fin n) : iter U (minPeriod U h z) z = z :=
-  (Classical.choose_spec (exists_min_period U h z)).2.1
+  (minPeriod_spec U h z).2.1
 
 theorem minPeriod_least {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
     (z : Fin n) : ∀ k, 0 < k → k < minPeriod U h z → iter U k z ≠ z :=
-  (Classical.choose_spec (exists_min_period U h z)).2.2
+  (minPeriod_spec U h z).2.2
+
+/-- Existence form, retained for the audit surface: now a projection of
+    the computed period rather than an input to a choice principle. -/
+theorem exists_min_period {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
+    (z : Fin n) :
+    ∃ p : Nat, 0 < p ∧ iter U p z = z ∧
+      ∀ k, 0 < k → k < p → iter U k z ≠ z :=
+  ⟨minPeriod U h z, minPeriod_spec U h z⟩
+
+/-- Reduce any iterate exponent below the period, by strong induction:
+    an axiom-free replacement for modulus arithmetic on the main chain. -/
+theorem iter_reduce {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
+    (z : Fin n) (t : Nat) :
+    ∃ r, r < minPeriod U h z ∧ iter U t z = iter U r z := by
+  refine Nat.strongRecOn t ?_
+  intro t ih
+  cases Nat.lt_or_ge t (minPeriod U h z) with
+  | inl hlt => exact ⟨t, hlt, rfl⟩
+  | inr hge =>
+    have hp : 0 < minPeriod U h z := minPeriod_pos U h z
+    have ht0 : 0 < t := Nat.lt_of_lt_of_le hp hge
+    have hlt' : t - minPeriod U h z < t := Nat.sub_lt ht0 hp
+    obtain ⟨r, hr, hiter⟩ := ih (t - minPeriod U h z) hlt'
+    refine ⟨r, hr, ?_⟩
+    have hsum : (t - minPeriod U h z) + minPeriod U h z = t :=
+      nat_sub_add_cancel hge
+    calc iter U t z
+        = iter U ((t - minPeriod U h z) + minPeriod U h z) z := by
+          rw [hsum]
+      _ = iter U (t - minPeriod U h z) (iter U (minPeriod U h z) z) := by
+          rw [iter_add]
+      _ = iter U (t - minPeriod U h z) z := by
+          rw [minPeriod_return U h z]
+      _ = iter U r z := hiter
 
 /-- First `p` iterates from a least-period seed are pairwise distinct. -/
 theorem orbit_distinct {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
@@ -212,10 +505,10 @@ theorem orbit_distinct {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
   intro i j hi hj heq
   cases Nat.lt_trichotomy i j with
   | inl hlt =>
-    have hdpos : 0 < j - i := Nat.sub_pos_of_lt hlt
+    have hdpos : 0 < j - i := nat_sub_pos_of_lt hlt
     have hdlt : j - i < minPeriod U h z :=
       Nat.lt_of_le_of_lt (Nat.sub_le j i) hj
-    have hsum : i + (j - i) = j := Nat.add_sub_of_le (Nat.le_of_lt hlt)
+    have hsum : i + (j - i) = j := nat_add_sub_of_le (Nat.le_of_lt hlt)
     have hstep : iter U i (iter U (j - i) z) = iter U i z := by
       rw [← iter_add, hsum, heq]
     have key : iter U (j - i) z = z := iter_lossless U h i _ _ hstep
@@ -224,10 +517,10 @@ theorem orbit_distinct {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
     cases hrest with
     | inl heqij => exact heqij
     | inr hgt =>
-      have hdpos : 0 < i - j := Nat.sub_pos_of_lt hgt
+      have hdpos : 0 < i - j := nat_sub_pos_of_lt hgt
       have hdlt : i - j < minPeriod U h z :=
         Nat.lt_of_le_of_lt (Nat.sub_le i j) hi
-      have hsum : j + (i - j) = i := Nat.add_sub_of_le (Nat.le_of_lt hgt)
+      have hsum : j + (i - j) = i := nat_add_sub_of_le (Nat.le_of_lt hgt)
       have hstep : iter U j (iter U (i - j) z) = iter U j z := by
         rw [← iter_add, hsum, heq.symm]
       have key : iter U (i - j) z = z := iter_lossless U h j _ _ hstep
@@ -253,11 +546,15 @@ theorem minPeriod_iter {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
       exact h
     exact iter_lossless U h t _ _ this
   have hle_qp : q ≤ p := by
-    refine Classical.byContradiction fun hnp => ?_
-    exact minPeriod_least U h (iter U t z) p hp (Nat.lt_of_not_ge hnp) hret_p'
+    cases Nat.lt_or_ge p q with
+    | inl hpq =>
+      exact absurd hret_p' (minPeriod_least U h (iter U t z) p hp hpq)
+    | inr hge => exact hge
   have hle_pq : p ≤ q := by
-    refine Classical.byContradiction fun hnp => ?_
-    exact minPeriod_least U h z q hq (Nat.lt_of_not_ge hnp) hret_q_z
+    cases Nat.lt_or_ge q p with
+    | inl hqp =>
+      exact absurd hret_q_z (minPeriod_least U h z q hq hqp)
+    | inr hge => exact hge
   exact Nat.le_antisymm hle_qp hle_pq
 
 theorem iter_mul_period {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
@@ -286,7 +583,7 @@ theorem exists_argmin :
   | 1, _hp, f => by
     refine ⟨0, Nat.zero_lt_one, ?_⟩
     intro j hj
-    have : j = 0 := Nat.lt_one_iff.mp hj
+    have : j = 0 := Nat.eq_zero_of_le_zero (Nat.le_of_lt_succ hj)
     subst this
     exact Nat.le_refl _
   | p' + 2, _hp, f => by
@@ -306,6 +603,50 @@ theorem exists_argmin :
       | inl hj' => exact hmin j hj'
       | inr hj' => subst hj'; exact hge
 
+/-- Computable argmin of `f` on `{0, …, p-1}`: first index attaining the
+    running minimum, scanning upward. -/
+def argminBelow (f : Nat → Nat) : Nat → Nat
+  | 0 => 0
+  | 1 => 0
+  | p + 2 =>
+    if f (p + 1) < f (argminBelow f (p + 1)) then p + 1
+    else argminBelow f (p + 1)
+
+theorem argminBelow_lt (f : Nat → Nat) :
+    ∀ p, 0 < p → argminBelow f p < p
+  | 0, hp => absurd hp (Nat.lt_irrefl 0)
+  | 1, _ => Nat.zero_lt_one
+  | p + 2, _ => by
+    unfold argminBelow
+    split
+    · exact Nat.lt_succ_self _
+    · exact Nat.lt_succ_of_lt (argminBelow_lt f (p + 1) (Nat.zero_lt_succ p))
+
+theorem argminBelow_min (f : Nat → Nat) :
+    ∀ p j, j < p → f (argminBelow f p) ≤ f j
+  | 0, j, hj => absurd hj (Nat.not_lt_zero j)
+  | 1, j, hj => by
+    have hj0 : j = 0 := Nat.eq_zero_of_le_zero (Nat.le_of_lt_succ hj)
+    subst hj0
+    exact Nat.le_refl _
+  | p + 2, j, hj => by
+    unfold argminBelow
+    split
+    · rename_i hlt
+      cases Nat.lt_succ_iff_lt_or_eq.mp hj with
+      | inl hj' =>
+        exact Nat.le_trans (Nat.le_of_lt hlt)
+          (argminBelow_min f (p + 1) j hj')
+      | inr hj' =>
+        subst hj'
+        exact Nat.le_refl _
+    · rename_i hge
+      cases Nat.lt_succ_iff_lt_or_eq.mp hj with
+      | inl hj' => exact argminBelow_min f (p + 1) j hj'
+      | inr hj' =>
+        subst hj'
+        exact Nat.le_of_not_lt hge
+
 /-- Least-`val` point on the cycle of `z`. -/
 theorem exists_orbit_base {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
     (z : Fin n) :
@@ -317,30 +658,35 @@ theorem exists_orbit_base {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
   obtain ⟨t, ht, hmin⟩ := exists_argmin p hp (fun k => (iter U k z).val)
   exact ⟨iter U t z, ⟨t, ht, rfl⟩, hmin⟩
 
-/-- Canonical basepoint of the cycle through `z`. -/
-noncomputable def orbitBase {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
+/-- Canonical basepoint of the cycle through `z`: the least-`val` iterate
+    within one period, computed by `argminBelow`. -/
+def orbitBase {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
     (z : Fin n) : Fin n :=
-  Classical.choose (exists_orbit_base U h z)
+  iter U (argminBelow (fun k => (iter U k z).val) (minPeriod U h z)) z
 
 theorem orbitBase_mem {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
     (z : Fin n) :
     ∃ t, t < minPeriod U h z ∧ iter U t z = orbitBase U h z :=
-  (Classical.choose_spec (exists_orbit_base U h z)).1
+  ⟨argminBelow (fun k => (iter U k z).val) (minPeriod U h z),
+   argminBelow_lt _ _ (minPeriod_pos U h z), rfl⟩
 
 theorem orbitBase_min {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
     (z : Fin n) :
     ∀ j, j < minPeriod U h z →
-      (orbitBase U h z).val ≤ (iter U j z).val :=
-  (Classical.choose_spec (exists_orbit_base U h z)).2
+      (orbitBase U h z).val ≤ (iter U j z).val := by
+  intro j hj
+  exact argminBelow_min (fun k => (iter U k z).val) (minPeriod U h z) j hj
 
 /-- Arithmetic identity for wrapping around a cycle. -/
 theorem cycle_add_id (p r s : Nat) (hsr : s ≤ r) (hrp : r ≤ p) :
     p - (r - s) + r = p + s := by
   have hle : r - s ≤ p := Nat.le_trans (Nat.sub_le r s) hrp
-  have h1 : p - (r - s) + (r - s) = p := Nat.sub_add_cancel hle
-  suffices h : p - (r - s) + ((r - s) + s) = p + s by
-    simpa [Nat.sub_add_cancel hsr] using h
-  rw [← Nat.add_assoc, h1]
+  have h1 : p - (r - s) + (r - s) = p := nat_sub_add_cancel hle
+  have h2 : (r - s) + s = r := nat_sub_add_cancel hsr
+  calc p - (r - s) + r
+      = p - (r - s) + ((r - s) + s) := by rw [h2]
+    _ = (p - (r - s) + (r - s)) + s := by rw [← Nat.add_assoc]
+    _ = p + s := by rw [h1]
 
 /-- Reach any cycle point from any other by a forward step of length `< p`. -/
 theorem cycle_reach {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
@@ -349,14 +695,12 @@ theorem cycle_reach {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
       iter U k (iter U t z) = iter U s z := by
   let p := minPeriod U h z
   have hp : 0 < p := minPeriod_pos U h z
-  have ht_eq : iter U t z = iter U (t % p) z := iter_mod_period U h z t
+  obtain ⟨r, hr, ht_eq⟩ := iter_reduce U h z t
   rw [ht_eq]
-  let r := t % p
-  have hr : r < p := Nat.mod_lt t hp
   cases Nat.le_total r s with
   | inl hrs =>
     refine ⟨s - r, Nat.lt_of_le_of_lt (Nat.sub_le s r) hs, ?_⟩
-    rw [← iter_add, Nat.sub_add_cancel hrs]
+    rw [← iter_add, nat_sub_add_cancel hrs]
   | inr hsr =>
     if heq : r = s then
       refine ⟨0, hp, ?_⟩
@@ -364,7 +708,7 @@ theorem cycle_reach {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
       rw [heq]
     else
       have hrs_lt : s < r := Nat.lt_of_le_of_ne hsr (Ne.symm heq)
-      have hdiff : 0 < r - s := Nat.sub_pos_of_lt hrs_lt
+      have hdiff : 0 < r - s := nat_sub_pos_of_lt hrs_lt
       let k := p - (r - s)
       have hklt : k < p := Nat.sub_lt hp hdiff
       refine ⟨k, hklt, ?_⟩
@@ -400,15 +744,10 @@ theorem orbitBase_iter {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
       Eq.symm hiter1
     have h2 : iter U t1 (iter U t z) = iter U (t1 + t) z := by
       rw [← iter_add]
-    have h3 : iter U (t1 + t) z =
-        iter U ((t1 + t) % minPeriod U h z) z :=
-      iter_mod_period U h z (t1 + t)
-    have hb' : orbitBase U h (iter U t z) =
-        iter U ((t1 + t) % minPeriod U h z) z :=
+    obtain ⟨r, hmod, h3⟩ := iter_reduce U h z (t1 + t)
+    have hb' : orbitBase U h (iter U t z) = iter U r z :=
       h1.trans (h2.trans h3)
-    have hmod : (t1 + t) % minPeriod U h z < minPeriod U h z :=
-      Nat.mod_lt (t1 + t) (minPeriod_pos U h z)
-    have hle := orbitBase_min U h z ((t1 + t) % minPeriod U h z) hmod
+    have hle := orbitBase_min U h z r hmod
     rw [← hb'] at hle
     exact hle
 
@@ -434,20 +773,44 @@ theorem exists_index {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
   · rw [hp_eq]; exact hk
   · have : iter U k (orbitBase U h x) = iter U 0 x := by
       rw [← hiter]; exact hkiter
-    simpa [iter] using this
+    exact this
 
-/-- Least index of `x` from its cycle basepoint. -/
-noncomputable def indexOf {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
+/-- Least index of `x` from its cycle basepoint, by bounded search. -/
+def indexOf {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
     (x : Fin n) : Nat :=
-  Classical.choose (exists_index U h x)
+  match firstBelow (fun k => decide (iter U k (orbitBase U h x) = x))
+      (minPeriod U h (orbitBase U h x)) with
+  | some k => k
+  | none => 0
+
+theorem indexOf_spec {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
+    (x : Fin n) :
+    indexOf U h x < minPeriod U h (orbitBase U h x) ∧
+      iter U (indexOf U h x) (orbitBase U h x) = x := by
+  cases hfb : firstBelow (fun k => decide (iter U k (orbitBase U h x) = x))
+      (minPeriod U h (orbitBase U h x)) with
+  | none =>
+    exfalso
+    obtain ⟨k, hk, hkiter⟩ := exists_index U h x
+    have hfalse := firstBelow_none _ _ hfb k hk
+    have htrue : decide (iter U k (orbitBase U h x) = x) = true :=
+      decide_eq_true hkiter
+    exact Bool.noConfusion (hfalse.symm.trans htrue)
+  | some k =>
+    have hidx : indexOf U h x = k := by
+      unfold indexOf
+      rw [hfb]
+    obtain ⟨hk, hp⟩ := firstBelow_some _ _ k hfb
+    rw [hidx]
+    exact ⟨hk, of_decide_eq_true hp⟩
 
 theorem indexOf_lt {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
     (x : Fin n) : indexOf U h x < minPeriod U h (orbitBase U h x) :=
-  (Classical.choose_spec (exists_index U h x)).1
+  (indexOf_spec U h x).1
 
 theorem indexOf_iter {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
     (x : Fin n) : iter U (indexOf U h x) (orbitBase U h x) = x :=
-  (Classical.choose_spec (exists_index U h x)).2
+  (indexOf_spec U h x).2
 
 /-- Reflect index: `k ↦ p - 1 - k` on a period-`p` cycle. -/
 theorem reflect_idx (p k : Nat) (hk : k < p) : p - 1 - k < p := by
@@ -457,25 +820,25 @@ theorem reflect_idx (p k : Nat) (hk : k < p) : p - 1 - k < p := by
 theorem reflect_idx_involutive (p k : Nat) (hk : k < p) :
     p - 1 - (p - 1 - k) = k := by
   have hk' : k ≤ p - 1 := Nat.le_pred_of_lt hk
-  simpa [Nat.sub_sub] using Nat.sub_sub_self hk'
+  exact nat_sub_sub_self hk'
 
 theorem succ_pred_idx (p k : Nat) (hk : k < p) :
     (p - 1 - k) + 1 = p - k := by
   have hp : 0 < p := Nat.zero_lt_of_lt hk
   have hk' : k ≤ p - 1 := Nat.le_pred_of_lt hk
-  have h1 : p - 1 - k + 1 = p - 1 + 1 - k := (Nat.sub_add_comm hk').symm
-  have h2 : p - 1 + 1 = p := Nat.sub_add_cancel (Nat.succ_le_of_lt hp)
+  have h1 : p - 1 - k + 1 = p - 1 + 1 - k := (nat_sub_add_comm hk').symm
+  have h2 : p - 1 + 1 = p := nat_sub_add_cancel (Nat.succ_le_of_lt hp)
   rw [h1, h2]
 
 /-- Cycle-wise reflect: first bounce. -/
-noncomputable def bounceφ {n : Nat} (U : Fin n → Fin n) (h : EndoInj U) :
+def bounceφ {n : Nat} (U : Fin n → Fin n) (h : EndoInj U) :
     Fin n → Fin n :=
   fun x =>
     iter U (minPeriod U h (orbitBase U h x) - 1 - indexOf U h x)
       (orbitBase U h x)
 
 /-- Second bounce: `U ∘ φ`. -/
-noncomputable def bounceσ {n : Nat} (U : Fin n → Fin n) (h : EndoInj U) :
+def bounceσ {n : Nat} (U : Fin n → Fin n) (h : EndoInj U) :
     Fin n → Fin n :=
   fun x => U (bounceφ U h x)
 
@@ -495,7 +858,12 @@ theorem indexOf_bounceφ {n : Nat} (U : Fin n → Fin n) (h : EndoInj U)
   have hk : k < p := indexOf_lt U h x
   have hbφ : orbitBase U h (bounceφ U h x) = b := orbitBase_of_bounceφ U h x
   have hφ : bounceφ U h x = iter U (p - 1 - k) b := rfl
-  have hspec := Classical.choose_spec (exists_index U h (bounceφ U h x))
+  have hspec :
+      indexOf U h (bounceφ U h x) <
+        minPeriod U h (orbitBase U h (bounceφ U h x)) ∧
+      iter U (indexOf U h (bounceφ U h x))
+        (orbitBase U h (bounceφ U h x)) = bounceφ U h x :=
+    ⟨indexOf_lt U h (bounceφ U h x), indexOf_iter U h (bounceφ U h x)⟩
   have hpφ : minPeriod U h (orbitBase U h (bounceφ U h x)) = p := by
     rw [hbφ]
   have hlt : indexOf U h (bounceφ U h x) < p :=
@@ -560,7 +928,7 @@ theorem bounceσ_involution {n : Nat} (U : Fin n → Fin n) (h : EndoInj U) :
     have hx0 : x = b := by
       have := hx
       rw [hk0] at this
-      simpa [iter] using this.symm
+      exact this.symm
     have hσ : bounceσ U h x = x := by
       rw [hσx, hk0, Nat.sub_zero, minPeriod_return U h b, hx0]
     rw [hσ, hσ]
@@ -569,7 +937,12 @@ theorem bounceσ_involution {n : Nat} (U : Fin n → Fin n) (h : EndoInj U) :
     have hbσ : orbitBase U h (bounceσ U h x) = b := by
       rw [hσx, orbitBase_iter, orbitBase_idem]
     have hidxσ : indexOf U h (bounceσ U h x) = p - k := by
-      have hspec := Classical.choose_spec (exists_index U h (bounceσ U h x))
+      have hspec :
+          indexOf U h (bounceσ U h x) <
+            minPeriod U h (orbitBase U h (bounceσ U h x)) ∧
+          iter U (indexOf U h (bounceσ U h x))
+            (orbitBase U h (bounceσ U h x)) = bounceσ U h x :=
+        ⟨indexOf_lt U h (bounceσ U h x), indexOf_iter U h (bounceσ U h x)⟩
       have hpσ : minPeriod U h (orbitBase U h (bounceσ U h x)) = p := by
         rw [hbσ]
       have hlt : indexOf U h (bounceσ U h x) < p :=
@@ -596,13 +969,13 @@ theorem bounceσ_involution {n : Nat} (U : Fin n → Fin n) (h : EndoInj U) :
       rw [hunfold, hpσ, hidxσ, hbσ]
     have hrefl : p - 1 - (p - k) = k - 1 := by
       have hkle : k ≤ p := Nat.le_of_lt hk
-      have h1 : p - (p - k) = k := Nat.sub_sub_self hkle
+      have h1 : p - (p - k) = k := nat_sub_sub_self hkle
       have hle : p - k ≤ p - 1 :=
-        Nat.sub_le_sub_left (Nat.succ_le_of_lt hk0) p
+        nat_sub_le_sub_left (Nat.succ_le_of_lt hk0) p
       have hsucc' : p - 1 - (p - k) + 1 = k := by
         have hcomm : p - 1 - (p - k) + 1 = p - 1 + 1 - (p - k) :=
-          (Nat.sub_add_comm hle).symm
-        have h2 : p - 1 + 1 = p := Nat.sub_add_cancel (Nat.succ_le_of_lt hp)
+          (nat_sub_add_comm hle).symm
+        have h2 : p - 1 + 1 = p := nat_sub_add_cancel (Nat.succ_le_of_lt hp)
         rw [hcomm, h2, h1]
       exact Nat.succ.inj
         (hsucc'.trans (Nat.succ_pred_eq_of_pos hk0).symm)
@@ -611,11 +984,12 @@ theorem bounceσ_involution {n : Nat} (U : Fin n → Fin n) (h : EndoInj U) :
         U (bounceφ U h (bounceσ U h x)) := rfl
     rw [hσσ, hφσ, hrefl]
     have hstep : iter U ((k - 1) + 1) b = U (iter U (k - 1) b) := rfl
-    have hks : (k - 1) + 1 = k := Nat.sub_add_cancel (Nat.succ_le_of_lt hk0)
+    have hks : (k - 1) + 1 = k := nat_sub_add_cancel (Nat.succ_le_of_lt hk0)
     rw [← hstep, hks, hx]
 
-/-- Every injective endomap on `Fin n` factors as two involutions. -/
-noncomputable def factor_fin {n : Nat} (U : Fin n → Fin n) (h : EndoInj U) :
+/-- Every injective endomap on `Fin n` factors as two involutions.
+    The construction is computable and the proof is axiom-free. -/
+def factor_fin {n : Nat} (U : Fin n → Fin n) (h : EndoInj U) :
     TwoBounceFactor U where
   φ := bounceφ U h
   σ := bounceσ U h

@@ -27,7 +27,7 @@ refuses discharge as world-from-Bool; it does not declare a kernel axiom.
 | `Orbit` | 23 | 23 |  |  |  |
 | `TwoCycle` | 13 | 13 |  |  |  |
 | `Facticity` | 10 | 10 |  |  |  |
-| `Ambient` | 16 | 16 |  |  |  |
+| `Ambient` | 20 | 16 | 4 |  |  |
 | `Diagonal` | 12 | 12 |  |  |  |
 | `Tower` | 25 | 25 |  |  |  |
 | `Ladder` | 10 | 10 |  |  |  |
@@ -87,6 +87,7 @@ refuses discharge as world-from-Bool; it does not declare a kernel axiom.
 | `Alphabet` | 7 | 7 |  |  |  |
 | `Capacity` | 13 | 9 | 4 |  |  |
 | `OneZ2` | 12 | 12 |  |  |  |
+| `KernelAdmit` | 6 | 6 |  |  |  |
 | `RegistrationSpine` | 8 | 8 |  |  |  |
 | `TickSimulation` | 21 | 17 | 4 |  |  |
 | `Environment` | 15 | 15 |  |  |  |
@@ -130,5 +131,5 @@ refuses discharge as world-from-Bool; it does not declare a kernel axiom.
 | `NoClone` | 11 | 11 |  |  |  |
 | `MetaProblem` | 11 | 9 | 2 |  |  |
 
-Totals: 1336 audited results; 1146 clean.
+Totals: 1346 audited results; 1152 clean.
 

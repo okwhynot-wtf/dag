@@ -1,4 +1,5 @@
 import Certificate
+import KernelAdmit
 import Interior
 import Observer
 import Ladder
@@ -30,6 +31,7 @@ at every ladder level.
 
 namespace Dictionary.MetaProblem
 
+open Bridge.KernelAdmit
 open Dictionary.Certificate
 
 /-! ## Interior triad (explanandum shape) -/
@@ -93,7 +95,7 @@ def metaCert : KernelCert Bool Bool where
   swap_as_not := fun b => by cases b <;> rfl
   Fixed := fun b => (!b) = b
   fixed_iff := fun _ => Iff.rfl
-  fixedMode := FixedMode.empty
+  fixedMode := FixedMode.emptyLocus
   noSoloCross := fun _ h => h.2
 
 theorem meta_fixed_empty (b : Bool) : ¬ metaCert.Fixed b := by
@@ -115,7 +117,7 @@ theorem meta_admitted (k : Nat) :
     (∀ S E : Bool → Bool, TwoCycle.TDiff S not → TwoCycle.Alive S not true →
       Interior.Tracks E S → ∀ c, E (not c) = !(E c)) ∧
     (∀ b, ¬ metaCert.Fixed b) ∧
-    metaCert.fixedMode = FixedMode.empty ∧
+    metaCert.fixedMode = FixedMode.emptyLocus ∧
     (∀ a : Ladder.Level k,
       Ladder.rep (k + 1) none (some a) = !(Ladder.rep k a a)) ∧
     Bridge.Alphabet.Kmin = 2 :=

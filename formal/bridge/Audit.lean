@@ -1,6 +1,7 @@
 import Alphabet
 import Capacity
 import OneZ2
+import KernelAdmit
 import RegistrationSpine
 import TickSimulation
 import Environment
@@ -35,7 +36,7 @@ Generated. Do not edit by hand:
 python3 formal/tools/gen_audit.py
 ```
 
-27 modules, 435 results. Source for `formal/AXIOMS.md`.
+28 modules, 441 results. Source for `formal/AXIOMS.md`.
 -/
 
 -- Alphabet (7)
@@ -75,6 +76,14 @@ python3 formal/tools/gen_audit.py
 #print axioms Bridge.OneZ2.one_Z2_three_faces
 #print axioms Bridge.OneZ2.channel_swap_is_reversal
 #print axioms Bridge.OneZ2.face_choice_is_packaging
+
+-- KernelAdmit (6)
+#print axioms Bridge.KernelAdmit.bool_admitted
+#print axioms Bridge.KernelAdmit.boolCert_faceSwap_eq_swap
+#print axioms Bridge.KernelAdmit.bool_admitted_faceSwap
+#print axioms Bridge.KernelAdmit.bool_cert_face_equivariant
+#print axioms Bridge.KernelAdmit.live_involution_cert
+#print axioms Bridge.KernelAdmit.empty_mode_is_void_exclusion
 
 -- RegistrationSpine (8)
 #print axioms Bridge.RegistrationSpine.ag_merge_registers

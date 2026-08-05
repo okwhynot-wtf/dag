@@ -333,37 +333,42 @@ Corollary of Definition~\ref{def:arena} (involution $\Rightarrow$
 injectivity). Not an independent creed.
 \end{remark}
 
-\begin{theorem}[Ambient uniqueness, equational fragment]
+\begin{theorem}[Ambient uniqueness, one-variable equational fragment]
 \label{thm:ambient-unique}
 Relative to the arena signature of Definition~\ref{def:arena} (one type,
-one endomap), every single-equation ambient has the form
-$a^{m}=a^{n}$. Among those equations:
+one endomap), every single equation in one free variable has the form
+$a^{m}(x)=a^{n}(x)$. Among those equations:
 \begin{enumerate}[label=(\roman*)]
 \item $a^{m}=a^{n}$ with $n\ge 1$ need not force injectivity
 ($a^{2}=a$ admits erasure);
 \item $a^{m}=\mathrm{id}$ forces losslessness; $m=1$ is rest; for every
 $m\ge 3$ an $m$-cycle is a countermodel with an asymmetric point;
-\item hence $a^{2}=\mathrm{id}$ is the unique nontrivial single equation
-that excludes both smuggled arrow and smuggled loss.
+\item hence $a^{2}=\mathrm{id}$ is the unique nontrivial one-variable
+single equation that excludes both smuggled arrow and smuggled loss.
 \end{enumerate}
-Ambients beyond the equational fragment are refused by parsimony of the
-arena language (Section~\ref{sec:status}).
 \end{theorem}
 
 \begin{remark}[Status]
-Proved by exhaustive classification relative to the signature, with
-finite countermodels. Interpretation~\ref{int:ambient} records only the
-residual choice of signature itself.
+Proved by exhaustive classification of one-variable equations relative to
+the signature, with finite countermodels (including the $m$-cycle family
+for all $m\ge 3$). Multi-variable single equations over the same
+signature---for example $\forall x\,\forall y.\,a(x)=a(y)$---force
+constancy on the image and are erasing on any carrier with two or more
+points, so they die immediately as ambients for fundamentality.
+Ambients beyond the one-variable equational fragment are refused by
+parsimony of the arena language (Section~\ref{sec:status}).
+Interpretation~\ref{int:ambient} records only the residual choice of
+signature itself.
 \end{remark}
 
 \begin{interpretation}
 \label{int:ambient}
 Symmetric step is not an arbitrary modelling confession: by
 Theorem~\ref{thm:ambient-unique} it is the unique nontrivial
-single-equation ambient in the arena signature that bans smuggled time
-and smuggled loss. What remains is the signature declaration of
-Definition~\ref{def:arena}---one type, one endomap---stated in daylight,
-not residue.
+one-variable single-equation ambient in the arena signature that bans
+smuggled time and smuggled loss. What remains is the signature
+declaration of Definition~\ref{def:arena}---one type, one
+endomap---stated in daylight, not residue.
 \end{interpretation}
 
 
@@ -398,10 +403,10 @@ the only remaining pointwise shape is the live two-cycle.
 \begin{theorem}[Canon / initiality]
 \label{thm:canon}
 In the ambient of pointed unoriented acts, $(\Bool,\neg,\mathsf{true})$
-is initial. An act is \emph{fundamental} precisely when it is live,
-symmetric, and generated from a seed by the two-cycle reading; every
-fundamental reads as $\neg$; any two fundamentals correspond uniquely
-up to the pointed reading.
+is initial. An act is \emph{fundamental} precisely when it is
+non-degenerate, symmetric, and generated from a seed by the two-cycle
+reading; every fundamental reads as $\neg$; any two fundamentals
+correspond uniquely up to the pointed reading.
 \end{theorem}
 
 \begin{remark}[Status]
@@ -422,7 +427,7 @@ Section~\ref{sec:z2}.
 \section{Seal}
 \label{sec:seal}
 
-\dep{Theorem~\ref{thm:canon} (liveness of fundamentals).}
+\dep{Theorem~\ref{thm:canon} (non-degeneracy of fundamentals).}
 
 The engine is Lawvere's diagonal argument~\cite{lawvere}, the common
 abstraction of Cantor's theorem~\cite{cantor} and kindred fixed-point
@@ -695,6 +700,16 @@ choice. A gauge is \emph{packaging} when the choice is quotiented before
 downstream consumption.
 \end{definition}
 
+\begin{definition}[Kernel admission interface]
+\label{def:admit}
+A \emph{Bool kernel certificate} is a structure on kernel exports
+(symmetry endomap, observation map, fixed locus) satisfying the
+admission clauses: square of the symmetry is an involution; observation
+intertwines the symmetry with negation; the fixed locus matches the
+symmetry's fixed points and is classified empty or nonempty; and the
+no-solo-cross no-go holds. Admission is a predicate on that interface.
+\end{definition}
+
 \begin{center}
 \captionof{table}{Gauge demarcation protecting the single dictionary $\Ztwo$.}
 \label{tab:gauges}
@@ -717,21 +732,28 @@ Factorisation gauge per step & Theorems~\ref{thm:exists}--\ref{thm:canonfail}
 
 \begin{theorem}[Face-swap equivariance]
 \label{thm:face-eq}
-Kernel certificate validity is stable under the $\Ztwo$ face/pole swap:
-any Bool kernel certificate that is admitted remains admitted after
-conjugation by the face involution. Consequently, choice of face is
-packaging in the sense of Definition~\ref{def:gauge} and belongs in
-Table~\ref{tab:gauges}. If a certificate breaks equivariance by fixing an
-orientation, that orientation is certificate-supplied data and is audited
-there; kernel exports remain swap-equivariant either way.
+Admission for a Bool kernel certificate
+(Definition~\ref{def:admit}) is stable under the $\Ztwo$ face/pole swap:
+any admitted certificate remains admitted after conjugation by the face
+involution. Consequently, for equivariant consumers of the admission
+interface, choice of face is packaging in the sense of
+Definition~\ref{def:gauge} and belongs in Table~\ref{tab:gauges}.
 \end{theorem}
 
 \begin{remark}[Status]
 Theorem~\ref{thm:z2}, Definition~\ref{def:gauge}, and
 Theorem~\ref{thm:face-eq} keep one dictionary $\Ztwo$: factorisation
 non-uniqueness (Theorem~\ref{thm:canonfail}) is packaging; channel
-\emph{labels} are conventional; channel \emph{swap} is content; face
-choice is packaging or certificate data. The content/packaging
+\emph{labels} are conventional; channel \emph{swap} is content. Gauge
+class is relative to locus
+(Definition~\ref{def:gauge}): the same $\Ztwo$ choice may be content at
+the kernel-export locus---exported statements mention it in ``up to
+label swap'' clauses---and packaging at the certificate-consumption
+locus, where equivariance lets the consumer quotient it. Pole / face
+choice is the worked example of that locus-relative demarcation. If a
+certificate breaks equivariance by fixing an orientation, that
+orientation is certificate-supplied data and is audited there; kernel
+exports remain swap-equivariant either way. The content/packaging
 demarcation is a formal analogue of the question which symmetries carry
 representational significance~\cite{bradingcastellani,dewar};
 underdetermination by label swap is the formal shadow of
@@ -744,16 +766,17 @@ permutation-style underdetermination of reference~\cite{quine,putnam}.
 
 \begin{interpretation}
 \label{int:dict}
-Dictionary entries are optional certificates that a physical or
-contemplative model realises kernel symmetries (for example, swap as
-negation; dissipation as registration, in the sense of Landauer's
-principle~\cite{landauer}). They do not derive continuum
+Dictionary entries instantiate the kernel admission interface of
+Definition~\ref{def:admit} at a physical or contemplative model (for
+example, swap as negation; dissipation as registration, in the sense of
+Landauer's principle~\cite{landauer}). They do not derive continuum
 spacetimes or observational numbers from $\Bool$.
 \end{interpretation}
 
 \begin{remark}[Status]
-Layer~3 only. No theorem in Sections~\ref{sec:class}--\ref{sec:z2}
-depends on a dictionary certificate.
+Layer~3 only. Instantiation of Definition~\ref{def:admit}; no theorem in
+Sections~\ref{sec:class}--\ref{sec:z2} depends on a dictionary-layer
+model.
 \end{remark}
 
 
@@ -772,8 +795,10 @@ Premise-free global laws of time; continuum Einstein equations as
 theorems of this corpus; host-logic incompleteness; G\"odel
 arithmetisation of the formal text; experiential or qualia claims;
 derivation of the world from $\Bool$ alone (including any discharge of
-the audited existential below); ambients beyond the equational fragment
-of the arena signature, refused by parsimony of the arena language.
+the audited existential below); ambients beyond the one-variable
+equational fragment of the arena signature (including multi-variable
+single equations treated as ambients, quasi-equational, and Horn /
+second-order constraints), refused by parsimony of the arena language.
 \end{statusrefused}
 
 \begin{statusphil}
@@ -787,8 +812,9 @@ discharged.
 (Definition~\ref{def:arena}: one type, one endomap). Adequacy of
 $a\comp a=\mathrm{id}$ is Theorem~\ref{thm:ambient-unique}; the signature
 choice is opening definition, not residue.
-\item \textbf{Equivariance discipline.} Dictionary face choice is
-packaging or certificate-supplied data
+\item \textbf{Equivariance discipline.} Face choice under the kernel
+admission interface (Definition~\ref{def:admit}) is packaging or
+certificate-supplied data
 (Theorem~\ref{thm:face-eq}; Table~\ref{tab:gauges}).
 \end{enumerate}
 \noindent
@@ -909,6 +935,7 @@ Representative declarations (Lean~4; no Mathlib; no $\mathtt{sorry}$):
 classification\_at \textperiodcentered\
 liveOnOrbit\_iff\_nondegenerate \textperiodcentered\
 ambient\_uniqueness\_equational \textperiodcentered\
+exists\_asymmetric\_m\_cycle \textperiodcentered\
 canon\_initial \textperiodcentered\
 symmetric\_excludes\_erase \textperiodcentered\
 seal\_on\_fundamental \textperiodcentered\

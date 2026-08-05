@@ -18,6 +18,7 @@ roots = [
   "Alphabet",
   "Capacity",
   "OneZ2",
+  "KernelAdmit",
   "RegistrationSpine",
   "TickSimulation",
   "Environment",

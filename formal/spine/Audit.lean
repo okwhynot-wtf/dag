@@ -31,7 +31,7 @@ Generated. Do not edit by hand:
 python3 formal/tools/gen_audit.py
 ```
 
-23 modules, 340 results. Source for `formal/AXIOMS.md`.
+23 modules, 344 results. Source for `formal/AXIOMS.md`.
 -/
 
 -- Orbit (23)
@@ -86,9 +86,11 @@ python3 formal/tools/gen_audit.py
 #print axioms Facticity.exists_nondegenerate_pointed_act_model
 #print axioms Facticity.facticity_package
 
--- Ambient (16)
+-- Ambient (20)
 #print axioms Ambient.powerId_two_iff_symmetric
 #print axioms Ambient.powerId_one_is_rest
+#print axioms Ambient.constantEquation_erasing
+#print axioms Ambient.constantEquation_bool_erasing
 #print axioms Ambient.idempotentErase_ambient
 #print axioms Ambient.idempotentErase_erasing
 #print axioms Ambient.idempotentErase_not_lossless
@@ -97,6 +99,8 @@ python3 formal/tools/gen_audit.py
 #print axioms Ambient.cycle3_asymmetric
 #print axioms Ambient.powerId_ge_three_need_not_symmetric
 #print axioms Ambient.cycle3_lossless
+#print axioms Ambient.cycleM_powerId
+#print axioms Ambient.exists_asymmetric_m_cycle
 #print axioms Ambient.powerId_two_excludes_erase
 #print axioms Ambient.powerId_two_excludes_arrow
 #print axioms Ambient.powerId_one_is_degenerate

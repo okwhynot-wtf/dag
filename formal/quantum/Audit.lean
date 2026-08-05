@@ -5,6 +5,7 @@ import Classical
 import Target
 import Axiom
 import Witness
+import Composite
 
 /-!
 # Audit — axiom footprint for `formal/quantum/`
@@ -55,7 +56,6 @@ python3 formal/tools/gen_audit.py
 #print axioms Quantum.Orthoset.normed_gives_orthogonal
 #print axioms Quantum.Orthoset.act_has_no_normed_sequence
 #print axioms Quantum.Orthoset.triangle_has_rank3
-#print axioms Quantum.Orthoset.discrete_closure_trivial
 #print axioms Quantum.Orthoset.discrete_rank_of_injective
 #print axioms Quantum.Orthoset.rank3_not_from_one_act
 #print axioms Quantum.Orthoset.rank_obstruction
@@ -96,3 +96,16 @@ python3 formal/tools/gen_audit.py
 #print axioms Quantum.Witness.discrete_rank
 #print axioms Quantum.Witness.discrete_not_orthoframe_by_superposition
 #print axioms Quantum.Witness.superposition_independent_of_the_rest
+
+#print axioms Quantum.Composite.rank_cap_two
+#print axioms Quantum.Composite.not_rank3
+#print axioms Quantum.Composite.flip_indiscernible
+#print axioms Quantum.Composite.irredundancy_fails
+#print axioms Quantum.Composite.perp_iff_ray_negation
+#print axioms Quantum.Composite.act_ray_trivial
+#print axioms Quantum.Composite.J_squared
+#print axioms Quantum.Composite.J_comm_act
+#print axioms Quantum.Composite.J_asymmetric_everywhere
+#print axioms Quantum.Composite.J_respects_rays
+#print axioms Quantum.Composite.J_is_ray_negation
+#print axioms Quantum.Composite.composite_classicality

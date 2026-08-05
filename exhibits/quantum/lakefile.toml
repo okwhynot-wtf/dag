@@ -1,0 +1,21 @@
+name = "dag_quantum"
+version = "0.1.0"
+defaultTargets = ["DAGQuantum"]
+
+[[require]]
+name = "fundamental_spine"
+path = "../spine"
+
+[[lean_lib]]
+name = "DAGQuantum"
+srcDir = "."
+roots = [
+  "SpineFacts",
+  "Ortho",
+  "Orthoset",
+  "Classical",
+  "Target",
+  "Axiom",
+  "Witness",
+  "Audit",
+]

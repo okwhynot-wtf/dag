@@ -18,5 +18,6 @@ roots = [
   "Axiom",
   "Witness",
   "Composite",
+  "CompositeN",
   "Audit",
 ]

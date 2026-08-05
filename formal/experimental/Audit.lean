@@ -3,7 +3,7 @@ import Frequencies
 import WaveEquation
 import CantorBoundary
 import SpectrumSymmetry
-import Recurrence
+import CouplingGauge
 
 /-!
 # Audit — axiom footprint for `formal/experimental/`
@@ -14,10 +14,10 @@ Generated. Do not edit by hand:
 python3 formal/tools/gen_audit.py
 ```
 
-6 modules, 106 results. Source for `formal/AXIOMS.md`.
+6 modules, 101 results. Source for `formal/AXIOMS.md`.
 -/
 
--- Overtones (17)
+-- Overtones (13)
 #print axioms Experimental.Overtones.refl3_involution
 #print axioms Experimental.Overtones.refl3'_involution
 #print axioms Experimental.Overtones.three_from_two_flips
@@ -26,43 +26,19 @@ python3 formal/tools/gen_audit.py
 #print axioms Experimental.Overtones.refl5'_involution
 #print axioms Experimental.Overtones.five_from_two_flips
 #print axioms Experimental.Overtones.cyc5_period_five
-#print axioms Experimental.Overtones.overtone_generation
 #print axioms Experimental.Overtones.cyc3_injective
 #print axioms Experimental.Overtones.cyc5_injective
-#print axioms Experimental.Overtones.reflZero_involution
-#print axioms Experimental.Overtones.reflAt_involution
-#print axioms Experimental.Overtones.rot_eq_two_flips
 #print axioms Experimental.Overtones.rot_from_two_flips
 #print axioms Experimental.Overtones.three_from_two_flips_general
 #print axioms Experimental.Overtones.five_from_two_flips_general
 
--- Frequencies (16)
-#print axioms Experimental.Frequencies.interval_addition
-#print axioms Experimental.Frequencies.harmonics_are_iterates
-#print axioms Experimental.Frequencies.orders_twelve
-#print axioms Experimental.Frequencies.circle_of_fifths
+-- Frequencies (4)
 #print axioms Experimental.Frequencies.fifth_generates
 #print axioms Experimental.Frequencies.order_eq_div_gcd_twelve
-#print axioms Experimental.Frequencies.iterN_succ
-#print axioms Experimental.Frequencies.shift_val
-#print axioms Experimental.Frequencies.iterN_shift_val
-#print axioms Experimental.Frequencies.iterN_shift_eq_self_iff
-#print axioms Experimental.Frequencies.shift_order_pos
-#print axioms Experimental.Frequencies.shift_order_returns
-#print axioms Experimental.Frequencies.shift_order_minimal
-#print axioms Experimental.Frequencies.order_eq_div_gcd
 #print axioms Experimental.Frequencies.order_eq_div_gcd_twelve_general
 #print axioms Experimental.Frequencies.circle_of_fifths_minimal
 
--- WaveEquation (31)
-#print axioms Experimental.Wave.xor_cancel
-#print axioms Experimental.Wave.swap_involution
-#print axioms Experimental.Wave.shear_involution_pointwise
-#print axioms Experimental.Wave.step_eq_two_bounce
-#print axioms Experimental.Wave.reverse_is_swapped_pair
-#print axioms Experimental.Wave.reverse_step_pointwise
-#print axioms Experimental.Wave.reverse_step
-#print axioms Experimental.Wave.step_lossless
+-- WaveEquation (21)
 #print axioms Experimental.Wave.iterN_succ_out
 #print axioms Experimental.Wave.fin_sub_one_add_one
 #print axioms Experimental.Wave.fin_add_one_sub_one
@@ -78,8 +54,6 @@ python3 formal/tools/gen_audit.py
 #print axioms Experimental.Wave.return_rotInv_pointwise
 #print axioms Experimental.Wave.return_of_rot_return
 #print axioms Experimental.Wave.return_iff_rot_return
-#print axioms Experimental.Wave.ring4_period_four
-#print axioms Experimental.Wave.dirichlet4_period_ten
 #print axioms Experimental.Wave.ring2_period_two
 #print axioms Experimental.Wave.ring3_period_six
 #print axioms Experimental.Wave.ring5_period_ten
@@ -119,18 +93,39 @@ python3 formal/tools/gen_audit.py
 #print axioms Experimental.SpectrumSymmetry.returns_iff_rot_pow_returns
 #print axioms Experimental.SpectrumSymmetry.symmetry_order_is_gcd_law
 
--- Recurrence (14)
-#print axioms Experimental.Recurrence.encodeAux_succ
-#print axioms Experimental.Recurrence.encodeAux_lt
-#print axioms Experimental.Recurrence.encodeAux_inj
-#print axioms Experimental.Recurrence.encodeF_lt
-#print axioms Experimental.Recurrence.encodeF_inj
-#print axioms Experimental.Recurrence.encodeS_lt
-#print axioms Experimental.Recurrence.encodeS_inj
-#print axioms Experimental.Recurrence.iterN_add
-#print axioms Experimental.Recurrence.iterN_inj
-#print axioms Experimental.Recurrence.exists_collision
-#print axioms Experimental.Recurrence.wave_recurrence_bounded
-#print axioms Experimental.Recurrence.wave_recurrence
-#print axioms Experimental.Recurrence.capacity_eq
-#print axioms Experimental.Recurrence.wave_recurrence_pow
+-- CouplingGauge (35)
+#print axioms Experimental.CouplingGauge.xor_not_right
+#print axioms Experimental.CouplingGauge.xor_right_comm
+#print axioms Experimental.CouplingGauge.xor_pair_exchange
+#print axioms Experimental.CouplingGauge.xor_not_exchange
+#print axioms Experimental.CouplingGauge.cancel_of_xor_eq
+#print axioms Experimental.CouplingGauge.true_of_not_false
+#print axioms Experimental.CouplingGauge.flip_of_xor_true
+#print axioms Experimental.CouplingGauge.flip_step_pointwise
+#print axioms Experimental.CouplingGauge.maskS_involution_pointwise
+#print axioms Experimental.CouplingGauge.ringX_mask_pointwise
+#print axioms Experimental.CouplingGauge.mask_intertwines_pointwise
+#print axioms Experimental.CouplingGauge.mask4_alternating
+#print axioms Experimental.CouplingGauge.alternating_forces_four_dvd
+#print axioms Experimental.CouplingGauge.alternating_mask_iff_four_dvd
+#print axioms Experimental.CouplingGauge.ring_fixes_zero
+#print axioms Experimental.CouplingGauge.flip_no_fixed_pointwise
+#print axioms Experimental.CouplingGauge.flip_no_fixed_point
+#print axioms Experimental.CouplingGauge.fixed_point_spectra_differ
+#print axioms Experimental.CouplingGauge.flip_no_intertwiner_pointwise
+#print axioms Experimental.CouplingGauge.flip_no_intertwiner
+#print axioms Experimental.CouplingGauge.flip_not_conjugate
+#print axioms Experimental.CouplingGauge.flip_conjugacy_of_four_dvd
+#print axioms Experimental.CouplingGauge.coupling_flip_dichotomy
+#print axioms Experimental.CouplingGauge.flip_conjugate_four
+#print axioms Experimental.CouplingGauge.flip_no_intertwiner_two
+#print axioms Experimental.CouplingGauge.flip_no_intertwiner_three
+#print axioms Experimental.CouplingGauge.flip_no_intertwiner_five
+#print axioms Experimental.CouplingGauge.flip_step_congr_pointwise
+#print axioms Experimental.CouplingGauge.flip_step_dress_pointwise
+#print axioms Experimental.CouplingGauge.flip_iter_dress_pointwise
+#print axioms Experimental.CouplingGauge.flip_ring2_pulse_period_four
+#print axioms Experimental.CouplingGauge.flip_ring3_pulse_period_twelve
+#print axioms Experimental.CouplingGauge.flip_ring4_pulse_period_four
+#print axioms Experimental.CouplingGauge.flip_ring5_pulse_period_twenty
+#print axioms Experimental.CouplingGauge.mask4_alternating_four

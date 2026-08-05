@@ -36,8 +36,11 @@ footprints preserved:
   collision on the three-ring when toggling fails.
 - `coupling_uniqueness` (axiom-free). Parity, pole invariance, and the
   drawing condition force the coupling into `{xor, !xor}`.
-- `survivor_is_wave_coupling` (rfl). The survivor instantiates the ring
-  wave coupling.
+- `survivor_is_wave_coupling` (propext). The survivor instantiates the
+  ring wave coupling; the proof term is `rfl`, and propext enters
+  through the `Fin` index arithmetic of `ringX` (the `Nat.mod`
+  machinery behind the neighbour offsets), which the statement itself
+  mentions.
 - `dynamics_ambient_uniqueness` (propext). The package conjunction.
 
 Create `formal/bridge/WaveDynamics.lean` from
@@ -87,7 +90,8 @@ currently propext or axiom-free; preserve that.
 
 ### 1.3 Stays experimental
 
-`Dispersion.lean` (symmetry-order result) and any module awaiting the
+`SpectrumSymmetry.lean` (the symmetry-order result, carrying
+`symmetry_order_is_gcd_law`) and any module awaiting the
 `F2[x]/(x^n - 1)` transfer-matrix algebra remain in
 `formal/experimental/` with their docstring targets intact.
 
@@ -102,9 +106,16 @@ currently propext or axiom-free; preserve that.
 3. Rebuild all five packages, regenerate `Audit.lean` files, regenerate
    `AXIOMS.md`, run `VERIFY.sh`.
 4. Acceptance: no `sorry`, no new axioms, every paper-cited declaration
-   at propext or less, `Classical.choice` absent from bridge and spine,
-   funext-using declarations confined to the two named wave theorems
-   and flagged in `AXIOMS.md`.
+   within the kernel pair propext and `Quot.sound`, `Classical.choice`
+   absent from bridge and spine, and, within the promoted modules,
+   direct invocations of function extensionality confined to
+   `Bridge.WaveDynamics.reverse_step` and
+   `Bridge.Recurrence.wave_recurrence_bounded`, with
+   `step_lossless`, `wave_recurrence`, and `wave_recurrence_pow`
+   inheriting that footprint, each flagged by name in `AXIOMS.md`.
+   `Quot.sound` also arrives in the promoted modules through library
+   lemmas, `omega`, and kernel-decided `Decidable` instances, and the
+   per-module counts in `AXIOMS.md` record those entries.
 
 ---
 

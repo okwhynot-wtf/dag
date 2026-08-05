@@ -1,47 +1,54 @@
-import WaveEquation
+import WaveDynamics
 
 /-!
-# DynamicsAmbient (EXPERIMENTAL) — classification of couplings
+# DynamicsAmbient: classification of couplings
 
 The dynamics-layer twin of the ambient-uniqueness theorem. The static
-half of the system earns its kernel by elimination; this module earns
-the equation of motion the same way, in two stages.
+half of the system earns its kernel by elimination, and this module
+earns the equation of motion the same way, in two stages.
 
-**Stage one — reversibility forces the xor form.** A general
+**Stage one: reversibility forces the xor form.** A general
 second-order nearest-neighbour update is
 `next i = F (prev i) (cur (i-1)) (cur i) (cur (i+1))` for an arbitrary
 `F : Bool⁴ → Bool`. If `F` fails to toggle in its previous-layer slot
 at even one neighbourhood, an explicit two-history collision exists on
-the three-ring: the step erases, pointwise and axiom-free
-(`collision_of_not_toggling`). If `F` toggles everywhere, then `F` *is*
-the xor form `F p l m r = p ^^ G l m r` with `G := F false`
+the three-ring: the step erases, pointwise
+(`collision_of_not_toggling`). If `F` toggles everywhere, then `F` is
+exactly the xor form `F p l m r = p ^^ G l m r` with `G := F false`
 (`toggle_forces_xor_form`), and every xor-form step is lossless with an
 explicit two-bounce factorisation and swap-reversal, by the general
-theorems of `WaveEquation`. Losslessness therefore selects the
-second-order xor structure; it is derived, never chosen.
+theorems of `WaveDynamics`. Losslessness therefore selects the
+second-order xor structure; the form is derived, and no separate choice
+enters.
 
-**Stage two — the ambient selects the coupling.** The residual freedom
-is the coupling `G`. Declaring the coupling *inter-site* (it relates
-the neighbours; the site's own influence is already carried, exactly
-once, by the toggling slot) leaves `K : Bool → Bool → Bool`. The
-ambient conditions mirror the static classification: parity
-(`K l r = K r l`, no smuggled spatial arrow), pole invariance
-(`K (¬l) (¬r) = K l r`, the label gauge is respected), and a drawing
-condition (`K` takes two values; a coupling that draws no distinction
-couples nothing). The survivors are exactly `xor` and its pointwise
-flip `¬xor` (`coupling_uniqueness`), a single orbit of the flip
-involution on couplings — one live coupling up to the label gauge,
-the same `Z/2Z` as everywhere else. The survivor's dynamics is the
-wave step of `WaveEquation` on the nose
-(`survivor_is_wave_coupling`), so the classified dynamics inherits,
-definitionally, the two-bounce form and swap-reversal.
+**Stage two: the ambient selects the coupling.** The residual freedom
+is the coupling `G`. Declaring the coupling inter-site (it relates the
+neighbours; the site's own influence is already carried, exactly once,
+by the toggling slot) leaves `K : Bool → Bool → Bool`. The ambient
+conditions mirror the static classification: parity (`K l r = K r l`,
+no smuggled spatial arrow), pole invariance (`K (¬l) (¬r) = K l r`, the
+label gauge is respected), and a drawing condition (`K` takes two
+values; a coupling that draws no distinction couples nothing). The
+survivors are exactly `xor` and its pointwise flip `¬xor`
+(`coupling_uniqueness`), a single orbit of the flip involution on
+couplings: one live coupling up to the label gauge, the same `Z/2Z` as
+everywhere else. The survivor's dynamics is the wave step of
+`WaveDynamics` on the nose (`survivor_is_wave_coupling`), so the
+classified dynamics inherits, definitionally, the two-bounce form and
+swap-reversal.
 
-Status: quarantined; candidate for promotion as the second eliminative
-classification of a complete system.
+Footprints: `toggle_forces_xor_form`, `coupling_uniqueness`,
+`flip_involution`, and `survivors_one_orbit` are axiom-free;
+`collision_of_not_toggling`, `survivor_is_wave_coupling`, and the
+package conjunction `dynamics_ambient_uniqueness` carry propext. The
+proof term of `survivor_is_wave_coupling` is `rfl`, and its propext
+entry arrives through the `Fin` index arithmetic of `ringX` (the
+`Nat.mod` machinery behind the neighbour offsets `i - 1` and
+`i + 1`), which the statement itself mentions.
 -/
-namespace Experimental.DynamicsAmbient
+namespace Bridge.DynamicsAmbient
 
-open Experimental.Wave
+open Bridge.WaveDynamics
 
 /-! ## Stage one: reversibility forces the xor form -/
 
@@ -77,7 +84,7 @@ def cfg (l m r : Bool) : Field 3 := fun i =>
 
 /-- If the update fails to toggle at some neighbourhood, two histories
     on the three-ring agree after one step at every site while
-    differing at site 1: the step erases. Pointwise and axiom-free. -/
+    differing at site 1: the step erases. Pointwise. -/
 theorem collision_of_not_toggling
     (F : Bool → Bool → Bool → Bool → Bool) (l m r : Bool)
     (h : F true l m r = F false l m r) :
@@ -167,7 +174,7 @@ theorem survivors_one_orbit :
   exact ⟨rfl, by cases l <;> cases r <;> rfl⟩
 
 /-- The surviving coupling instantiated on the ring is the wave
-    coupling of `WaveEquation`, definitionally. -/
+    coupling of `WaveDynamics`, definitionally. -/
 theorem survivor_is_wave_coupling {m : Nat} (c : Field (m + 1))
     (i : Fin (m + 1)) :
     (c (i - 1) ^^ c (i + 1)) = ringX c i := rfl
@@ -180,7 +187,7 @@ theorem survivor_is_wave_coupling {m : Nat} (c : Field (m + 1))
     condition force the coupling into the single flip-orbit
     `{xor, ¬xor}`. (IV) The survivor's ring dynamics is the wave step,
     hence two-bounce with swap-reversal by the general theorems of
-    `WaveEquation`. -/
+    `WaveDynamics`. -/
 theorem dynamics_ambient_uniqueness :
     (∀ (F : Bool → Bool → Bool → Bool → Bool),
       (∀ l m r, F true l m r ≠ F false l m r) →
@@ -201,9 +208,12 @@ theorem dynamics_ambient_uniqueness :
    coupling_uniqueness,
    fun c i => survivor_is_wave_coupling c i⟩
 
-#print axioms Experimental.DynamicsAmbient.toggle_forces_xor_form
-#print axioms Experimental.DynamicsAmbient.collision_of_not_toggling
-#print axioms Experimental.DynamicsAmbient.coupling_uniqueness
-#print axioms Experimental.DynamicsAmbient.dynamics_ambient_uniqueness
+#print axioms Bridge.DynamicsAmbient.toggle_forces_xor_form
+#print axioms Bridge.DynamicsAmbient.collision_of_not_toggling
+#print axioms Bridge.DynamicsAmbient.coupling_uniqueness
+#print axioms Bridge.DynamicsAmbient.flip_involution
+#print axioms Bridge.DynamicsAmbient.survivors_one_orbit
+#print axioms Bridge.DynamicsAmbient.survivor_is_wave_coupling
+#print axioms Bridge.DynamicsAmbient.dynamics_ambient_uniqueness
 
-end Experimental.DynamicsAmbient
+end Bridge.DynamicsAmbient

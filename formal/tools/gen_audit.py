@@ -42,13 +42,15 @@ PACKAGES = {
                "Forman", "Saturation", "FlatnessDebt", "FiberFlux",
                "FluxPattern", "LedgerPatchGlue", "RecombinationBudget",
                "PhaseEToys", "PeriodTwoOrbits", "CutShift", "OrderDimGrowth",
-               "TwoBounce", "BridgeArc"],
+               "TwoBounce", "BridgeArc", "WaveDynamics", "DynamicsAmbient",
+               "PeriodSpectrum", "Recurrence"],
     "dictionary": ["Certificate", "LCertificate", "Quintom.Kernel",
                    "Quintom.Certificate", "Quintom.FixedPoint",
                    "Quintom.Damping", "Quintom.Growth", "BitFlip",
                    "Kramers", "Page", "QEC", "NoClone", "MetaProblem"],
     "experimental": ["Overtones", "Frequencies", "WaveEquation",
-                     "CantorBoundary", "SpectrumSymmetry", "Recurrence"],
+                     "CantorBoundary", "SpectrumSymmetry",
+                     "CouplingGauge"],
 }
 
 # Lean identifiers admit `'`, `!`, `?` and unicode letters/subscripts after the

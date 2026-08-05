@@ -1,52 +1,61 @@
-import WaveEquation
-import TwoBounce
-import Density
+import WaveDynamics
 
 /-!
-# Recurrence (EXPERIMENTAL — quarantined; exports nothing to the paper)
+# Recurrence: finite-orbit return for the Z/2 wave, within capacity
 
-Probe: finite-orbit return for the Z/2 wave. The wave step is
-lossless for every coupling (`Wave.step_lossless`) and the carrier
-is finite, so no orbit can leak: every state returns exactly, for
-every coupling `X` and every carrier size `n`, within the
+Promoted from the experimental `Recurrence` probe. The wave step is
+lossless for every coupling (`WaveDynamics.step_lossless`) and the
+carrier is finite, so no orbit can leak: every state returns exactly,
+for every coupling `X` and every carrier size `n`, within the
 state-space capacity `2^n · 2^n = 2^(2n)` steps. Results:
 
 * **Binary encoding** (`encodeF`, `encodeF_lt`, `encodeF_inj`): a
   field reads as a Nat below `2^n` by positional binary. Uniqueness
   of binary digits is proved by splitting the lowest bit (parity)
-  and recursing on the tail (`bit_cancel`, `encodeAux_inj`).
-  Injectivity is stated pointwise on sites.
+  and recursing on the tail. Injectivity is stated pointwise on
+  sites.
 * **State encoding** (`encodeS`, `encodeS_lt`, `encodeS_inj`): the
   two layers pair by base-`2^n` positional arithmetic into a Nat
   below `2^n · 2^n`; injectivity is div/mod uniqueness, again
   landing in pointwise form on both layers.
-* **Pigeonhole** (`exists_collision`): a Nat sequence bounded by
-  `C` repeats inside the window `0 … C`. Extracted from the spine's
-  `Density.no_distinct_large` via `Classical.byContradiction`; the
-  classical step stays inside the allowed footprint
-  (`Classical.choice`).
+* **Constructive pigeonhole** (`exists_collision`): a Nat sequence
+  bounded by `C` repeats inside the window `0 … C`. The proof is by
+  induction on the bound with a decidable bounded search at each
+  stage: either some earlier index already collides with the top
+  index, or the top value redirects one value of the window and the
+  induction hypothesis applies. The experimental version extracted
+  the witness classically from the spine pigeonhole; this promoted
+  version is choice-free, as the promotion gate for this module
+  requires, and `Classical.choice` does not appear in its footprint.
 * **Recurrence** (`wave_recurrence_bounded`, `wave_recurrence`,
   `wave_recurrence_pow`): losslessness cancels the common prefix
   of the two colliding orbit points, leaving an exact return at
-  the difference time `p` with `0 < p ≤ 2^n · 2^n = 2^(2n)` — the
+  the difference time `p` with `0 < p ≤ 2^n · 2^n = 2^(2n)`. The
   wave cannot leak, and its recurrence time is capped by the
-  carrier capacity. The colliding states are packaged into a
-  function-level equality with `funext`/`Prod.ext` before the
-  cancellation; that use of function extensionality is noted here.
-  The returns themselves are stated pointwise on both layers.
+  carrier capacity. The returns themselves are stated pointwise on
+  both layers.
+
+Footprint note. The colliding states are packaged into a
+function-level equality with `funext` and `Prod.ext` before the
+cancellation, so the recurrence theorems carry propext and
+`Quot.sound`; that use of function extensionality is recorded here
+and in `AXIOMS.md`. The use is essential for the general statement:
+the coupling `X` is an arbitrary functional on fields, and applying
+it to two pointwise-equal layers is related only through function
+equality. No proof in this module uses `Classical.choice`.
 
 Capacity language only: the recurrence time is capped by the
-carrier capacity `2^(2n)`. No ledger claim is made — this is a
-probe.
+carrier capacity `2^(2n)`. No ledger claim is made.
 
-Documented target (not attempted here): the closed-form pulse
-period law on the ring (`n` even ↦ `n`, `n` odd ↦ `2n`), which
-needs polynomial algebra over GF(2) that this file does not build.
-The finite instances remain in `WaveEquation`.
+Documented target (out of scope here): the closed-form pulse
+period law on the ring (`n` even maps to `n`, `n` odd maps to `2n`),
+which needs polynomial algebra over GF(2) that this file does not
+build. The finite instances remain in the experimental
+`WaveEquation` module.
 -/
-namespace Experimental.Recurrence
+namespace Bridge.Recurrence
 
-open Experimental.Wave
+open Bridge.WaveDynamics
 open Bridge.TwoBounce (EndoInj)
 
 /-! ## Binary encoding of a field -/
@@ -110,7 +119,8 @@ theorem encodeAux_inj : ∀ (m : Nat) (g h : Nat → Bool),
         (Nat.lt_of_succ_lt_succ hj)
 
 /-- A field as a Nat below `2^n`: read the sites through the padded
-    lookup `Wave.wallAt` and take the positional binary value. -/
+    lookup `WaveDynamics.wallAt` and take the positional binary
+    value. -/
 def encodeF {n : Nat} (c : Field n) : Nat :=
   encodeAux (fun m => wallAt c m) n
 
@@ -184,8 +194,9 @@ theorem encodeS_inj {n : Nat} (s t : WState n)
 
 /-! ## Iterate bookkeeping
 
-Two facts about `Wave.iterN` (the head-first fold): iterates add by
-composition, and injectivity of the step lifts to every iterate. -/
+Two facts about `WaveDynamics.iterN` (the head-first fold): iterates
+add by composition, and injectivity of the step lifts to every
+iterate. -/
 
 /-- Splitting an iterate: `a + b` steps are `a` steps then `b`. -/
 theorem iterN_add {α : Type} (f : α → α) (a b : Nat) (s : α) :
@@ -210,26 +221,109 @@ theorem iterN_inj {α : Type} (f : α → α) (hf : EndoInj f) :
     intro a b h
     exact hf a b (ih (f a) (f b) h)
 
-/-! ## Pigeonhole on the coded orbit -/
+/-! ## Constructive pigeonhole on the coded orbit -/
 
-/-- A Nat sequence bounded by `C` collides inside the window
-    `0 … C`: two indices `t1 < t2 ≤ C` carry the same value. The
-    witness is extracted from the spine pigeonhole
-    `Density.no_distinct_large` by `Classical.byContradiction`. -/
+/-- Bounded search below an inclusive bound: a pointwise decidable
+    property either holds at some index `j ≤ n` or fails at every
+    index `j ≤ n`. Constructive, by induction on the bound. -/
+private theorem search_le (P : Nat → Prop)
+    [inst : ∀ j, Decidable (P j)] :
+    ∀ n : Nat, (∃ j, j ≤ n ∧ P j) ∨ (∀ j, j ≤ n → ¬ P j) := by
+  intro n
+  induction n with
+  | zero =>
+    cases inst 0 with
+    | isTrue h => exact Or.inl ⟨0, Nat.le_refl 0, h⟩
+    | isFalse h =>
+      refine Or.inr ?_
+      intro j hj
+      have hj0 : j = 0 := Nat.le_zero.mp hj
+      rw [hj0]
+      exact h
+  | succ n ih =>
+    cases inst (n + 1) with
+    | isTrue h => exact Or.inl ⟨n + 1, Nat.le_refl (n + 1), h⟩
+    | isFalse h =>
+      cases ih with
+      | inl hex =>
+        obtain ⟨j, hj, hp⟩ := hex
+        exact Or.inl ⟨j, Nat.le_succ_of_le hj, hp⟩
+      | inr hall =>
+        refine Or.inr ?_
+        intro j hj
+        cases Nat.lt_or_ge j (n + 1) with
+        | inl hlt => exact hall j (Nat.le_of_lt_succ hlt)
+        | inr hge =>
+          have hj1 : j = n + 1 := Nat.le_antisymm hj hge
+          rw [hj1]
+          exact h
+
+/-- Constructive pigeonhole on an inclusive window: if `f` maps every
+    index `t ≤ C` to a value below `C`, two indices `t1 < t2 ≤ C`
+    carry the same value. Induction on `C`: either the bounded search
+    finds an earlier index colliding with the top index, or the top
+    value redirects the value `C - 1` inside the window and the
+    induction hypothesis applies to the redirected sequence. -/
+private theorem pigeon_window :
+    ∀ (C : Nat) (f : Nat → Nat), (∀ t, t ≤ C → f t < C) →
+      ∃ t1 t2, t1 < t2 ∧ t2 ≤ C ∧ f t1 = f t2 := by
+  intro C
+  induction C with
+  | zero =>
+    intro f hb
+    exact absurd (hb 0 (Nat.le_refl 0)) (Nat.not_lt_zero (f 0))
+  | succ n ih =>
+    intro f hb
+    cases search_le (fun j => f j = f (n + 1)) n with
+    | inl hex =>
+      obtain ⟨j, hj, hp⟩ := hex
+      exact ⟨j, n + 1, Nat.lt_succ_of_le hj, Nat.le_refl (n + 1), hp⟩
+    | inr hall =>
+      have hg : ∀ t, t ≤ n →
+          (if f t = n then f (n + 1) else f t) < n := by
+        intro t ht
+        cases Nat.decEq (f t) n with
+        | isTrue heq =>
+          rw [if_pos heq]
+          have h1 : f (n + 1) < n + 1 := hb (n + 1) (Nat.le_refl (n + 1))
+          have h2 : f (n + 1) ≠ n := by
+            intro hcontra
+            exact hall t ht (heq.trans hcontra.symm)
+          omega
+        | isFalse hne =>
+          rw [if_neg hne]
+          have h1 : f t < n + 1 := hb t (Nat.le_succ_of_le ht)
+          omega
+      obtain ⟨t1, t2, hlt, hle, heq⟩ :=
+        ih (fun t => if f t = n then f (n + 1) else f t) hg
+      cases Nat.decEq (f t1) n with
+      | isTrue h1 =>
+        cases Nat.decEq (f t2) n with
+        | isTrue h2 =>
+          exact ⟨t1, t2, hlt, Nat.le_succ_of_le hle, h1.trans h2.symm⟩
+        | isFalse h2 =>
+          rw [if_pos h1, if_neg h2] at heq
+          exact absurd heq.symm (hall t2 hle)
+      | isFalse h1 =>
+        cases Nat.decEq (f t2) n with
+        | isTrue h2 =>
+          rw [if_neg h1, if_pos h2] at heq
+          exact absurd heq
+            (hall t1 (Nat.le_of_lt (Nat.lt_of_lt_of_le hlt hle)))
+        | isFalse h2 =>
+          rw [if_neg h1, if_neg h2] at heq
+          exact ⟨t1, t2, hlt, Nat.le_succ_of_le hle, heq⟩
+
+/-- A Nat sequence bounded by `C` collides inside the window `0 … C`:
+    two indices `t1 < t2 ≤ C` carry the same value. Constructive; the
+    experimental predecessor of this theorem extracted the witness by
+    `Classical.byContradiction`, and this proof replaces that step
+    with the bounded-search pigeonhole `pigeon_window`, so
+    `Classical.choice` does not enter the bridge. -/
 theorem exists_collision (C : Nat) (f : Nat → Nat)
     (hb : ∀ t, f t < C) :
-    ∃ t1 t2, t1 < t2 ∧ t2 ≤ C ∧ f t1 = f t2 := by
-  apply Classical.byContradiction
-  intro hno
-  apply Density.no_distinct_large C f
-  · intro i _
-    exact hb i
-  · intro i j hi hj he
-    by_cases hij : i < j
-    · exact absurd ⟨i, j, hij, Nat.le_of_lt_succ hj, he⟩ hno
-    · by_cases hji : j < i
-      · exact absurd ⟨j, i, hji, Nat.le_of_lt_succ hi, he.symm⟩ hno
-      · omega
+    ∃ t1 t2, t1 < t2 ∧ t2 ≤ C ∧ f t1 = f t2 :=
+  pigeon_window C f (fun t _ => hb t)
 
 /-! ## Finite-orbit return at Z/2 -/
 
@@ -238,10 +332,10 @@ theorem exists_collision (C : Nat) (f : Nat → Nat)
     positive time `p ≤ 2^n · 2^n`: the coded orbit is bounded by
     the capacity, so it collides inside the window `0 … 2^n · 2^n`;
     the colliding states are equal (pointwise injectivity of the
-    code, packaged to function equality with `funext`/`Prod.ext`);
-    and losslessness (`Wave.step_lossless`) cancels the common
-    prefix, leaving the return at the difference time. The returns
-    are stated pointwise on both layers. -/
+    code, packaged to function equality with `funext` and
+    `Prod.ext`); and losslessness (`WaveDynamics.step_lossless`)
+    cancels the common prefix, leaving the return at the difference
+    time. The returns are stated pointwise on both layers. -/
 theorem wave_recurrence_bounded {n : Nat}
     (X : Field n → Fin n → Bool) (s : WState n) :
     ∃ p, 0 < p ∧ p ≤ 2 ^ n * 2 ^ n ∧
@@ -272,8 +366,8 @@ theorem wave_recurrence_bounded {n : Nat}
 
 /-- **Finite-orbit return at Z/2.** Every wave state on every finite
     carrier returns, for every coupling `X`: losslessness plus
-    finite capacity forces a bounded return — the wave cannot leak.
-    The bound-free form of `wave_recurrence_bounded`. -/
+    finite capacity forces a bounded return, so the wave cannot
+    leak. The bound-free form of `wave_recurrence_bounded`. -/
 theorem wave_recurrence {n : Nat}
     (X : Field n → Fin n → Bool) (s : WState n) :
     ∃ p, 0 < p ∧
@@ -298,21 +392,23 @@ theorem wave_recurrence_pow {n : Nat}
   rw [← capacity_eq]
   exact hle
 
-#print axioms Experimental.Recurrence.encodeAux_succ
-#print axioms Experimental.Recurrence.bit_cancel
-#print axioms Experimental.Recurrence.encodeAux_lt
-#print axioms Experimental.Recurrence.encodeAux_inj
-#print axioms Experimental.Recurrence.encodeF_lt
-#print axioms Experimental.Recurrence.encodeF_inj
-#print axioms Experimental.Recurrence.two_pow_pos
-#print axioms Experimental.Recurrence.encodeS_lt
-#print axioms Experimental.Recurrence.encodeS_inj
-#print axioms Experimental.Recurrence.iterN_add
-#print axioms Experimental.Recurrence.iterN_inj
-#print axioms Experimental.Recurrence.exists_collision
-#print axioms Experimental.Recurrence.wave_recurrence_bounded
-#print axioms Experimental.Recurrence.wave_recurrence
-#print axioms Experimental.Recurrence.capacity_eq
-#print axioms Experimental.Recurrence.wave_recurrence_pow
+#print axioms Bridge.Recurrence.encodeAux_succ
+#print axioms Bridge.Recurrence.bit_cancel
+#print axioms Bridge.Recurrence.encodeAux_lt
+#print axioms Bridge.Recurrence.encodeAux_inj
+#print axioms Bridge.Recurrence.encodeF_lt
+#print axioms Bridge.Recurrence.encodeF_inj
+#print axioms Bridge.Recurrence.two_pow_pos
+#print axioms Bridge.Recurrence.encodeS_lt
+#print axioms Bridge.Recurrence.encodeS_inj
+#print axioms Bridge.Recurrence.iterN_add
+#print axioms Bridge.Recurrence.iterN_inj
+#print axioms Bridge.Recurrence.search_le
+#print axioms Bridge.Recurrence.pigeon_window
+#print axioms Bridge.Recurrence.exists_collision
+#print axioms Bridge.Recurrence.wave_recurrence_bounded
+#print axioms Bridge.Recurrence.wave_recurrence
+#print axioms Bridge.Recurrence.capacity_eq
+#print axioms Bridge.Recurrence.wave_recurrence_pow
 
-end Experimental.Recurrence
+end Bridge.Recurrence

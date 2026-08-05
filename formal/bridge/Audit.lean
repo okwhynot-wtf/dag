@@ -26,6 +26,10 @@ import CutShift
 import OrderDimGrowth
 import TwoBounce
 import BridgeArc
+import WaveDynamics
+import DynamicsAmbient
+import PeriodSpectrum
+import Recurrence
 
 /-!
 # Audit — axiom footprint for `formal/bridge/`
@@ -36,7 +40,7 @@ Generated. Do not edit by hand:
 python3 formal/tools/gen_audit.py
 ```
 
-28 modules, 464 results. Source for `formal/AXIOMS.md`.
+32 modules, 511 results. Source for `formal/AXIOMS.md`.
 -/
 
 -- Alphabet (7)
@@ -558,3 +562,58 @@ python3 formal/tools/gen_audit.py
 #print axioms Bridge.Arc.milestone_phase_E
 #print axioms Bridge.Arc.bridge_arc
 #print axioms Bridge.Arc.milestone_i1_two_bounce
+
+-- WaveDynamics (10)
+#print axioms Bridge.WaveDynamics.xor_cancel
+#print axioms Bridge.WaveDynamics.swap_involution
+#print axioms Bridge.WaveDynamics.shear_involution_pointwise
+#print axioms Bridge.WaveDynamics.step_eq_two_bounce
+#print axioms Bridge.WaveDynamics.reverse_is_swapped_pair
+#print axioms Bridge.WaveDynamics.reverse_step_pointwise
+#print axioms Bridge.WaveDynamics.reverse_step
+#print axioms Bridge.WaveDynamics.step_lossless
+#print axioms Bridge.WaveDynamics.ring4_period_four
+#print axioms Bridge.WaveDynamics.dirichlet4_period_ten
+
+-- DynamicsAmbient (7)
+#print axioms Bridge.DynamicsAmbient.toggle_forces_xor_form
+#print axioms Bridge.DynamicsAmbient.collision_of_not_toggling
+#print axioms Bridge.DynamicsAmbient.coupling_uniqueness
+#print axioms Bridge.DynamicsAmbient.flip_involution
+#print axioms Bridge.DynamicsAmbient.survivors_one_orbit
+#print axioms Bridge.DynamicsAmbient.survivor_is_wave_coupling
+#print axioms Bridge.DynamicsAmbient.dynamics_ambient_uniqueness
+
+-- PeriodSpectrum (16)
+#print axioms Bridge.PeriodSpectrum.interval_addition
+#print axioms Bridge.PeriodSpectrum.harmonics_are_iterates
+#print axioms Bridge.PeriodSpectrum.orders_twelve
+#print axioms Bridge.PeriodSpectrum.circle_of_fifths
+#print axioms Bridge.PeriodSpectrum.iterN_succ
+#print axioms Bridge.PeriodSpectrum.shift_val
+#print axioms Bridge.PeriodSpectrum.iterN_shift_val
+#print axioms Bridge.PeriodSpectrum.iterN_shift_eq_self_iff
+#print axioms Bridge.PeriodSpectrum.shift_order_pos
+#print axioms Bridge.PeriodSpectrum.shift_order_returns
+#print axioms Bridge.PeriodSpectrum.shift_order_minimal
+#print axioms Bridge.PeriodSpectrum.order_eq_div_gcd
+#print axioms Bridge.PeriodSpectrum.overtone_generation
+#print axioms Bridge.PeriodSpectrum.reflZero_involution
+#print axioms Bridge.PeriodSpectrum.reflAt_involution
+#print axioms Bridge.PeriodSpectrum.rot_eq_two_flips
+
+-- Recurrence (14)
+#print axioms Bridge.Recurrence.encodeAux_succ
+#print axioms Bridge.Recurrence.encodeAux_lt
+#print axioms Bridge.Recurrence.encodeAux_inj
+#print axioms Bridge.Recurrence.encodeF_lt
+#print axioms Bridge.Recurrence.encodeF_inj
+#print axioms Bridge.Recurrence.encodeS_lt
+#print axioms Bridge.Recurrence.encodeS_inj
+#print axioms Bridge.Recurrence.iterN_add
+#print axioms Bridge.Recurrence.iterN_inj
+#print axioms Bridge.Recurrence.exists_collision
+#print axioms Bridge.Recurrence.wave_recurrence_bounded
+#print axioms Bridge.Recurrence.wave_recurrence
+#print axioms Bridge.Recurrence.capacity_eq
+#print axioms Bridge.Recurrence.wave_recurrence_pow

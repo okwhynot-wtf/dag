@@ -11,6 +11,10 @@
 \usepackage{setspace}
 \setstretch{1.12}
 \raggedbottom
+% Long monospace declaration names leave some lines unbreakable at
+% default tolerances; emergency stretch engages only when line
+% breaking would otherwise fail.
+\setlength{\emergencystretch}{1.5em}
 
 % ── Colour (restrained ink; anonymous journal look) ──────────
 \usepackage{xcolor}
@@ -132,7 +136,8 @@
 \maketitle
 
 \begin{abstract}
-We classify self-actions $a:\alpha\to\alpha$ by local orbit shape. Rest,
+We present two eliminative classifications over one kernel. The first
+classifies self-actions $a:\alpha\to\alpha$ by local orbit shape. Rest,
 asymmetric step, and erasure each meet a formal obstruction in the ambient
 of pointed symmetric steps; the surviving shape is the fixed-point-free
 two-cycle. That survivor is characterised by a universal property:
@@ -145,29 +150,46 @@ microsteps by two-bounce factorisation, registration, capacity, and a
 single $\Ztwo$-underdetermination with three faces. Canonicity of the
 two-bounce pair fails; channel \emph{swap} nevertheless covers step
 reversal, and content gauges are separated from packaging gauges so that
-factorisation non-uniqueness does not inflate the dictionary $\Ztwo$. On
+factorisation non-uniqueness does not inflate the dictionary $\Ztwo$. The
+second classification repeats the eliminative method on motion: among
+second-order nearest-neighbour updates over the same kernel, losslessness
+forces the xor form, and parity, pole invariance, and a drawing condition
+leave exactly one coupling up to pointwise flip, whose dynamics is the
+discrete wave step. A carrier-size dichotomy places the residual flip:
+on carriers divisible by four it is packaging, realised by an explicit
+conjugating mask, and on every other carrier no equivariant
+identification of the two dynamics exists, so there the flip carries
+content. The classified dynamics factors into two involutions
+definitionally, reverses by swapping them, carries a period spectrum
+governed by a gcd law, and returns within capacity. At the edge of the
+ladder the complete gauge histories form a boundary: every rung embeds
+there with effective separation, the seal persists at the boundary's own
+carrier, and the exclusion of erasure fails, so losslessness is a
+finite-stage law whose failure at the colimit is itself a theorem. On
 this base we assemble a conditional monist package,
 \emph{self-articulation}: a registered denial of one drawn distinction
 draws the registering carrier (retorsion); a drawn distinction forces the
 live involutive reading; witnesses arise as ladder inhabitants; every
 presentation of the canon to a second term retracts the canon's own
-articulation; and completeness exists only as duration. The sole worked
-dictionary exhibit is a certificate for the meta-problem of
+articulation; and completeness exists only as duration. The dictionary
+carries two worked exhibits: a certificate for the meta-problem of
 consciousness, deriving the report structure of the explanatory gap while
-refusing all qualia claims. The development is machine-checked in Lean~4
-(no Mathlib, no $\mathtt{sorry}$).
+refusing all qualia claims, and a certificate identifying the classified
+dynamics with reversible lattice computation. The development is
+machine-checked in Lean~4 (no Mathlib, no $\mathtt{sorry}$).
 \end{abstract}
 
 \noindent{\sffamily\bfseries\color{accent} Keywords.}
 classification; involution; universal property; Lawvere diagonal;
-self-articulation; retorsion; meta-problem; underdetermination; gauge;
-machine-checked mathematics.
+wave dynamics; reversible computation; self-articulation; retorsion;
+meta-problem; underdetermination; gauge; machine-checked mathematics.
 
 \section{Introduction}
 \label{sec:intro}
 
-The central contribution of this paper is an \emph{eliminative
-classification of self-actions}. Given $a:\alpha\to\alpha$, the local
+The central contribution of this paper is a twofold eliminative
+classification: the kernel is forced, and its motion is forced. The
+static half classifies self-actions. Given $a:\alpha\to\alpha$, the local
 possibilities at a state are rest, two-cycle, asymmetric step, and---as a
 pairwise defect---erasure. In a precisely specified ambient, every shape
 except one encounters an obstruction. The survivor is the live two-cycle.
@@ -175,15 +197,29 @@ Negation on $\Bool$~\cite{bool} is not assumed at the outset; it is the
 unique object (up to label swap) satisfying the universal property, in
 the standard categorical sense~\cite{maclane}, of that survivor.
 
-A second contribution assembles, on that base, a conditional monist
+The dynamic half repeats the same eliminative method one level up, on
+the equation of motion. Among second-order nearest-neighbour updates
+over the kernel, the demand that no two histories merge forces the
+update into an xor form, and three ambient conditions that mirror the
+static ones (parity, pole invariance, and a drawing condition) leave
+exactly one coupling up to pointwise flip. The survivor's dynamics is
+the discrete wave step: it factors into two involutions definitionally,
+it reverses by swapping them, its period spectrum obeys a gcd law and is
+reshaped by boundary conditions alone, and every state returns within
+the capacity of its carrier. Motion is thereby classified with the same
+discipline as the kernel, and no equation of motion is chosen by hand.
+
+A further contribution assembles, on that base, a conditional monist
 package. Given one drawn distinction, articulation as negation is
 forced, witnesses arise only as inhabitants of the resulting ladder, no
 presentation of the canon to a second term carries content beyond the
 canon's own articulation, and completeness exists only as the colimit of
 ascent. The package is a single machine-checked conjunction
 (Theorem~\ref{thm:selfart}); its identification with worldhood is
-confined to a marked interpretation, and the sole worked dictionary
-exhibit is a certificate for the meta-problem of consciousness.
+confined to a marked interpretation, and the dictionary works two
+certificates, one for the meta-problem of consciousness and one
+identifying the classified dynamics with reversible lattice
+computation.
 
 The formal development then follows a fixed dependency:
 
@@ -194,28 +230,35 @@ The formal development then follows a fixed dependency:
     inner sep=2.6pt, align=center},
   arr/.style={-{Stealth[length=1.8mm]}, accent, thick}
 ]
-  \node[N] (c) {classification};
+  \node[N] (c) {classification\\(self-actions)};
   \node[N, right=2.5mm of c] (f) {fundamentality};
   \node[N, right=2.5mm of f] (s) {seal};
   \node[N, right=2.5mm of s] (l) {ladder};
-  \node[N, below=7mm of l] (r) {registration};
-  \node[N, right=2.5mm of r] (a) {archive};
+  \node[N, below=7mm of c.south west, anchor=north west] (r) {registration};
+  \node[N, right=2.5mm of r] (c2) {classification\\(couplings)};
+  \node[N, right=2.5mm of c2] (wv) {wave\\dynamics};
+  \node[N, right=2.5mm of wv] (a) {archive};
   \node[N, right=2.5mm of a] (k) {capacity};
   \node[N, right=2.5mm of k] (w) {arrow};
-  \node[N, below=7mm of w] (sa) {self-articulation};
+  \node[N, below=7mm of w.south east, anchor=north east] (sa) {self-articulation};
+  \node[N, left=2.5mm of sa] (bd) {boundary};
   \node[N, right=2.5mm of sa] (i) {interpretations};
   \draw[arr] (c) -- (f);
   \draw[arr] (f) -- (s);
   \draw[arr] (s) -- (l);
   \draw[arr] (l) -- (r);
-  \draw[arr] (r) -- (a);
+  \draw[arr] (r) -- (c2);
+  \draw[arr] (c2) -- (wv);
+  \draw[arr] (wv) -- (a);
   \draw[arr] (a) -- (k);
   \draw[arr] (k) -- (w);
-  \draw[arr] (w) -- (sa);
+  \draw[arr] (w) -- (bd);
+  \draw[arr] (bd) -- (sa);
   \draw[arr] (sa) -- (i);
 \end{tikzpicture}
 \end{center}
-Each arrow is a theorem or a defined interface; philosophical commentary
+Each arrow is a theorem or a defined interface; the second
+classification node feeds the dynamics row, and philosophical commentary
 is postponed until the supporting machinery is in place.
 
 \paragraph{Method and layers.}
@@ -237,16 +280,23 @@ self-contained at the level of statements.
 
 \paragraph{Roadmap.}
 Section~\ref{sec:arch} gives the architecture.
-Sections~\ref{sec:class}--\ref{sec:fund} carry out the classification and
-the universal characterisation of the survivor.
+Sections~\ref{sec:class}--\ref{sec:fund} carry out the static
+classification and the universal characterisation of the survivor.
 Sections~\ref{sec:seal}--\ref{sec:ladder} obtain seal and ladder.
-Sections~\ref{sec:reg}--\ref{sec:arrow} transfer losslessness, record
-registration and capacity, and identify the arrow with address.
-Section~\ref{sec:z2} states the single $\Ztwo$ and the gauge demarcation.
+Section~\ref{sec:reg} transfers losslessness by two-bounce
+factorisation.
+Section~\ref{sec:coupling} carries out the dynamic classification, and
+Section~\ref{sec:wave} develops the classified wave dynamics.
+Sections~\ref{sec:archive}--\ref{sec:arrow} record registration
+consequences, capacity, and the arrow as address.
+Section~\ref{sec:z2} states the single $\Ztwo$, the gauge demarcation,
+and the placement of the coupling flip.
+Section~\ref{sec:boundary} presents the boundary of complete gauge
+histories and the edge failure of losslessness.
 Section~\ref{sec:selfart} assembles the self-articulation package and
 sorts its admissible readings.
-Section~\ref{sec:dict} confines the dictionary to one worked
-certificate.
+Section~\ref{sec:dict} confines the dictionary to two worked
+certificates.
 Section~\ref{sec:status} collects open, refused, and philosophical items.
 Section~\ref{sec:related} situates the development in prior work.
 Section~\ref{sec:concl} concludes.
@@ -290,19 +340,29 @@ figure orients the reader; it proves nothing.}
 Within the foundation, the dependency is
 classification~$\to$~fundamentality~$\to$~seal~$\to$~ladder.
 The dynamics layer imports losslessness along an interface
-(registration via two-bounce), realises archive and capacity on the
-ladder carrier, and exports address as the arrow reading. The dictionary
+(registration via two-bounce), classifies the couplings and develops the
+resulting wave dynamics, realises archive and capacity on the ladder
+carrier, and exports address as the arrow reading. The dictionary
 layer consumes those exports; it does not feed them.
 
 The companion corpus realises the three layers as four build packages:
 a spine package (foundation); a ledger package and a bridge package
 jointly constituting the dynamics layer, the bridge holding the
-interface theorems that import both spine and ledger; and a dictionary
+interface theorems that import both spine and ledger together with the
+dynamics arc of Sections~\ref{sec:coupling}--\ref{sec:wave}
+(modules \texttt{DynamicsAmbient}, \texttt{WaveDynamics},
+\texttt{PeriodSpectrum}, \texttt{Recurrence}); and a dictionary
 package with exhibits (interpretation). Imports remain downward
-throughout. A few dynamics-layer declarations bear physically
-suggestive names as mnemonics for combinatorial statements; the names
-import no identification, which remains certificate-only
-(Section~\ref{sec:dict}).
+throughout. A fifth package, \texttt{formal/experimental}, is
+quarantined by construction: no spine, ledger, bridge, or dictionary
+module imports it, and the annex at the end of the paper inventories
+what it holds. Citations at that package occur in exactly two places,
+the boundary results of Section~\ref{sec:boundary} and the
+coupling-flip placement of Section~\ref{sec:z2}, and they are flagged
+as such where they appear. A few dynamics-layer
+declarations bear physically suggestive names as mnemonics for
+combinatorial statements; the names import no identification, which
+remains certificate-only (Section~\ref{sec:dict}).
 
 
 \section{Classification of self-actions}
@@ -663,6 +723,276 @@ finite carriers; Theorem~\ref{thm:swap} promotes the exchange.
 \end{interpretation}
 
 
+\section{Classification of couplings}
+\label{sec:coupling}
+
+\dep{Proposition~\ref{prop:no-erase} (in-arena losslessness);
+Definition~\ref{def:twobounce}; Theorem~\ref{thm:canon} (pole gauge).}
+
+The static classification earned the kernel by elimination. This
+section earns the equation of motion the same way and is the twin of
+Theorem~\ref{thm:ambient-unique} one level up. Fields take values in
+the kernel carrier: a configuration is $u:\mathrm{Fin}\,n\to\Bool$, and
+a state is the pair of the previous and the current configuration. The
+candidate space is the general second-order nearest-neighbour update
+\[
+  u_{t+1}(i) \;=\; F\bigl(u_{t-1}(i),\,u_t(i{-}1),\,u_t(i),\,u_t(i{+}1)\bigr),
+  \qquad F:\Bool^4\to\Bool,
+\]
+with $F$ arbitrary. Two stages eliminate every candidate except one
+coupling up to pointwise flip.
+
+\begin{theorem}[Losslessness selects the xor form]
+\label{thm:toggle}
+\textup{(i)}~If $F$ toggles in its previous-layer slot at every
+neighbourhood, that is $F(\mathsf{true},l,m,r)\neq
+F(\mathsf{false},l,m,r)$ for all $l,m,r$, then
+\[
+  F(p,l,m,r) \;=\; p \oplus G(l,m,r), \qquad
+  G := F(\mathsf{false},\cdot,\cdot,\cdot).
+\]
+\textup{(ii)}~If $F$ fails to toggle at some neighbourhood, then two
+histories on the three-ring agree after one step at every site while
+differing at a site: the step erases, exhibited pointwise.
+\end{theorem}
+
+\begin{remark}[Status]
+Proved. Clause~\textup{(i)} is \texttt{toggle\_forces\_xor\_form}
+and clause~\textup{(ii)} is \texttt{collision\_of\_not\_toggling}
+(bridge module \texttt{DynamicsAmbient}, (b); the first axiom-free,
+the second \texttt{propext} only).
+Losslessness therefore characterises the second-order xor structure:
+the form is derived, and no separate choice of update shape enters.
+Every xor-form step is lossless with an explicit two-bounce
+factorisation, by the general theorems of
+Section~\ref{sec:wave}.
+\end{remark}
+
+The residual freedom after Theorem~\ref{thm:toggle} is the coupling
+$G:\Bool^3\to\Bool$. One restriction is declared rather than proved.
+
+\begin{interpretation}[Inter-site restriction as signature]
+\label{int:intersite}
+The coupling is declared inter-site: it relates the two neighbours, and
+the site's own influence is carried, exactly once, by the toggling
+slot, leaving $K:\Bool\to\Bool\to\Bool$ with
+$G(l,m,r)=K(l,r)$. This is a signature declaration in the exact style
+of Interpretation~\ref{int:ambient}: it fixes the arity of the
+interaction in daylight, just as Definition~\ref{def:arena} fixes one
+type and one endomap. It is a declaration; no theorem is claimed for
+it, and the status section records it beside the arena signature.
+\end{interpretation}
+
+\begin{theorem}[Coupling uniqueness]
+\label{thm:coupling}
+Let $K:\Bool\to\Bool\to\Bool$ satisfy
+\begin{enumerate}[label=(\roman*)]
+\item \textbf{parity}: $K(l,r)=K(r,l)$;
+\item \textbf{pole invariance}: $K(\neg l,\neg r)=K(l,r)$;
+\item \textbf{drawing condition}: $K$ takes two values.
+\end{enumerate}
+Then $K=\oplus$ pointwise or $K=\neg\comp\oplus$ pointwise.
+\end{theorem}
+
+\begin{remark}[Status]
+Proved; \texttt{Bridge.DynamicsAmbient.coupling\_uniqueness}~(b),
+axiom-free. The three ambient conditions mirror the static
+classification. Parity bans a smuggled spatial arrow, as symmetric
+step bans the smuggled temporal one. Pole invariance is respect for
+the label gauge of Theorem~\ref{thm:canon}: a coupling that read the
+absolute pole labels would export the content gauge of
+Table~\ref{tab:gauges} into the dynamics. The drawing condition is
+non-degeneracy: a coupling that draws no distinction couples nothing,
+as a degenerate orbit carries no act. The two survivors form a single
+orbit of the flip involution $K\mapsto\neg\comp K$
+(\texttt{flip\_involution}, \texttt{survivors\_one\_orbit}, both (b)
+and axiom-free); the gauge class of that flip is settled by a
+carrier-size dichotomy in Section~\ref{sec:z2}.
+\end{remark}
+
+\begin{theorem}[The survivor is the wave coupling]
+\label{thm:survivor}
+Instantiated on the ring, the surviving coupling is the wave coupling
+of Section~\ref{sec:wave} definitionally:
+$c(i-1)\oplus c(i+1) = \mathrm{ringX}\,c\,i$ for every configuration
+$c$ and site $i$.
+\end{theorem}
+
+\begin{remark}[Status]
+Proved; \texttt{Bridge.DynamicsAmbient.survivor\_is\_wave\_coupling}~(b).
+The proof term is \texttt{rfl}; the \texttt{propext} entry in its
+footprint arrives through the $\mathrm{Fin}$ index arithmetic of the
+neighbour offsets, which the statement itself mentions. The package
+conjunction
+\texttt{Bridge.DynamicsAmbient.dynamics\_ambient\_uniqueness}~(b),
+\texttt{propext} only, assembles Theorems~\ref{thm:toggle},
+\ref{thm:coupling}, and~\ref{thm:survivor}. The classified dynamics
+therefore inherits, definitionally, the two-bounce form and the
+swap-reversal of Section~\ref{sec:wave}.
+\end{remark}
+
+\begin{interpretation}
+\label{int:twin}
+The section is the dynamic twin of Theorem~\ref{thm:ambient-unique}.
+There the one-variable equational ambient left $a\comp a=\mathrm{id}$
+as the unique nontrivial equation banning smuggled arrow and smuggled
+loss; here losslessness plus parity, pole invariance, and the drawing
+condition leave one coupling up to flip. In both cases the surviving
+object is forced by obstruction, the residual signature declaration is
+made in daylight, and the residual two-element freedom is handed to
+the gauge inventory of Section~\ref{sec:z2}.
+\end{interpretation}
+
+
+\section{Wave dynamics}
+\label{sec:wave}
+
+\dep{Theorem~\ref{thm:toggle}; Definition~\ref{def:twobounce};
+Theorem~\ref{thm:swap}; ladder capacity for
+Theorem~\ref{thm:recur}.}
+
+The classified update is now developed as a dynamics. Over $\Bool$
+with $\oplus$ as addition, the discrete d'Alembert form
+$u_{t+1}=u_{t-1}+\Delta u_t$ becomes the second-order field equation
+$\mathrm{step}\,X\,(s_1,s_2) = (s_2,\; i\mapsto s_1(i)\oplus X\,s_2\,i)$
+on state pairs, with the spatial coupling $X$ kept general: every
+theorem below holds for every coupling, and the classified survivor of
+Section~\ref{sec:coupling} is one instance. Write
+$\mathrm{swap}\,(s_1,s_2)=(s_2,s_1)$ for the channel swap and
+$\mathrm{shear}\,X\,(s_1,s_2)=(i\mapsto s_1(i)\oplus X\,s_2\,i,\;s_2)$
+for the coupling-controlled flip of the previous layer.
+
+\begin{theorem}[The step is two bounces, definitionally]
+\label{thm:wavebounce}
+$\mathrm{step}\,X = \mathrm{swap}\comp\mathrm{shear}\,X$ holds by
+definitional equality, and both factors are involutions. The
+two-bounce factorisation of Definition~\ref{def:twobounce} holds here
+by explicit construction, with the pair exhibited in closed form.
+\end{theorem}
+
+\begin{remark}[Status]
+Proved; \texttt{Bridge.WaveDynamics.step\_eq\_two\_bounce}~(b),
+axiom-free, with \texttt{swap\_involution} and
+\texttt{shear\_involution\_pointwise} (both (b), axiom-free). Where
+Theorem~\ref{thm:exists} extracts a factor pair by bounded search,
+the wave step carries its pair on its face.
+\end{remark}
+
+\begin{theorem}[Reversal is the bounce swap]
+\label{thm:wavereverse}
+The reverse evolution $\mathrm{reverse}\,X :=
+\mathrm{shear}\,X\comp\mathrm{swap}$ is presented by the swapped pair,
+equals $\mathrm{swap}\comp\mathrm{step}\,X\comp\mathrm{swap}$
+definitionally, and inverts the step on both layers in both
+composition orders.
+\end{theorem}
+
+\begin{remark}[Status]
+Proved; \texttt{reverse\_is\_swapped\_pair} and
+\texttt{reverse\_step\_pointwise} (bridge module
+\texttt{WaveDynamics}, both (b) and axiom-free) give the
+pointwise cancellation; the packaged equality
+\texttt{reverse\_step}~(b) lifts it to function level and carries
+\texttt{Quot.sound} through an explicit \texttt{funext} step, made in
+daylight. This instantiates Theorem~\ref{thm:swap} at field level:
+channel swap covers time reversal for the classified dynamics.
+\end{remark}
+
+\begin{theorem}[Losslessness for every coupling]
+\label{thm:wavelossless}
+For every coupling $X$ and every carrier size, $\mathrm{step}\,X$ is
+injective: no two histories merge.
+\end{theorem}
+
+\begin{remark}[Status]
+Proved; \texttt{step\_lossless} (bridge module
+\texttt{WaveDynamics}, (b)), inheriting the \texttt{Quot.sound}
+(function extensionality) footprint of \texttt{reverse\_step}. The footprint split of this section is part of
+the result and is preserved deliberately: the pointwise theorems and
+Theorem~\ref{thm:wavebounce} are axiom-free, while the packaged
+function-level equalities use \texttt{funext} by name, and the audit
+flags exactly those uses (Section~\ref{sec:concl}).
+\end{remark}
+
+\begin{theorem}[Period spectrum: the gcd law]
+\label{thm:gcd}
+On $\mathrm{Fin}\,n$ the order of the $k$-th harmonic shift
+$i\mapsto i+k$ is $n/\gcd(n,k)$: that count of beats returns every
+point, and no smaller positive count fixes any point. Moreover every
+injective endomap of a finite carrier is a composite of two
+involutions, and every rotation is the composite of two explicit
+arithmetic mirrors.
+\end{theorem}
+
+\begin{remark}[Status]
+Proved; \texttt{order\_eq\_div\_gcd} (bridge module
+\texttt{PeriodSpectrum}, (b); \texttt{propext} and
+\texttt{Quot.sound} through library lemmas and \texttt{omega}, with
+no function-extensionality step);
+\texttt{overtone\_generation}~(b), axiom-free, via
+Theorem~\ref{thm:exists}; \texttt{rot\_eq\_two\_flips} and the
+packaged computable witness \texttt{rotFactor} (both (b),
+\texttt{propext} and \texttt{Quot.sound}). On a finite carrier the
+honest surrogate for frequency is order, and order ratios stand in
+for frequency ratios; real frequencies are refused
+(Section~\ref{sec:status}).
+\end{remark}
+
+The twelve-carrier is the worked instance of the law: interval
+composition adds shifts
+(\texttt{interval\_addition}~(b), axiom-free), every harmonic is an
+iterate of the fundamental step
+(\texttt{harmonics\_are\_iterates}~(b), \texttt{propext}), the whole
+tone has order six, the major third order three, and the tritone
+order two (\texttt{orders\_twelve}~(b), \texttt{propext}), and the
+circle of fifths closes after twelve steps and at no positive step
+before (\texttt{circle\_of\_fifths}~(b), \texttt{propext} and
+\texttt{Quot.sound}), each a decidable instance of
+Theorem~\ref{thm:gcd}. The musical names are decoration and carry no
+acoustic claim.
+
+\begin{theorem}[Boundary conditions select the spectrum]
+\label{thm:spectrumbc}
+With the same rule and the same single-pulse initial state on four
+sites, the periodic ring returns with state period $4$ and the
+fixed-end line returns with state period $10$, each period exact.
+\end{theorem}
+
+\begin{remark}[Status]
+Proved by kernel decision;
+\texttt{Bridge.WaveDynamics.ring4\_period\_four} and
+\texttt{dirichlet4\_period\_ten} (both (b), \texttt{propext} and
+\texttt{Quot.sound} through the \texttt{Decidable} instances).
+Boundary alone reshapes the spectrum. The closed-form period law in
+general $n$ is refused pending the $\mathbb{F}_2[x]/(x^n-1)$
+transfer-matrix algebra (Section~\ref{sec:status}); the annex retains
+the kernel-decided period table at further small sizes.
+\end{remark}
+
+\begin{theorem}[Recurrence within capacity]
+\label{thm:recur}
+For every coupling $X$ and every state $s$ on $n$ sites there is a
+positive $p\le 2^n\cdot 2^n = 2^{2n}$ with
+$\mathrm{step}\,X^{\,p}(s)=s$ pointwise on both layers: losslessness
+plus finite capacity forces exact return within the state-space
+capacity of the carrier.
+\end{theorem}
+
+\begin{remark}[Status]
+Proved; \texttt{Bridge.Recurrence.wave\_recurrence\_bounded}~(b),
+\texttt{propext} and \texttt{Quot.sound}, with
+\texttt{wave\_recurrence} and \texttt{wave\_recurrence\_pow}
+inheriting the footprint. The pigeonhole is constructive: a bounded
+decidable search replaces classical witness extraction, and
+\texttt{Classical.choice} is absent from the footprint and from the
+package. One \texttt{funext} step packages the colliding states
+before cancellation; the step is essential for the general statement,
+since the coupling is an arbitrary functional on fields, and the audit
+flags it by name. Capacity language only: no ledger claim is made
+here.
+\end{remark}
+
+
 \section{Archive and capacity}
 \label{sec:archive}
 
@@ -703,6 +1033,19 @@ Proved as a classified package in the dynamics layer. Record gauge is
 packaging: exported only inside ``up to record gauge'' clauses.
 \end{remark}
 
+\begin{remark}[Return and ascent]
+\label{rem:returnascent}
+Theorem~\ref{thm:recur} sharpens the arrow reading. Within a level the
+classified dynamics is recurrent: every state returns within capacity,
+so no orbit inside a fixed carrier distinguishes a direction. Across
+levels the ladder ascends and never retracts
+(Theorem~\ref{thm:ladder}). Within a level time is return, across
+levels time is ascent, and duration carries the direction: the arrow
+of Theorem~\ref{thm:arrow} is the address on ascent, and the
+recurrence bound says exactly why no substitute arrow is available
+inside a level.
+\end{remark}
+
 
 \Needspace{18em}
 \section{One underdetermination and gauges}
@@ -710,7 +1053,7 @@ packaging: exported only inside ``up to record gauge'' clauses.
 
 \dep{pole swap from Theorem~\ref{thm:canon}; address from
 Theorem~\ref{thm:arrow}; channel from Definition~\ref{def:twobounce} and
-Theorem~\ref{thm:swap}.}
+Theorem~\ref{thm:swap}; coupling flip from Theorem~\ref{thm:coupling}.}
 
 \begin{theorem}[One $\Ztwo$, three faces]
 \label{thm:z2}
@@ -779,6 +1122,7 @@ Face representative (equivariant certs)
 Record gauge per tick & Theorem~\ref{thm:arrow} & packaging \\
 Factorisation gauge per step & Theorems~\ref{thm:exists}--\ref{thm:canonfail}
   & packaging \\
+Coupling flip & Theorem~\ref{thm:flipgauge} & packaging iff $4\mid n$; else content \\
 \bottomrule
 \end{tabular}}
 \end{center}
@@ -812,6 +1156,182 @@ representational significance~\cite{bradingcastellani,dewar};
 underdetermination by label swap is the formal shadow of
 permutation-style underdetermination of reference~\cite{quine,putnam}.
 \end{remark}
+
+\paragraph{The coupling flip.}
+The dynamic classification hands the inventory one further
+involution. The two surviving couplings of Theorem~\ref{thm:coupling}
+form a single orbit of the flip $K\mapsto\neg\comp K$ on coupling
+space (\texttt{survivors\_one\_orbit}~(b), axiom-free). Pole
+conjugation fixes each survivor, since pole invariance is a
+hypothesis of the classification, so the flip is an involution
+distinct from the pole face, and its class under
+Definition~\ref{def:gauge} requires a proof before the inventory can
+claim completeness. The following theorem supplies the proof, and the
+answer depends on the carrier size.
+
+\begin{theorem}[Coupling-flip dichotomy]
+\label{thm:flipgauge}
+On the ring with $n$ sites, write $\mathrm{step}$ for the dynamics of
+the surviving coupling $\oplus$ and $\overline{\mathrm{step}}$ for
+the dynamics of its flip $\neg\comp\oplus$.
+\begin{enumerate}[label=(\roman*)]
+\item If $4\mid n$, the two dynamics are conjugate by an explicit
+involution of the state space: masking both layers by the
+half-period pole mask $i\mapsto (2\le i \bmod 4)$ intertwines
+$\mathrm{step}$ with $\overline{\mathrm{step}}$ exactly.
+\item If $4\nmid n$, no map of state spaces intertwines the two
+dynamics, injective or otherwise; in particular no state-space
+bijection conjugates them. The obstruction is observable:
+$\mathrm{step}$ fixes the zero state definitionally, while
+$\overline{\mathrm{step}}$ fixes no state at all, because the
+current layer of a fixed state would be an alternating mask, and
+alternating masks exist exactly when $4\mid n$.
+\item At every $n$ and every time $T$, the flipped evolution equals
+the plain evolution dressed by a pair of constant pole masks drawn
+from a period-four tick schedule (identity; flip the current layer;
+flip both layers; flip the previous layer).
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}[Status]
+Proved. The declarations reside in the quarantined experimental
+package and are flagged as such, in the manner of
+Section~\ref{sec:boundary}:
+\texttt{Experimental.CouplingGauge.coupling\_flip\_dichotomy}~(e)
+packages clauses (i) and (ii) from
+\texttt{flip\_conjugacy\_of\_four\_dvd} and
+\texttt{flip\_no\_intertwiner}; clause (iii) is
+\texttt{flip\_iter\_dress\_pointwise}; the mask existence law is
+\texttt{alternating\_mask\_iff\_four\_dvd} (all (e)). Footprints stay
+within \texttt{propext} and \texttt{Quot.sound}: the dichotomy and
+its conjugacy direction carry one direct \texttt{funext} step,
+packaging the pointwise conjugacy in
+\texttt{flip\_conjugacy\_of\_four\_dvd}, flagged by name in the
+audit, and the remaining entries arrive through the $\mathrm{Fin}$
+index arithmetic of the coupling, \texttt{omega}, and kernel-decided
+\texttt{Decidable} instances. Concrete exhibits
+instantiate the dichotomy: single-pulse state periods under the
+flipped coupling at sizes $2$, $3$, $5$ are $4$, $12$, $20$ against
+the plain $2$, $6$, $10$, and size $4$ keeps its period $4$, as the
+conjugacy requires (\texttt{flip\_ring2\_pulse\_period\_four} through
+\texttt{flip\_ring5\_pulse\_period\_twenty}, all (e); the first three
+are kernel-decided, and the five-site exhibit is assembled through
+the dressing, with kernel decisions confined to the ten plain
+states of its period).
+\end{remark}
+
+The flip is thereby placed, and Table~\ref{tab:gauges} records the
+row with its dichotomy. On carriers divisible by four the flip is
+packaging in the sense of Definition~\ref{def:gauge}: the conjugating
+mask lets any consumer of the dynamics quotient the choice of
+representative before consumption. On every other carrier the two
+dynamics are observably distinct and admit no equivariant
+identification, so there the flip carries content, and the surviving
+pair is exported only inside ``up to coupling flip'' clauses,
+mirroring the label-swap treatment. Clause (iii) explains the near
+miss with the record gauge of Theorem~\ref{thm:arrow}: the flip is a
+per-tick repackaging at every size, and outside the divisible sizes
+the tick schedule can be traded for no single time-independent map.
+The single dictionary $\Ztwo$ of Theorem~\ref{thm:z2} is unaffected
+at every size, because the classification is exported only as the
+orbit $\{\oplus,\neg\comp\oplus\}$, every theorem of
+Section~\ref{sec:wave} holds for every coupling, and no downstream
+consumer selects a representative, so the flip never reaches the
+dictionary layer and the count of dictionary underdeterminations
+remains one. With the row decided, the completeness claim for the
+inventory carries no proviso.
+
+
+\section{The boundary}
+\label{sec:boundary}
+
+\dep{Theorem~\ref{thm:seal} (seal); Definition~\ref{def:ladder} and
+Theorem~\ref{thm:ladder} (ladder); Theorem~\ref{thm:canon} (pole
+swap).}
+
+The ladder ascends without end; this section examines its edge. A
+\emph{complete gauge history} is one pole choice at every level
+forever, an element of $\mathbb{N}\to\Bool$; the space of complete
+gauge histories is the \emph{boundary}. No cardinality claim beyond
+the seal is made or needed. The declarations of this section reside in
+the quarantined experimental package (package letter e); every one of
+them is axiom-free, and the audit records them per declaration.
+
+\begin{theorem}[Rungs embed with effective separation]
+\label{thm:rungs}
+Every ladder level embeds injectively in the boundary, and the
+injectivity is effective: distinct inhabitants of level $k$ differ at
+some coordinate $m\le k$ of their encodings, so depth-$(k{+}1)$
+cylinders separate level $k$. The fundamental embeds as the two
+constant histories, and the ladder's climb-then-drop step is carried
+at the boundary by prepend and tail as a section/retraction pair.
+\end{theorem}
+
+\begin{remark}[Status]
+Proved; \texttt{rungs\_embed}, \texttt{encode\_separates},
+\texttt{fundamental\_embeds}, and \texttt{tail\_encode\_some}
+(experimental module \texttt{CantorBoundary}, all (e) and
+axiom-free). The separation
+bound is explicit, so the embedding is a finite-approximation
+statement and no choice principle enters.
+\end{remark}
+
+\begin{theorem}[The boundary seals at its own carrier]
+\label{thm:boundaryseal}
+The pole swap lifts to the boundary as the coordinatewise flip, the
+lift is a pointwise involution, and it is live: it moves every
+history. Consequently no map $f:A\to A\to(\mathbb{N}\to\Bool)$ is
+point-surjective, for any carrier $A$: the boundary is itself a live
+arena, sealed at its own carrier by its own act.
+\end{theorem}
+
+\begin{remark}[Status]
+Proved; \texttt{flip\_live} and \texttt{boundary\_seals\_itself}
+(experimental module \texttt{CantorBoundary}, both (e) and
+axiom-free). This
+strengthens the observation that no enumeration reaches the boundary
+(\texttt{boundary\_unenumerable}, the corpus seal specialised to
+carrier $\mathbb{N}$): here the sealing act lives on the boundary
+itself. The one $\Ztwo$ also acts at infinite depth: masking by a
+history is a pointwise involution, and the mask at the all-true
+history is the lifted pole swap.
+\end{remark}
+
+\begin{theorem}[The tail step erases]
+\label{thm:tailerase}
+The tail step on histories, dropping the first pole choice, is
+erasing: the constantly-false history and the history that spikes only
+at coordinate $0$ differ, and their tails are definitionally equal.
+The tail nevertheless has a section per pole choice: prepending either
+pole and then taking the tail restores every coordinate.
+\end{theorem}
+
+\begin{remark}[Status]
+Proved; \texttt{tail\_erasing} and \texttt{tail\_cons}
+(experimental module \texttt{CantorBoundary}, both (e) and
+axiom-free; the erasure witness is definitional). The reframed law reads: \emph{losslessness is a
+finite-stage theorem, and its failure at the colimit is itself a
+theorem.} In the arena, involutivity excludes erasure
+(Proposition~\ref{prop:no-erase}); at every finite carrier the
+classified dynamics is injective for every coupling
+(Theorem~\ref{thm:wavelossless}); at the boundary the tail step
+erases. The loss is recorded as the system's one structural loss, a
+poverty of the edge stated with the same prominence as the finite-stage
+exclusions, and Section~\ref{sec:status} carries it in the residue
+accounting.
+\end{remark}
+
+\begin{interpretation}
+\label{int:boundary}
+The completion has the form of the system. The boundary carries a
+live symmetric act (the lifted pole swap), and it is self-opaque in
+the same sense as every level (Theorem~\ref{thm:boundaryseal}), so
+the colimit does not step outside the shape it completes. At the same
+time the excluded shape returns at infinity: erasure, priced out of
+the arena at every finite stage, reappears as the tail step of the
+completed object. The edge of the system is systematic in form and
+lossy in dynamics, and both halves are theorems.
+\end{interpretation}
 
 
 \section{Self-articulation}
@@ -894,7 +1414,9 @@ as negation from every seed, exhaustively and injectively.
 self-opacity, and outrun. \textup{(IV)}~No exterior standpoint, as in
 Theorem~\ref{thm:noext}. \textup{(V)}~Names lag predicates at every
 level, the lag recedes under completion, and the $\omega$-colimit
-embeds in no level.
+embeds in no level (every level, meanwhile, embeds effectively in the
+boundary of Section~\ref{sec:boundary}, which is sealed at its own
+carrier and erases at its tail).
 \end{theorem}
 
 \begin{remark}[Status]
@@ -903,7 +1425,10 @@ module \texttt{SelfArticulation}; footprint \texttt{propext} only). The antecede
 drawn distinction \emph{together with} the ambient equations, whose
 adequacy within the one-variable fragment is
 Theorem~\ref{thm:ambient-unique}; the package does not derive the
-ambient from $\mathrm{Draws}$ alone.
+ambient from $\mathrm{Draws}$ alone. The parenthetical in
+clause~\textup{(V)} is a cross-reference: the non-injection is part of
+the packaged declaration, while the boundary facts it points to are
+Theorems~\ref{thm:rungs}--\ref{thm:tailerase} at their own package.
 \end{remark}
 
 \begin{interpretation}
@@ -918,7 +1443,12 @@ well-posed from level~1 upward because the vocabulary that poses them
 is generated by the ascent. ``World'' names the consequent of this
 conditional; the identification is interpretation, and the sentence
 that the only complete description of the system is the system is a
-gloss on the non-injection of clause~\textup{(V)}. Readings (b)
+gloss on the non-injection of clause~\textup{(V)}. The consequent's
+dynamics is itself classified: given the antecedent, the kernel is
+forced (Theorem~\ref{thm:canon}) and its equation of motion is forced
+up to the coupling flip (Section~\ref{sec:coupling}), whose own gauge
+class is decided by Theorem~\ref{thm:flipgauge}, so the conditional
+package carries both its kinematics and its dynamics. Readings (b)
 and~(c) are refused: (b)~asserts necessity while the corpus carries no
 modal apparatus, and (c)~discharges the existential residue while
 Section~\ref{sec:status} declines that discharge. Retorsion narrows
@@ -928,15 +1458,18 @@ distinction to world, and only that step.
 \end{interpretation}
 
 
-\section{Dictionary: the meta-problem certificate}
+\section{Dictionary: two certificates}
 \label{sec:dict}
 
-\dep{Definition~\ref{def:admit}; Theorem~\ref{thm:selfart}.}
+\dep{Definition~\ref{def:admit}; Theorem~\ref{thm:selfart};
+Sections~\ref{sec:coupling}--\ref{sec:wave} for the second exhibit.}
 
 The dictionary layer admits physical or contemplative identifications
-by certificate only. This paper works a single exhibit, chosen because
-its subject matter coincides with the corpus's own: reflexive
-self-representation.
+by certificate only. This paper works two exhibits. The first is
+contemplative, chosen because its subject matter coincides with the
+corpus's own: reflexive self-representation. The second is physical
+and identifies the classified dynamics with reversible lattice
+computation.
 
 \begin{interpretation}[Meta-problem certificate]
 \label{int:dict}
@@ -959,12 +1492,46 @@ ineffability and incompleteness on structural grounds.
 Layer~3 only; no theorem of Sections~\ref{sec:class}--\ref{sec:selfart}
 depends on it. The hard problem is untouched by design: nothing here
 says why there is something it is like to be such a system, and qualia
-claims are refused (Section~\ref{sec:status}). Physical certificates
-(registration as dissipation in the sense of
+claims are refused (Section~\ref{sec:status}).
+\end{remark}
+
+\begin{interpretation}[Reversible-computation certificate]
+\label{int:dict2}
+The classified dynamics of
+Sections~\ref{sec:coupling}--\ref{sec:wave} is a reversible lattice
+dynamics in the mathematical sense: a second-order update on a finite
+carrier, injective for every coupling
+(Theorem~\ref{thm:wavelossless}), factored into two involutions with
+reversal by their exchange (Theorems~\ref{thm:wavebounce}
+and~\ref{thm:wavereverse}), and recurrent within capacity
+(Theorem~\ref{thm:recur}). The certificate identifies this object
+with reversible lattice computation in the tradition of Fredkin and
+Toffoli~\cite{fredkintoffoli} and of invertible cellular
+automata~\cite{toffolimargolus,margolus}: sites are cells, the
+microstep is an invertible update, losslessness is logical
+reversibility in Bennett's sense~\cite{bennett}, and the two-bounce
+presentation is the decomposition of an invertible dynamics into
+involutions familiar from that literature and from reversing
+symmetries~\cite{lambroberts}. The identification is admitted through
+the interface of Definition~\ref{def:admit}: the symmetry endomap is
+the live flip the dynamics toggles, observation is the identity
+reading, the fixed locus is classified empty, and the admission
+clauses hold on those exports. The exhibit is earned in a way the
+Landauer reading of registration~\cite{landauer} alone was not: the
+object on the corpus side is now classified rather than posited, so
+the certificate attaches physics to a forced structure.
+\end{interpretation}
+
+\begin{remark}[Status]
+Layer~3 only, as always: the identification is confined to this
+certificate, no theorem of
+Sections~\ref{sec:class}--\ref{sec:selfart} depends on it, and the
+words ``computation'' and ``cell'' import nothing upward. Physical
+certificates (registration as dissipation in the sense of
 Landauer~\cite{landauer}, with further exhibits retained in the
-corpus) instantiate the same admission interface; that shared interface
-is the only correspondence between physical and contemplative readings
-asserted here.
+corpus) instantiate the same admission interface; that shared
+interface is the only correspondence between physical and
+contemplative readings asserted here.
 \end{remark}
 
 
@@ -972,10 +1539,11 @@ asserted here.
 \label{sec:status}
 
 \begin{statusopen}
-Continuum Lorentzian structure and boosts (no continuous one-parameter
-subgroup from a single $\Ztwo$); sheaf assembly beyond combinatorial
-stalk agreement; recombination budget versus ultrametric obstruction;
-alphabet-lift beyond the Fin interfaces closed here.
+Continuum Lorentzian structure and boosts (no continuous
+one-parameter subgroup from a single $\Ztwo$); sheaf assembly beyond
+combinatorial stalk agreement; recombination budget versus
+ultrametric obstruction; alphabet-lift beyond the Fin interfaces
+closed here.
 \end{statusopen}
 
 \begin{statusrefused}
@@ -988,7 +1556,12 @@ self-articulation package of Theorem~\ref{thm:selfart} (the corpus
 carries no modal apparatus); ambients beyond the one-variable
 equational fragment of the arena signature (including multi-variable
 single equations treated as ambients, quasi-equational, and Horn /
-second-order constraints), refused by parsimony of the arena language.
+second-order constraints), refused by parsimony of the arena language;
+the closed-form period law of the classified dynamics in general $n$,
+pending the $\mathbb{F}_2[x]/(x^n{-}1)$ transfer-matrix algebra absent
+from a Lean-core-only corpus; dispersion relations; continuum
+frequencies (on a finite carrier, order is the honest surrogate, per
+Theorem~\ref{thm:gcd}).
 \end{statusrefused}
 
 \begin{statusphil}
@@ -1013,14 +1586,32 @@ choice is opening definition, not residue.
 admission interface (Definition~\ref{def:admit}) is packaging or
 certificate-supplied data
 (Theorem~\ref{thm:face-eq}; Table~\ref{tab:gauges}).
+\item \textbf{Erasure at the edge.} Losslessness is a finite-stage
+law: the arena excludes erasure by involutivity
+(Proposition~\ref{prop:no-erase}), and the classified dynamics is
+injective for every coupling at every finite carrier
+(Theorem~\ref{thm:wavelossless}). At the colimit the exclusion fails,
+and the failure is itself a theorem
+(Theorem~\ref{thm:tailerase}): the tail step on complete gauge
+histories erases. The residue here is a reclassification of the
+corpus's self-description, carried as the system's one structural
+loss; it is recorded, and no repair is attempted.
+\item \textbf{Coupling signature.} The inter-site arity of the
+coupling (Interpretation~\ref{int:intersite}) is a signature
+declaration beside the arena signature of item~(ii); adequacy of the
+three ambient conditions given that signature is
+Theorem~\ref{thm:coupling}.
 \end{enumerate}
 \noindent
-The pattern across all three is the same: each item of residue is
+The pattern across all five is the same: each item of residue is
 reclassified, whether as a theorem over an exhaustively specified search
 space, as an audited residue at the base, or as certificate-supplied
 data. The irreducible core is the
 existence of one distinction: the sole existential residue and the sole
-underdetermination are the same $\Ztwo$.
+dictionary underdetermination are the same $\Ztwo$; the coupling flip
+is placed by Theorem~\ref{thm:flipgauge} and stays out of the
+dictionary count, because every downstream consumer receives the
+dynamics coupling-uniformly.
 \end{statusphil}
 
 
@@ -1040,7 +1631,7 @@ property of any fundamental act, not of a formal system. No
 arithmetisation is performed, and host-logic incompleteness is refused,
 not claimed (Section~\ref{sec:status}).
 
-\paragraph{Reversible computation.}
+\paragraph{Reversible computation and reversible cellular automata.}
 Reading injectivity as ``no erasure'' follows the logical-reversibility
 tradition~\cite{bennett,fredkintoffoli}, with Landauer's
 principle~\cite{landauer} as its thermodynamic counterpart. That
@@ -1048,9 +1639,35 @@ literature takes reversibility as a premise about computing machinery.
 Here losslessness is not a premise: erasure is excluded in-arena by one
 equation (Proposition~\ref{prop:no-erase}), and reversibility of
 forward microsteps is recovered by the two-bounce factorisation
-(Theorems~\ref{thm:converse}--\ref{thm:exists}). The thermodynamic
-reading survives only as a dictionary certificate
+(Theorems~\ref{thm:converse}--\ref{thm:exists}). The classified wave
+dynamics of Section~\ref{sec:wave} additionally places the corpus
+beside the invertible cellular automata and lattice dynamics
+literature~\cite{toffolimargolus,margolus,kari}: second-order
+(memory) constructions are a standard route to invertible lattice
+rules there, and the $\mathrm{step}/\mathrm{swap}/\mathrm{shear}$
+presentation is of that family. The direction of derivation differs
+in the same way: that literature engineers invertible rules and
+studies their power, while here the second-order form and the
+coupling are outputs of an eliminative classification
+(Section~\ref{sec:coupling}). The thermodynamic and computational
+readings survive only as dictionary certificates
 (Section~\ref{sec:dict}).
+
+\paragraph{Uniqueness of update rules.}
+The coupling classification (Theorem~\ref{thm:coupling}) is a
+uniqueness result for a cellular-automaton-style rule: constraints on
+the local rule (injectivity of the global map, symmetry of the
+neighbourhood action, invariance under the alphabet involution,
+non-degeneracy) pin the rule down to a two-element orbit. The
+cellular automata literature studies the corresponding decision
+problems and structure theory: injectivity and surjectivity of the
+global map from the local rule~\cite{amorosopatt}, and the general
+theory of reversible automata~\cite{kari,toffolimargolus}. Those
+results characterise which rules have a property across a rule space;
+the result here runs the other way and asks which rules survive a
+conjunction of ambient demands, with the answer being a single orbit.
+The residual flip is placed by proof: packaging exactly on carriers
+divisible by four, content elsewhere (Section~\ref{sec:z2}).
 
 \paragraph{Involutions and reversing symmetries.}
 That every finite permutation is a product of two involutions is
@@ -1076,7 +1693,9 @@ content/packaging distinction is a definition in the formal text
 (Table~\ref{tab:gauges}), and the residual underdetermination is
 exactly inventoried---one $\Ztwo$, three faces (Theorem~\ref{thm:z2}).
 Nothing is asserted about physical theories; within its scope the
-inventory is complete and machine-checked.
+inventory is machine-checked, and its last row to be placed, the
+coupling flip, is decided by the carrier-size dichotomy of
+Section~\ref{sec:z2}.
 
 \paragraph{Self-articulation and the mark.}
 The nearest formal ancestor of the self-articulation package is
@@ -1129,16 +1748,31 @@ The classification theorem restricts self-actions to the live two-cycle
 under the stated ambient. Fundamentality is the universal property of
 that survivor: the unique object is $(\Bool,\neg)$ up to label swap.
 Seal, ladder, registration (via two-bounce), archive capacity, and arrow
-as address follow in dependency order. One $\Ztwo$ is stated once; content
+as address follow in dependency order. A second classification then
+forces the motion: losslessness selects the second-order xor form,
+parity, pole invariance, and the drawing condition select the coupling
+up to flip, and the survivor's dynamics is the discrete wave step,
+factored into two involutions definitionally, reversed by their swap,
+carrying a gcd-law period spectrum reshaped by boundary alone, and
+returning within capacity. At the ladder's edge the boundary receives
+every rung with effective separation, seals at its own carrier, and
+erases at its tail: losslessness is a finite-stage law, and its edge
+failure is a theorem. One $\Ztwo$ is stated once; content
 and packaging gauges prevent factorisation non-uniqueness from counting
-as a second underdetermination. On this base the self-articulation
+as a second underdetermination, and the coupling flip is decided by a
+carrier-size dichotomy: packaging exactly on carriers divisible by
+four, content elsewhere, and at every size a per-tick mask dressing
+of the plain evolution. On this base the self-articulation
 package assembles retorsion, forced articulation, witness interiority,
 the absence of exterior standpoints, and completeness as duration into
 a single machine-checked conjunction, with its monist reading confined
-to a marked interpretation. The dictionary carries one worked exhibit,
+to a marked interpretation. The dictionary carries two worked exhibits:
 the meta-problem certificate, which derives the report structure of the
-explanatory gap and refuses the hard problem. Philosophical residue is
-reclassified into theorems, one audited registration residue, or
+explanatory gap and refuses the hard problem, and the
+reversible-computation certificate, which identifies the classified
+dynamics with reversible lattice computation and confines the
+identification to the certificate. Philosophical residue is
+reclassified into theorems, audited residues, or
 certificate data, as inventoried in Section~\ref{sec:status}.
 
 \section*{Formal companion}
@@ -1149,7 +1783,7 @@ result:
 \begin{center}
 {\small
 \renewcommand{\arraystretch}{1.0}
-\begin{tabular}{@{}c@{\qquad}c@{\qquad}c@{}}
+\begin{tabular}{@{}c@{\quad}c@{\quad}c@{}}
 $\Fund\cong\neg$ &
 $\act\comp\act=\mathrm{id}\ \Rightarrow\ \neg\,\mathrm{erase}$ &
 $\mathrm{merge}\ \Rightarrow\ \mathrm{record}$ \\
@@ -1167,12 +1801,19 @@ presentation retracts; no exterior &
 triad admitted; qualia refused \\
 {\scriptsize\color{muted} Thm.~\ref{thm:retorsion}} &
 {\scriptsize\color{muted} Thms.~\ref{thm:noext}, \ref{thm:selfart}} &
-{\scriptsize\color{muted} Int.~\ref{int:dict}} \\
+{\scriptsize\color{muted} Int.~\ref{int:dict}} \\[5pt]
+$K\in\{\oplus,\neg\comp\oplus\}$ forced &
+step $=$ swap$\comp$shear;\ $\mathrm{ord}=n/\gcd$ &
+return $\le 2^{2n}$;\ edge erases \\
+{\scriptsize\color{muted} Thms.~\ref{thm:toggle}, \ref{thm:coupling}} &
+{\scriptsize\color{muted} Thms.~\ref{thm:wavebounce}, \ref{thm:gcd}} &
+{\scriptsize\color{muted} Thms.~\ref{thm:recur}, \ref{thm:tailerase}} \\
 \end{tabular}}
 \end{center}
 
 Representative declarations (Lean~4; no Mathlib; no $\mathtt{sorry}$),
-cited at their defining package (s = spine, b = bridge, d = dictionary):
+cited at their defining package (s = spine, b = bridge, d = dictionary,
+e = experimental):
 \begin{center}
 {\small\ttfamily\raggedright
 Orbit.classification\_at\,(s) \textperiodcentered\
@@ -1198,6 +1839,17 @@ Bridge.TwoBounce.channel\_swap\_is\_reversal\,(b) \textperiodcentered\
 Bridge.Dil.registration\,(b) \textperiodcentered\
 Bridge.Capacity.caps\_eq\,(b) \textperiodcentered\
 Bridge.TickSimulation.tick\_identification\,(b) \textperiodcentered\
+Bridge.DynamicsAmbient.\allowbreak dynamics\_ambient\_uniqueness\,(b) \textperiodcentered\
+Bridge.DynamicsAmbient.\allowbreak coupling\_uniqueness\,(b) \textperiodcentered\
+Bridge.WaveDynamics.\allowbreak step\_eq\_two\_bounce\,(b) \textperiodcentered\
+Bridge.WaveDynamics.\allowbreak step\_lossless\,(b) \textperiodcentered\
+Bridge.PeriodSpectrum.\allowbreak order\_eq\_div\_gcd\,(b) \textperiodcentered\
+Bridge.PeriodSpectrum.\allowbreak rotFactor\,(b) \textperiodcentered\
+Bridge.Recurrence.\allowbreak wave\_recurrence\_bounded\,(b) \textperiodcentered\
+Experimental.CouplingGauge.\allowbreak coupling\_flip\_dichotomy\,(e) \textperiodcentered\
+Experimental.CantorBoundary.\allowbreak encode\_separates\,(e) \textperiodcentered\
+Experimental.CantorBoundary.\allowbreak boundary\_seals\_itself\,(e) \textperiodcentered\
+Experimental.CantorBoundary.\allowbreak tail\_erasing\,(e) \textperiodcentered\
 Dictionary.MetaProblem.\allowbreak meta\_admitted\,(d)
 }
 \end{center}
@@ -1207,79 +1859,100 @@ imports it as \texttt{Bridge.TwoBounce.symmetric\_excludes\_erase}. The
 dictionary package re-exports several bridge declarations under its own
 namespace (e.g.\ \texttt{Dictionary.Certificate}); citations here always
 resolve to the defining package. Axiom footprints are audited per
-declaration: every cited declaration is axiom-free or depends on
-\texttt{propext} alone, and the two-bounce existence witness
+declaration, and every cited declaration lies within the kernel pair
+\texttt{propext} and \texttt{Quot.sound}. The static core of
+Sections~\ref{sec:class}--\ref{sec:reg} and
+\ref{sec:z2}--\ref{sec:dict} is axiom-free or \texttt{propext}-only,
+and the two-bounce existence witness
 \texttt{Bridge.TwoBounce.factor\_fin} is itself axiom-free, its
 construction computable by bounded search (Remark following
-Theorem~\ref{thm:exists}). \texttt{Classical.choice} is not used
-anywhere in the paper-cited packages, \texttt{Quot.sound} occurs in no
-cited footprint, and no axiom is declared by the corpus itself. The
-quarantined experimental annex below sits outside this accounting and
-is audited separately, per declaration, in the same ledger.
+Theorem~\ref{thm:exists}). In the dynamics arc of
+Sections~\ref{sec:coupling}--\ref{sec:wave}, function extensionality
+(tracked by the kernel as \texttt{Quot.sound}) is invoked directly by
+exactly two cited declarations, \texttt{reverse\_step} (in
+\texttt{Bridge.WaveDynamics}) and \texttt{wave\_recurrence\_bounded}
+(in \texttt{Bridge.Recurrence}), with
+\texttt{step\_lossless}, \texttt{wave\_recurrence}, and
+\texttt{wave\_recurrence\_pow} inheriting that footprint; the
+remaining \texttt{Quot.sound} entries there arrive through library
+lemmas, \texttt{omega}, and kernel-decided \texttt{Decidable}
+instances, and \texttt{formal/AXIOMS.md} records the split by name.
+The boundary declarations of Section~\ref{sec:boundary} are cited at
+the experimental package~(e) and every one of them is axiom-free.
+The gauge-placement declarations of Section~\ref{sec:z2} are likewise
+cited at the experimental package~(e); their footprints stay within
+\texttt{propext} and \texttt{Quot.sound}, with one further direct
+\texttt{funext} step in \texttt{flip\_conjugacy\_of\_four\_dvd},
+inherited by \texttt{coupling\_flip\_dichotomy} and flagged by name
+in the audit.
+\texttt{Classical.choice} is used nowhere in any package cited by this
+paper, and no axiom is declared by the corpus itself. The quarantined
+experimental remainder below sits outside the main-line accounting and
+is audited in the same per-declaration ledger.
 
 \section*{Experimental annex}
 \label{sec:annex}
 
 The repository carries a fifth package, \texttt{formal/experimental},
-quarantined by construction: no module cited above imports it, and its
-contents are claims of the probe files alone, not of the corpus. The
-annex develops one arc away from the base --- from the period-two
-fundamental to higher periods, frequency as order, a field equation,
-and the infinite-history edge --- probing how far the corpus's own
-vocabulary carries before new mathematics is needed. Machine-checked
-there, in the same discipline (Lean~4, no Mathlib, no
-$\mathtt{sorry}$, per-declaration audit):
+quarantined by construction: no module cited in the main-line
+accounting imports it, and its contents are claims of the probe files
+alone. It holds the boundary module of Section~\ref{sec:boundary},
+the coupling-gauge module of Section~\ref{sec:z2}, and a small
+remainder of exhibits, machine-checked in the same discipline
+(Lean~4, no Mathlib, no $\mathtt{sorry}$, per-declaration audit):
 
 \begin{itemize}
-\item \emph{Dihedral closed form.} Every rotation on $\mathrm{Fin}\,n$
-factors as two explicit arithmetic mirrors, packaged as a computable
-two-bounce pair
-(\texttt{Experimental.Overtones.rotFactor}); where
-\texttt{Bridge.TwoBounce.factor\_fin} extracts a pair by bounded
-search, here the pair is given in closed form.
-\item \emph{Frequency as order.} On $\mathrm{Fin}\,n$ the order of the
-$k$-th harmonic shift is $n/\gcd(n,k)$, return and minimality halves
-both proved
-(\texttt{Experimental.Frequencies.order\_eq\_div\_gcd}); the
-twelve-carrier exhibits, including generation by the fifth, become
-instances.
-\item \emph{The wave step is two bounces, definitionally.} The
-discrete d'Alembert equation over $\Bool$ (xor as addition, coupling
-left general) has step exactly $\mathrm{swap}\comp\mathrm{shear}$
-(\texttt{Experimental.Wave.step\_eq\_two\_bounce},
-\texttt{waveFactor}), with time reversal the bounce swap; boundary
-conditions select the spectrum, kernel-decided for ring sizes $2$--$6$
-and fixed ends $3$--$5$.
-\item \emph{The symmetry order is the gcd law.} The ring wave's
-rotation symmetry has order exactly
-$n/\gcd(n,n{-}1)=n$ as the gcd law predicts, and the return spectrum
-is constant on rotation orbits
-(\texttt{Experimental.SpectrumSymmetry.symmetry\_order\_is\_frequency\_law})
---- a rotation-orbit invariance of the return spectrum, and no more.
-\item \emph{Return within capacity.} For every coupling and
-every state on $n$ sites, the wave returns within $2^{2n}$ steps
-(\texttt{Experimental.Recurrence.wave\_recurrence\_bounded}):
-losslessness plus finite capacity forces recurrence.
-\item \emph{The boundary.} Complete gauge histories
-$\mathbb{N}\to\Bool$ receive every rung by an encoding with effective
-separation --- depth-$(k{+}1)$ cylinders separate rung $k$
-(\texttt{Experimental.CantorBoundary.encode\_separates}); the pole
-swap lifts and is live, so the boundary seals at its own carrier
-(\texttt{boundary\_seals\_itself}); and the tail step erases
-(\texttt{tail\_erasing}): the in-arena exclusion of erasure fails at
-the boundary, a poverty recorded rather than repaired.
+\item \emph{The boundary module.}
+\texttt{Experimental.CantorBoundary} carries the declarations cited in
+Section~\ref{sec:boundary}, every one axiom-free.
+\item \emph{The coupling-gauge module.}
+\texttt{Experimental.CouplingGauge} carries the dichotomy of
+Theorem~\ref{thm:flipgauge}: the mask conjugacy on carriers divisible
+by four, the intertwiner obstruction elsewhere, the period-four tick
+dressing at every size, and the exhibits (flipped single-pulse
+periods $4$, $12$, $4$, $20$ at sizes $2$ to $5$; the first three
+kernel-decided, the fourth assembled through the dressing). Its one
+direct \texttt{funext} step, in
+\texttt{flip\_conjugacy\_of\_four\_dvd}, is recorded.
+\item \emph{Concrete period exhibits.} The $\mathrm{Fin}\,3$ and
+$\mathrm{Fin}\,5$ cycles with closed-form mirror pairs, the generation
+fact for the fifth
+(\texttt{Experimental.Frequencies.fifth\_generates}), and the
+twelve-carrier instances rederived from Theorem~\ref{thm:gcd}.
+\item \emph{Translation symmetry of the ring wave.} Rotation by one
+site commutes with the ring coupling, the step, and every iterate,
+pointwise; the return spectrum is constant on rotation orbits, and the
+ring wave's cyclic symmetry has order exactly
+$n/\gcd(n,n{-}1)=n$ as Theorem~\ref{thm:gcd} predicts
+(\texttt{Experimental.SpectrumSymmetry.symmetry\_order\_is\_gcd\_law}),
+a rotation-orbit invariance of the return spectrum, and no more.
+\item \emph{The period table beyond four sites.} Kernel-decided
+periods for ring sizes $2$--$6$ and fixed ends $3$--$5$, instantiating
+the numerical pattern (ring: even $n$ maps to $n$, odd $n$ to $2n$;
+fixed ends to $2n{+}2$); beyond those sizes the pattern is numerical
+conjecture, reproducible by \texttt{exhibits/wave/periods.py}, and the
+closed forms in general $n$ are refused pending the
+$\mathbb{F}_2[x]/(x^n{-}1)$ algebra (Section~\ref{sec:status}).
+\item \emph{A packaged witness.} \texttt{Experimental.Wave.waveFactor}
+lifts the closed-form pair of Theorem~\ref{thm:wavebounce} to a
+function-level \texttt{TwoBounceFactor} through \texttt{funext}; the
+use is recorded.
 \end{itemize}
 
 \noindent
-Not claimed there: no continuum, no real frequencies, no closed-form
-period law in general $n$ --- the recorded obstruction is the absence
-of $\mathbb{F}_2[x]/(x^n{-}1)$ and transfer-matrix algebra from a
-Lean-core-only corpus. Annex footprints stay within
-\texttt{propext}/\texttt{Quot.sound}, with \texttt{Classical.choice}
-entering exactly once, in the recurrence pigeonhole; the full
-per-declaration record is in \texttt{formal/AXIOMS.md}.
+Annex footprints stay within \texttt{propext}/\texttt{Quot.sound};
+\texttt{Classical.choice} appears nowhere in the repository's
+packages. The full per-declaration record is in
+\texttt{formal/AXIOMS.md}.
 
 \begin{thebibliography}{99}
+
+\bibitem{amorosopatt}
+S.~Amoroso and Y.~N.~Patt.
+\newblock Decision procedures for surjectivity and injectivity of
+  parallel maps for tessellation structures.
+\newblock \emph{Journal of Computer and System Sciences},
+  6(5):448--464, 1972.
 
 \bibitem{apel}
 K.-O.~Apel.
@@ -1366,6 +2039,11 @@ G.~W.~F.~Hegel.
 \newblock Translated by G.~di~Giovanni. Cambridge University Press,
   Cambridge, 2010.
 
+\bibitem{kari}
+J.~Kari.
+\newblock Theory of cellular automata: a survey.
+\newblock \emph{Theoretical Computer Science}, 334(1--3):3--33, 2005.
+
 \bibitem{kriegel}
 U.~Kriegel.
 \newblock \emph{Subjective Consciousness: A Self-Representational
@@ -1397,6 +2075,11 @@ S.~Mac~Lane.
 \newblock \emph{Categories for the Working Mathematician}.
 \newblock Volume~5 of \emph{Graduate Texts in Mathematics}. Springer, New
   York, second edition, 1998.
+
+\bibitem{margolus}
+N.~Margolus.
+\newblock Physics-like models of computation.
+\newblock \emph{Physica D}, 10(1--2):81--95, 1984.
 
 \bibitem{mathlib}
 The mathlib Community.
@@ -1436,6 +2119,11 @@ D.~M.~Rosenthal.
 G.~Spencer-Brown.
 \newblock \emph{Laws of Form}.
 \newblock George Allen and Unwin, London, 1969.
+
+\bibitem{toffolimargolus}
+T.~Toffoli and N.~Margolus.
+\newblock Invertible cellular automata: a review.
+\newblock \emph{Physica D}, 45(1--3):229--253, 1990.
 
 \bibitem{varela}
 F.~J.~Varela.

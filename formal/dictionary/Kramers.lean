@@ -1,4 +1,5 @@
 import Certificate
+import KernelAdmit
 import Orbit
 import Alphabet
 
@@ -18,6 +19,7 @@ locus.
 
 namespace Dictionary.Kramers
 
+open Bridge.KernelAdmit
 open Dictionary.Certificate
 
 /-! ## Discrete model: four-notch circle with T² = central negation -/
@@ -110,7 +112,7 @@ def kramersCert : KernelCert Notch Bool where
   swap_as_not := spin_T_as_not
   Fixed := fun i => T i = i
   fixed_iff := fun _ => Iff.rfl
-  fixedMode := FixedMode.empty
+  fixedMode := FixedMode.emptyLocus
   noSoloCross := fun i h => T_no_fixed i h.1
 
 /-- **Admission.** Kramers satisfies (a)–(d) in empty-locus mode;
@@ -122,7 +124,7 @@ theorem kramers_admitted :
     (∀ i, kramersCert.observe (kramersCert.swap i) =
       kramersCert.obsNeg (kramersCert.observe i)) ∧
     (∀ i, ¬ kramersCert.Fixed i) ∧
-    kramersCert.fixedMode = FixedMode.empty ∧
+    kramersCert.fixedMode = FixedMode.emptyLocus ∧
     (∀ i, ¬ TClosed (fun j => j = i)) ∧
     Bridge.Alphabet.Kmin = 2 := by
   refine ⟨kramersCert.swap_sq, kramersCert.square_involutive, ?_,
@@ -132,8 +134,8 @@ theorem kramers_admitted :
   exact neg_ne_id Notch.n0 (hstrict Notch.n0)
 
 theorem fixed_modes_exhaust :
-    FixedMode.empty ≠ FixedMode.nonempty ∧
-    kramersCert.fixedMode = FixedMode.empty :=
+    FixedMode.emptyLocus ≠ FixedMode.nonemptyLocus ∧
+    kramersCert.fixedMode = FixedMode.emptyLocus :=
   ⟨(fun h => by cases h), rfl⟩
 
 /-- Spine void exclusion wears this physical reading. -/
@@ -144,8 +146,8 @@ theorem void_reading :
 
 /-- Together with quintom's nonempty mode, clause (c) is exhausted. -/
 theorem clause_c_duality :
-    kramersCert.fixedMode = FixedMode.empty ∧
-    FixedMode.empty ≠ FixedMode.nonempty :=
+    kramersCert.fixedMode = FixedMode.emptyLocus ∧
+    FixedMode.emptyLocus ≠ FixedMode.nonemptyLocus :=
   ⟨rfl, fun h => by cases h⟩
 
 #print axioms kramers_admitted

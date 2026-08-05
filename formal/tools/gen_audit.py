@@ -35,14 +35,14 @@ PACKAGES = {
                "Obs.Selection", "Obs.StochasticUnlock",
                "Obs.StochasticThermo", "Obs.StochasticDivergence",
                "Obs.Budget", "Obs.ContinuumUnlock", "Obs.EmbeddedObserver"],
-    "bridge": ["Alphabet", "Capacity", "OneZ2", "RegistrationSpine",
-               "TickSimulation", "Environment", "Dil", "RegistrationFactor",
-               "ArchiveMustSpeak", "PageShape", "SecondLaw", "Measurement",
-               "BranchMeasure", "Expansion", "Forman", "Saturation",
-               "EinsteinSkeleton", "EffectiveMatter", "FluxPattern",
-               "LedgerSheaf", "RecombinationBudget", "PhaseEToys",
-               "Period2KMS", "ModularCut", "LorentzianDict", "TwoBounce",
-               "BridgeArc"],
+    "bridge": ["Alphabet", "Capacity", "OneZ2", "KernelAdmit",
+               "RegistrationSpine", "TickSimulation", "Environment", "Dil",
+               "RegistrationFactor", "ArchiveMustSpeak", "PageShape",
+               "SecondLaw", "Measurement", "BranchMeasure", "Expansion",
+               "Forman", "Saturation", "EinsteinSkeleton", "EffectiveMatter",
+               "FluxPattern", "LedgerSheaf", "RecombinationBudget",
+               "PhaseEToys", "Period2KMS", "ModularCut", "LorentzianDict",
+               "TwoBounce", "BridgeArc"],
     "dictionary": ["Certificate", "LCertificate", "Quintom.Kernel",
                    "Quintom.Certificate", "Quintom.FixedPoint",
                    "Quintom.Damping", "Quintom.Growth", "BitFlip",
@@ -54,7 +54,9 @@ PACKAGES = {
 # subscript digits; `?` and `!` have to be added explicitly, or `get?_mem`
 # silently truncates to `get` and the generated audit fails to compile.
 IDENT = r"[^\W\d][\w'’!?]*"
-DECL = re.compile(r"^\s*(?:@\[[^\]]*\]\s*)?(?:protected\s+|private\s+)?theorem\s+"
+# Public / protected theorems only. Private lemmas are implementation
+# detail and are invisible to `#print axioms` outside the module.
+DECL = re.compile(r"^\s*(?:@\[[^\]]*\]\s*)?(?:protected\s+)?theorem\s+"
                   rf"({IDENT}(?:\.{IDENT})*)")
 NS_OPEN = re.compile(rf"^\s*namespace\s+({IDENT}(?:\.{IDENT})*)")
 NS_END = re.compile(rf"^\s*end\s+({IDENT}(?:\.{IDENT})*)\s*$")

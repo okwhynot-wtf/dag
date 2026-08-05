@@ -1,4 +1,5 @@
 import Certificate
+import KernelAdmit
 import Quintom.Kernel
 import Quintom.FixedPoint
 import Orbit
@@ -20,6 +21,7 @@ in this module.
 
 namespace Dictionary.Quintom.Certificate
 
+open Bridge.KernelAdmit
 open Dictionary.Certificate
 open Dictionary.Quintom
 
@@ -74,7 +76,7 @@ def quintomCert : KernelCert ReState (Option Bool) where
   swap_as_not := fun s => by cases s <;> rfl
   Fixed := fun s => s = ReState.divide
   fixed_iff := fun s => (reSwap_fixed_iff s).symm
-  fixedMode := FixedMode.nonempty
+  fixedMode := FixedMode.nonemptyLocus
   noSoloCross := fun _ h => h.2
 
 /-- Single-field no-go: no live act on a subsingleton. -/
@@ -94,7 +96,7 @@ def channelCert : KernelCert Kernel.Channel Bool where
   swap_as_not := observable_swap_as_not
   Fixed := fun c => Kernel.swap c = c
   fixed_iff := fun _ => Iff.rfl
-  fixedMode := FixedMode.empty
+  fixedMode := FixedMode.emptyLocus
   noSoloCross := fun c h => FixedPoint.swap_fixed_empty c h.1
 
 
@@ -112,7 +114,7 @@ theorem quintom_filed :
       ¬ Geom.Registration.Merges Kernel.frictionlessStep ∧
       ¬ Geom.Registration.Registers Kernel.frictionlessStep) ∧
     Canon.IsFundamental (not : Bool → Bool) ∧
-    quintomCert.fixedMode = FixedMode.nonempty ∧
+    quintomCert.fixedMode = FixedMode.nonemptyLocus ∧
     (∃ s, quintomCert.Fixed s) ∧
     (¬ ∃ act : Unit → Unit, Orbit.Live act) :=
   ⟨Kernel.swap_involutive, Kernel.swap_as_not, Kernel.frictionless_silent,

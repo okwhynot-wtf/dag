@@ -1,4 +1,5 @@
 import Certificate
+import KernelAdmit
 import TwoCycle
 import Orbit
 import Canon
@@ -13,6 +14,7 @@ Empty fixed-set mode (live). Forced +1: single-cell no-go.
 
 namespace Dictionary.BitFlip
 
+open Bridge.KernelAdmit
 open Dictionary.Certificate
 
 inductive Cell where
@@ -80,7 +82,7 @@ def bitFlipCert : KernelCert Cell Bool where
   swap_as_not := bit_flip_as_not
   Fixed := divide
   fixed_iff := fun _ => Iff.rfl
-  fixedMode := FixedMode.empty
+  fixedMode := FixedMode.emptyLocus
   noSoloCross := fun c h => (divide_empty c) h.1
 
 theorem bitFlip_admitted :
@@ -89,7 +91,7 @@ theorem bitFlip_admitted :
     (∀ c, bitFlipCert.observe (bitFlipCert.swap c) =
       bitFlipCert.obsNeg (bitFlipCert.observe c)) ∧
     (∀ c, ¬ bitFlipCert.Fixed c) ∧
-    bitFlipCert.fixedMode = FixedMode.empty ∧
+    bitFlipCert.fixedMode = FixedMode.emptyLocus ∧
     (¬ ∃ act : Unit → Unit, Orbit.Live act) ∧
     (Geom.Registration.Inj memoryStep ∧
       ¬ Geom.Registration.Merges memoryStep) :=
@@ -97,8 +99,8 @@ theorem bitFlip_admitted :
    rfl, single_cell_nogo, ⟨memory_silent.1, memory_silent.2.1⟩⟩
 
 theorem dictionary_extensible :
-    boolCert.fixedMode = FixedMode.empty ∧
-    bitFlipCert.fixedMode = FixedMode.empty ∧
+    boolCert.fixedMode = FixedMode.emptyLocus ∧
+    bitFlipCert.fixedMode = FixedMode.emptyLocus ∧
     (∀ c, ¬ bitFlipCert.Fixed c) :=
   ⟨rfl, rfl, divide_empty⟩
 

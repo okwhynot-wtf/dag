@@ -25,13 +25,13 @@ python3 formal/tools/gen_audit.py
 -/
 
 -- Certificate (8)
-#print axioms Dictionary.Certificate.live_involution_cert
-#print axioms Dictionary.Certificate.oscillator_fits_silent
 #print axioms Dictionary.Certificate.bool_admitted
-#print axioms Dictionary.Certificate.empty_mode_is_void_exclusion
-#print axioms Dictionary.Certificate.boolCert_faceSwap_eq_swap
 #print axioms Dictionary.Certificate.bool_admitted_faceSwap
+#print axioms Dictionary.Certificate.boolCert_faceSwap_eq_swap
 #print axioms Dictionary.Certificate.bool_cert_face_equivariant
+#print axioms Dictionary.Certificate.live_involution_cert
+#print axioms Dictionary.Certificate.empty_mode_is_void_exclusion
+#print axioms Dictionary.Certificate.oscillator_fits_silent
 #print axioms Dictionary.Certificate.kernel_exports_swap_equivariant
 
 -- LCertificate (2)

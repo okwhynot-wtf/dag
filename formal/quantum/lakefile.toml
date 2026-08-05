@@ -17,5 +17,6 @@ roots = [
   "Target",
   "Axiom",
   "Witness",
+  "Composite",
   "Audit",
 ]

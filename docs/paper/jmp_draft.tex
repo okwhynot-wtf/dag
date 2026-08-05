@@ -206,9 +206,9 @@ suggests, marked as such.
 identifications, admitted only by certificate.
 \end{enumerate}
 Claims are tagged by status: proved, corollary, interpretation, open,
-refused, or philosophical residue. Residue is reduced by relocation---into
-theorems, audited axioms, or certificate data
-(Section~\ref{sec:status}). The companion Lean~4 corpus~\cite{lean4}
+refused, or philosophical residue. Residue is reduced by
+reclassification: items become theorems, audited residues at the base,
+or certificate data (Section~\ref{sec:status}). The companion Lean~4 corpus~\cite{lean4}
 (no Mathlib~\cite{mathlib}, no $\mathtt{sorry}$) supplies declaration
 names; this paper is
 self-contained at the level of statements.
@@ -268,6 +268,16 @@ The dynamics layer imports losslessness along an interface
 (registration via two-bounce), realises archive and capacity on the
 ladder carrier, and exports address as the arrow reading. The dictionary
 layer consumes those exports; it does not feed them.
+
+The companion corpus realises the three layers as four build packages:
+a spine package (foundation); a ledger package and a bridge package
+jointly constituting the dynamics layer, the bridge holding the
+interface theorems that import both spine and ledger; and a dictionary
+package with exhibits (interpretation). Imports remain downward
+throughout. A few dynamics-layer declarations bear physically
+suggestive names as mnemonics for combinatorial statements; the names
+import no identification, which remains certificate-only
+(Section~\ref{sec:dict}).
 
 
 \section{Classification of self-actions}
@@ -391,8 +401,10 @@ holds if and only if the orbit is non-degenerate ($a(z)\neq z$).
 \begin{remark}[Status]
 Proved. Quantified liveness on the orbit therefore collapses to one bit
 of facticity---existence of a second orbit element---which
-Section~\ref{sec:status} carries as an audited axiom. Discharging that
-axiom as a world-derivation from $\Bool$ alone remains refused.
+Section~\ref{sec:status} carries as an architectural residue note in the
+audit. The corpus exhibits a two-point model witnessing the existential
+and declares no axiom for it; discharging the residue as a
+world-derivation from $\Bool$ alone remains refused.
 \end{remark}
 
 Rest is incompatible with non-degeneracy. Asymmetric step is incompatible with
@@ -523,7 +535,12 @@ carriers, injectivity and two-bounce form coincide: existence recovers,
 constructively, the classical fact that every finite permutation is a
 product of two involutions~\cite{petersentenner}, and maps so factorised
 are the \emph{reversible} maps of dynamical-systems
-theory~\cite{lambroberts}. Special cases
+theory~\cite{lambroberts}. The audited footprint of the existence
+witness is empty: collision pairs, periods, basepoints, and indices are
+extracted by bounded structural search rather than selected by choice,
+the factor map is computable as checked, and the proof depends on no
+axiom, classical or otherwise. The converse
+(Theorem~\ref{thm:converse}) is likewise axiom-free. Special cases
 (involutions as $U\comp\mathrm{id}$; Boolean injections; swap step) are
 included.
 \end{remark}
@@ -795,19 +812,22 @@ Premise-free global laws of time; continuum Einstein equations as
 theorems of this corpus; host-logic incompleteness; G\"odel
 arithmetisation of the formal text; experiential or qualia claims;
 derivation of the world from $\Bool$ alone (including any discharge of
-the audited existential below); ambients beyond the one-variable
+the existential residue below); ambients beyond the one-variable
 equational fragment of the arena signature (including multi-variable
 single equations treated as ambients, quasi-equational, and Horn /
 second-order constraints), refused by parsimony of the arena language.
 \end{statusrefused}
 
 \begin{statusphil}
-Relocated residue, with the prior items replaced by theorem citations.
+Residue accounting, with the prior items replaced by theorem citations.
 \begin{enumerate}[label=(\roman*)]
-\item \textbf{Audited axiom.} A non-degenerate pointed act exists.
+\item \textbf{Existential residue.} A non-degenerate pointed act exists.
 Orbit liveness is Theorem~\ref{thm:live-orbit}; the residue is the one
-existential bit, carried explicitly in the axiom footprint. It is not
-discharged.
+existential bit. The corpus exhibits a two-point model witnessing the
+existential and declares no axiom, so the residue is carried as an
+architectural note in the audit: what remains undischarged is the
+interpretive step from exhibited model to world, and that discharge is
+refused.
 \item \textbf{Signature declaration.} Arena data as given
 (Definition~\ref{def:arena}: one type, one endomap). Adequacy of
 $a\comp a=\mathrm{id}$ is Theorem~\ref{thm:ambient-unique}; the signature
@@ -818,12 +838,12 @@ certificate-supplied data
 (Theorem~\ref{thm:face-eq}; Table~\ref{tab:gauges}).
 \end{enumerate}
 \noindent
-The pattern across all three is the same: residue is reduced by
-\emph{relocating} it---upward into a theorem via an exhaustively
-specified search space, downward into an audited axiom, or outward into
-certificate-supplied data. The irreducible core is the existence of one
-distinction: the sole audited axiom and the sole underdetermination are
-the same $\Ztwo$.
+The pattern across all three is the same: each item of residue is
+reclassified, whether as a theorem over an exhaustively specified search
+space, as an audited residue at the base, or as certificate-supplied
+data. The irreducible core is the
+existence of one distinction: the sole existential residue and the sole
+underdetermination are the same $\Ztwo$.
 \end{statusphil}
 
 
@@ -900,9 +920,9 @@ that survivor: the unique object is $(\Bool,\neg)$ up to label swap.
 Seal, ladder, registration (via two-bounce), archive capacity, and arrow
 as address follow in dependency order. One $\Ztwo$ is stated once; content
 and packaging gauges prevent factorisation non-uniqueness from counting
-as a second underdetermination. Philosophical residue is relocated---into theorems, one audited
-existential, or certificate data---as inventoried in
-Section~\ref{sec:status}; dictionary claims remain confined to the marked
+as a second underdetermination. Philosophical residue is reclassified
+into theorems, one exhibited existential residue, or certificate data,
+as inventoried in Section~\ref{sec:status}; dictionary claims remain confined to the marked
 layer.
 
 \section*{Formal companion}
@@ -929,28 +949,41 @@ $U=\sigma\comp\phi$;\ swap $=$ reversal;\ one $\Ztwo$ \\
 \end{tabular}}
 \end{center}
 
-Representative declarations (Lean~4; no Mathlib; no $\mathtt{sorry}$):
+Representative declarations (Lean~4; no Mathlib; no $\mathtt{sorry}$),
+cited at their defining package (s = spine, b = bridge, d = dictionary):
 \begin{center}
 {\small\ttfamily\raggedright
-classification\_at \textperiodcentered\
-liveOnOrbit\_iff\_nondegenerate \textperiodcentered\
-ambient\_uniqueness\_equational \textperiodcentered\
-exists\_asymmetric\_m\_cycle \textperiodcentered\
-canon\_initial \textperiodcentered\
-symmetric\_excludes\_erase \textperiodcentered\
-seal\_on\_fundamental \textperiodcentered\
-corpus\_not\_universal \textperiodcentered\
-one\_Z2\_three\_faces \textperiodcentered\
-bool\_cert\_face\_equivariant \textperiodcentered\
-factor\_fin \textperiodcentered\
-canonicity\_fails \textperiodcentered\
-channel\_swap\_is\_reversal \textperiodcentered\
-registration \textperiodcentered\
-caps\_eq \textperiodcentered\
-tick\_identification
+Orbit.classification\_at\,(s) \textperiodcentered\
+Facticity.liveOnOrbit\_iff\_nondegenerate\,(s) \textperiodcentered\
+Ambient.ambient\_uniqueness\_equational\,(s) \textperiodcentered\
+Ambient.exists\_asymmetric\_m\_cycle\,(s) \textperiodcentered\
+Ambient.powerId\_two\_excludes\_erase\,(s) \textperiodcentered\
+Canon.canon\_initial\,(s) \textperiodcentered\
+Diagonal.seal\_on\_fundamental\,(s) \textperiodcentered\
+SelfReference.corpus\_not\_universal\,(s) \textperiodcentered\
+Bridge.OneZ2.one\_Z2\_three\_faces\,(b) \textperiodcentered\
+Bridge.KernelAdmit.bool\_cert\_face\_equivariant\,(b) \textperiodcentered\
+Bridge.TwoBounce.factor\_fin\,(b) \textperiodcentered\
+Bridge.TwoBounce.canonicity\_fails\,(b) \textperiodcentered\
+Bridge.TwoBounce.channel\_swap\_is\_reversal\,(b) \textperiodcentered\
+Bridge.Dil.registration\,(b) \textperiodcentered\
+Bridge.Capacity.caps\_eq\,(b) \textperiodcentered\
+Bridge.TickSimulation.tick\_identification\,(b)
 }
 \end{center}
-Axiom footprints are audited per declaration.
+Proposition~\ref{prop:no-erase} is cited at its foundation form
+(\texttt{Ambient.powerId\_two\_excludes\_erase}); the dynamics layer
+imports it as \texttt{Bridge.TwoBounce.symmetric\_excludes\_erase}. The
+dictionary package re-exports several bridge declarations under its own
+namespace (e.g.\ \texttt{Dictionary.Certificate}); citations here always
+resolve to the defining package. Axiom footprints are audited per
+declaration: every cited declaration is axiom-free or depends on
+\texttt{propext} alone, and the two-bounce existence witness
+\texttt{Bridge.TwoBounce.factor\_fin} is itself axiom-free, its
+construction computable by bounded search (Remark following
+Theorem~\ref{thm:exists}). \texttt{Classical.choice} is not used
+anywhere in the corpus, \texttt{Quot.sound} occurs in no cited
+footprint, and no axiom is declared by the corpus itself.
 
 \begin{thebibliography}{99}
 

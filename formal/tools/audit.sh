@@ -12,7 +12,7 @@ cd "$(dirname "$0")/../.."
 log="$(mktemp)"
 trap 'rm -f "$log"' EXIT
 
-for d in spine ledger bridge dictionary; do
+for d in spine ledger bridge dictionary experimental; do
   echo "##PKG $d" >> "$log"
   (cd "formal/$d" && lake build) >> "$log" 2>&1
 done

@@ -108,6 +108,10 @@ def main() -> int:
     for pkg, modules in PACKAGES.items():
         add(f"## `formal/{pkg}/`")
         add("")
+        if pkg == "experimental":
+            add("Experimental (quarantined): exploratory results, not part of "
+                "the audited spine/ledger/bridge/dictionary chain.")
+            add("")
         add("| Module | results | clean | propext | propext + Quot.sound | declared |")
         add("|---|---:|---:|---:|---:|---:|")
         for mod in modules:

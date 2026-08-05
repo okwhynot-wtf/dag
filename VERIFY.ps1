@@ -17,6 +17,7 @@ Invoke-LakeBuild "formal\spine"
 Invoke-LakeBuild "formal\ledger"
 Invoke-LakeBuild "formal\bridge"
 Invoke-LakeBuild "formal\dictionary"
+Invoke-LakeBuild "formal\experimental"
 
 python exhibits\quintom\integrate.py
 if ($LASTEXITCODE -ne 0) { throw "quintom exhibit failed" }

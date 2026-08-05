@@ -18,6 +18,9 @@ echo "-- bridge --"
 echo "-- dictionary --"
 (cd formal/dictionary && lake build)
 
+echo "-- experimental (quarantined) --"
+(cd formal/experimental && lake build)
+
 echo "-- quintom exhibit --"
 python3 exhibits/quintom/integrate.py
 

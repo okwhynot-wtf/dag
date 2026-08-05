@@ -16,11 +16,13 @@ import Apophasis
 import Canon
 import Information
 import Observer
+import NoExterior
 import Faces
 import Density
 import NonCommencement
 import OmegaDuration
 import SelfReference
+import SelfArticulation
 
 /-!
 # Audit — axiom footprint for `formal/spine/`
@@ -31,7 +33,7 @@ Generated. Do not edit by hand:
 python3 formal/tools/gen_audit.py
 ```
 
-23 modules, 344 results. Source for `formal/AXIOMS.md`.
+25 modules, 353 results. Source for `formal/AXIOMS.md`.
 -/
 
 -- Orbit (23)
@@ -322,6 +324,16 @@ python3 formal/tools/gen_audit.py
 #print axioms Observer.rich_inherits_at_level
 #print axioms Observer.observers_forced
 
+-- NoExterior (8)
+#print axioms NoExterior.presentation_forces_live
+#print axioms NoExterior.presentation_retracts
+#print axioms NoExterior.standpoint_embeds_canon
+#print axioms NoExterior.presentation_unique
+#print axioms NoExterior.coequivariant_of_witness
+#print axioms NoExterior.presentation_of_witness
+#print axioms NoExterior.witness_is_observer
+#print axioms NoExterior.no_exterior_standpoint
+
 -- Faces (6)
 #print axioms Faces.neti_neti
 #print axioms Faces.dao_untold
@@ -423,3 +435,6 @@ python3 formal/tools/gen_audit.py
 #print axioms SelfReference.dodge_gauge_covariant
 #print axioms SelfReference.corpus_not_universal
 #print axioms SelfReference.meta_triad_quantitative
+
+-- SelfArticulation (1)
+#print axioms SelfArticulation.self_articulation

@@ -42,11 +42,13 @@ refuses discharge as world-from-Bool; it does not declare a kernel axiom.
 | `Canon` | 24 | 24 |  |  |  |
 | `Information` | 7 | 7 |  |  |  |
 | `Observer` | 8 | 8 |  |  |  |
+| `NoExterior` | 8 | 8 |  |  |  |
 | `Faces` | 6 | 6 |  |  |  |
 | `Density` | 31 | 31 |  |  |  |
 | `NonCommencement` | 11 | 11 |  |  |  |
 | `OmegaDuration` | 13 | 13 |  |  |  |
 | `SelfReference` | 31 | 11 | 20 |  |  |
+| `SelfArticulation` | 1 |  | 1 |  |  |
 
 ## `formal/ledger/`
 
@@ -110,8 +112,8 @@ refuses discharge as world-from-Bool; it does not declare a kernel axiom.
 | `Period2KMS` | 7 | 5 | 2 |  |  |
 | `ModularCut` | 8 | 5 | 3 |  |  |
 | `LorentzianDict` | 5 | 5 |  |  |  |
-| `TwoBounce` | 54 | 17 | 12 |  |  |
-| `BridgeArc` | 41 | 24 | 14 | 2 |  |
+| `TwoBounce` | 77 | 69 | 8 |  |  |
+| `BridgeArc` | 41 | 25 | 14 | 2 |  |
 
 ## `formal/dictionary/`
 
@@ -131,5 +133,16 @@ refuses discharge as world-from-Bool; it does not declare a kernel axiom.
 | `NoClone` | 11 | 11 |  |  |  |
 | `MetaProblem` | 11 | 9 | 2 |  |  |
 
-Totals: 1346 audited results; 1152 clean.
+## `formal/experimental/`
+
+Experimental (quarantined): exploratory results, not part of the audited spine/ledger/bridge/dictionary chain.
+
+| Module | results | clean | propext | propext + Quot.sound | declared |
+|---|---:|---:|---:|---:|---:|
+| `Overtones` | 17 | 1 | 10 | 6 |  |
+| `Frequencies` | 16 | 4 | 3 | 9 |  |
+| `WaveEquation` | 31 | 7 | 2 | 20 |  |
+| `CantorBoundary` | 11 | 11 |  |  |  |
+
+Totals: 1453 audited results; 1236 clean.
 

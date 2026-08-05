@@ -10,6 +10,8 @@ Layer 0  SPINE        formal/spine
 ```
 
 Downward imports only. Bridge theorems live in `formal/bridge/`.
+Quarantined probes live in `formal/experimental/`; nothing cited by the
+paper imports them.
 
 - Paper draft: [`docs/paper/jmp_draft.pdf`](docs/paper/jmp_draft.pdf)
   ([`.tex`](docs/paper/jmp_draft.tex))
@@ -27,7 +29,7 @@ toolchain installs on first build) and Python 3. No Mathlib; no `sorry`.
 bash VERIFY.sh      # or .\VERIFY.ps1 on Windows
 ```
 
-Builds all four packages and runs the quintom exhibit.
+Builds all five packages and runs the quintom exhibit.
 
 ## Axiom audit
 

@@ -1,0 +1,22 @@
+name = "dag_experimental"
+version = "0.1.0"
+defaultTargets = ["DAGExperimental"]
+
+[[require]]
+name = "fundamental_spine"
+path = "../spine"
+
+[[require]]
+name = "dag_bridge"
+path = "../bridge"
+
+[[lean_lib]]
+name = "DAGExperimental"
+srcDir = "."
+roots = [
+  "Overtones",
+  "Frequencies",
+  "WaveEquation",
+  "CantorBoundary",
+  "Audit",
+]

@@ -36,7 +36,7 @@ Generated. Do not edit by hand:
 python3 formal/tools/gen_audit.py
 ```
 
-28 modules, 441 results. Source for `formal/AXIOMS.md`.
+28 modules, 464 results. Source for `formal/AXIOMS.md`.
 -/
 
 -- Alphabet (7)
@@ -437,7 +437,7 @@ python3 formal/tools/gen_audit.py
 #print axioms Bridge.LorentzianDict.omega_shape_echo
 #print axioms Bridge.LorentzianDict.partial_lorentzian_dictionary
 
--- TwoBounce (54)
+-- TwoBounce (77)
 #print axioms Bridge.TwoBounce.involution_of_symmetric
 #print axioms Bridge.TwoBounce.symmetric_of_involution
 #print axioms Bridge.TwoBounce.involution_injective
@@ -447,17 +447,39 @@ python3 formal/tools/gen_audit.py
 #print axioms Bridge.TwoBounce.inj_of_two_bounce
 #print axioms Bridge.TwoBounce.bool_inj_involution
 #print axioms Bridge.TwoBounce.swapStep_involution
+#print axioms Bridge.TwoBounce.nat_sub_self_add
+#print axioms Bridge.TwoBounce.nat_add_sub_cancel_left
+#print axioms Bridge.TwoBounce.nat_add_one_right
+#print axioms Bridge.TwoBounce.nat_sub_one_right
+#print axioms Bridge.TwoBounce.nat_sub_add_cancel
+#print axioms Bridge.TwoBounce.nat_add_sub_of_le
+#print axioms Bridge.TwoBounce.nat_sub_pos_of_lt
+#print axioms Bridge.TwoBounce.nat_sub_sub
+#print axioms Bridge.TwoBounce.nat_sub_sub_self
+#print axioms Bridge.TwoBounce.nat_sub_le_sub_left
+#print axioms Bridge.TwoBounce.nat_sub_add_comm
+#print axioms Bridge.TwoBounce.firstBelow_some
+#print axioms Bridge.TwoBounce.firstBelow_none
+#print axioms Bridge.TwoBounce.firstBelow_least
+#print axioms Bridge.TwoBounce.pairFind_some
+#print axioms Bridge.TwoBounce.pairFind_none
+#print axioms Bridge.TwoBounce.fin_collides_bounded
 #print axioms Bridge.TwoBounce.fin_collides
 #print axioms Bridge.TwoBounce.fin_returns
-#print axioms Bridge.TwoBounce.exists_min_period
+#print axioms Bridge.TwoBounce.fin_returns_le
+#print axioms Bridge.TwoBounce.minPeriod_spec
 #print axioms Bridge.TwoBounce.minPeriod_pos
 #print axioms Bridge.TwoBounce.minPeriod_return
 #print axioms Bridge.TwoBounce.minPeriod_least
+#print axioms Bridge.TwoBounce.exists_min_period
+#print axioms Bridge.TwoBounce.iter_reduce
 #print axioms Bridge.TwoBounce.orbit_distinct
 #print axioms Bridge.TwoBounce.minPeriod_iter
 #print axioms Bridge.TwoBounce.iter_mul_period
 #print axioms Bridge.TwoBounce.iter_mod_period
 #print axioms Bridge.TwoBounce.exists_argmin
+#print axioms Bridge.TwoBounce.argminBelow_lt
+#print axioms Bridge.TwoBounce.argminBelow_min
 #print axioms Bridge.TwoBounce.exists_orbit_base
 #print axioms Bridge.TwoBounce.orbitBase_mem
 #print axioms Bridge.TwoBounce.orbitBase_min
@@ -466,6 +488,7 @@ python3 formal/tools/gen_audit.py
 #print axioms Bridge.TwoBounce.orbitBase_iter
 #print axioms Bridge.TwoBounce.orbitBase_idem
 #print axioms Bridge.TwoBounce.exists_index
+#print axioms Bridge.TwoBounce.indexOf_spec
 #print axioms Bridge.TwoBounce.indexOf_lt
 #print axioms Bridge.TwoBounce.indexOf_iter
 #print axioms Bridge.TwoBounce.reflect_idx

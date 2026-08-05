@@ -138,20 +138,30 @@ of pointed symmetric steps; the surviving shape is the fixed-point-free
 two-cycle. That survivor is characterised by a universal property:
 $(\Bool,\neg)$ is initial among pointed unoriented acts, and every
 fundamental act reads as negation. From fundamentality we obtain a
-Lawvere-style seal (no point-surjective self-reading), an $\omega$-ladder
-of namers, and---after transferring losslessness to forward microsteps by
-two-bounce factorisation---registration, capacity, and a single
-$\Ztwo$-underdetermination with three faces. Canonicity of the two-bounce
-pair fails; channel \emph{swap} nevertheless covers step reversal. Content
-gauges are separated from packaging gauges so that factorisation
-non-uniqueness does not inflate the dictionary $\Ztwo$. The development
-is machine-checked in Lean~4 (no Mathlib, no $\mathtt{sorry}$). Physical
-readings appear only in a dictionary layer of certificates.
+Lawvere-style seal with quantitative grain (names lag predicates at every
+level, and the lag recedes under completion), an $\omega$-ladder of namers
+whose colimit is duration, and, after transferring losslessness to forward
+microsteps by two-bounce factorisation, registration, capacity, and a
+single $\Ztwo$-underdetermination with three faces. Canonicity of the
+two-bounce pair fails; channel \emph{swap} nevertheless covers step
+reversal, and content gauges are separated from packaging gauges so that
+factorisation non-uniqueness does not inflate the dictionary $\Ztwo$. On
+this base we assemble a conditional monist package,
+\emph{self-articulation}: a registered denial of one drawn distinction
+draws the registering carrier (retorsion); a drawn distinction forces the
+live involutive reading; witnesses arise as ladder inhabitants; every
+presentation of the canon to a second term retracts the canon's own
+articulation; and completeness exists only as duration. The sole worked
+dictionary exhibit is a certificate for the meta-problem of
+consciousness, deriving the report structure of the explanatory gap while
+refusing all qualia claims. The development is machine-checked in Lean~4
+(no Mathlib, no $\mathtt{sorry}$).
 \end{abstract}
 
 \noindent{\sffamily\bfseries\color{accent} Keywords.}
 classification; involution; universal property; Lawvere diagonal;
-underdetermination; gauge; machine-checked mathematics.
+self-articulation; retorsion; meta-problem; underdetermination; gauge;
+machine-checked mathematics.
 
 \section{Introduction}
 \label{sec:intro}
@@ -164,6 +174,16 @@ except one encounters an obstruction. The survivor is the live two-cycle.
 Negation on $\Bool$~\cite{bool} is not assumed at the outset; it is the
 unique object (up to label swap) satisfying the universal property, in
 the standard categorical sense~\cite{maclane}, of that survivor.
+
+A second contribution assembles, on that base, a conditional monist
+package. Given one drawn distinction, articulation as negation is
+forced, witnesses arise only as inhabitants of the resulting ladder, no
+presentation of the canon to a second term carries content beyond the
+canon's own articulation, and completeness exists only as the colimit of
+ascent. The package is a single machine-checked conjunction
+(Theorem~\ref{thm:selfart}); its identification with worldhood is
+confined to a marked interpretation, and the sole worked dictionary
+exhibit is a certificate for the meta-problem of consciousness.
 
 The formal development then follows a fixed dependency:
 
@@ -182,7 +202,8 @@ The formal development then follows a fixed dependency:
   \node[N, right=2.5mm of r] (a) {archive};
   \node[N, right=2.5mm of a] (k) {capacity};
   \node[N, right=2.5mm of k] (w) {arrow};
-  \node[N, right=2.5mm of w] (i) {interpretations};
+  \node[N, below=7mm of w] (sa) {self-articulation};
+  \node[N, right=2.5mm of sa] (i) {interpretations};
   \draw[arr] (c) -- (f);
   \draw[arr] (f) -- (s);
   \draw[arr] (s) -- (l);
@@ -190,7 +211,8 @@ The formal development then follows a fixed dependency:
   \draw[arr] (r) -- (a);
   \draw[arr] (a) -- (k);
   \draw[arr] (k) -- (w);
-  \draw[arr] (w) -- (i);
+  \draw[arr] (w) -- (sa);
+  \draw[arr] (sa) -- (i);
 \end{tikzpicture}
 \end{center}
 Each arrow is a theorem or a defined interface; philosophical commentary
@@ -221,7 +243,10 @@ Sections~\ref{sec:seal}--\ref{sec:ladder} obtain seal and ladder.
 Sections~\ref{sec:reg}--\ref{sec:arrow} transfer losslessness, record
 registration and capacity, and identify the arrow with address.
 Section~\ref{sec:z2} states the single $\Ztwo$ and the gauge demarcation.
-Section~\ref{sec:dict} confines dictionary readings.
+Section~\ref{sec:selfart} assembles the self-articulation package and
+sorts its admissible readings.
+Section~\ref{sec:dict} confines the dictionary to one worked
+certificate.
 Section~\ref{sec:status} collects open, refused, and philosophical items.
 Section~\ref{sec:related} situates the development in prior work.
 Section~\ref{sec:concl} concludes.
@@ -455,14 +480,25 @@ fundamental acts, every self-reading admits an escape.
 \begin{theorem}[Corpus-grain incompleteness]
 \label{thm:corpus}
 No self-reading of the formal corpus is universal for the predicates of
-its own level: names are outnumbered by predicates, and any completed
-self-portrait lags. Completeness-in-the-limit is a fair-schedule
-\emph{policy}, not a theorem that the corpus catches itself.
+its own level. At level $k$ the name supply is $k+2$ against $2^{\,k+2}$
+predicates, so names are outnumbered at every level and, for any scale
+$N$, are eventually outnumbered by any multiple of themselves.
+Completing a full naming pass leaves strictly more unsayable mass than
+it found, and the lag recedes under iteration. The $\omega$-colimit of
+the ladder admits no injection into any finite level.
+Completeness-in-the-limit is a fair-schedule \emph{policy};
+completeness at the colimit is duration, not a rung.
 \end{theorem}
 
 \begin{remark}[Status]
 Theorems~\ref{thm:seal}--\ref{thm:corpus} are proved
-(Lawvere-style~\cite{lawvere}; no arithmetisation). Host-logic
+(Lawvere-style~\cite{lawvere}; no arithmetisation), the latter as the
+assembled conjunction \texttt{corpus\_not\_universal} in the
+\texttt{SelfReference} module, with clauses \texttt{deficit\_count},
+\texttt{deficit\_vanishes}, \texttt{lag\_theorem},
+\texttt{lag\_recedes}, and \texttt{omega\_not\_a\_rung}. The gloss that the only
+complete description of the system is the system itself is
+interpretation; the theorem supplies the non-injection. Host-logic
 incompleteness and G\"odel coding of the corpus text in the sense
 of~\cite{godel} are \emph{refused} (Section~\ref{sec:status}).
 \end{remark}
@@ -778,22 +814,157 @@ permutation-style underdetermination of reference~\cite{quine,putnam}.
 \end{remark}
 
 
-\section{Dictionary interpretations}
-\label{sec:dict}
+\section{Self-articulation}
+\label{sec:selfart}
+
+\dep{Theorem~\ref{thm:canon} (initiality); Theorems~\ref{thm:seal},
+\ref{thm:ladder}, \ref{thm:corpus}; Theorem~\ref{thm:z2} (pole gauge).}
+
+The classification ends in one survivor; this section states what the
+survivor's self-relation supports. Three candidate readings are on the
+table: (a)~world is the structured self-articulation of the canon, with
+questions of witness and standpoint arising only inside the descriptive
+field that articulation generates; (b)~given the kernel, worldhood
+\emph{necessarily} arises as self-presentation; (c)~reality \emph{is}
+the self-appearance of the involutive survivor. The theorems below
+support a conditional form of~(a); readings (b) and~(c) are refused
+(Section~\ref{sec:status}).
+
+\begin{definition}[Presentation]
+\label{def:pres}
+Let $\act:\beta\to\beta$ and $z:\beta$. A \emph{presentation} of the
+canon at the standpoint $(\beta,\act,z)$ is a map $g:\beta\to\Bool$ with
+$g(z)=\mathrm{true}$ and $g(\act\,x)=\neg g(x)$ for all $x$.
+\end{definition}
+
+\begin{theorem}[No second term]
+\label{thm:noext}
+\textup{(A)}~For every carrier $W$ and every self-reading
+$r:W\to W\to\Bool$, $r$ is sealed and fails to articulate its own
+dodge; witnessing confers no exemption from the interior triad.
+\textup{(B)}~Every presentation forces liveness of its standpoint
+everywhere, retracts the canon's articulation
+($g\comp\mathrm{reading}=\mathrm{id}$ on $\Bool$), and renders the
+articulation into the standpoint injective, so the standpoint contains
+the canon. \textup{(C)}~On a generated carrier the presentation is
+unique.
+\end{theorem}
+
+\begin{remark}[Status]
+Proved; every clause of Theorem~\ref{thm:noext} is axiom-free
+(declaration \texttt{no\_exterior\_standpoint}, spine module
+\texttt{NoExterior}). The retraction clause is
+the exact content of reading~(a): a second term's view of the canon is
+the canon's self-articulation read back, and clause~\textup{(C)} leaves
+the view no independent content.
+\end{remark}
+
+\begin{theorem}[Witness lands in the pole gauge]
+\label{thm:preswit}
+A context-free live witness ($\mathrm{TDiff}$ together with
+$\mathrm{Alive}$ at the seed) determines a presentation up to pole
+swap: some presentation agrees with the witness or with its pointwise
+flip. The residual choice is the label gauge of Table~\ref{tab:gauges}
+and nothing else.
+\end{theorem}
+
+\begin{theorem}[Retorsion]
+\label{thm:retorsion}
+Write $\mathrm{Draws}\,M$ for the existence of two distinct elements of
+$M$. If a map $t:\mathrm{Prop}\to M$ assigns distinct values to
+$\mathrm{Draws}\,M$ and to its negation, then $\mathrm{Draws}\,M$
+holds.
+\end{theorem}
+
+\begin{remark}[Status]
+Proved (\texttt{Monism.retorsion}); the two registered values
+themselves witness the distinction. The theorem draws the codomain:
+what a registered denial establishes is that the medium of registration
+is already distinguished. Section~\ref{sec:status} relocates the
+existential residue accordingly.
+\end{remark}
+
+\begin{theorem}[Self-articulation]
+\label{thm:selfart}
+The following conjunction holds. \textup{(I)}~Retorsion, as in
+Theorem~\ref{thm:retorsion}. \textup{(II)}~On any carrier with a drawn
+distinction, a symmetric generated act is live and involutive and reads
+as negation from every seed, exhaustively and injectively.
+\textup{(III)}~Every ladder level self-represents under seal,
+self-opacity, and outrun. \textup{(IV)}~No exterior standpoint, as in
+Theorem~\ref{thm:noext}. \textup{(V)}~Names lag predicates at every
+level, the lag recedes under completion, and the $\omega$-colimit
+embeds in no level.
+\end{theorem}
+
+\begin{remark}[Status]
+Proved as a single declaration (\texttt{self\_articulation}, spine
+module \texttt{SelfArticulation}; footprint \texttt{propext} only). The antecedent of clause~\textup{(II)} is the
+drawn distinction \emph{together with} the ambient equations, whose
+adequacy within the one-variable fragment is
+Theorem~\ref{thm:ambient-unique}; the package does not derive the
+ambient from $\mathrm{Draws}$ alone.
+\end{remark}
 
 \begin{interpretation}
+\label{int:selfart}
+Reading~(a) is adopted in conditional form. Given one drawn
+distinction, articulation as negation is forced~\textup{(II)},
+standpoints arise as inhabitants of the articulation~\textup{(III)},
+any presentation to a second term returns the articulation
+itself~\textup{(IV)}, and the whole exists only as
+duration~\textup{(V)}. Questions of witness, standpoint, and medium are
+well-posed from level~1 upward because the vocabulary that poses them
+is generated by the ascent. ``World'' names the consequent of this
+conditional; the identification is interpretation, and the sentence
+that the only complete description of the system is the system is a
+gloss on the non-injection of clause~\textup{(V)}. Readings (b)
+and~(c) are refused: (b)~asserts necessity while the corpus carries no
+modal apparatus, and (c)~discharges the existential residue while
+Section~\ref{sec:status} declines that discharge. Retorsion narrows
+what the refusal of~(c) costs: any registered denial of the antecedent
+draws its own medium, so the undischarged step runs from registered
+distinction to world, and only that step.
+\end{interpretation}
+
+
+\section{Dictionary: the meta-problem certificate}
+\label{sec:dict}
+
+\dep{Definition~\ref{def:admit}; Theorem~\ref{thm:selfart}.}
+
+The dictionary layer admits physical or contemplative identifications
+by certificate only. This paper works a single exhibit, chosen because
+its subject matter coincides with the corpus's own: reflexive
+self-representation.
+
+\begin{interpretation}[Meta-problem certificate]
 \label{int:dict}
-Dictionary entries instantiate the kernel admission interface of
-Definition~\ref{def:admit} at a physical or contemplative model (for
-example, swap as negation; dissipation as registration, in the sense of
-Landauer's principle~\cite{landauer}). They do not derive continuum
-spacetimes or observational numbers from $\Bool$.
+Chalmers's meta-problem asks why physical systems \emph{report} an
+explanatory gap~\cite{chalmers}. The certificate instantiates
+Definition~\ref{def:admit} at the self-ascription bit: the symmetry is
+the live flip, observation is the identity reading, and the fixed locus
+is classified empty, so awareness in this model is always awareness of
+a distinction. Admission holds
+(\texttt{Dictionary.MetaProblem.meta\_admitted}), and the report
+skeleton is theorem-shaped at every ladder level: self-opacity (the
+dodge is never articulated), outdated portrait (each completed
+self-model is outrun), and restless signature (no tracked
+self-ascription stabilises), each at the quantitative grade of
+Theorem~\ref{thm:corpus}. Systems satisfying these clauses report
+ineffability and incompleteness on structural grounds.
 \end{interpretation}
 
 \begin{remark}[Status]
-Layer~3 only. Instantiation of Definition~\ref{def:admit}; no theorem in
-Sections~\ref{sec:class}--\ref{sec:z2} depends on a dictionary-layer
-model.
+Layer~3 only; no theorem of Sections~\ref{sec:class}--\ref{sec:selfart}
+depends on it. The hard problem is untouched by design: nothing here
+says why there is something it is like to be such a system, and qualia
+claims are refused (Section~\ref{sec:status}). Physical certificates
+(registration as dissipation in the sense of
+Landauer~\cite{landauer}, with further exhibits retained in the
+corpus) instantiate the same admission interface; that shared interface
+is the only correspondence between physical and contemplative readings
+asserted here.
 \end{remark}
 
 
@@ -812,7 +983,9 @@ Premise-free global laws of time; continuum Einstein equations as
 theorems of this corpus; host-logic incompleteness; G\"odel
 arithmetisation of the formal text; experiential or qualia claims;
 derivation of the world from $\Bool$ alone (including any discharge of
-the existential residue below); ambients beyond the one-variable
+the existential residue below); modal strengthening of the
+self-articulation package of Theorem~\ref{thm:selfart} (the corpus
+carries no modal apparatus); ambients beyond the one-variable
 equational fragment of the arena signature (including multi-variable
 single equations treated as ambients, quasi-equational, and Horn /
 second-order constraints), refused by parsimony of the arena language.
@@ -821,13 +994,17 @@ second-order constraints), refused by parsimony of the arena language.
 \begin{statusphil}
 Residue accounting, with the prior items replaced by theorem citations.
 \begin{enumerate}[label=(\roman*)]
-\item \textbf{Existential residue.} A non-degenerate pointed act exists.
-Orbit liveness is Theorem~\ref{thm:live-orbit}; the residue is the one
-existential bit. The corpus exhibits a two-point model witnessing the
+\item \textbf{Registration residue.} A registration occurs. Retorsion
+(Theorem~\ref{thm:retorsion}) converts any assignment that registers
+the denial of a drawn distinction distinctly from its affirmation into
+a proof that the registering carrier is drawn, and orbit liveness is
+Theorem~\ref{thm:live-orbit}; the residue is thereby relocated from the
+existence of a non-degenerate act to the occurrence of one
+registration. The corpus exhibits a two-point model witnessing the
 existential and declares no axiom, so the residue is carried as an
 architectural note in the audit: what remains undischarged is the
-interpretive step from exhibited model to world, and that discharge is
-refused.
+interpretive step from registered distinction to world, and that
+discharge is refused.
 \item \textbf{Signature declaration.} Arena data as given
 (Definition~\ref{def:arena}: one type, one endomap). Adequacy of
 $a\comp a=\mathrm{id}$ is Theorem~\ref{thm:ambient-unique}; the signature
@@ -901,6 +1078,40 @@ exactly inventoried---one $\Ztwo$, three faces (Theorem~\ref{thm:z2}).
 Nothing is asserted about physical theories; within its scope the
 inventory is complete and machine-checked.
 
+\paragraph{Self-articulation and the mark.}
+The nearest formal ancestor of the self-articulation package is
+Spencer-Brown's calculus of the first distinction~\cite{spencerbrown},
+with Varela's extension for re-entry~\cite{varela}; the classical
+antecedents are Fichte's self-positing act~\cite{fichte} and Hegel's
+self-relating negativity~\cite{hegel}. Those systems posit the
+reflexive structure as primitive or develop it inside an informal
+dialectic. Here the two-cycle is the survivor of an eliminative
+classification, re-entry is replaced by a ladder whose ascent is a
+theorem, the residual underdetermination is inventoried as one
+$\Ztwo$, and the single undischarged bit is audited
+(Section~\ref{sec:status}).
+
+\paragraph{Retorsion and transcendental argument.}
+Arguments that a denial defeats itself in the performance descend from
+the classical defence of non-contradiction and reach modern form in
+Apel's performative self-contradiction~\cite{apel}.
+Theorem~\ref{thm:retorsion} is deliberately smaller: it concerns
+registering maps, its conclusion draws the codomain of the
+registration, and its scope ends exactly where
+Section~\ref{sec:status} says it does.
+
+\paragraph{The meta-problem and higher-order theories.}
+The certificate of Section~\ref{sec:dict} addresses the explanandum
+Chalmers isolates as the meta-problem~\cite{chalmers}. Higher-order theories~\cite{rosenthal},
+self-representationalism~\cite{kriegel}, self-model
+accounts~\cite{metzinger}, and the pre-reflective
+tradition~\cite{zahavi} model the report structure within rich
+psychological or phenomenological theories. The contribution here is
+narrower: the triad of self-opacity, outdated portrait, and restless
+signature is proved at measure grade for any live self-representing
+ladder system, while the hard problem is left standing by explicit
+refusal.
+
 \paragraph{Machine-checked philosophical argument.}
 Formalising a philosophical argument in a proof assistant has
 precedent, notably the automation of G\"odel's ontological
@@ -920,10 +1131,15 @@ that survivor: the unique object is $(\Bool,\neg)$ up to label swap.
 Seal, ladder, registration (via two-bounce), archive capacity, and arrow
 as address follow in dependency order. One $\Ztwo$ is stated once; content
 and packaging gauges prevent factorisation non-uniqueness from counting
-as a second underdetermination. Philosophical residue is reclassified
-into theorems, one exhibited existential residue, or certificate data,
-as inventoried in Section~\ref{sec:status}; dictionary claims remain confined to the marked
-layer.
+as a second underdetermination. On this base the self-articulation
+package assembles retorsion, forced articulation, witness interiority,
+the absence of exterior standpoints, and completeness as duration into
+a single machine-checked conjunction, with its monist reading confined
+to a marked interpretation. The dictionary carries one worked exhibit,
+the meta-problem certificate, which derives the report structure of the
+explanatory gap and refuses the hard problem. Philosophical residue is
+reclassified into theorems, one audited registration residue, or
+certificate data, as inventoried in Section~\ref{sec:status}.
 
 \section*{Formal companion}
 \label{sec:companion}
@@ -945,7 +1161,13 @@ naming $\cong$ $\mu$tick, up to gauge &
 $U=\sigma\comp\phi$;\ swap $=$ reversal;\ one $\Ztwo$ \\
 {\scriptsize\color{muted} Thm.~\ref{thm:caps}} &
 {\scriptsize\color{muted} Thm.~\ref{thm:arrow}} &
-{\scriptsize\color{muted} Thms.~\ref{thm:exists}, \ref{thm:swap}, \ref{thm:z2}} \\
+{\scriptsize\color{muted} Thms.~\ref{thm:exists}, \ref{thm:swap}, \ref{thm:z2}} \\[5pt]
+$\mathrm{deny}\Rightarrow\mathrm{Draws}$ &
+presentation retracts; no exterior &
+triad admitted; qualia refused \\
+{\scriptsize\color{muted} Thm.~\ref{thm:retorsion}} &
+{\scriptsize\color{muted} Thms.~\ref{thm:noext}, \ref{thm:selfart}} &
+{\scriptsize\color{muted} Int.~\ref{int:dict}} \\
 \end{tabular}}
 \end{center}
 
@@ -961,6 +1183,13 @@ Ambient.powerId\_two\_excludes\_erase\,(s) \textperiodcentered\
 Canon.canon\_initial\,(s) \textperiodcentered\
 Diagonal.seal\_on\_fundamental\,(s) \textperiodcentered\
 SelfReference.corpus\_not\_universal\,(s) \textperiodcentered\
+OmegaDuration.\allowbreak omega\_not\_a\_rung\,(s) \textperiodcentered\
+Monism.\allowbreak diagonal\_monism\,(s) \textperiodcentered\
+Monism.retorsion\,(s) \textperiodcentered\
+Observer.\allowbreak observers\_forced\,(s) \textperiodcentered\
+NoExterior.\allowbreak no\_exterior\_standpoint\,(s) \textperiodcentered\
+NoExterior.\allowbreak presentation\_of\_witness\,(s) \textperiodcentered\
+SelfArticulation.\allowbreak self\_articulation\,(s) \textperiodcentered\
 Bridge.OneZ2.one\_Z2\_three\_faces\,(b) \textperiodcentered\
 Bridge.KernelAdmit.bool\_cert\_face\_equivariant\,(b) \textperiodcentered\
 Bridge.TwoBounce.factor\_fin\,(b) \textperiodcentered\
@@ -968,7 +1197,8 @@ Bridge.TwoBounce.canonicity\_fails\,(b) \textperiodcentered\
 Bridge.TwoBounce.channel\_swap\_is\_reversal\,(b) \textperiodcentered\
 Bridge.Dil.registration\,(b) \textperiodcentered\
 Bridge.Capacity.caps\_eq\,(b) \textperiodcentered\
-Bridge.TickSimulation.tick\_identification\,(b)
+Bridge.TickSimulation.tick\_identification\,(b) \textperiodcentered\
+Dictionary.MetaProblem.\allowbreak meta\_admitted\,(d)
 }
 \end{center}
 Proposition~\ref{prop:no-erase} is cited at its foundation form
@@ -986,6 +1216,11 @@ anywhere in the corpus, \texttt{Quot.sound} occurs in no cited
 footprint, and no axiom is declared by the corpus itself.
 
 \begin{thebibliography}{99}
+
+\bibitem{apel}
+K.-O.~Apel.
+\newblock \emph{Towards a Transformation of Philosophy}.
+\newblock Routledge \& Kegan Paul, London, 1980.
 
 \bibitem{bennett}
 C.~H.~Bennett.
@@ -1018,6 +1253,11 @@ G.~Cantor.
 \newblock \emph{Jahresbericht der Deutschen Mathematiker-Vereinigung},
   1:75--78, 1891.
 
+\bibitem{chalmers}
+D.~J.~Chalmers.
+\newblock The meta-problem of consciousness.
+\newblock \emph{Journal of Consciousness Studies}, 25(9--10):6--61, 2018.
+
 \bibitem{dihedral}
 H.~S.~M.~Coxeter.
 \newblock \emph{Regular Polytopes}.
@@ -1037,6 +1277,12 @@ N.~Dewar.
 \newblock \emph{British Journal for the Philosophy of Science},
   70(2):485--521, 2019.
 
+\bibitem{fichte}
+J.~G.~Fichte.
+\newblock \emph{Foundations of the Entire Science of Knowledge} (1794).
+\newblock In \emph{Science of Knowledge}, edited and translated by
+  P.~Heath and J.~Lachs. Cambridge University Press, Cambridge, 1982.
+
 \bibitem{fredkintoffoli}
 E.~Fredkin and T.~Toffoli.
 \newblock Conservative logic.
@@ -1049,6 +1295,18 @@ K.~G\"odel.
   Mathematica} und verwandter Systeme~I.
 \newblock \emph{Monatshefte f\"ur Mathematik und Physik}, 38:173--198,
   1931.
+
+\bibitem{hegel}
+G.~W.~F.~Hegel.
+\newblock \emph{The Science of Logic}.
+\newblock Translated by G.~di~Giovanni. Cambridge University Press,
+  Cambridge, 2010.
+
+\bibitem{kriegel}
+U.~Kriegel.
+\newblock \emph{Subjective Consciousness: A Self-Representational
+  Theory}.
+\newblock Oxford University Press, Oxford, 2009.
 
 \bibitem{lambroberts}
 J.~S.~W.~Lamb and J.~A.~G.~Roberts.
@@ -1083,6 +1341,11 @@ The mathlib Community.
   Conference on Certified Programs and Proofs (CPP 2020)}, pages
   367--381. ACM, 2020.
 
+\bibitem{metzinger}
+T.~Metzinger.
+\newblock \emph{Being No One: The Self-Model Theory of Subjectivity}.
+\newblock MIT Press, Cambridge, MA, 2003.
+
 \bibitem{petersentenner}
 T.~K.~Petersen and B.~E.~Tenner.
 \newblock How to write a permutation as a product of involutions (and why
@@ -1100,11 +1363,33 @@ W.~V.~Quine.
 \newblock In \emph{Ontological Relativity and Other Essays}, pages 26--68.
   Columbia University Press, New York, 1969.
 
+\bibitem{rosenthal}
+D.~M.~Rosenthal.
+\newblock \emph{Consciousness and Mind}.
+\newblock Oxford University Press, Oxford, 2005.
+
+\bibitem{spencerbrown}
+G.~Spencer-Brown.
+\newblock \emph{Laws of Form}.
+\newblock George Allen and Unwin, London, 1969.
+
+\bibitem{varela}
+F.~J.~Varela.
+\newblock A calculus for self-reference.
+\newblock \emph{International Journal of General Systems}, 2(1):5--24,
+  1975.
+
 \bibitem{yanofsky}
 N.~S.~Yanofsky.
 \newblock A universal approach to self-referential paradoxes,
   incompleteness and fixed points.
 \newblock \emph{Bulletin of Symbolic Logic}, 9(3):362--386, 2003.
+
+\bibitem{zahavi}
+D.~Zahavi.
+\newblock \emph{Subjectivity and Selfhood: Investigating the
+  First-Person Perspective}.
+\newblock MIT Press, Cambridge, MA, 2005.
 
 \end{thebibliography}
 

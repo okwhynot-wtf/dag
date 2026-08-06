@@ -229,49 +229,7 @@ VIII. Scope
   dict:    Certificate (K) · LCertificate · Quintom.* (incl. Growth) · BitFlip ·
            Kramers · Page · QEC · NoClone · MetaProblem
 
-═══════════════════════════════════════════════════════════════════════════════
-IX. Experimental annex  (quarantined; no main-line module imports it)
-═══════════════════════════════════════════════════════════════════════════════
 
-  boundary = Nat → Bool                  rungs embed; depth-(k+1)
-                                         cylinders separate rung k;
-                                         flip Live ⇒ seal at boundary
-                                         carrier; tail erases (in-arena
-                                         ¬erase fails at the boundary);
-                                         cons/tail carries the +1 step
-                                         (presented in the paper's
-                                          boundary section; module
-                                          stays quarantined, all
-                                          declarations axiom-free)
-  sym order(ring wave) = n / gcd n (n-1) = n
-                                         gcd law computes the
-                                         symmetry order; spectrum
-                                         constant on rotation orbits
-  flip gauge dichotomy (CouplingGauge)   4 ∣ n: half-period mask
-                                         conjugacy (packaging;
-                                         funext, recorded);
-                                         4 ∤ n: no intertwiner
-                                         (content, "up to flip");
-                                         per-tick period-4 dressing
-                                         at every n; flipped pulse
-                                         periods 4,12,4,20 at n=2..5
-  periods: ring 2..6 ↦ 2,6,4,10,6        kernel-decided; laws
-           Dirichlet 3..5 ↦ 8,10,12      (even↦n, odd↦2n, 2n+2)
-                                         conjectural beyond (needs
-                                         F₂[x]/(xⁿ−1); not in corpus)
-  concrete exhibits                      Fin 3 / Fin 5 cycles;
-                                         fifth_generates; twelve-carrier
-                                         instances of the gcd law;
-                                         waveFactor packaged witness
-                                         (funext, recorded)
-
-  Not derived: continuum, real frequencies, dispersion over ℝ,
-               closed-form period law in general n
-  Footprints:  propext / Quot.sound only; Classical.choice appears
-               nowhere in the repository's packages. Audited per
-               declaration in formal/AXIOMS.md
-  Modules:     Overtones · Frequencies · WaveEquation ·
-               CantorBoundary · SpectrumSymmetry · CouplingGauge
 
 ═══════════════════════════════════════════════════════════════════════════════
   Fund ≅ ¬  ·  a∘a=id ⇒ ¬erase  ·  merge ⇒ record  ·  |caps T| = 2^(T+2)

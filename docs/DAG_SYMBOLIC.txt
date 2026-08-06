@@ -216,47 +216,6 @@ VII. Compression
 VIII. Scope
 ═══════════════════════════════════════════════════════════════════════════════
 
-  Not derived here:
-          continuous one-parameter boost / Unruh temperature (O-2);
-          continuum Lorentzian limit (O-4);
-          Mathlib sheaf/site locality (O-3 combinatorial stalks only);
-          ultrametric ≠ Archimedean space (R-1);
-          Standard Model inventory from Bool (O-5);
-          H₀ / cosmology numbers from Bool;
-          continuum spacetime, Einstein field equations, QFT;
-          continuum Boltzmann / Gibbs;
-          Born rule from multiplicity alone
-            (born_from_multiplicity_nogo);
-          host-logic Gödel arithmetisation of the corpus;
-          experience / qualia;
-          dispersion relations / continuum frequencies;
-          closed-form wave period law in general n
-            (needs F₂[x]/(xⁿ−1); not in corpus)
-
-  Gauge demarcation:
-               content = exported statement mentions the choice;
-               packaging = quotiented before downstream consumption
-  Gauge inventory:
-               label/pole swap @ Fund     — content  (T-7)
-               address fwd/rev            — content  (T-7)
-               channel swap               — content  (channel_swap_is_reversal)
-               record gauge per tick      — packaging (Dil / T-2)
-               factorisation gauge        — packaging (I-1)
-               coupling flip K ↦ !K         packaging iff 4 ∣ n, else
-                                            content (coupling_flip_dichotomy,
-                                            exp; inventory complete)
-
-  Discharged in corpus (selected):
-               ¬flat(prof); Kmin=2; |caps T|=2^(T+2); one ℤ/2;
-               recordLabel∶Bool↪E; tick_identification;
-               straighten; registers_admits_namer;
-               born_from_multiplicity_nogo;
-               canonicity_fails; channel_swap_is_reversal;
-               coupling_flip_dichotomy;
-               T-10…T-16; E1; E2;
-               corpus_not_universal; seal_self; deficit; lag;
-               ω≠rung; observers_forced
-
   Modules:
   spine:   Canon · Orbit · Diagonal · Ladder · Density · NonCommencement ·
            Branch · Interior · OmegaDuration · SelfReference
